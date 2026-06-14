@@ -1,0 +1,1611 @@
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app" ng-controller="AppCtrl" lang="tr" data-uw-w-loader="" class="ng-scope"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><style ng-bind-template="[uib-typeahead-popup].dropdown-menu{display:block;}" class="ng-binding ng-scope">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style ng-bind-template=".uib-time input{width:50px;}" class="ng-binding ng-scope">.uib-time input{width:50px;}</style><style ng-bind-template="[uib-tooltip-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-popover-popup].popover.top-left &gt; .arrow,[uib-popover-popup].popover.top-right &gt; .arrow,[uib-popover-popup].popover.bottom-left &gt; .arrow,[uib-popover-popup].popover.bottom-right &gt; .arrow,[uib-popover-popup].popover.left-top &gt; .arrow,[uib-popover-popup].popover.left-bottom &gt; .arrow,[uib-popover-popup].popover.right-top &gt; .arrow,[uib-popover-popup].popover.right-bottom &gt; .arrow,[uib-popover-html-popup].popover.top-left &gt; .arrow,[uib-popover-html-popup].popover.top-right &gt; .arrow,[uib-popover-html-popup].popover.bottom-left &gt; .arrow,[uib-popover-html-popup].popover.bottom-right &gt; .arrow,[uib-popover-html-popup].popover.left-top &gt; .arrow,[uib-popover-html-popup].popover.left-bottom &gt; .arrow,[uib-popover-html-popup].popover.right-top &gt; .arrow,[uib-popover-html-popup].popover.right-bottom &gt; .arrow,[uib-popover-template-popup].popover.top-left &gt; .arrow,[uib-popover-template-popup].popover.top-right &gt; .arrow,[uib-popover-template-popup].popover.bottom-left &gt; .arrow,[uib-popover-template-popup].popover.bottom-right &gt; .arrow,[uib-popover-template-popup].popover.left-top &gt; .arrow,[uib-popover-template-popup].popover.left-bottom &gt; .arrow,[uib-popover-template-popup].popover.right-top &gt; .arrow,[uib-popover-template-popup].popover.right-bottom &gt; .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}" class="ng-binding ng-scope">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style ng-bind-template=".uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}" class="ng-binding ng-scope">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style ng-bind-template=".uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}" class="ng-binding ng-scope">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style ng-bind-template=".uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}" class="ng-binding ng-scope">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style ng-bind-template=".ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}" class="ng-binding ng-scope">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style ng-bind-template="@charset " utf-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none="" !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}"="" class="ng-binding ng-scope">@charset</style>
+    <meta charset="utf-8">
+    <meta name="fragment" content="!">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1254">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *">
+    <meta http-equiv="cache-control" content="no-store; no-cache; must-revalidate; max-stale=0; post-check=0; pre-check=0; max-age=0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="robots" content="all">
+    <meta name="revisit-after" content="1 Days">
+    <meta name="google-site-verification" content="AzbqvrgvGvY2ghwonLbysmpKIYJf0pFOdzaAAO2K4GQ">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.iuc.edu.tr/FileHandler.ashx?f=Pyrz_hdxWE-v4Ln4KI_Flg">
+
+    
+
+
+
+
+    
+    <title>İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı</title>
+    <meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa">
+    <meta name="description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı">
+    <meta name="keywords" content="https://www.iuc.edu.tr/tr/content/universitemiz/iletisim, İstanbul üniversitesi-cerrahpaşa iletişim, iüc birim öğrenci işleri büroları, öğrenci işleri daire başkanlığı, iüc öğrenci işleri daire başkanlığı, öğrenci işleri, iüc öğrenci işleri, öğrenci, iüc öğrenci, akademik takvim, iüc akademik takvim, yks, iüc yks,üniversite, eğitim, istanbul üniversitesi cerrahpaşa, iüc, istanbul university cerrahpaşa, birim öğrenci işleri büroları">
+    <meta property="og:title" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı">
+    <meta property="og:url" content="https://ogrenci.iuc.edu.tr/tr/_">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı">
+    <meta property="og:image" content="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_203_203.png">
+    <meta property="og:image:secure_url" content="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_203_203.png">
+    <meta property="og:image:width" content="250">
+    <meta property="og:image:height" content="250">
+    <meta property="og:image:type" content="image/png">
+    
+    <!-- Open Graph data -->
+
+
+
+    <meta id="site" content="F7C8E47C8FA6443BACAABF1DB5C10219">
+
+
+
+    <link href="/css/vendor-bd34d59a5f.min.css" rel="stylesheet">
+    <link href="/css/app.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://service-cms.iuc.edu.tr/api/webclient/style?site=F7C8E47C8FA6443BACAABF1DB5C10219" rel="stylesheet">
+    <link href="/css/theme/default/css/fontawesome-5.11.2/css/all.min.css" rel="stylesheet">
+    <style ng-bind-template="
+
+#captchaModal {
+    z-index: 20000 !important;
+}
+
+
+.modal-backdrop {
+    z-index: 19999 !important;
+}
+
+#modalHata {
+    z-index: 20000 !important;
+}
+
+#widget {
+    position: fixed !important;
+    top: 150px !important;
+    left: 0 !important;
+    z-index: 99999999 !important;
+}
+
+.section-title {
+
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.section-title:first-letter {
+  color: #000000;
+}
+.leftpane a {
+    color: #000000;
+}
+.nav&gt;li&gt;a {
+    color: #000000;
+}
+
+" class="ng-binding ng-scope">#captchaModal {
+    z-index: 20000 !important;
+}
+
+
+.modal-backdrop {
+    z-index: 19999 !important;
+}
+
+#modalHata {
+    z-index: 20000 !important;
+}
+
+#widget {
+    position: fixed !important;
+    top: 150px !important;
+    left: 0 !important;
+    z-index: 99999999 !important;
+}
+
+.section-title {
+
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.section-title:first-letter {
+  color: #000000;
+}
+.leftpane a {
+    color: #000000;
+}
+.nav>li>a {
+    color: #000000;
+}</style>
+
+
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/ne1iDVwClkE7nKD3uA9Vqsvl/recaptcha__tr.js" crossorigin="anonymous" integrity="sha384-W25iHHWPoPxqj+deeVBa3AO6fJhRkDlo0238KV9iVG+WLFRd1QIm9D46o8c81yEq"></script><script>
+        //(function (i, s, o, g, r, a, m) {
+        //    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        //        (i[r].q = i[r].q || []).push(arguments)
+        //    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        //    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        //})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        //ga('create', 'G-2ZN58XTFV9', 'auto');
+        //ga('send', 'pageview');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2ZN58XTFV9"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+        analytics_storage: 'denied'
+    });
+</script>
+    <script>
+       
+
+/*
+//if (window.location.hostname && !window.location.hostname.endsWith('bilgiislem.iuc.edu.tr')) {
+
+ if (window.location.hostname) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          gtag('js', new Date());
+
+          if (window.location.hostname === "iuc.edu.tr") {
+            gtag('config', 'G-2ZN58XTFV9', { cookie_domain: "www.iuc.edu.tr" });
+          } else {
+            gtag('config', 'G-2ZN58XTFV9', { cookie_domain: window.location.hostname });
+          }
+        }
+//}
+
+*/
+     
+    </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css"><script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script><link href="https://cdn.userway.org/styles/2026-05-12-14-26-48/widget_base.css?v=1778596008290" type="text/css" rel="stylesheet"></head>
+<body>
+    <!-- uiView:  --><div class="uwy userway_p5" data-uw-feature-ignore="true" data-uw-rm-ignore="true" title="Erişilebilirlik Menüsü" style="background-color: transparent !important; overflow: initial !important;"><div class="userway_buttons_wrapper"><div class="ulsti hidden userway_dark" id="userwayLstIcon" aria-label="Çeviriler Menüsü" role="button" tabindex="0" aria-haspopup="dialog" data-uw-s19-ignore="" title="Çeviriler Menüsü" style="background: rgb(0, 72, 255) !important;"><span class="uiiw"></span><div class="ups"><img width="43" height="43" data-uw-rm-ignore="" class="si_w" aria-hidden="true" alt="Spinner: White decorative" src="https://cdn.userway.org/widgetapp/images/spin_wh.svg"></div><span class="usr lst-spacer"></span></div><div class="uai userway_dark" id="userwayAccessibilityIcon" aria-label="Erişilebilirlik Menüsü" role="button" tabindex="0" aria-haspopup="dialog" title="Erişilebilirlik Menüsü" style="background: rgb(0, 72, 255) !important;"><span class="uiiw"><img data-uw-rm-ignore="" class="ui_w" role="presentation" alt="" src="https://cdn.userway.org/widgetapp/images/body_wh.svg"></span><div class="ups"><img width="43" height="43" data-uw-rm-ignore="" class="si_w" aria-hidden="true" alt="Spinner: White decorative" src="https://cdn.userway.org/widgetapp/images/spin_wh.svg"></div><span class="usr"></span></div><div class="uwaw-dictionary-tooltip"></div></div><iframe class="uwif userway_p5" data-uw-ignore-translate="true" name="userway" title="UserWay Erişilebilirlik Menüsü" allow="clipboard-write" style="max-width: 100vw !important; visibility: visible !important; opacity: 1 !important; color-scheme: light !important;"></iframe></div><div class="uw-s10-bottom-ruler-guide"></div><div class="uw-s10-right-ruler-guide"></div><div class="uw-s10-left-ruler-guide"></div><div class="uw-s10-reading-guide"><div class="uw-s10-reading-guide__arrow"></div></div><div class="uw-s12-tooltip" aria-hidden="true"></div><div class="app ng-scope" id="app" ng-class="{'test':app.settings.headerFixed}" ui-view="" style=""><style ng-bind-template="
+.collapsible-item-title
+{
+    padding: 0px !important;
+}
+" class="ng-binding ng-scope">.collapsible-item-title
+{
+    padding: 0px !important;
+}</style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet" class="ng-scope">
+<div id="72004900350030004E002D007A00510062004E0067003100" class="ng-scope ng-isolate-scope"><style ng-bind-template="#header-full-top .header-title h2:nth-child(1){
+  	color:rgb(17, 37, 62) !important;
+  }
+  a, h1, h2, h3, h4, h5, h6 {
+  	color:rgb(17, 37, 62);
+  }
+  a:hover {
+    color: rgb(204, 153, 51) !important;
+  }
+  .icon-ar {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark {
+    /*background-color:rgb(17, 37, 62) !important; */
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark a:hover {
+  	color: #fff !important;
+  }
+  .navbar-dark a {
+  	color: #fff !important;
+  }
+  
+  .navbar-default .navbar-nav &gt; li &gt; a:hover, .navbar-default .navbar-nav &gt; li &gt; a:active, .navbar-default .navbar-nav &gt; li &gt; a:focus, .navbar-default .navbar-nav &gt; .active &gt; a:hover, .navbar-default .navbar-nav &gt; .active &gt; a {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a, .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a:hover, .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a:focus {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu {
+    background-color: rgb(17, 37, 62) !important;
+    border-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu a:hover {
+  	background-color: rgb(204, 153, 51) !important;  
+  }
+  .navbar-nav &gt; li &gt; a:focus, .navbar-nav &gt; li &gt; a:active {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-default .navbar-toggle {
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .navbar-default .navbar-toggle:hover {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  @media (max-width: 768px)
+  {
+    .navbar-dark .dropdown &gt; a {
+        border-bottom: solid 1px rgb(204, 153, 51) !important;
+   }
+  }
+
+  
+  .menu-line {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .wrap-dark-color {
+  	background-color:rgb(17, 37, 62) !important;
+  }
+  
+  .feature-icon:first-child {
+    border-left: solid 1px rgb(204, 153, 51) !important;
+  }
+  
+  a.feature-icon {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon h4 {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon:hover {
+    background-color:rgb(204, 153, 51) !important;
+    *color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon {
+    border-right: solid 0px rgb(204, 153, 51) !important;
+  }
+  
+  .section-title:first-letter {
+    color: rgb(17, 37, 62) !important;
+  }
+  
+  .notice-box .media-heading {
+      border-left: 2px solid rgb(17, 37, 62) !important;
+  }
+  
+  
+  .bxslider-controls .bx-prev, .bxslider-controls .bx-next {
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  .bxslider-controls .bx-prev:hover, .bxslider-controls .bx-next:hover {
+    	background-color: rgb(204, 153, 51) !important;
+  }
+  
+  .panel .panel-figure{
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .monthly-today .monthly-day-number {
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .content-box:hover {
+	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .bg-theme{
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .border-theme{
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .panel .panel-heading-link a:after {
+  
+  background-color: #395a73;
+ 
+}" class="ng-binding ng-scope">#header-full-top .header-title h2:nth-child(1){
+  	color:rgb(17, 37, 62) !important;
+  }
+  a, h1, h2, h3, h4, h5, h6 {
+  	color:rgb(17, 37, 62);
+  }
+  a:hover {
+    color: rgb(204, 153, 51) !important;
+  }
+  .icon-ar {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark {
+    /*background-color:rgb(17, 37, 62) !important; */
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark a:hover {
+  	color: #fff !important;
+  }
+  .navbar-dark a {
+  	color: #fff !important;
+  }
+  
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-default.navbar-dark .navbar-nav > .open > a, .navbar-default.navbar-dark .navbar-nav > .open > a:hover, .navbar-default.navbar-dark .navbar-nav > .open > a:focus {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu {
+    background-color: rgb(17, 37, 62) !important;
+    border-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu a:hover {
+  	background-color: rgb(204, 153, 51) !important;  
+  }
+  .navbar-nav > li > a:focus, .navbar-nav > li > a:active {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-default .navbar-toggle {
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .navbar-default .navbar-toggle:hover {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  @media (max-width: 768px)
+  {
+    .navbar-dark .dropdown > a {
+        border-bottom: solid 1px rgb(204, 153, 51) !important;
+   }
+  }
+
+  
+  .menu-line {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .wrap-dark-color {
+  	background-color:rgb(17, 37, 62) !important;
+  }
+  
+  .feature-icon:first-child {
+    border-left: solid 1px rgb(204, 153, 51) !important;
+  }
+  
+  a.feature-icon {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon h4 {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon:hover {
+    background-color:rgb(204, 153, 51) !important;
+    *color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon {
+    border-right: solid 0px rgb(204, 153, 51) !important;
+  }
+  
+  .section-title:first-letter {
+    color: rgb(17, 37, 62) !important;
+  }
+  
+  .notice-box .media-heading {
+      border-left: 2px solid rgb(17, 37, 62) !important;
+  }
+  
+  
+  .bxslider-controls .bx-prev, .bxslider-controls .bx-next {
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  .bxslider-controls .bx-prev:hover, .bxslider-controls .bx-next:hover {
+    	background-color: rgb(204, 153, 51) !important;
+  }
+  
+  .panel .panel-figure{
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .monthly-today .monthly-day-number {
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .content-box:hover {
+	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .bg-theme{
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .border-theme{
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .panel .panel-heading-link a:after {
+  
+  background-color: #395a73;
+ 
+}</style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+<div id="sb-site" style="transform:none; webkit-transform:none;" class="ng-scope">
+  <div class="boxed">  
+   <div id="5A00690043003400500071007A00730042006B0049003100" class="ng-isolate-scope"><header id="header-full-top" class="hidden-xs header-full ng-scope">
+  <div class="container" style="position:relative;">
+    <a href="">
+    <div class="header-full-title header-title" xref="home" style="background-image: url(https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png);" href="/tr/_">
+      <h2 class="animated fadeInRight ng-binding" ng-bind="data.header.pageTitle1">İstanbul Üniversitesi - Cerrahpaşa</h2>       
+      <h2 class="animated fadeInRight ng-binding" ng-bind="data.header.pageTitle2">Öğrenci İşleri Daire Başkanlığı</h2>            
+    </div>
+    </a>
+    
+     
+     <!-- ngIf: data.header.logoRight -->
+   
+    
+    
+    
+    
+    
+     <!-- <img src="https://www.iuc.edu.tr/css/theme/default/img/logo/logo-kapi.png" style="float: right;  height: 90px; margin-top: 2px;"> -->
+      <!-- ngIf: $root.lang == 'tr' --><a target="_blank" ng-if="$root.lang == 'tr'" class="hook-link ng-scope" href="https://iuc.edu.tr/tr/content/universitemiz/arastirma-universitesi" style="">
+      <img class="img img-responsive hook" src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=_0uj1xFQhEeRy6dROw3n_A" alt="Araştırma Üniversitesi" title="Araştırma Üniversitesi">
+    </a><!-- end ngIf: $root.lang == 'tr' -->
+    <!-- ngIf: $root.lang == 'en' -->
+   <!-- ngIf: $root.lang == 'tr' --><img class="eniyi ng-scope" ng-if="$root.lang == 'tr'" src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=NqY3OsBCw0edG0NEiSYGJQ" width="140px" style="margin-top: 21px;" alt="En İyi Olmak İçin" title="En İyi Olmak İçin"><!-- end ngIf: $root.lang == 'tr' -->
+<!-- ngIf: $root.lang == 'en' -->
+    <nav class="top-nav">
+<ul class="top-nav-social hidden-sm">
+  <!-- ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope" style="">
+    <a ng-href="https://www.facebook.com/iucerrahpasa/" target="_blank" aria-label="Facebook" title="Facebook" href="https://www.facebook.com/iucerrahpasa/">
+      <i class="fab fa-facebook" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope">
+    <a ng-href="https://twitter.com/iu_cerrahpasa" target="_blank" aria-label="Twitter" title="Twitter" href="https://twitter.com/iu_cerrahpasa">
+      <i class="fab fa-twitter" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope">
+    <a ng-href="https://www.instagram.com/iucerrahpasa/" target="_blank" aria-label="Instagram" title="Instagram" href="https://www.instagram.com/iucerrahpasa/">
+      <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials -->
+</ul>
+      <!-- dropdown -->
+      <div class="dropdown">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-label="Arama" title="Arama">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-search-box animated fadeInUp">
+          <form role="form" class="ng-pristine ng-valid">
+            <div class="input-group">
+              <input id="searchBox1" type="text" class="form-control border-theme ng-pristine ng-untouched ng-valid ng-empty" placeholder="Site içinde ara" ng-model="searchBox" autofocus="" ng-keypress="($event.which === 13)? $parent.searchInSite(searchBox) : 0" auto-focus="" style="">
+              <span class="input-group-btn">
+                <button class="btn btn-ar btn-primary bg-theme border-theme ng-binding" type="button" ng-click="$parent.searchInSite(searchBox);">Ara
+                </button>
+              </span>
+            </div>
+            <!-- /input-group -->
+          </form>
+        </div>
+      </div> &nbsp;
+     &nbsp;
+      &nbsp;
+     &nbsp;
+      
+      <!-- dropdown -->
+    </nav>
+    <!-- ngIf: $root.translates.length > 1 -->
+  </div> 
+  <!-- container -->
+</header> 
+<!-- header-full --> 
+<!-- header-full -->
+<nav class="navbar navbar-default navbar-header-full navbar-dark yamm navbar-static-top ng-scope" role="navigation" id="header">
+  <div class="container">
+    <img xref="home" class="iu-logo-sm hidden-sm hidden-md hidden-lg" ng-src="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png" ng-click="$parent.backToTop();" href="/tr/_" src="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png" style="cursor: pointer;">
+    <h4 class="animated fadeInRight hidden-sm hidden-md hidden-lg xs-pageTitle ng-binding" id="header_title" ng-bind="data.header.pageTitle2">Öğrenci İşleri Daire Başkanlığı</h4>
+    <!-- navbar-header -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <span class="navbar-toggle menu-right" style="" ng-click="$root.sbRightMenu = true;">
+      <i class="fa fa-angle-double-left">
+      </i>
+    </span>
+    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+    </a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav full-width" id="header_menu">
+    <!-- ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}" style="">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Daire Başkanlığı
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/tarihce/tarihce" target="" class="ng-binding" href="/tr/content/tarihce/tarihce">Tarihçe
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1plt_ogrenci-isleri-daire-baskanligi_misyon-vizyon.pdf" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1plt_ogrenci-isleri-daire-baskanligi_misyon-vizyon.pdf">Misyon ve Vizyon
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://kalite.iuc.edu.tr/tr/content/hakkimizda/iuc-politikalar" target="" class="ng-binding" href="https://kalite.iuc.edu.tr/tr/content/hakkimizda/iuc-politikalar">Politikalar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/daire-baskanligi/etik-davranis-ilkeleri" target="" class="ng-binding" href="/tr/content/daire-baskanligi/etik-davranis-ilkeleri">Etik Davranış İlkeleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Yönetim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/yonetim/yonetim" target="" class="ng-binding" href="/tr/content/yonetim/yonetim">Yönetim
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/personelimiz/personelimiz" target="" class="ng-binding" href="/tr/content/personelimiz/personelimiz">Personelimiz
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1org_iuc-oidb-organizasyon-semasi---rev.02.pdf" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1org_iuc-oidb-organizasyon-semasi---rev.02.pdf">Organizasyon Şeması
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Mevzuat
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/kanunlar" target="" class="ng-binding" href="/tr/content/mevzuat/kanunlar">Kanunlar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/yonetmelikler" target="" class="ng-binding" href="/tr/content/mevzuat/yonetmelikler">Yönetmelikler
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/yonergeler" target="" class="ng-binding" href="/tr/content/mevzuat/yonergeler">Yönergeler
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/esaslar-kararlar-kilavuzlar" target="" class="ng-binding" href="/tr/content/mevzuat/esaslar-kararlar-kilavuzlar">Esaslar-Kararlar-Kılavuzlar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/not-donusum-tablolari" target="" class="ng-binding" href="/tr/content/mevzuat/not-donusum-tablolari">Not Dönüşüm Tabloları
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/mufredat-guncelleme-ve-degisiklikleri" target="" class="ng-binding" href="/tr/content/mevzuat/mufredat-guncelleme-ve-degisiklikleri">Müfredat Güncelleme ve Değişiklikleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/bolum-program-tasarimi-diploma-programi-acma-islemleri" target="" class="ng-binding" href="/tr/content/mevzuat/bolum-program-tasarimi-diploma-programi-acma-islemleri">Bölüm Program Tasarımı-Diploma Programı Açma İşlemleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="http://ogrenci.iuc.edu.tr/tr/content/akademik-takvim/onlisans~2Flisans-akademik-takvim" class="dropdown-toggle ng-binding" data-toggle="" data-hover="dropdown" target="" href="http://ogrenci.iuc.edu.tr/tr/content/akademik-takvim/onlisans~2Flisans-akademik-takvim">Akademik Takvim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="" target="" class="ng-binding">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Önlisans-Lisans Ayrıntılı Akademik Takvimi
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisans-onlisans-ozet.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisans-onlisans-ozet.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisans-Önlisans Akademik Takvim Özet
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-tip-fakultesi.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-tip-fakultesi.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Tıp Fakültesi
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ozet.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ozet.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisansüstü Özet
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ayrintili.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ayrintili.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisansüstü Ayrıntılı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Öğrenci
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://international.iuc.edu.tr/tr/_" target="" class="ng-binding" href="https://international.iuc.edu.tr/tr/_">Uluslararası Öğrenciler / International Students
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://www.iuc.edu.tr/tr/content/aday-ogrenci/universitemiz-hakkinda" target="_blank" class="ng-binding" href="https://www.iuc.edu.tr/tr/content/aday-ogrenci/universitemiz-hakkinda">Aday Öğrenci
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://erasmus.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://erasmus.iuc.edu.tr/tr/_">Erasmus Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://farabi.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://farabi.iuc.edu.tr/tr/_">Farabi Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://mevlana.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://mevlana.iuc.edu.tr/tr/_">Mevlana Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://iuc.edu.tr/tr/content/iuc-kart/iuc-kart-nedir%3F" target="" class="ng-binding" href="https://iuc.edu.tr/tr/content/iuc-kart/iuc-kart-nedir%3F">İÜC Kart
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=hizmet-pasaportu-talep-formu_637653334089759565-(6).doc" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=hizmet-pasaportu-talep-formu_637653334089759565-(6).doc">Hizmet Pasaport Formu
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">İletişim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/iletisim/birim-ogrenci-isleri-iletisim-bilgileri" target="" class="ng-binding" href="/tr/content/iletisim/birim-ogrenci-isleri-iletisim-bilgileri">Birim Öğrenci İşleri Büroları
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/iletisim" target="" class="ng-binding" href="/tr/iletisim">Öğrenci İşleri Daire Başkanlığı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu -->
+  </ul>
+</div>
+    <!-- navbar-collapse -->
+  </div>
+  <!-- container -->
+</nav>  
+<div class="menu-line ng-scope">
+</div>
+<div class="sb-slidebar sb-right sb-menu-right ng-scope hidden" ng-class="{'hidden':!$root.sbRightMenu}" style="">
+  <span class="menu-close" ng-click="$root.sbRightMenu = false;">
+      <i class="fa fa-angle-double-right">
+      </i>
+    </span>
+  <div class="input-group">
+    <input id="searchBox" type="text" class="form-control border-theme ng-pristine ng-valid ng-empty ng-touched" placeholder="Site içinde ara" ng-model="searchBox" autofocus="" ng-keypress="($event.which === 13)? $parent.searchInSite(searchBox) : 0" auto-focus="" style="">
+    <span class="input-group-btn">
+      <button class="btn btn-ar btn-primary bg-theme border-theme ng-binding" type="button" ng-click="$parent.searchInSite(searchBox);" style="margin-right:0;">Ara
+      </button>
+    </span>
+  </div>
+  <!-- /input-group -->
+  <br>
+  <!-- ngIf: $root.translates.length>1 -->
+  <br>
+  <div class="slidebar-social-icons">
+    <!-- ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://www.facebook.com/iucerrahpasa/" target="_blank" class="ng-scope" href="https://www.facebook.com/iucerrahpasa/" style="">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-facebook"></i>
+    </a><!-- end ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://twitter.com/iu_cerrahpasa" target="_blank" class="ng-scope" href="https://twitter.com/iu_cerrahpasa">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-twitter"></i>
+    </a><!-- end ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://www.instagram.com/iucerrahpasa/" target="_blank" class="ng-scope" href="https://www.instagram.com/iucerrahpasa/">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-instagram"></i>
+    </a><!-- end ngRepeat: x in data.socials -->
+  </div>
+</div> 
+<!-- sb-slidebar sb-right -->
+
+
+<style ng-bind-template="
+.class7Menu {
+  text-align:center;
+  width:14.2% !important;
+}
+
+.class6Menu {
+  text-align:center;
+  width:16.6% !important;
+}
+
+.classEnFazla5Menu {
+  text-align:center;
+  width:19.8% !important;
+}
+" class="ng-binding ng-scope">.class7Menu {
+  text-align:center;
+  width:14.2% !important;
+}
+
+.class6Menu {
+  text-align:center;
+  width:16.6% !important;
+}
+
+.classEnFazla5Menu {
+  text-align:center;
+  width:19.8% !important;
+}</style>
+ 
+
+<script class="ng-scope">
+  setTimeout(function() {
+    $('.top-nav-social a').each(function() {
+      var icon = $(this).find('i').attr('class') || '';
+      var name = icon.replace('fab ', '').replace('fas ', '').replace('fa-', '').replace(/-/g, ' ').trim();
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+      $(this).attr('aria-label', name).attr('title', name);
+    });
+  }, 500);
+</script>
+</div>
+    <!-- uiView:  --><div class="app-content-body ng-scope" ui-view=""><div class="container view ng-scope">
+  <div class="row">
+    <div class="col-md-12">
+      <div>
+        <div id="35006900350045007100390063004C00510074004D003100" class="ng-isolate-scope"><div class="row ng-scope">
+  <div class="col-md-12 animated fadeIn">
+    <!-- ngIf: data.Data[0].CategoryId == 1 --><h2 class="section-title ng-binding ng-scope" ng-if="data.Data[0].CategoryId == 1" style="">Duyurular
+    </h2><!-- end ngIf: data.Data[0].CategoryId == 1 -->
+    <!-- ngIf: data.Data[0].CategoryId == 2 -->
+    <!-- ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data" style="">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-uluslararasi-ogrenci-ek-yerlestirme-basvurulari-20-430067004C0063005F006E007400620049003200620039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı Uluslararası Öğrenci Ek Yerleştirme Başvuruları / 2025-2026 Academic Year Secondary Placement Applications for International Students
+            </div>
+            <div class="col-md-2 text-right ng-binding">17.09.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/zorunlu-kredili-yabanci-dil-i-ii-ortak-dersi-yeterlilik-sinavi-690064005F006C004100790037004F00660070006E0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Zorunlu Kredili Yabancı Dil I / II Ortak Dersi Yeterlilik Sınavı
+            </div>
+            <div class="col-md-2 text-right ng-binding">16.09.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/adiyaman-hatay-kahramanmaras-ve-malatya-illerindeki-ogrencilerin-ozel-ogrencilik-79005700470064005200510058005700460066006A0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Adıyaman, Hatay, Kahramanmaraş ve Malatya İllerindeki Öğrencilerin Özel Öğrencilik İşlemleri
+            </div>
+            <div class="col-md-2 text-right ng-binding">10.09.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-dikey-gecis-dgs-kayit-kilavuzu-4D00360062005400440036004700470078004300620039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı Dikey Geçiş (DGS) Kayıt Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">09.09.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/ogrenciler-icin-aksis-obs-ogrenci-bilgi-sistemi-ve-kurumsal-e-posta-olusturma-7A006E00650048003900680048004A00460047005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Öğrenciler İçin AKSİS (OBS) Öğrenci Bilgi Sistemi ve Kurumsal E-Posta Oluşturma
+            </div>
+            <div class="col-md-2 text-right ng-binding">01.09.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-yks-2025-kayit-kilavuzu-55007400510074005300660049005300550036005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı YKS 2025 Kayıt Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">25.08.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/yedek-listeden-kayit-hakki-kazanan-uluslararasi-ogrenciler-icin-kayit-kilavuzu-r-5200410034007A0074004F007A004400750034005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Yedek Listeden Kayıt Hakkı Kazanan Uluslararası Öğrenciler İçin Kayıt Kılavuzu / Registration Guide for International Students from the Fill-in List
+            </div>
+            <div class="col-md-2 text-right ng-binding">18.08.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-cap-ve-yandal-basvuru-kilavuzu-630063002D0063006800480049006900320043006A0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı  ÇAP ve YANDAL Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">31.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/yunus-emre-enstitusu-turkce-yeterlik-sinavi-tys-basvurulari-5300610036004C00640054004D0063004D0035004C0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Yunus Emre Enstitüsü Türkçe Yeterlik Sınavı (TYS) Başvuruları
+            </div>
+            <div class="col-md-2 text-right ng-binding">31.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-guz-yariyili-lisansustu-basvuru-kilavuzu-43007400550054006800680058004100450062006A0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı  Güz Yarıyılı Lisansüstü Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">23.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/anket-calismasi-universite-ogrencilerinin-dijital-okuryazarlik-cevrim-ici-mahrem-660066007800690050004D0037004E00650066005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Anket Çalışması-Üniversite Öğrencilerinin Dijital Okuryazarlık, Çevrim İçi Mahremiyet Farkındalık Düzeylerinin Siber Zorbalık Davranışları ile İlişkisinin İncelenmesi
+            </div>
+            <div class="col-md-2 text-right ng-binding">18.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-guz-yariyili-ek-madde-1-uyarinca-merkezi-yerlestir-4D00390059004D0045003800790051005F0061005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı Güz Yarıyılı Ek Madde-1 Uyarınca Merkezi Yerleştirme Puanı ile Yatay Geçiş Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">14.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-guz-yariyili-kurum-ici-yatay-gecis-basvuru-kilavuz-45004D00430033005F0059004200380071004200720039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı Güz Yarıyılı Kurum İçi Yatay Geçiş Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">11.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-guz-yariyili-kurumlar-arasi-yatay-gecis-basvuru-ki-65004800590053006B0039005000620075006D00620039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı  Güz Yarıyılı Kurumlar Arası Yatay Geçiş Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">11.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/uluslararasi-ogrencilerin-basvuru-sonuclari-kayit-kilavuzu-application-results-o-4C006500300067004B0070006B0069007A004A00440039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Uluslararası Öğrencilerin Başvuru Sonuçları - Kayıt Kılavuzu / Application Results of International Students - Registration Guide
+            </div>
+            <div class="col-md-2 text-right ng-binding">11.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-turkiye-burslari-kapsaminda-yerlesen-ogrencilerin-kayitlari-2025-2026-registration-guide-within-the-framework-of-turkiye-scholarships-programme-3700480054006D0044007A0051006C0038004200620039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Türkiye Bursları Kapsamında Yerleşen Öğrencilerin Kayıtları / 2025-2026 Registration Guide within the Framework of Türkiye Scholarships Programme
+            </div>
+            <div class="col-md-2 text-right ng-binding">08.07.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yili-cap-cift-anadal-programi-yandal-basvuru-kilavuzu-6E0031003600360050006D00460045007A005900660039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılı ÇAP (Çift Anadal Programı) / YANDAL Başvuru Kılavuzu
+            </div>
+            <div class="col-md-2 text-right ng-binding">27.06.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/2025-2026-egitim-ogretim-yilinda-uluslararasi-ogrenci-kontenjanindan-basvuru-yap-360032006900760077004D0043006B0058006E005F0039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              2025-2026 Eğitim-Öğretim Yılında Uluslararası Öğrenci Kontenjanından Başvuru Yapacak Adayların Dikkatine / Attention to Applicants Who Will Apply to the International Student Quota in the Academic Year of 2025-2026
+            </div>
+            <div class="col-md-2 text-right ng-binding">20.05.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="/tr/duyuru/kariyer-ve-yetkinlik-bulusmalari-75005700470032004E004100750039004D004800540039007900700046006200610041004F003200370077003200">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Kariyer ve Yetkinlik Buluşmaları
+            </div>
+            <div class="col-md-2 text-right ng-binding">02.05.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data --><ul class="list-line ng-scope" ng-repeat="x in data.Data">
+      <li>
+        <a xref="noticedetail" xref-data="x" style="cursor: pointer;" href="https://iuc.edu.tr/tr/duyuru/avcilar-yerleskesi-ogrenci-ve-personel-yemek-hizmetleri-hakkinda-bilgilendirme-5300700068006B002D0065004500580053003900370039007900700046006200610041004F003200370077003200" target="_blank">
+          <div class="row">
+            <div class="col-md-10 ng-binding">
+              <i class="fa fa-bullhorn" aria-hidden="true" style="margin-right:10px;">
+              </i>
+              Avcılar Yerleşkesi Öğrenci ve Personel Yemek Hizmetleri Hakkında Bilgilendirme
+            </div>
+            <div class="col-md-2 text-right ng-binding">29.04.2025
+            </div>
+          </div>
+        </a>        
+      </li>
+    </ul><!-- end ngRepeat: x in data.Data -->
+  </div>
+  <div class="col-md-12 text-center">
+    <section>
+      <ul class="pagination">
+        <!-- ngIf: data.Pager.CurrentPage != 1 --><li ng-if="data.Pager.CurrentPage != 1" class="ng-scope" style="">
+          <a xref="notice" xref-data="{page: data.Pager.CurrentPage - 1}" href="/tr/duyurular/1/1" style="cursor: pointer;">«
+          </a>
+        </li><!-- end ngIf: data.Pager.CurrentPage != 1 -->
+        <!-- ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/1" style="cursor: pointer;"> 1
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope active" style="">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/2" style="cursor: pointer;"> 2
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/3" style="cursor: pointer;"> 3
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/4" style="cursor: pointer;"> 4
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/5" style="cursor: pointer;"> 5
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/6" style="cursor: pointer;"> 6
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/7" style="cursor: pointer;"> 7
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/8" style="cursor: pointer;"> 8
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/9" style="cursor: pointer;"> 9
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray --><li ng-repeat="x in data.Pager.PagerArray" ng-class="data.Pager.CurrentPage == x ? 'active' : '' " class="ng-scope">
+          <a xref="notice" xref-data="{page: x}" class="ng-binding" href="/tr/duyurular/1/10" style="cursor: pointer;"> 10
+          </a>
+        </li><!-- end ngRepeat: x in data.Pager.PagerArray -->        
+        <!-- ngIf: data.Pager.CurrentPage != data.Pager.TotalPages --><li ng-if="data.Pager.CurrentPage != data.Pager.TotalPages" class="ng-scope">
+          <a xref="notice" xref-data="{page: data.Pager.CurrentPage + 1}" href="/tr/duyurular/1/3" style="cursor: pointer;">»
+          </a>
+        </li><!-- end ngIf: data.Pager.CurrentPage != data.Pager.TotalPages -->
+      </ul>
+    </section>
+  </div>
+</div>
+</div>
+      </div>
+    </div>
+  </div>
+</div>
+</div>
+    <div id="4300720051006E0044007300320078006900730067003100" class="ng-isolate-scope"><style ng-bind-template="
+#footer a  {
+    color: #d3ab49;
+   
+}
+  #footer a:hover  {
+    color: #395a73 ;
+   
+}
+  #footer p  {
+    color: #d3ab49;
+   
+}
+  .disPlayNone{
+  display:none;
+  }
+" class="ng-binding ng-scope">#footer a  {
+    color: #d3ab49;
+   
+}
+  #footer a:hover  {
+    color: #395a73 ;
+   
+}
+  #footer p  {
+    color: #d3ab49;
+   
+}
+  .disPlayNone{
+  display:none;
+  }</style>
+<aside id="footer-widgets" class="no-padding ng-scope">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8 col-xs-16">       
+        <h3 class="footer-widget-title ng-binding">
+          İletişim
+        </h3>
+          <p>
+  </p>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="fa fa-map-marker" aria-hidden="true">
+            </i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">İstanbul Üniversitesi-Cerrahpaşa Rektörlüğü, Öğrenci İşleri Daire Başkanlığı Üniversite Mahallesi, Üniversite Caddesi No:7, 34320 Avcılar/İstanbul</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">
+            +90 2124040710  
+             </p>
+          </div>
+        </div>
+        <!-- ngIf: data.iletisim.hastanephone4 -->
+        <div class="row">
+          <div class="col-xs-1">
+           <i class="fa fa-fax"></i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">-</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="far fa-envelope" aria-hidden="true">
+            </i>
+          </div>
+          <div class="col-xs-10">
+            <p>
+              <a href="mailto:ogrenci@iuc.edu.tr" class="ng-binding">
+              ogrenci@iuc.edu.tr
+              </a>
+            </p>
+            
+             <!-- ngIf: $root.lang == 'tr' --><p ng-if="$root.lang == 'tr'" style="margin-top: 15px;" class="ng-scope"><a href="https://iuc.edu.tr/tr/content/iuc-surdurulebilirlik/iuc-surdurulebilirlik" target="_blank"><img src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=OxRZCGbHXUy50vkMMe27tw" width="30%" alt="İÜC Sürdürülebilirlik" title="İÜC Sürdürülebilirlik"></a></p><!-- end ngIf: $root.lang == 'tr' -->
+            
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-md-4 col-sm-8 col-xs-16">
+        <div class="row footer-widget">
+          <h3 class="footer-widget-title">
+          &nbsp;
+        </h3>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo1='ds'" ng-mouseover="fLogo1='ds_hover'" ng-mouseout="fLogo1='ds'" ng-if="data.unions.indexOf('union-ds') > -1">
+        <a ng-href="{{$root.isIUC ? 'https://www.iuc.edu.tr/tr/content/uluslararasi/uluslararasi' : 'https://uaik.iuc.edu.tr/?page_id=7741'}}" target="_blank" class="thumbnail">
+          <img width="40" ng-src="/css/theme/default/img/logo/{{ fLogo1 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo2='acaimpact'" ng-mouseover="fLogo2='acaimpact_hover'" ng-mouseout="fLogo2='acaimpact'" ng-if="data.unions.indexOf('union-ai') > -1">
+        <a href="https://academicimpact.un.org" class="thumbnail" target="_blank">
+          <img width="40" src="/css/theme/default/img/logo/{{ fLogo2 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo3='gsb'" ng-mouseover="fLogo3='gsb_hover'" ng-mouseout="fLogo3='gsb'" ng-if="data.unions.indexOf('union-gvsb') > -1">
+        <a href="https://www.gsb.gov.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo3 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo4='baunas'" ng-mouseover="fLogo4='baunas_hover'" ng-mouseout="fLogo4='baunas'" ng-if="data.unions.indexOf('union-bua') > -1">
+        <a href="https://www.baunas.org/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo4 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo5='coimbragroup'" ng-mouseover="fLogo5='coimbragroup_hover'" ng-mouseout="fLogo5='coimbragroup'" ng-if="data.unions.indexOf('union-cg') > -1"> 
+        <a href="https://www.coimbra-group.eu/" class="thumbnail" target="_blank">
+          <img width="80" src="/css/theme/default/img/logo/{{ fLogo5 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo6='eua'" ng-mouseover="fLogo6='eua_hover'" ng-mouseout="fLogo6='eua'" ng-if="data.unions.indexOf('union-eua') > -1">
+        <a href="https://www.eua.be/" class="thumbnail" target="_blank">
+          <img width="68" src="/css/theme/default/img/logo/{{ fLogo6 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+          <div class="col-xs-4 col-md-4" ng-init="fLogo7='istuni'" ng-mouseover="fLogo7='istuni_hover'" ng-mouseout="fLogo7='istuni'" ng-if="data.unions.indexOf('union-iu') > -1">
+        <a href="https://www.iuc.edu.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo7 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+          <div class="col-xs-4 col-md-4" ng-init="fLogo8='auzef'" ng-mouseover="fLogo8='auzef_hover'" ng-mouseout="fLogo8='auzef'" ng-if="data.unions.indexOf('union-auzef') > -1">
+        <a href="https://auzef.iuc.edu.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo8 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+    </div>
+      </div>-->
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <h3 class="footer-widget-title ng-binding">
+           Bağlantılar
+        </h3>
+       <ul class="list-unstyled">
+          <!-- ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope" style="">
+            <div class="row">
+               <p> <a ng-href="https://www.iuc.edu.tr/tr/_" target="_" class="ng-binding" href="https://www.iuc.edu.tr/tr/_">İstanbul Üniversitesi-Cerrahpaşa
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope">
+            <div class="row">
+               <p> <a ng-href="https://www.iuc.edu.tr/tr/content/yerleskeler/iuc-avcilar-yerleskesi" target="_" class="ng-binding" href="https://www.iuc.edu.tr/tr/content/yerleskeler/iuc-avcilar-yerleskesi">Yerleşkeler
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope">
+            <div class="row">
+               <p> <a ng-href="https://kvkk.iuc.edu.tr/tr/content/kisisel-verilerin-korunmasi/politikalar" target="_" class="ng-binding" href="https://kvkk.iuc.edu.tr/tr/content/kisisel-verilerin-korunmasi/politikalar">Kişisel Verilerin Korunması
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
+<!-- footer-widgets -->
+<footer id="footer" class="ng-scope">
+  <p class="ng-binding">
+    © 2026 Her hakkı
+    <a href="https://iuc.edu.tr" target="_blank" style="color:rgb(204, 153, 51)" class="ng-binding">İstanbul Üniversitesi-Cerrahpaşa</a>'ya aittir.
+  </p>
+
+</footer>
+
+
+ 
+      
+
+<div ng-controller="cmpFooterMockCtrl" class="ng-scope">
+
+
+
+
+
+</div>
+<div id="3600500042004E006D006D00780054007700560045003100" c-type="DataSource" c-name="ds_contact" class="ng-scope"></div>
+
+
+ <!--
+<div ng-if="page.url().indexOf('kutuphane.iuc.edu.tr')!=-1">
+<script type="text/javascript">
+function add_chatinline() {
+	var hccid = 28457412;
+	var nt = document.createElement("script");
+	nt.async = true;
+	nt.src = "https://www.mylivechat.com/chatinline.aspx?hccid=" + hccid;
+	var ct = document.getElementsByTagName("script")[0];
+	ct.parentNode.insertBefore(nt, ct);
+}
+
+add_chatinline();
+</script>
+</div>
+
+  <div ng-if="page.url().indexOf('kutuphane.iuc.edu.tr')==-1">
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+  var chatliveId=document.getElementsByClassName("mylivechat_inline");
+      var ell=chatliveId[0]
+	   ell.classList.add("disPlayNone");
+});
+</script>
+ 
+  
+  </div>
+   -->
+
+                        </div>
+  </div>
+</div>
+<div id="back-top" style="cursor:pointer;" class="ng-scope">
+    <a ng-click="$parent.backToTop();"><i class="fa fa-chevron-up"></i></a>
+</div>
+
+<div id="54005600680058006F004200320067007700410034003100" c-type="Generic" c-name="SEO" class="ng-scope ng-isolate-scope"><update-meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa" class="ng-scope ng-isolate-scope"></update-meta>
+<update-title title="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-title>  
+<update-meta name="keywords" content="https://www.iuc.edu.tr/tr/content/universitemiz/iletisim, İstanbul üniversitesi-cerrahpaşa iletişim, iüc birim öğrenci işleri büroları, öğrenci işleri daire başkanlığı, iüc öğrenci işleri daire başkanlığı, öğrenci işleri, iüc öğrenci işleri, öğrenci, iüc öğrenci, akademik takvim, iüc akademik takvim, yks, iüc yks,üniversite, eğitim, istanbul üniversitesi cerrahpaşa, iüc, istanbul university cerrahpaşa, birim öğrenci işleri büroları" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta name="description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta>   
+<update-meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa" class="ng-scope ng-isolate-scope"></update-meta>   
+<update-meta property="og:title" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta property="og:url" content="https://ogrenci.iuc.edu.tr/tr/_" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta property="og:description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta> </div>
+<div id="55007A007500520038004D00480062006900650063003100" c-type="Generic" c-name="Popup" class="ng-scope ng-isolate-scope"><div id="thover" style="display:none" ng-controller="cmp_popupim" class="ng-scope">        
+    <div id="tpopup" style="display: none;"> 
+     <!-- <input type="hidden" id="custId"   value="{{ data.kaynakUrl }}">-->
+      <div class="video" id="tvideo" style="display:none">        
+          <iframe id="video11" width="560" height="315" ng-src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen=""></iframe>
+      </div>  
+     <div class="img" id="timg" style="display:none"> 
+       <a href="" target="_blank"> <img class="align-middle" src="" width="45%%"> </a> 
+      </div>    
+   <div id="tclose">X</div>  
+  </div>
+</div>
+         </div>
+</div>
+
+
+    <div class="modal fade" id="captchaModal" tabindex="-1" role="dialog" aria-labelledby="captchaModalLabel">
+        <div class="modal-dialog modal-sm" role="document" style="min-width: 340px;">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                    <h4 class="modal-title" id="captchaModalLabel">Güvenlik Doğrulaması</h4>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div id="modalCaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-gek2v54zut2e" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeqLCksAAAAAO4X1QxJWKKIKM9lVzR3lgu9hC2_&amp;co=aHR0cHM6Ly9vZ3JlbmNpLml1Yy5lZHUudHI6NDQz&amp;hl=tr&amp;v=ne1iDVwClkE7nKD3uA9Vqsvl&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=30000&amp;cb=tiw9m9y7mpt"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                    <br>
+                    <div class="text-danger" id="modalCaptchaError"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                    <button type="button" id="captchaConfirm" class="btn btn-primary">
+                        Devam Et
+       
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+       <div class="modal fade" id="modalHata" tabindex="-1" role="dialog" aria-labelledby="modalHataLabel">
+       <div class="modal-dialog modal-sm" role="document" style="min-width: 340px;">
+           <div class="modal-content">
+
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">
+                       <span>×</span>
+                   </button>
+                   <h4 class="modal-title" id="modalHataLabel">Uyarı</h4>
+               </div>
+
+               <div class="modal-body text-center">
+                   <div class="text-danger" id="modalHataError"></div>
+               </div>
+
+               <div class="modal-footer">
+                   <button type="button" class="btn btn btn-primary" data-dismiss="modal">Kapat</button>
+               </div>
+
+           </div>
+       </div>
+   </div>
+
+     <script src="/js/vendor-8dc9cb5f3c.min.js"></script>
+  <script src="/js/angular-locale_tr.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+  <script src="/js/update-meta.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+  <script src="/js/app.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+  <script src="/js/config.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+  <script src="/js/main.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+  <script src="/js/app.min.js?v=d8de5a56-d36d-4e8e-9ca5-87879472eebd"></script>
+
+    <script src="https://service-cms.iuc.edu.tr/api/webclient/js?site=F7C8E47C8FA6443BACAABF1DB5C10219"></script>
+
+    
+
+    
+
+     <script src="https://cdn.userway.org/widget.js" data-account="7X1rvUoYdg"></script>
+<script>
+//if (window.location.hostname === 'bilgiislem.iuc.edu.tr') {
+
+//    // Engelsiz Çeviri Scripti
+//    var script1 = document.createElement('script');
+//    script1.src = 'https://webplugin.signfordeaf.com/istanbulUniversitesiCerrahpasa/engelsizCeviri.js';
+//    script1.onload = function() {
+//        engelsizCeviri.mount({
+//            hash: "810D6C80823146FCA79E7EC4A",
+//            color1: '#d5aa41',
+//            color2: '#d5aa41',
+//            position: 'leftTop',
+//            loadingBg: '#ffffff',
+//            logoShape: 'rectangle',
+//            logoPath: 'https://webplugin.signfordeaf.com/istanbulUniversitesiCerrahpasa/logo/logo.png'
+//        });
+//    };
+//    document.body.appendChild(script1);
+
+//    // WeTool Scripti
+//    var script2 = document.createElement('script');
+//    script2.src = 'https://api.weaccess.ai/static/tool/wetool.js';
+//    script2.onload = function() {
+//        weTool.mount({
+//            hash: 'afb03ed2-cd12-4fae-bc04-f3efab4abb1e',
+//            icon_alignment: 'bottomright',
+//            icon_color: '#d5aa41',
+//            icon_size: 'medium',
+//            icon_type: 'circle'
+//        });
+//    };
+//    document.body.appendChild(script2);
+
+//    }
+
+</script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onCaptchaLoad&amp;render=explicit" async="" defer=""></script>
+    <script>
+
+      var modalCaptchaId = null;
+      var activeForm = null;
+
+      function onCaptchaLoad() {
+      modalCaptchaId = grecaptcha.render('modalCaptcha', {
+      sitekey: '6LeqLCksAAAAAO4X1QxJWKKIKM9lVzR3lgu9hC2_',
+      callback: function () {
+                   }
+           });
+      }
+
+        $(document).ready(function(){
+
+  
+
+
+   $('#captchaConfirm').on('click', function () {
+
+    var captchaResponse = grecaptcha.getResponse(modalCaptchaId);
+    if (!captchaResponse) {
+        $("#modalCaptchaError").html("Lütfen robot olmadığınızı doğrulayınız.");
+        return;
+    }
+
+    var formData = $(activeForm).serialize();
+    formData=formData +  '&g-recaptcha-response=' + encodeURIComponent(captchaResponse);
+
+
+      paymentWindow = window.open(
+        "about:blank",
+        "_blank",
+        "width=1200,height=1000"
+      );
+      paymentWindow.document.open();
+paymentWindow.document.write(`
+<!doctype html>
+<html>
+<head>
+    <title>Ödeme Açılıyor</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .box {
+            text-align: center;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="spinner"></div>
+        <h2>Ödeme sayfası açılıyor…</h2>
+        <p>Lütfen bekleyiniz</p>
+    </div>
+</body>
+</html>
+`);
+
+
+    $.ajax({
+        url: "https://service-cms.iuc.edu.tr/api/webclient/f_odeme",
+        type: "POST",
+        data: formData,
+        success: function (response) {
+            if (response.MessageType === "success") {
+                paymentWindow.location.href = response.Data;
+            } else {
+                 paymentWindow.close();
+                $('#modalHataError').html(response.Message);
+                $('#modalHata').modal('show');
+            }
+        },
+          error: function () {
+               paymentWindow.close();
+              $('#modalHataError').html('hata oluştu.');
+              $('#modalHata').modal('show');
+      
+        },
+        complete: function () {
+            grecaptcha.reset(modalCaptchaId);
+            $('#captchaModal').modal('hide');
+        }
+    });
+});
+
+});
+
+    </script>
+
+  <script>
+      (function () {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css';
+          document.head.appendChild(link);
+
+          var script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js';
+          script.onload = function () {
+              CookieConsent.run({
+                  guiOptions: {
+                      consentModal: {
+                          layout: 'box wide',
+                          position: 'bottom left',
+                          equalWeightButtons: false,
+                          flipButtons: false
+                      }
+                  },
+                  categories: {
+                      necessary: { enabled: true, readOnly: true },
+                      functionality: { enabled: false, readOnly: false },
+                      analytics: {
+                          enabled: false,
+                          readOnly: false,
+                          onAccept: function () {
+                              window.dataLayer = window.dataLayer || [];
+                              function gtag() { dataLayer.push(arguments); }
+                              gtag('consent', 'update', { analytics_storage: 'granted' });
+                              gtag('config', 'G-2ZN58XTFV9');
+                          },
+                          onReject: function () {
+                              window.dataLayer = window.dataLayer || [];
+                              function gtag() { dataLayer.push(arguments); }
+                              gtag('consent', 'update', { analytics_storage: 'denied' });
+                          }
+                      }
+                  },
+                  language: {
+                      default: 'tr',
+                      translations: {
+                          tr: {
+                              consentModal: {
+                                  title: 'Bu web sitesi çerezlerine ilişkin bilgilendirme',
+                                  description: 'Web sitemizde daha iyi bir kullanıcı deneyimi sunabilmek ve ziyaretçilerimizin kullanım alışkanlıklarını anlamak için çerezler (cookie) kullanılmaktadır. Çerezlerin nasıl kullanıldığına dair daha detaylı bilgiye ulaşmak ve tercihlerinizi yönetmek için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a> sayfamızı inceleyebilirsiniz.',
+                                  acceptAllBtn: 'Tümünü Kabul Et',
+                                  acceptNecessaryBtn: 'Reddet',
+                                  showPreferencesBtn: 'Tercihleri Yönet',
+                                  footer: '<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a>'
+                              },
+                              preferencesModal: {
+                                  title: 'Çerez Tercihleri',
+                                  acceptAllBtn: 'Tümünü Kabul Et',
+                                  acceptNecessaryBtn: 'Reddet',
+                                  savePreferencesBtn: 'Tercihlerimi Kaydet',
+                                  closeIconLabel: 'Kapat',
+                                  serviceCounterLabel: 'Hizmet',
+                                  sections: [
+                                      {
+                                          title: 'Çerez Kullanımı',
+                                          description: 'Web sitemizi ziyaretiniz sırasında edindiğimiz bilgileri ne amaçla kullandığımızı seçebilirsiniz. Daha fazla bilgi için lütfen <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">çerez politikamızı</a> okuyun.'
+                                      },
+                                      {
+                                          title: 'Kesinlikle Gerekli Çerezler',
+                                          description: 'Bu çerezler internet sitesinin çalışması amacıyla gerekli olan çerezlerdir. Söz konusu çerezler kullanıcının talep etmiş olduğu bir bilgi toplumu hizmetinin (log-in olma, form doldurma, gizlilik tercihlerinin hatırlanması gibi) yerine getirilebilmesi için zorunlu olarak kullanılmaktadırlar.',
+                                          linkedCategory: 'necessary'
+                                      },
+                                      {
+                                          title: 'İşlevsel Çerezler',
+                                          description: 'Web sayfası veya uygulamalarda (masaüstü, mobil veya IoT cihazlardaki uygulamalar da dâhil olmak üzere) kullanılan kişiselleştirme ve tercihlerin hatırlanması amaçları ile kullanılan çerezlerdir.',
+                                          linkedCategory: 'functionality'
+                                      },
+                                      {
+                                          title: 'Performans-Analitik Çerezler',
+                                          description: 'İnternet sitelerinde kullanıcıların davranışlarını analiz etmek amacıyla istatistiki ölçüme imkân veren çerezlerdir. Bu çerezler, sitenin iyileştirilmesi için sıklıkla kullanılmakta olup bu duruma reklamların ilgili kişiler üzerindeki etkisinin ölçümü de dâhildir.',
+                                          linkedCategory: 'analytics'
+                                      },
+                                      {
+                                          title: 'Daha Fazla Bilgi',
+                                          description: 'Detaylı bilgi için lütfen İstanbul Üniversitesi-Cerrahpaşa <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a> sayfasını ziyaret edin.'
+                                      }
+                                  ]
+                              }
+                          }
+                      }
+                  }
+
+              });
+
+              if (CookieConsent.acceptedCategory('analytics')) {
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag() { dataLayer.push(arguments); }
+                  gtag('consent', 'update', { analytics_storage: 'granted' });
+                  gtag('config', 'G-2ZN58XTFV9');
+               }
+
+          };
+          document.head.appendChild(script);
+      })();
+  </script>
+
+
+
+<script src="https://cdn.userway.org/widgetapp/2026-05-12-14-26-48/widget_app_base_1778596008290.js" async="" id="a11yWidgetSrc" crossorigin="anonymous" integrity="sha256-GGcKH510idaxebU2rJqYlZ26tdwSlQFI8ixTUOt4n/I="></script><script crossorigin="anonymous" integrity="sha256-Ggek8maPqUxwe6z9SvqQTxEMhWahOavU4pEkI5qshR8=" src="https://cdn.userway.org/widgetapp/2026-05-12-14-26-48/remediation/remediation_1778596008290.js"></script></body></html>

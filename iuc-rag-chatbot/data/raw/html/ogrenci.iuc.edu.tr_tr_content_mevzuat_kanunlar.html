@@ -1,0 +1,1785 @@
+<html xmlns="http://www.w3.org/1999/xhtml" ng-app="app" ng-controller="AppCtrl" lang="tr" data-uw-w-loader="" class="ng-scope"><head><meta http-equiv="origin-trial" content="A7vZI3v+Gz7JfuRolKNM4Aff6zaGuT7X0mf3wtoZTnKv6497cVMnhy03KDqX7kBz/q/iidW7srW31oQbBt4VhgoAAACUeyJvcmlnaW4iOiJodHRwczovL3d3dy5nb29nbGUuY29tOjQ0MyIsImZlYXR1cmUiOiJEaXNhYmxlVGhpcmRQYXJ0eVN0b3JhZ2VQYXJ0aXRpb25pbmczIiwiZXhwaXJ5IjoxNzU3OTgwODAwLCJpc1N1YmRvbWFpbiI6dHJ1ZSwiaXNUaGlyZFBhcnR5Ijp0cnVlfQ=="><style ng-bind-template="[uib-typeahead-popup].dropdown-menu{display:block;}" class="ng-binding ng-scope">[uib-typeahead-popup].dropdown-menu{display:block;}</style><style ng-bind-template=".uib-time input{width:50px;}" class="ng-binding ng-scope">.uib-time input{width:50px;}</style><style ng-bind-template="[uib-tooltip-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top &gt; .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom &gt; .tooltip-arrow,[uib-popover-popup].popover.top-left &gt; .arrow,[uib-popover-popup].popover.top-right &gt; .arrow,[uib-popover-popup].popover.bottom-left &gt; .arrow,[uib-popover-popup].popover.bottom-right &gt; .arrow,[uib-popover-popup].popover.left-top &gt; .arrow,[uib-popover-popup].popover.left-bottom &gt; .arrow,[uib-popover-popup].popover.right-top &gt; .arrow,[uib-popover-popup].popover.right-bottom &gt; .arrow,[uib-popover-html-popup].popover.top-left &gt; .arrow,[uib-popover-html-popup].popover.top-right &gt; .arrow,[uib-popover-html-popup].popover.bottom-left &gt; .arrow,[uib-popover-html-popup].popover.bottom-right &gt; .arrow,[uib-popover-html-popup].popover.left-top &gt; .arrow,[uib-popover-html-popup].popover.left-bottom &gt; .arrow,[uib-popover-html-popup].popover.right-top &gt; .arrow,[uib-popover-html-popup].popover.right-bottom &gt; .arrow,[uib-popover-template-popup].popover.top-left &gt; .arrow,[uib-popover-template-popup].popover.top-right &gt; .arrow,[uib-popover-template-popup].popover.bottom-left &gt; .arrow,[uib-popover-template-popup].popover.bottom-right &gt; .arrow,[uib-popover-template-popup].popover.left-top &gt; .arrow,[uib-popover-template-popup].popover.left-bottom &gt; .arrow,[uib-popover-template-popup].popover.right-top &gt; .arrow,[uib-popover-template-popup].popover.right-bottom &gt; .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}" class="ng-binding ng-scope">[uib-tooltip-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-html-popup].tooltip.right-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.top-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-left > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.bottom-right > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.left-bottom > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-top > .tooltip-arrow,[uib-tooltip-template-popup].tooltip.right-bottom > .tooltip-arrow,[uib-popover-popup].popover.top-left > .arrow,[uib-popover-popup].popover.top-right > .arrow,[uib-popover-popup].popover.bottom-left > .arrow,[uib-popover-popup].popover.bottom-right > .arrow,[uib-popover-popup].popover.left-top > .arrow,[uib-popover-popup].popover.left-bottom > .arrow,[uib-popover-popup].popover.right-top > .arrow,[uib-popover-popup].popover.right-bottom > .arrow,[uib-popover-html-popup].popover.top-left > .arrow,[uib-popover-html-popup].popover.top-right > .arrow,[uib-popover-html-popup].popover.bottom-left > .arrow,[uib-popover-html-popup].popover.bottom-right > .arrow,[uib-popover-html-popup].popover.left-top > .arrow,[uib-popover-html-popup].popover.left-bottom > .arrow,[uib-popover-html-popup].popover.right-top > .arrow,[uib-popover-html-popup].popover.right-bottom > .arrow,[uib-popover-template-popup].popover.top-left > .arrow,[uib-popover-template-popup].popover.top-right > .arrow,[uib-popover-template-popup].popover.bottom-left > .arrow,[uib-popover-template-popup].popover.bottom-right > .arrow,[uib-popover-template-popup].popover.left-top > .arrow,[uib-popover-template-popup].popover.left-bottom > .arrow,[uib-popover-template-popup].popover.right-top > .arrow,[uib-popover-template-popup].popover.right-bottom > .arrow{top:auto;bottom:auto;left:auto;right:auto;margin:0;}[uib-popover-popup].popover,[uib-popover-html-popup].popover,[uib-popover-template-popup].popover{display:block !important;}</style><style ng-bind-template=".uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}" class="ng-binding ng-scope">.uib-datepicker-popup.dropdown-menu{display:block;float:none;margin:0;}.uib-button-bar{padding:10px 9px 2px;}</style><style ng-bind-template=".uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}" class="ng-binding ng-scope">.uib-position-measure{display:block !important;visibility:hidden !important;position:absolute !important;top:-9999px !important;left:-9999px !important;}.uib-position-scrollbar-measure{position:absolute !important;top:-9999px !important;width:50px !important;height:50px !important;overflow:scroll !important;}.uib-position-body-scrollbar-measure{overflow:scroll !important;}</style><style ng-bind-template=".uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}" class="ng-binding ng-scope">.uib-datepicker .uib-title{width:100%;}.uib-day button,.uib-month button,.uib-year button{min-width:100%;}.uib-left,.uib-right{width:100%}</style><style ng-bind-template=".ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}" class="ng-binding ng-scope">.ng-animate.item:not(.left):not(.right){-webkit-transition:0s ease-in-out left;transition:0s ease-in-out left}</style><style ng-bind-template="@charset " utf-8";[ng\:cloak],[ng-cloak],[data-ng-cloak],[x-ng-cloak],.ng-cloak,.x-ng-cloak,.ng-hide:not(.ng-hide-animate){display:none="" !important;}ng\:form{display:block;}.ng-animate-shim{visibility:hidden;}.ng-anchor{position:absolute;}"="" class="ng-binding ng-scope">@charset</style>
+    <meta charset="utf-8">
+    <meta name="fragment" content="!">
+    <meta http-equiv="Content-Type" content="text/html; charset=windows-1254">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; script-src 'self' 'unsafe-inline' 'unsafe-eval' *; style-src 'self' 'unsafe-inline' *">
+    <meta http-equiv="cache-control" content="no-store; no-cache; must-revalidate; max-stale=0; post-check=0; pre-check=0; max-age=0">
+    <meta http-equiv="pragma" content="no-cache">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <meta name="googlebot" content="index, follow">
+    <meta name="robots" content="all">
+    <meta name="revisit-after" content="1 Days">
+    <meta name="google-site-verification" content="AzbqvrgvGvY2ghwonLbysmpKIYJf0pFOdzaAAO2K4GQ">
+    <link rel="shortcut icon" type="image/x-icon" href="https://cdn.iuc.edu.tr/FileHandler.ashx?f=Pyrz_hdxWE-v4Ln4KI_Flg">
+
+    
+
+
+
+
+    
+    <title>Kanunlar</title>
+    <meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa">
+    <meta name="description" content="Kanunlar">
+    <meta name="keywords" content="iuc, Üniversitesi-Cerrahpaşa, Kanunlar">
+    <meta property="og:title" content="Kanunlar">
+    <meta property="og:url" content="https://ogrenci.iuc.edu.tr/tr/_">
+    <meta property="og:type" content="website">
+    <meta property="og:description" content="Kanunlar">
+    <meta property="og:image" content="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_203_203.png">
+    <meta property="og:image:secure_url" content="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_203_203.png">
+    <meta property="og:image:width" content="250">
+    <meta property="og:image:height" content="250">
+    <meta property="og:image:type" content="image/png">
+    
+    <!-- Open Graph data -->
+
+
+
+    <meta id="site" content="F7C8E47C8FA6443BACAABF1DB5C10219">
+
+
+
+    <link href="/css/vendor-bd34d59a5f.min.css" rel="stylesheet">
+    <link href="/css/app.min.css" rel="stylesheet">
+
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans&amp;subset=latin-ext" rel="stylesheet" type="text/css">
+    <link href="https://service-cms.iuc.edu.tr/api/webclient/style?site=F7C8E47C8FA6443BACAABF1DB5C10219" rel="stylesheet">
+    <link href="/css/theme/default/css/fontawesome-5.11.2/css/all.min.css" rel="stylesheet">
+    <style ng-bind-template="
+
+#captchaModal {
+    z-index: 20000 !important;
+}
+
+
+.modal-backdrop {
+    z-index: 19999 !important;
+}
+
+#modalHata {
+    z-index: 20000 !important;
+}
+
+#widget {
+    position: fixed !important;
+    top: 150px !important;
+    left: 0 !important;
+    z-index: 99999999 !important;
+}
+
+.section-title {
+
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.section-title:first-letter {
+  color: #000000;
+}
+.leftpane a {
+    color: #000000;
+}
+.nav&gt;li&gt;a {
+    color: #000000;
+}
+
+" class="ng-binding ng-scope">#captchaModal {
+    z-index: 20000 !important;
+}
+
+
+.modal-backdrop {
+    z-index: 19999 !important;
+}
+
+#modalHata {
+    z-index: 20000 !important;
+}
+
+#widget {
+    position: fixed !important;
+    top: 150px !important;
+    left: 0 !important;
+    z-index: 99999999 !important;
+}
+
+.section-title {
+
+    color: #000000;
+    background-color: #FFFFFF;
+}
+.section-title:first-letter {
+  color: #000000;
+}
+.leftpane a {
+    color: #000000;
+}
+.nav>li>a {
+    color: #000000;
+}</style>
+
+
+    <script type="text/javascript" async="" charset="utf-8" src="https://www.gstatic.com/recaptcha/releases/ne1iDVwClkE7nKD3uA9Vqsvl/recaptcha__tr.js" crossorigin="anonymous" integrity="sha384-W25iHHWPoPxqj+deeVBa3AO6fJhRkDlo0238KV9iVG+WLFRd1QIm9D46o8c81yEq"></script><script>
+        //(function (i, s, o, g, r, a, m) {
+        //    i['GoogleAnalyticsObject'] = r; i[r] = i[r] || function () {
+        //        (i[r].q = i[r].q || []).push(arguments)
+        //    }, i[r].l = 1 * new Date(); a = s.createElement(o),
+        //    m = s.getElementsByTagName(o)[0]; a.async = 1; a.src = g; m.parentNode.insertBefore(a, m)
+        //})(window, document, 'script', '//www.google-analytics.com/analytics.js', 'ga');
+        //ga('create', 'G-2ZN58XTFV9', 'auto');
+        //ga('send', 'pageview');
+    </script>
+    <!-- Global site tag (gtag.js) - Google Analytics -->
+    <script async="" src="https://www.googletagmanager.com/gtag/js?id=G-2ZN58XTFV9"></script>
+<script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag() { dataLayer.push(arguments); }
+    gtag('consent', 'default', {
+        analytics_storage: 'denied'
+    });
+</script>
+    <script>
+       
+
+/*
+//if (window.location.hostname && !window.location.hostname.endsWith('bilgiislem.iuc.edu.tr')) {
+
+ if (window.location.hostname) {
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){ dataLayer.push(arguments); }
+          gtag('js', new Date());
+
+          if (window.location.hostname === "iuc.edu.tr") {
+            gtag('config', 'G-2ZN58XTFV9', { cookie_domain: "www.iuc.edu.tr" });
+          } else {
+            gtag('config', 'G-2ZN58XTFV9', { cookie_domain: window.location.hostname });
+          }
+        }
+//}
+
+*/
+     
+    </script>
+
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css"><script src="https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js"></script><link href="https://cdn.userway.org/styles/2026-05-12-14-26-48/widget_base.css?v=1778596008290" type="text/css" rel="stylesheet"></head>
+<body>
+    <!-- uiView:  --><div class="uwy userway_p5" data-uw-feature-ignore="true" data-uw-rm-ignore="true" title="Erişilebilirlik Menüsü" style="background-color: transparent !important; overflow: initial !important;"><div class="userway_buttons_wrapper"><div class="ulsti hidden userway_dark" id="userwayLstIcon" aria-label="Çeviriler Menüsü" role="button" tabindex="0" aria-haspopup="dialog" data-uw-s19-ignore="" title="Çeviriler Menüsü" style="background: rgb(0, 72, 255) !important;"><span class="uiiw"></span><div class="ups"><img width="43" height="43" data-uw-rm-ignore="" class="si_w" aria-hidden="true" alt="Spinner: White decorative" src="https://cdn.userway.org/widgetapp/images/spin_wh.svg"></div><span class="usr lst-spacer"></span></div><div class="uai userway_dark" id="userwayAccessibilityIcon" aria-label="Erişilebilirlik Menüsü" role="button" tabindex="0" aria-haspopup="dialog" title="Erişilebilirlik Menüsü" style="background: rgb(0, 72, 255) !important;"><span class="uiiw"><img data-uw-rm-ignore="" class="ui_w" role="presentation" alt="" src="https://cdn.userway.org/widgetapp/images/body_wh.svg"></span><div class="ups"><img width="43" height="43" data-uw-rm-ignore="" class="si_w" aria-hidden="true" alt="Spinner: White decorative" src="https://cdn.userway.org/widgetapp/images/spin_wh.svg"></div><span class="usr"></span></div><div class="uwaw-dictionary-tooltip"></div></div><iframe class="uwif userway_p5" data-uw-ignore-translate="true" name="userway" title="UserWay Erişilebilirlik Menüsü" allow="clipboard-write" style="max-width: 100vw !important; visibility: visible !important; opacity: 1 !important; color-scheme: light !important;"></iframe></div><div class="uw-s10-bottom-ruler-guide"></div><div class="uw-s10-right-ruler-guide"></div><div class="uw-s10-left-ruler-guide"></div><div class="uw-s10-reading-guide"><div class="uw-s10-reading-guide__arrow"></div></div><div class="uw-s12-tooltip" aria-hidden="true"></div><div class="app ng-scope" id="app" ng-class="{'test':app.settings.headerFixed}" ui-view="" style=""><style ng-bind-template="
+.collapsible-item-title
+{
+    padding: 0px !important;
+}
+" class="ng-binding ng-scope">.collapsible-item-title
+{
+    padding: 0px !important;
+}</style>
+<link href="//netdna.bootstrapcdn.com/bootstrap/3.0.0/css/bootstrap-glyphicons.css" rel="stylesheet" class="ng-scope">
+<div id="72004900350030004E002D007A00510062004E0067003100" class="ng-scope ng-isolate-scope"><style ng-bind-template="#header-full-top .header-title h2:nth-child(1){
+  	color:rgb(17, 37, 62) !important;
+  }
+  a, h1, h2, h3, h4, h5, h6 {
+  	color:rgb(17, 37, 62);
+  }
+  a:hover {
+    color: rgb(204, 153, 51) !important;
+  }
+  .icon-ar {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark {
+    /*background-color:rgb(17, 37, 62) !important; */
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark a:hover {
+  	color: #fff !important;
+  }
+  .navbar-dark a {
+  	color: #fff !important;
+  }
+  
+  .navbar-default .navbar-nav &gt; li &gt; a:hover, .navbar-default .navbar-nav &gt; li &gt; a:active, .navbar-default .navbar-nav &gt; li &gt; a:focus, .navbar-default .navbar-nav &gt; .active &gt; a:hover, .navbar-default .navbar-nav &gt; .active &gt; a {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a, .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a:hover, .navbar-default.navbar-dark .navbar-nav &gt; .open &gt; a:focus {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu {
+    background-color: rgb(17, 37, 62) !important;
+    border-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu a:hover {
+  	background-color: rgb(204, 153, 51) !important;  
+  }
+  .navbar-nav &gt; li &gt; a:focus, .navbar-nav &gt; li &gt; a:active {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-default .navbar-toggle {
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .navbar-default .navbar-toggle:hover {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  @media (max-width: 768px)
+  {
+    .navbar-dark .dropdown &gt; a {
+        border-bottom: solid 1px rgb(204, 153, 51) !important;
+   }
+  }
+
+  
+  .menu-line {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .wrap-dark-color {
+  	background-color:rgb(17, 37, 62) !important;
+  }
+  
+  .feature-icon:first-child {
+    border-left: solid 1px rgb(204, 153, 51) !important;
+  }
+  
+  a.feature-icon {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon h4 {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon:hover {
+    background-color:rgb(204, 153, 51) !important;
+    *color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon {
+    border-right: solid 0px rgb(204, 153, 51) !important;
+  }
+  
+  .section-title:first-letter {
+    color: rgb(17, 37, 62) !important;
+  }
+  
+  .notice-box .media-heading {
+      border-left: 2px solid rgb(17, 37, 62) !important;
+  }
+  
+  
+  .bxslider-controls .bx-prev, .bxslider-controls .bx-next {
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  .bxslider-controls .bx-prev:hover, .bxslider-controls .bx-next:hover {
+    	background-color: rgb(204, 153, 51) !important;
+  }
+  
+  .panel .panel-figure{
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .monthly-today .monthly-day-number {
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .content-box:hover {
+	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .bg-theme{
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .border-theme{
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .panel .panel-heading-link a:after {
+  
+  background-color: #395a73;
+ 
+}" class="ng-binding ng-scope">#header-full-top .header-title h2:nth-child(1){
+  	color:rgb(17, 37, 62) !important;
+  }
+  a, h1, h2, h3, h4, h5, h6 {
+  	color:rgb(17, 37, 62);
+  }
+  a:hover {
+    color: rgb(204, 153, 51) !important;
+  }
+  .icon-ar {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark {
+    /*background-color:rgb(17, 37, 62) !important; */
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-dark a:hover {
+  	color: #fff !important;
+  }
+  .navbar-dark a {
+  	color: #fff !important;
+  }
+  
+  .navbar-default .navbar-nav > li > a:hover, .navbar-default .navbar-nav > li > a:active, .navbar-default .navbar-nav > li > a:focus, .navbar-default .navbar-nav > .active > a:hover, .navbar-default .navbar-nav > .active > a {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-default.navbar-dark .navbar-nav > .open > a, .navbar-default.navbar-dark .navbar-nav > .open > a:hover, .navbar-default.navbar-dark .navbar-nav > .open > a:focus {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu {
+    background-color: rgb(17, 37, 62) !important;
+    border-color: rgb(204, 153, 51) !important;
+  }
+  .navbar-dark .dropdown .dropdown-menu a:hover {
+  	background-color: rgb(204, 153, 51) !important;  
+  }
+  .navbar-nav > li > a:focus, .navbar-nav > li > a:active {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  .navbar-default .navbar-toggle {
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .navbar-default .navbar-toggle:hover {
+    background-color: rgb(204, 153, 51) !important;
+  }
+  @media (max-width: 768px)
+  {
+    .navbar-dark .dropdown > a {
+        border-bottom: solid 1px rgb(204, 153, 51) !important;
+   }
+  }
+
+  
+  .menu-line {
+    background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .wrap-dark-color {
+  	background-color:rgb(17, 37, 62) !important;
+  }
+  
+  .feature-icon:first-child {
+    border-left: solid 1px rgb(204, 153, 51) !important;
+  }
+  
+  a.feature-icon {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon h4 {
+    color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon:hover {
+    background-color:rgb(204, 153, 51) !important;
+    *color:rgb(255, 255, 255) !important;
+  }
+  a.feature-icon {
+    border-right: solid 0px rgb(204, 153, 51) !important;
+  }
+  
+  .section-title:first-letter {
+    color: rgb(17, 37, 62) !important;
+  }
+  
+  .notice-box .media-heading {
+      border-left: 2px solid rgb(17, 37, 62) !important;
+  }
+  
+  
+  .bxslider-controls .bx-prev, .bxslider-controls .bx-next {
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  .bxslider-controls .bx-prev:hover, .bxslider-controls .bx-next:hover {
+    	background-color: rgb(204, 153, 51) !important;
+  }
+  
+  .panel .panel-figure{
+    	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .monthly-today .monthly-day-number {
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .content-box:hover {
+	background-color: rgb(17, 37, 62) !important;
+  }
+  
+  .bg-theme{
+    background: rgb(17, 37, 62) !important;
+  }
+  
+  .border-theme{
+    border: solid 1px rgb(204, 153, 51) !important;
+  }
+  .panel .panel-heading-link a:after {
+  
+  background-color: #395a73;
+ 
+}</style>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                          </div>
+<div id="sb-site" style="transform:none; webkit-transform:none;" class="ng-scope">
+  <div class="boxed">  
+   <div id="5A00690043003400500071007A00730042006B0049003100" class="ng-isolate-scope"><header id="header-full-top" class="hidden-xs header-full ng-scope">
+  <div class="container" style="position:relative;">
+    <a href="">
+    <div class="header-full-title header-title" xref="home" style="background-image: url(https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png);" href="/tr/_">
+      <h2 class="animated fadeInRight ng-binding" ng-bind="data.header.pageTitle1">İstanbul Üniversitesi - Cerrahpaşa</h2>       
+      <h2 class="animated fadeInRight ng-binding" ng-bind="data.header.pageTitle2">Öğrenci İşleri Daire Başkanlığı</h2>            
+    </div>
+    </a>
+    
+     
+     <!-- ngIf: data.header.logoRight -->
+   
+    
+    
+    
+    
+    
+     <!-- <img src="https://www.iuc.edu.tr/css/theme/default/img/logo/logo-kapi.png" style="float: right;  height: 90px; margin-top: 2px;"> -->
+      <!-- ngIf: $root.lang == 'tr' --><a target="_blank" ng-if="$root.lang == 'tr'" class="hook-link ng-scope" href="https://iuc.edu.tr/tr/content/universitemiz/arastirma-universitesi" style="">
+      <img class="img img-responsive hook" src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=_0uj1xFQhEeRy6dROw3n_A" alt="Araştırma Üniversitesi" title="Araştırma Üniversitesi">
+    </a><!-- end ngIf: $root.lang == 'tr' -->
+    <!-- ngIf: $root.lang == 'en' -->
+   <!-- ngIf: $root.lang == 'tr' --><img class="eniyi ng-scope" ng-if="$root.lang == 'tr'" src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=NqY3OsBCw0edG0NEiSYGJQ" width="140px" style="margin-top: 21px;" alt="En İyi Olmak İçin" title="En İyi Olmak İçin"><!-- end ngIf: $root.lang == 'tr' -->
+<!-- ngIf: $root.lang == 'en' -->
+    <nav class="top-nav">
+<ul class="top-nav-social hidden-sm">
+  <!-- ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope" style="">
+    <a ng-href="https://www.facebook.com/iucerrahpasa/" target="_blank" aria-label="Facebook" title="Facebook" href="https://www.facebook.com/iucerrahpasa/">
+      <i class="fab fa-facebook" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope">
+    <a ng-href="https://twitter.com/iu_cerrahpasa" target="_blank" aria-label="Twitter" title="Twitter" href="https://twitter.com/iu_cerrahpasa">
+      <i class="fab fa-twitter" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials --><li ng-repeat="x in data.socials" class="ng-scope">
+    <a ng-href="https://www.instagram.com/iucerrahpasa/" target="_blank" aria-label="Instagram" title="Instagram" href="https://www.instagram.com/iucerrahpasa/">
+      <i class="fab fa-instagram" aria-hidden="true"></i>
+    </a>
+  </li><!-- end ngRepeat: x in data.socials -->
+</ul>
+      <!-- dropdown -->
+      <div class="dropdown">
+       <a href="#" class="dropdown-toggle" data-toggle="dropdown" aria-label="Arama" title="Arama">
+  <i class="fa fa-search" aria-hidden="true"></i>
+</a>
+        <div class="dropdown-menu dropdown-menu-right dropdown-search-box animated fadeInUp">
+          <form role="form" class="ng-pristine ng-valid">
+            <div class="input-group">
+              <input id="searchBox1" type="text" class="form-control border-theme ng-pristine ng-untouched ng-valid ng-empty" placeholder="Site içinde ara" ng-model="searchBox" autofocus="" ng-keypress="($event.which === 13)? $parent.searchInSite(searchBox) : 0" auto-focus="" style="">
+              <span class="input-group-btn">
+                <button class="btn btn-ar btn-primary bg-theme border-theme ng-binding" type="button" ng-click="$parent.searchInSite(searchBox);">Ara
+                </button>
+              </span>
+            </div>
+            <!-- /input-group -->
+          </form>
+        </div>
+      </div> &nbsp;
+     &nbsp;
+      &nbsp;
+     &nbsp;
+      
+      <!-- dropdown -->
+    </nav>
+    <!-- ngIf: $root.translates.length > 1 -->
+  </div> 
+  <!-- container -->
+</header> 
+<!-- header-full --> 
+<!-- header-full -->
+<nav class="navbar navbar-default navbar-header-full navbar-dark yamm navbar-static-top ng-scope" role="navigation" id="header">
+  <div class="container">
+    <img xref="home" class="iu-logo-sm hidden-sm hidden-md hidden-lg" ng-src="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png" ng-click="$parent.backToTop();" href="/tr/_" src="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=logo_tr_eng-a4-40.png" style="cursor: pointer;">
+    <h4 class="animated fadeInRight hidden-sm hidden-md hidden-lg xs-pageTitle ng-binding" id="header_title" ng-bind="data.header.pageTitle2">Öğrenci İşleri Daire Başkanlığı</h4>
+    <!-- navbar-header -->
+    <!-- Collect the nav links, forms, and other content for toggling -->
+    <span class="navbar-toggle menu-right" style="" ng-click="$root.sbRightMenu = true;">
+      <i class="fa fa-angle-double-left">
+      </i>
+    </span>
+    <a class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+      <span class="icon-bar">
+      </span>
+    </a>
+    <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+  <ul class="nav navbar-nav full-width" id="header_menu">
+    <!-- ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}" style="">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Daire Başkanlığı
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/tarihce/tarihce" target="" class="ng-binding" href="/tr/content/tarihce/tarihce">Tarihçe
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1plt_ogrenci-isleri-daire-baskanligi_misyon-vizyon.pdf" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1plt_ogrenci-isleri-daire-baskanligi_misyon-vizyon.pdf">Misyon ve Vizyon
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://kalite.iuc.edu.tr/tr/content/hakkimizda/iuc-politikalar" target="" class="ng-binding" href="https://kalite.iuc.edu.tr/tr/content/hakkimizda/iuc-politikalar">Politikalar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/daire-baskanligi/etik-davranis-ilkeleri" target="" class="ng-binding" href="/tr/content/daire-baskanligi/etik-davranis-ilkeleri">Etik Davranış İlkeleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Yönetim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/yonetim/yonetim" target="" class="ng-binding" href="/tr/content/yonetim/yonetim">Yönetim
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/personelimiz/personelimiz" target="" class="ng-binding" href="/tr/content/personelimiz/personelimiz">Personelimiz
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1org_iuc-oidb-organizasyon-semasi---rev.02.pdf" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1org_iuc-oidb-organizasyon-semasi---rev.02.pdf">Organizasyon Şeması
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Mevzuat
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/kanunlar" target="" class="ng-binding" href="/tr/content/mevzuat/kanunlar">Kanunlar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/yonetmelikler" target="" class="ng-binding" href="/tr/content/mevzuat/yonetmelikler">Yönetmelikler
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/yonergeler" target="" class="ng-binding" href="/tr/content/mevzuat/yonergeler">Yönergeler
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/esaslar-kararlar-kilavuzlar" target="" class="ng-binding" href="/tr/content/mevzuat/esaslar-kararlar-kilavuzlar">Esaslar-Kararlar-Kılavuzlar
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/not-donusum-tablolari" target="" class="ng-binding" href="/tr/content/mevzuat/not-donusum-tablolari">Not Dönüşüm Tabloları
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/mufredat-guncelleme-ve-degisiklikleri" target="" class="ng-binding" href="/tr/content/mevzuat/mufredat-guncelleme-ve-degisiklikleri">Müfredat Güncelleme ve Değişiklikleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/mevzuat/bolum-program-tasarimi-diploma-programi-acma-islemleri" target="" class="ng-binding" href="/tr/content/mevzuat/bolum-program-tasarimi-diploma-programi-acma-islemleri">Bölüm Program Tasarımı-Diploma Programı Açma İşlemleri
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="http://ogrenci.iuc.edu.tr/tr/content/akademik-takvim/onlisans~2Flisans-akademik-takvim" class="dropdown-toggle ng-binding" data-toggle="" data-hover="dropdown" target="" href="http://ogrenci.iuc.edu.tr/tr/content/akademik-takvim/onlisans~2Flisans-akademik-takvim">Akademik Takvim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="" target="" class="ng-binding">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Önlisans-Lisans Ayrıntılı Akademik Takvimi
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisans-onlisans-ozet.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisans-onlisans-ozet.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisans-Önlisans Akademik Takvim Özet
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-tip-fakultesi.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-tip-fakultesi.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Tıp Fakültesi
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ozet.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ozet.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisansüstü Özet
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ayrintili.xlsx" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=2018-2019-cerrahpasa-lisansustu-ayrintili.xlsx">2018-2019 İstanbul Üniversitesi-Cerrahpaşa Lisansüstü Ayrıntılı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">Öğrenci
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://international.iuc.edu.tr/tr/_" target="" class="ng-binding" href="https://international.iuc.edu.tr/tr/_">Uluslararası Öğrenciler / International Students
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://www.iuc.edu.tr/tr/content/aday-ogrenci/universitemiz-hakkinda" target="_blank" class="ng-binding" href="https://www.iuc.edu.tr/tr/content/aday-ogrenci/universitemiz-hakkinda">Aday Öğrenci
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://erasmus.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://erasmus.iuc.edu.tr/tr/_">Erasmus Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://farabi.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://farabi.iuc.edu.tr/tr/_">Farabi Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="http://mevlana.iuc.edu.tr/tr/_" target="_blank" class="ng-binding" href="http://mevlana.iuc.edu.tr/tr/_">Mevlana Programı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://iuc.edu.tr/tr/content/iuc-kart/iuc-kart-nedir%3F" target="" class="ng-binding" href="https://iuc.edu.tr/tr/content/iuc-kart/iuc-kart-nedir%3F">İÜC Kart
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=hizmet-pasaportu-talep-formu_637653334089759565-(6).doc" target="" class="ng-binding" href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=hizmet-pasaportu-talep-formu_637653334089759565-(6).doc">Hizmet Pasaport Formu
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu --><li class="dropdown ng-scope class6Menu" ng-repeat="x in $root.menu[0].Menu" ng-class="{class7Menu:$root.menuItemCount==7,class6Menu:$root.menuItemCount==6,classEnFazla5Menu:$root.menuItemCount&lt;=5}">
+      <a ng-href="" class="dropdown-toggle ng-binding" data-toggle="dropdown" data-hover="dropdown" target="">İletişim
+      </a>
+      <!-- ngIf: x.Children --><ul class="dropdown-menu dropdown-menu-left animated-2x animated fadeIn ng-scope" ng-if="x.Children">
+        <!-- ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/content/iletisim/birim-ogrenci-isleri-iletisim-bilgileri" target="" class="ng-binding" href="/tr/content/iletisim/birim-ogrenci-isleri-iletisim-bilgileri">Birim Öğrenci İşleri Büroları
+          </a>
+        </li><!-- end ngRepeat: c in x.Children --><li ng-repeat="c in x.Children" class="ng-scope">
+          <a ng-href="/tr/iletisim" target="" class="ng-binding" href="/tr/iletisim">Öğrenci İşleri Daire Başkanlığı
+          </a>
+        </li><!-- end ngRepeat: c in x.Children -->
+      </ul><!-- end ngIf: x.Children -->
+    </li><!-- end ngRepeat: x in $root.menu[0].Menu -->
+  </ul>
+</div>
+    <!-- navbar-collapse -->
+  </div>
+  <!-- container -->
+</nav>  
+<div class="menu-line ng-scope">
+</div>
+<div class="sb-slidebar sb-right sb-menu-right ng-scope hidden" ng-class="{'hidden':!$root.sbRightMenu}" style="">
+  <span class="menu-close" ng-click="$root.sbRightMenu = false;">
+      <i class="fa fa-angle-double-right">
+      </i>
+    </span>
+  <div class="input-group">
+    <input id="searchBox" type="text" class="form-control border-theme ng-pristine ng-valid ng-empty ng-touched" placeholder="Site içinde ara" ng-model="searchBox" autofocus="" ng-keypress="($event.which === 13)? $parent.searchInSite(searchBox) : 0" auto-focus="" style="">
+    <span class="input-group-btn">
+      <button class="btn btn-ar btn-primary bg-theme border-theme ng-binding" type="button" ng-click="$parent.searchInSite(searchBox);" style="margin-right:0;">Ara
+      </button>
+    </span>
+  </div>
+  <!-- /input-group -->
+  <br>
+  <!-- ngIf: $root.translates.length>1 -->
+  <br>
+  <div class="slidebar-social-icons">
+    <!-- ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://www.facebook.com/iucerrahpasa/" target="_blank" class="ng-scope" href="https://www.facebook.com/iucerrahpasa/" style="">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-facebook"></i>
+    </a><!-- end ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://twitter.com/iu_cerrahpasa" target="_blank" class="ng-scope" href="https://twitter.com/iu_cerrahpasa">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-twitter"></i>
+    </a><!-- end ngRepeat: x in data.socials --><a ng-repeat="x in data.socials" ng-href="https://www.instagram.com/iucerrahpasa/" target="_blank" class="ng-scope" href="https://www.instagram.com/iucerrahpasa/">
+      <!--<i class="fab fa-{{ x.icon }}"></i>-->
+             <i class="fab fa-instagram"></i>
+    </a><!-- end ngRepeat: x in data.socials -->
+  </div>
+</div> 
+<!-- sb-slidebar sb-right -->
+
+
+<style ng-bind-template="
+.class7Menu {
+  text-align:center;
+  width:14.2% !important;
+}
+
+.class6Menu {
+  text-align:center;
+  width:16.6% !important;
+}
+
+.classEnFazla5Menu {
+  text-align:center;
+  width:19.8% !important;
+}
+" class="ng-binding ng-scope">.class7Menu {
+  text-align:center;
+  width:14.2% !important;
+}
+
+.class6Menu {
+  text-align:center;
+  width:16.6% !important;
+}
+
+.classEnFazla5Menu {
+  text-align:center;
+  width:19.8% !important;
+}</style>
+ 
+
+<script class="ng-scope">
+  setTimeout(function() {
+    $('.top-nav-social a').each(function() {
+      var icon = $(this).find('i').attr('class') || '';
+      var name = icon.replace('fab ', '').replace('fas ', '').replace('fa-', '').replace(/-/g, ' ').trim();
+      name = name.charAt(0).toUpperCase() + name.slice(1);
+      $(this).attr('aria-label', name).attr('title', name);
+    });
+  }, 500);
+</script>
+</div>
+    <!-- uiView:  --><div class="app-content-body ng-scope" ui-view=""><div class="container view ng-scope">
+  <div id="3800700077006200690057007A006E0034006B006F003100" class="ng-isolate-scope"><h2 class="section-title ng-binding ng-scope">
+  <table>
+    <tbody><tr>
+
+    <td>  <div style="">
+  <button type="button" class="navbar-toggle" data-toggle="collapse" data-original-title="Diğer İçerikler" id="btn-menu" onclick="myFunction()" data-target="#bs-example-navbar-collapse-2">
+                <span class="sr-only">İçerikler</span>
+                <i class="fa fa-bars"></i>
+    </button></div></td>
+          <td class="ng-binding">Mevzuat </td>
+    </tr>
+  </tbody></table>
+  
+
+</h2>
+<div class="row tab-animation ng-scope" style="margin-top:20px;">
+  <div id="bs-example-navbar-collapse-2" class="leftpane col-xs-3" ng-class="group.TabTheme == 'tabs-left' ? 'col-xs-3' : 'col-xs-12' " style="">
+    <ul class="nav nav-tabs tabs-left">
+      <!-- ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope active" style="">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Kanunlar
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope" style="">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Yönetmelikler
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Yönergeler
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Esaslar-Kararlar-Kılavuzlar
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Not Dönüşüm Tabloları
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Müfredat Güncelleme ve Değişiklikleri
+        </a>
+      </li><!-- end ngRepeat: x in contentList --><li ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" class="ng-scope">
+        <a ng-click="changeTab($index)" onclick="removebar()" href="#5A00690043003400500071007A00730042006B0049003100" data-toggle="tab" class="ng-binding">Bölüm Program Tasarımı-Diploma Programı Açma İşlemleri
+        </a>
+      </li><!-- end ngRepeat: x in contentList -->
+    </ul>
+  </div>
+  
+  <div id="content-right-panel" class="col-xs-9" ng-class="group.TabTheme == 'tabs-left' ? 'col-xs-9' : 'col-xs-12' " style="">
+    <div class="tab-content">
+      <!-- ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope active" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><ul>
+	<li style="box-sizing: border-box;"><span class="rangySelectionBoundary" id="selectionBoundary_1562756638198_3609708021241982" style="line-height: 0; display: none;">﻿</span><a href="https://www.mevzuat.gov.tr/MevzuatMetin/1.5.2547.pdf">Yükseköğretim Kanunu (2547)</a><span class="rangySelectionBoundary" id="selectionBoundary_1562756638198_20149092386592993" style="line-height: 0; display: none;">﻿</span></li>
+	<li style="box-sizing: border-box;"><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=1.5.657&amp;sourceXmlSearch=&amp;MevzuatIliski=0" target="_blank">657 Sayılı Devlet Memurları Kanunu</a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=1.5.4734&amp;MevzuatIliski=0&amp;sourceXmlSearch=" target="_blank">4734 Sayılı Kamu İhale Kanunu</a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=1.5.4735&amp;MevzuatIliski=0&amp;sourceXmlSearch=" target="_blank">4735 Sayılı Kamu İhale Sözleşmeleri Kanunu</a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=1.5.5018&amp;MevzuatIliski=0&amp;sourceXmlSearch=" target="_blank">5018 Sayılı Kamu Malî Yönetimi ve Kontrol Kanunu</a></li>
+	<li style="box-sizing: border-box;"><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=1.5.5510&amp;sourceXmlSearch=&amp;MevzuatIliski=0" target="_blank">5510 Sayılı Sosyal Sigortalar ve Genel Sağlık Sigortası Kanunu</a><br>
+	&nbsp;</li>
+</ul>
+<!--EndFragment--></p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><ul>
+	<li>
+	<div><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=iu-cerrahpasa-onlisans-ve-lisans-yonetmeligi-web-icin_636723419091754019.pdf" target=""><span class="rangySelectionBoundary" id="selectionBoundary_1542886958332_14992832673854473" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1542887540513_8234955935872672" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1542887897072_4449144216643155" style="line-height: 0; display: none;">﻿</span></a><a href="https://www.resmigazete.gov.tr/eskiler/2022/03/20220308-13.htm">Engelli Bireylere Yönelik Sınav Uygulamalarında ve Engelli Kontenjanında Aranacak Sağlık Şartlarına Dair Yönetmelik (YÖK) (Resmi Gazete Tarihi: 08.03.2022, Sayı: 31772)</a></div>
+	</li>
+	<li>
+	<div><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf">İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Eğitim ve Öğretim Yönetmeliği (Resmi Gazete&nbsp;Tarihi: 20.08.2018, Sayı: 30515)</a><span class="rangySelectionBoundary" id="selectionBoundary_1542887897072_48077137112974255" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1542887540513_11396583371509639" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1542887129062_8643706495631389" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1542886958331_538665480118129" style="line-height: 0; display: none;">﻿</span></div>
+	</li>
+	<li><a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=24797&amp;MevzuatTur=8&amp;MevzuatTertip=5" target="">İstanbul Üniversitesi-Cerrahpaşa Lisansüstü Eğitim ve Öğretim Yönetmeliği (Resmi Gazete Tarihi: 29.08.2018, Sayı: 30520)</a><span class="rangySelectionBoundary" id="selectionBoundary_1562937610103_6636336250315" style="line-height: 0; display: none;">﻿</span></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=7.5.21510&amp;MevzuatIliski=0&amp;sourceXmlSearch=L%C4%B0SANS%C3%9CST%C3%9C%20E%C4%9E%C4%B0T%C4%B0M%20VE%20%C3%96%C4%9ERET%C4%B0M%20Y%C3%96NETMEL%C4%B0%C4%9E%C4%B0" target="">Lisansüstü Eğitim ve Öğretim Yönetmeliği (YÖK) (Resmi Gazete Tarihi: 20.04.2016, Sayı: 29690)<span class="rangySelectionBoundary" id="selectionBoundary_1562937601015_09558671827391918" style="line-height: 0; display: none;">﻿</span></a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=7.5.8308&amp;MevzuatIliski=0&amp;sourceXmlSearch=Lisans%20%C3%96%C4%9Frenimlerini%20Tamamlamayan%20veya%20Tamamlayamayanlar%C4%B1n" target="">Lisans Öğrenimlerini Tamamlamayan veya Tamamlayamayanların Ön Lisans Diploması Almaları veya Meslek Yüksekokullarına İntibakları Hakkında Yönetmelik (YÖK) (Resmi Gazete Tarihi: 18.03.1989, Sayı: 20112)</a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=7.5.8315&amp;MevzuatIliski=0&amp;sourceXmlSearch=Meslek%20Y%C3%BCksekokullar%C4%B1%20ve%20A%C3%A7%C4%B1k%C3%B6%C4%9Fretim%20%C3%96n" target="">Meslek Yüksekokulları ve Açıköğretim Ön Lisans Programları Mezunlarının Lisans Öğrenimine Devamları Hakkında Yönetmelik [Dikey Geçiş] (YÖK) (Resmi Gazete Tarihi: 19.02.2002, Sayı: 24676)</a></li>
+	<li><a href="http://www.resmigazete.gov.tr/eskiler/2020/06/20200610-8.pdf" target="">Resmi&nbsp;Yazışmalarda Uygulanacak Usul ve Esaslar Hakkında Yönetmelik (Resmi Gazete Tarihi: 10.06.2020, Sayı: 31151)</a>&nbsp;</li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=7.5.10150&amp;MevzuatIliski=0&amp;sourceXmlSearch=Teknik%20%C3%96%C4%9Fretmenler%20%C4%B0%C3%A7in%20D%C3%BCzenlenecek%20M%C3%BChendislik%20Programlar%C4%B1n%C4%B1n%20Uygulama%20Esas%20ve%20Usulleri%20Y%C3%B6netmeli%C4%9F" target="">Teknik Öğretmenler İçin Düzenlenecek Mühendislik Programlarının Uygulama Esas ve Usulleri Yönetmeliği (YÖK) (Resmi Gazete Tarihi: 07.08.1992, Sayı: 21308)</a></li>
+	<li><a href="https://www.resmigazete.gov.tr/eskiler/2022/02/20220209-4.htm">Tıp-Bilim Doktorası Bütünleşik Programı Eğitim ve Öğretim Yönetmeliği (YÖK) (Resmi&nbsp;Gazete Tarihi: 09.02.2022, Sayı: 31745)</a></li>
+	<li><a href="https://www.resmigazete.gov.tr/eskiler/2020/06/20200613-5.htm" target="">Yükseköğretim Kurumları Öğrenci Konseyleri ve Yükseköğretim Kurumları Ulusal Öğrenci Konseyi Yönetmeliği (YÖK) (Resmi Gazete Tarihi: 13.06.2020, Sayı: 31154)</a></li>
+	<li><a href="http://www.mevzuat.gov.tr/Metin.Aspx?MevzuatKod=7.5.13948&amp;MevzuatIliski=0&amp;sourceXmlSearch=Y%C3%BCksek%C3%B6%C4%9Fretim%20Kurumlar%C4%B1nda%20%C3%96nlisans%20ve%20Lisans%20D%C3%BCzeyindeki%20Programlar%20Aras%C4%B1nda%20Ge%C3%A7i%C5%9F%2c" target="">Yükseköğretim Kurumlarında Önlisans ve Lisans Düzeyindeki Programlar Arasında Geçiş, Çift Anadal, Yan Dal ile Kurumlar Arası Kredi Transferi Yapılması Esaslarına İlişkin Yönetmelik (YÖK) (Resmi Gazete Tarihi: 24.04.2010, Sayı: 27561)</a></li>
+	<li><a href="https://mevzuat.gov.tr/mevzuat?MevzuatNo=38922&amp;MevzuatTur=7&amp;MevzuatTertip=5">Yükseköğretimde Uygulamalı Eğitimler Çerçeve Yönetmeliği (Resmi Gazete Tarihi: 17.06.2021, Sayı: 31514)</a></li>
+	<li><a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=21475&amp;MevzuatTur=7&amp;MevzuatTertip=5">Yükseköğretim Kurumlarında Yabancı Dil Öğretimi ve Yabancı Dille Öğretim Yapılmasında Uyulacak Esaslara İlişkin Yönetmelik (Resmi Gazete Tarihi: 23.03.2016, Sayı: 29662)</a></li>
+</ul>
+</p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><ul style="box-sizing: border-box; margin-top: 0px; margin-bottom: 10px; font-family: &quot;Open Sans&quot;, sans-serif; font-style: normal; font-variant-ligatures: normal; font-variant-caps: normal; font-weight: 400; letter-spacing: normal; orphans: 2; text-align: start; text-indent: 0px; text-transform: none; white-space: normal; widows: 2; word-spacing: 0px; -webkit-text-stroke-width: 0px; text-decoration-style: initial; text-decoration-color: initial; outline: none !important;">
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Çift Anadal Programı Yönergesi (Senato Tarihi: 02.04.2020, Sayı: 24)</span></a></span></span></li>
+	<li style=""><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.12y_iuc-diploma-yonergesi-rev.01.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Diploma Yönergesi (Senato Tarihi: 09.04.2026, Sayı: 72-4)</span></a></span></span></li>
+	<li style=""><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"><font color="#000000">İ</font></a><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"><font color="#000000">stanbul Üniversitesi-Cerrahpaşa İntibak ve Muafiyet İşlemleri Yönergesi (Senato Tarihi: 13.06.2024, Sayı: 58-8)</font></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=451.5y_iuc-kism%C3%AE-zamanli-ogrenci-(kzo)-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Kısmi Zamanlı Öğrenci (KZÖ) Yönergesi (Senato Tarihi: 22.10.2020, Sayı: 28)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.20y_iuc-lisans-programlari-bitirme-odevi-hazirlama-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Lisans Programları Bitirme Ödevi Hazırlama Yönergesi (Senato Tarihi: 21.06.2018, Sayı: 2)<span class="rangySelectionBoundary" id="selectionBoundary_1596091891215_854008153226645" style="line-height: 0; display: none;">﻿</span></span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.14y_iuc-lisans-staj-yonergesi.pdf" target="_blank"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Lisans Programları Staj Yönergesi (Senato Tarihi: 21.06.2018, Sayı: 2)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=419.1y_iuc-ogrenci-danismanligi-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Öğrenci Danışmanlığı Yönergesi (Senato Tarihi: 08.10.2025, Sayı: 2)<span class="rangySelectionBoundary" id="selectionBoundary_1582805372538_3326777557271998" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1563800569343_9257646324361761" style="line-height: 0; display: none;">﻿</span></span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.15y_iuc-hastalik-raporlari-yonergesi.pdf"><span style="color:#000000;"><span class="rangySelectionBoundary" id="selectionBoundary_1547108578193_2955166032156409" style="line-height: 0; display: none;">﻿</span>İstanbul Üniversitesi-Cerrahpaşa Öğrenci Hastalık Raporları Yönergesi (Senato Tarihi: 21.06.2018, Sayı: 2)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=web-iuc-ogrenci-konseyi-yonergesi-senato-10.09.2020_637356813737433702.pdf" target=""><span style="color:#000000;"><span class="rangySelectionBoundary" id="selectionBoundary_1600074013211_6670018114446035" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1600073995549_9952188212542417" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1600073959389_09025706483452156" style="line-height: 0; display: none;">﻿</span></span></a><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.11y_iuc-ogrenci-konseyi-yonergesi-rev.01.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Öğrenci Konseyi Yönergesi (Senato Tarihi: 02.12.2021, Sayı: 38-5)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Ön Lisans ve Lisans Düzeyindeki Programlar Arasında Kurum içi ve Kurumlar Arası Yatay Geçiş Esaslarına İlişkin Yönerge (Senato Tarihi: 09.04.2026, Sayı: 72-3)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.22y_iuc-on-lisans-ve-lisans-duzeyinde-uluslararasi-ogrenci-kabulu-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Düzeyinde Uluslararası Öğrenci Kabulü Yönergesi (Senato Tarihi: 14.05.2026, Sayı: 2)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf" target="_blank"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Programlarında Öğrenim Gören Öğrencilerin Başka Üniversitelerin Yaz Öğretiminde Ders Alabilmelerine Dair Yönerge (Senato Tarihi: 21.06.2018, Sayı: 2)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.17y_iuc-onlisans-staj-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Önlisans Staj Yönergesi (Senato Tarihi: 17.03.2022, Sayı: 41-1)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.18y_onlisans-ve-lisans-mezunlarinin-basari-siralamasinin-tespitine-iliskin-yonerge.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Mezunlarının Başarı Sıralamasının Tespitine İlişkin Yönerge (Senato Tarihi: 04.07.2019, Sayı:14)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=458.1y_iuc-ozel-gereksinimli-ogrenci-ve-personel-icin-firsat-esitligi-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Özel Gereksinimli Öğrenci ve Personel İçin Fırsat Eşitliği Yönergesi (Senato Tarihi: 23.05.2019, Sayı: 13)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.19y_iuc-tip-bilim-doktorasi-butunlesik-programi-egitim-ve-ogretim-yonergesi.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Tıp Bilim Doktorası Bütünleşik Programı Eğitim ve Öğretim Yönergesi (Senato Tarihi: 15.09.2022, Sayı: 45-1)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=4110.1y_iuc-yabanci-dil-ogretimi-ve-yabanci-dille-ogretim-yapilmasinda-uyulacak-esaslara-iliski.yon-(1).pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Yabancı Dil Öğretimi ve Yabancı Dille Öğretim Yapılmasında Uyulacak Esaslara İlişkin Yönerge (Senato Tarihi: 08.10.2025, Sayı: 67)</span></a></span></span></li>
+	<li style="font-size: 12px;"><span style="font-size:14px;"><span style="font-family:Times New Roman,Times,serif;"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.4y_iuc-yandal-programi-yonergesi_638683059593917323.pdf"><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Yandal Programı Yönergesi (Senato Tarihi: 06.12.2018, Sayı: 6)</span></a></span></span></li>
+</ul>
+
+<p><span style="color:#3498db;"></span></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+</p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><div>&nbsp;</div>
+
+<ul>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6111-uygulama-ilkeleri.pdf" target="">6111 Sayılı Kanun'un Uygulamasına İlişkin Usul ve Esaslarda Yapılan Değişiklikler</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6111-uygulam-ilkeleri.pdf">6111 Sayılı Kanun’un 171,172 ve 173. Maddelerinin Uygulanmasına İlişkin Usul ve Esaslar</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.5y_iuc-ders-disi-faaliyetler-ve-mikro-kredi-usul-ve-esaslari-rev.01.pdf">İstanbul Üniversitesi-Cerrahpaşa Ders Dışı Faaliyetler ve Mikro Kredi Usul ve Esasları (Senato Tarihi: 23.07.2025, Sayı: 2)</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.9y_iuc-diploma-eki-duzenlenmesi-ve-onaylanmasina-iliskin-usul-ve-esaslar_638683065726017792.pdf">İstanbul Üniversitesi-Cerrahpaşa Diploma Eki Düzenlenmesi ve Onaylanmasına İlişkin Usul ve Esaslar (Senato Tarihi:23.05.2019, Sayı: 13)</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.8y_iuc-fahrî-akademik-unvan-ve-hizmet-odulu-verilmesine-iliskin-usul-ve-esaslar_638683063659276985.pdf">İstanbul Üniversitesi-Cerrahpaşa Fahrî Akademik Unvan ve Hizmet Ödülü Verilmesine İlişkin Usul ve Esaslar (Senato Tarihi: 23.05.2019, Sayı: 13)&nbsp;</a></li>
+	<li><span class="rangySelectionBoundary" id="selectionBoundary_1547800343299_8998828349699168" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1547800413941_9083503733577907" style="line-height: 0; display: none;">﻿</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1y_iuc-onlisans,-lisans-olcme-ve-degerlendirme-esaslari.pdf">İstanbul Üniversitesi-Cerrahpaşa Önlisans, Lisans Ölçme ve Değerlendirme Esasları (Senato Tarihi: 17.01.2019, Sayı: 9)</a><span class="rangySelectionBoundary" id="selectionBoundary_1547800413941_3645780022479359" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1547800343299_46773048864674993" style="line-height: 0; display: none;">﻿</span></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.7y_iuc-onlisans-ve-lisans-duzeyinde-ozel-ogrencilik-esaslari-rev.01_638663282273291062.pdf">İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Özel Öğrencilik&nbsp; Usul ve Esasları (Senato Tarihi: 17.06.2021, Sayı: 34-4)</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=7143-sayili-af-yatay-gecis_636719088193297740.pdf" target="">İstanbul Üniversitesi-Cerrahpaşa 7143 Sayılı Kanunun 15'nci Maddesi İle 2547 Sayılı Kanuna Eklenen Geçici 78'nci Maddesi Kapsamında Yatay Geçiş Yapacaklarla İlgili Usul ve Esaslar</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.6y_iuc-mufredat-guncel.-sonucunda-yapilacak-intibak-islem.-uygulanacak-usul-ve-esaslar_638683061928193923.pdf">İstanbul Üniversitesi-Cerrahpaşa Müfredat Güncelleme Sonucunda Yapılacak İntibak İşlemlerinde Uygulanacak Usul ve Esaslar (Senato Tarihi: 03.10.2019, Sayı: 15)</a></li>
+	<li><a href="https://s3-ankara.yok.gov.tr/yokmedia/892481bf-e15e-4d24-acaf-f1f9a4cc006c.pdf">Yükseköğretim Kurumlarında Uzaktan Öğretime İlişkin Usul ve Esaslar (YÖK)</a></li>
+</ul>
+
+<p><span class="rangySelectionBoundary" id="selectionBoundary_1536214730852_5834774429998322" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1536215376248_7706633481062748" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1552642111059_0054198810811976195" style="line-height: 0; display: none;">﻿</span></p>
+
+<p>&nbsp;</p>
+
+<p><span class="rangySelectionBoundary" id="selectionBoundary_1559043918897_9423119000255762" style="line-height: 0; display: none;">﻿</span></p>
+
+<p><span class="rangySelectionBoundary" id="selectionBoundary_1559043918897_9165542384806955" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1559043987466_20640842366270995" style="line-height: 0; display: none;">﻿</span><span class="rangySelectionBoundary" id="selectionBoundary_1599830460328_15559639359037192" style="line-height: 0; display: none;">﻿</span></p>
+</p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><ul>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yok-not-donusum-tablosu.pdf">4'lük Not Sisteminin 100'lük Not Sistemine Dönüşümü (YÖK)</a></li>
+	<li><a href="https://personel.yok.gov.tr/documentFiles/17532690802.5lik%20sistemin%20100%20luk%20sistemdeki%20esdegerligi.pdf">5'lik Not Sisteminin 100'lük Not Sistemine Dönüşümü (YÖK)</a><span class="rangySelectionBoundary" id="selectionBoundary_1543214207170_639707381599397" style="line-height: 0; display: none;">﻿</span></li>
+</ul>
+</p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><p style="text-align: justify;"><span style="color:#000000;">Üniversitemiz diploma programları müfredatında yapılacak güncelleme ve değişiklik başvuruları için gerekli bilgi ve belgeler aşağıda belirtilmiştir:</span></p>
+
+<ul style="list-style-type:square;">
+	<li style="text-align: justify;"><span style="color:#000000;">Diploma programlarında yapılacak müfredat güncelleme ve değişikliğine dair başvuruların Üniversitemiz Senatosunun onayına sunulabilmesi için, ilgili yönetmelik ve "İstanbul Üniversitesi-Cerrahpaşa Müfredat Güncelleme Sonucunda Yapılacak İntibak İşlemlerinde Uygulanacak Usul ve Esaslar" çerçevesinde, "İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Müfredat Güncelleme ve Değişiklikleri Prosedürü" doğrultusunda aşağıda sunulan formların eksiksiz ve istenilen formata uygun olarak hazırlanması önem arz etmektedir.</span></li>
+	<li style="text-align: justify;"><span style="color:#000000;">İlgili birim tarafından istenilen formata uygun olarak hazırlanan müfredat güncelleme ve değişiklik teklif dosyasının, Enstitü/Fakülte/Meslek Yüksekokul Kurulu Kararı ile birlikte resmi yazı ile Rektörlük Öğrenci İşleri Daire Başkanlığı’na gönderilmesi gerekmektedir.</span></li>
+</ul>
+
+<p><span style="color:#000000;"></span></p>
+
+<ul>
+	<li class="active"><span style="color:#000000;">Fakülte / Enstitü / MYO Kurul Kararı</span></li>
+	<li class="active"><span style="color:#000000;">415.1.18F Program Gözden Geçirme ve İyileştirme Rapor Formu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.18f_program-gözden-geçirme-ve-i̇yileştirme-rapor-formu-rev.02-(1).docx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">Müfredat Formu (Türkçe ve İngilizce) (AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></li>
+	<li class="active"><span style="color:#000000;">Müfredat Ders Listesi&nbsp;&nbsp;(AKSİS Otomasyon Sistem&nbsp;Çıktısı) - İmzalı/Onaylı</span></li>
+	<li class="active"><span style="color:#000000;">Müfredat Ders İzlencesi&nbsp;(Türkçe ve İngilizce) (AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></li>
+	<li class="active"><span style="color:#000000;">415.2.1F&nbsp;Yeni Ders Açma Teklif Formu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2.1f_yeni-ders-acma-teklif-formu_rev.01_638913849816551537.xlsx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">415.2.2F Ders Kaldırma Teklif Formu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2.2f_ders-kaldirma-teklif-formu.xlsx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">415.2.3F İntibak Formu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2.3f_intibak-formu_rev.01_31602026-(1)_638519765668881755.xlsx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">415.2.4F Ders İlişkileri Formu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2.4f_ders-iliskileri-formu_rev.01.xlsx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">415.2.5F Program Yıllık Eğitim-Öğretim Verileri Raporu için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2.5f_program-yillik-eğitim-öğretim-verileri-raporu-kayit-dosyasi.xlsx">TIKLAYINIZ.</a></span></li>
+	<li class="active"><span style="color:#000000;">Dersleri Veren Öğretim Elemanları Listesi için </span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=11-ogretim-elemanlari-listesi-.xlsx"><span style="color:#000000;">TIKLAYINIZ.</span></a></li>
+	<li class="active"><span style="color:#000000;">Müfredat Güncelleme ve Değişiklikleri Prosed<span style="color:#000000;">ürü için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.2pr_mufredat-guncelleme-ve-degisiklikleri-proseduru-ve-ekleri-elektronik-nusha-rev.03-(1).pdf">TIKLAYINIZ.</a></span></span></li>
+	<li class="active"><span style="color:#000000;">Müfredat Güncelleme Sonucunda Yapılacak İntibak İşlemlerinde Uygulanacak Usul ve Esaslar için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=411.6y_iuc-mufredat-guncel.-sonucunda-yapilacak-intibak-islem.-uygulanacak-usul-ve-esaslar_638659708708456265.pdf">TIKLAYINIZ.</a></span><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"></span></span></span></li>
+</ul>
+
+<p class="active">&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p class="xn-openable">&nbsp;</p>
+</p>
+      </div><!-- end ngRepeat: x in contentList --><div class="tab-pane slide-left ng-scope" ng-class="{'active': view_tab == $index}" ng-repeat="x in contentList" style="">
+         
+        <p ng-bind-html="x.HtmlContent" class="ng-binding"><div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641544392568_732037" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641544392568_732037" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641544392568_732037" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641544392568_732037" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong>Lisansüstü Program Açılması İşlemleri</strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641544392568_732037" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641544392568_732037" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<p><strong>LİSANSÜSTÜ PROGRAM AÇILMASI</strong></p>
+
+<p style="text-align: justify;">Yükseköğretim kurumları tarafından lisansüstü program açılmasına ilişkin talepler YÖKSİS-ABAYS üzerinden yapılmaktadır.</p>
+
+<p style="text-align: justify;">Yeni açılması istenilen programın mutlak suretle&nbsp;"<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=lisansustu-program-acilmasi-ilkeler.pdf">Lisansüstü Eğitim-Öğretim Programı Açılması ve Yürütülmesine Dair İlkeler</a>"&nbsp;ile&nbsp;<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=lisansustu-program-acilmasi-basvurulari-11197-yok-yazisi-(1).pdf">"YÖK Lisansüstü Program Açılması Başvuruları"</a> yazısı dikkate alınarak ve söz konusu İlkelerde belirtilen&nbsp;tüm şartları&nbsp;taşıması sağlanarak teklif edilmesi gerekmektedir. Aksi takdirde program açma teklifleri&nbsp;kabul edilmeyecektir.</p>
+
+<p style="text-align: justify;">Yabancı dille öğretim yapılacak programlarda&nbsp;asgarî&nbsp;öğretim üyelerinin, Yükseköğretim Kurulu tarafından kabul edilen merkezi yabancı dil sınavları ile eşdeğerliği kabul edilen uluslararası yabancı dil sınavlarından yüz tam puan üzerinden en az&nbsp;seksen beş (85) puanla başarılı olması ve<a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=21475&amp;MevzuatTur=7&amp;MevzuatTertip=5"> "Yükseköğretim Kurumlarında Yabancı Dil Öğretimi ve Yabancı Dille Öğretim Yapılmasında Uyulacak Esaslara İlişkin Yönetmelik</a>"in 8/7'inci&nbsp;maddesindeki koşulları sağlamaları gerekmektedir.</p>
+
+<p style="text-align: justify;">Yeni bir lisansüstü programın açılması için yapılacak başvurulardaki gerekli belgeler aşağıdaki sekmelerde belirtilmiştir. Bu belgelerin eksiksiz ve istenilen formata uygun olarak hazırlanması, başvuruların mevcut mevzuat ve akademik kriterler kapsamında değerlendirilmesi ve en kısa sürede sonuçlandırılması için gereklidir.</p>
+
+<p style="text-align: justify;">Üniversitemiz Enstitülerinin ilgili Ana Bilim Dalı Başkanlığı tarafından, Yükseköğretim Kurulu Başkanlığı'nın belirlediği ölçütler ile&nbsp;"<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1pr_bolum-prog.-tasarimi-onay-ve-mufr.-haz.-proseduru-ve-ekleri-elektronik-nusha-rev.05-08032022_637823481745817089.pdf">İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Bölüm, Program Tasarımı Onaylanması ve Müfredat Hazırlık Prosedürü</a><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1pr_bolum-,program-tasarimi-onaylanmasi-ve-mufredat-hazirlik-proseduru-rev.05-0832022.pdf">"</a>nde belirtilen formata uygun olarak oluşturulan belgeler, Bölüm/Ana Bilim Dalı Kurulu kararı ile birlikte resmi&nbsp;yazıyla Enstitü Müdürlüğüne gönderilir.</p>
+
+<p style="text-align: justify;">Enstitü tarafından uygunluğu&nbsp;incelenen lisansüstü program açma başvurusu, Enstitü Kurul kararı ve&nbsp; gerekli belgelerle birlikte resmî&nbsp;yazıyla İÜC Öğrenci İşleri Daire Başkanlığına gönderilir.</p>
+
+<p style="text-align: justify;"><strong>Lisansüstü Eğitim-Öğretim Programı Açılması ve Yürütülmesine Dair İlkeler için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=lisansustu-program-acilmasi-ilkeler.pdf">TIKLAYINIZ.</a></strong></p>
+
+<p style="text-align: justify;"><strong>Yükseköğretim Kurumlarında Yabancı Dil Öğretimi ve Yabancı Dille Öğretim Yapılmasında Uygulanacak Esaslara İlişkin Yönetmelik için <a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=21475&amp;MevzuatTur=7&amp;MevzuatTertip=5">TIKLAYINIZ.</a></strong></p>
+
+<p style="text-align: justify;"><strong>İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Bölüm Program Tasarımı Onaylanması ve Müfredat Hazırlık Prosedürü için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1pr_bölüm-program-tasarimi-onaylanmasi-ve-müfredat-hazirlik-prosedürü-ve-elektronik-nusha-rev.10.pdf">TIKLAYINIZ.</a></strong></p>
+
+<p style="text-align: justify;"><strong>İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Program Gözden Geçirme ve İyileştirme Rapor Formu (415.1.18F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.18f_program-gözden-geçirme-ve-i̇yileştirme-rapor-formu-rev.02-(1).docx">TIKLAYINIZ.</a></strong></p>
+
+<div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641800156179_851918" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641800156179_851918" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641800156179_851918" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641800156179_851918" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong><span>Doktora Programı Açılması için Gerekli Belgeler</span></strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641800156179_851918" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641800156179_851918" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<p><strong>Doktora Programı Açma Dosyası İçeriği;</strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Doktora Programı Açmak İçin Başvuru Formatı (YÖKSİS-ABAYS'a yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-doktora-programi-acmak-icin-basvuru-formati_637774137967402329.docx">TIKLAYINIZ.</a></li>
+	<li>Lisansüstü Programda Görev Alacak Öğretim Üyeleri Kadro ve Çalışma Bilgileri Formu (415.1.14F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.14f_lisansustu-programda-gorev-alacak-ogretim-uyeleri-kadro-ve-calisma-bilgileri-formu.docx">TIKLAYINIZ.</a></li>
+	<li>Öğretim Üyelerinin Devam Eden Lisansüstü Tez/Proje Danışmanlık Bilgileri Formu (415.1.16F) için<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=3-415.1.16f_ogretim-uyelerinin-devam-eden-lisansustu-tez-proje-danismanlik-bilgileri-formu_32128650.xlsx"> TIKLAYINIZ.&nbsp;</a></li>
+	<li>Doktora Programında Görev Alacak Öğretim Üyeleri Bilgi Formu (415.1.17F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.17f_doktora-programinda-gorev-alacak-ogretim-uyeleri-bilgi-formu.xlsx">TIKLAYINIZ.</a></li>
+	<li>Ayrıntılı Gerekçe&nbsp;için<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6-ayrintili-gerekce_637771672203239030.docx"> TIKLAYINIZ.</a></li>
+	<li>ISCED Kodları için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=isced-kodlari.xlsx">TIKLAYINIZ.</a></li>
+	<li>YÖKSİS'te Yer Almayan Programlar için Bilgi Formu <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yoksis'te-yer-almayan-programlar-icin-bilgi-formu.docx">TIKLAYINIZ.</a></li>
+</ul>
+
+<p>Doktora Programı Açılması YÖK tarafından uygun gördükten sonra</p>
+
+<p><strong>Doktora Programı Müfredat Oluşturma/Hazırlama Dosya İçeriği;</strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Müfredat Formu (Türkçe ve İngilizce)&nbsp;(AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders Listesi (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders İzlencesi (Türkçe ve İngilizce)&nbsp;(AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641800156179_632546" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641800156179_632546" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641800156179_632546" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641800156179_632546" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong>Tezli/Tezsiz Yüksek Lisans Programı Açılması İçin Gerekli Belgeler</strong><em>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</em></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641800156179_632546" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641800156179_632546" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<p><strong>Tezli/Tezsiz Yüksek Lisans Program Açma Dosya İçeriği;</strong></p>
+
+<p><strong><em>(Uzaktan Öğretim Tezsiz Yüksek Lisans Programları Hariç)</em></strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Yüksek Lisans Programı Açmak İçin Başvuru Formatı (YÖKSİS-ABAYS'a yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=1-abays-yuksek-lisans-programi-acmak-icin-basvuru-formati_637630860772629576.doc">TIKLAYINIZ.</a></li>
+	<li>Lisansüstü Programda Görev Alacak Öğretim Üyeleri Kadro ve Çalışma Bilgileri Formu (415.1.14F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.14f_lisansustu-programda-gorev-alacak-ogretim-uyeleri-kadro-ve-calisma-bilgileri-formu.docx">TIKLAYINIZ.</a></li>
+	<li>Tezli/Tezsiz Yüksek Lisans Programında Görev Alacak Öğretim Üyeleri Bilgi Formu (415.1.15F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=3-415.1.15f_tezli-tezsiz-yuksek-lisans-programinda-gorev-alacak-ogretim-uyeleri-bilgi-formu_32128649.xlsx">TIKLAYINIZ.</a></li>
+	<li>Öğretim Üyelerinin Devam Eden Tez/Proje Danışmanlık Bilgileri Formu (415.1.16F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=4-415.1.16f_ogretim-uyelerinin-devam-eden-lisansustu-tez-proje-danismanlik-bilgileri-formu_32128650-(1).xlsx">TIKLAYINIZ.</a></li>
+	<li>Ayrıntılı Gerekçe için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6-ayrintili-gerekce_637771672203239030-(1).docx">TIKLAYINIZ.</a></li>
+	<li>ISCED Kodları için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=isced-kodlari.xlsx">TIKLAYINIZ.</a></li>
+	<li>YÖKSİS'te Yer Almayan Programlar için Bilgi Formu <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yoksis'te-yer-almayan-programlar-icin-bilgi-formu.docx">TIKLAYINIZ.</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Yüksek Lisans Programı Açılması YÖK tarafından uygun görüldükten sonra</p>
+
+<p><strong>Yüksek Lisans Programı Müfredat Oluşturma/Hazırlama Dosya İçeriği;</strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Müfredat Formu (Türkçe ve İngilizce)&nbsp;(AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders Listesi&nbsp;(AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders İzlencesi (Türkçe ve İngilizce) (AKSİS Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641800156179_474116" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641800156179_474116" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641800156179_474116" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641800156179_474116" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong><span>Tezsiz Yüksek Lisans Uzaktan Öğretim Programı Açılması İçin Gerekli Belgeler</span></strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641800156179_474116" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641800156179_474116" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<ul>
+	<li style="text-align: justify;">Uzaktan öğretim program açma ile ilgili planlama çalışmaları ilgili Enstitü Müdürlüğü ile İÜC Açık ve Uzaktan Eğitim Uygulama ve Araştırma Merkezi (AUZEM) tarafından yapılır. İlgili Enstitü tarafından Uzaktan Öğretim Programı açılmasında <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yuksekogretim_kurumlarinda_uzaktan_ogretime_iliskin_usul_ve_esaslar_637378627527172672.pdf">Yükseköğretim Kurumlarında Uzaktan Öğretime İlişkin Usul ve Esaslar</a> çerçevesinde planlama yapılır.</li>
+	<li style="text-align: justify;">Açılması planlanan programın koordinatörlüğünü üstlenecek kişi, başvuru evrakı hazırlanırken dikkat edilmesi gereken hususlarla ilgili olarak AUZEM Müdürlüğü ile ön görüşme yapar.</li>
+	<li style="text-align: justify;">İlgili Enstitü Müdürlüğü&nbsp;&nbsp;tarafından hazırlanan dosya içeriği,&nbsp; Enstitü Kurul&nbsp;kararı ile birlikte resmi yazı ile AUZEM Müdürlüğüne iletilir.</li>
+	<li style="text-align: justify;">AUZEM'in açılacak program ile ilgili olumlu görüş bildirmesinden sonra program koordinatörü programın 1. yarıyılına ait ilk 4 haftalık ders notları ve sunumlarını dersi verecek öğretim elemanlarından temin eder ve AUZEM'e iletir/paylaşır.</li>
+	<li style="text-align: justify;">AUZEM tarafından ders notları ve sunumlar benzerlik taramasından geçirilerek kurumsal kimlik tasarımı yapılır.</li>
+	<li style="text-align: justify;">Derslerin ilk 4 haftalık ders anlatım çekimleri yapılır.&nbsp; Ders sunumları/videolar,&nbsp;Öğrenme Yönetim Sistemi içinde hazır hale getirilir ve YÖK tarafından incelenmesi için kullanıcı hesabı açılır.&nbsp;&nbsp;</li>
+	<li style="text-align: justify;">AUZEM tarafından dosya içeriği&nbsp; Öğrenci İşleri Daire Başkanlığına resmi yazı ile gönderilir.</li>
+</ul>
+
+<p><strong>Tezsiz Yüksek Lisans Uzaktan Öğretim&nbsp; Programı Açma Dosya İçeriği;</strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Uzaktan Öğretim Bilgi Derleme Formu (415.1.9F) (AUZEM tarafından doldurulur.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-uzaktan-ogretim-sistemi-bilgi-derleme-formu_637774221881305044.doc">TIKLAYINIZ.&nbsp;&nbsp;</a></li>
+	<li><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-uzaktan-ogretim-sistemi-bilgi-derleme-formu_637774221881305044.doc">T</a>ezsiz Yüksek Lisans Uzaktan Öğretim Programı ile İlgili Bilgiler Formu/Başvuru Formatı&nbsp;&nbsp;(YÖKSİS-ABAYS'a yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-tezsiz-yuksek-lisans-uzaktan-ogretim-programi-ile-ilgili-bilgiler-formu_637774226360951167.doc">TIKLAYINIZ.</a></li>
+	<li>Tezsiz Yüksek Lisans Uzaktan Öğretim Programına Öğrenci Alımı ve Ders Verecek Öğretim Elemanı Formu (YÖKSİS-ABAYS'a yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-tezsiz-yuksek-lisans-uzaktan-ogretim-programina-ogrenci-alimi-teklifi-ve-ders-verecek-ogretim-elemani-formu_637774228513323928.xlsx">TIKLAYINIZ.</a></li>
+	<li>Lisansüstü Programda Görev Alacak Öğretim Üyeleri Kadro ve Çalışma Bilgileri Formu (415.1.14F) için<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.14f_lisansustu-programda-gorev-alacak-ogretim-uyeleri-kadro-ve-calisma-bilgileri-formu.docx"> TIKLAYINIZ.</a></li>
+	<li>Öğretim Üyelerinin Devam Eden Lisansüstü Tez/Proje Danışmanlık Bilgileri Formu (415.1.16F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=4-415.1.16f_ogretim-uyelerinin-devam-eden-lisansustu-tez-proje-danismanlik-bilgileri-formu_32128650-(1).xlsx">TIKLAYINIZ.</a></li>
+	<li>Ayrıntılı Gerekçe için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6-ayrintili-gerekce_637771672203239030-(1).docx">TIKLAYINIZ.</a></li>
+	<li>ISCED Kodları için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=isced-kodlari.xlsx">TIKLAYINIZ.</a></li>
+	<li>YÖKSİS'te Yer Almayan Programlar için Bilgi Formu <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yoksis'te-yer-almayan-programlar-icin-bilgi-formu.docx">TIKLAYINIZ.</a></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p>Tezsiz Yüksek Lisans Uzaktan Öğretim Programı Açılması YÖK tarafından uygun görüldükten sonra</p>
+
+<p><strong>Tezsiz Yüksek Lisans Uzaktan Öğretim Programı Müfredat Oluşturma/Hazırlama Dosya İçeriği;</strong></p>
+
+<ul>
+	<li>Enstitü Kurulu Kararı</li>
+	<li>Müfredat Formu (Türkçe ve İngilizce)&nbsp;&nbsp;(AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders Listesi (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+	<li>Müfredat Ders İzlencesi (Türkçe ve İngilizce) (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641544392568_214184" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641544392568_214184" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641544392568_214184" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641544392568_214184" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong>Ön Lisans/Lisans Programı Açılması İşlemleri-Mevcut Bölüm/Programlara İlk Defa Öğrenci Alımı</strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641544392568_214184" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641544392568_214184" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Yükseköğretim kurumları tarafından fakülte ve yüksekokullar bünyesinde bölüm/anabilim dalı&nbsp;açılması, meslek yüksekokullarında ön lisans programı açılması ile açılmış olan bölüm/programa ilk defa öğrenci alınmasına ilişkin talepler, 07.01.2019 tarihinden itibaren YÖKSİS-ABAYS üzerinden yapılmaktadır.</span></span></span></p>
+
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif">İlgili yılın yerleştirme işlemlerinden sonra tespit edilen doluluk oranları dikkate alınarak bölüm/program açılması teklifleri YÖK tarafından değerlendirmeye alınmaktadır.</span></span></span></p>
+
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans bölüm/program açılması ile mevcut bölüm/programlara ilk defa öğrenci alımı için gerekli belgeler aşağıdaki sekmelerde belirtilmiştir. Bu belgelerin eksiksiz ve istenilen formata uygun olarak hazırlanması, başvuruların mevcut mevzuat ve akademik kriterler kapsamında değerlendirilmesi ve en kısa sürede sonuçlandırılması için gereklidir.</span></span></span></p>
+
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong>Mevcut Programlarda Öğretim Dili Değişikliği&nbsp; -&nbsp;Yabancı Dilde Eğitim Veren Program Açılması</strong></span></span></span></p>
+
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Programın öğretim dilinin en az %30 veya tamamen yabancı dilde verilebilmesi için en az 3'ü öğretim üyesi olmak üzere 5 öğretim elemanının yabancı dil şartlarını sağlaması gerekmektedir. Bu öğretim elemanlarının yabancı dil bilgilerinin ilgili tabloya işlenmesi ve Yabancı Dil Yeterlilik Belgelerinin de eklenmesi gerekir.</span></span></span></p>
+
+<p style="text-align:justify"><span style="color:#000000;"><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Mevzuata ve aşağıdaki sekmede istenen formata uygun olarak hazırlanan ön lisans/lisans programı açma teklifleri, Meslek Yüksekokulu/Fakülte Kurulu karar ile birlikte resmi yazıyla İÜC &nbsp;Öğrenci İşleri Daire Başkanlığına gönderilir.</span></span></span></p>
+
+<p><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong><span style="color:#000000;">​​​​Yükseköğretim Kurulu Tarafından Eğitim ve Öğretime Başlanması ve Sürdürülebilmesi İçin Asgari Koşulları Belirlenen Programlar için <a href="https://egitim.yok.gov.tr/tr/page/487">TIKLAYINIZ.</a></span></strong></span></span><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></p>
+
+<p><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong><span style="color:#000000;">Yükseköğretim Kurumlarında Yabancı Dil Öğretimi ve Yabancı Dille Öğretim Yapılmasında&nbsp; Uyulacak Esaslara İlişkin Yönetmelik için </span><a href="https://www.mevzuat.gov.tr/mevzuat?MevzuatNo=21475&amp;MevzuatTur=7&amp;MevzuatTertip=5" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></strong></span></span></p>
+
+<p><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong><span style="color:#000000;">Yükseköğretim Kurumlarında Uzaktan Öğretime İlişkin Usul ve Esaslar için <a href="https://s3-ankara.yok.gov.tr/yokmedia/892481bf-e15e-4d24-acaf-f1f9a4cc006c.pdf">TIKLAYINIZ.</a></span></strong></span></span></p>
+
+<p><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Bölüm Program Tasarımı Onaylanması ve Müfredat Hazırlık Prosedürü için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1pr_bölüm-program-tasarimi-onaylanmasi-ve-müfredat-hazirlik-prosedürü-ve-elektronik-nusha-rev.10.pdf">TIKLAYINIZ.</a></span></strong></span></span></p>
+
+<p><span style="font-size:12pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><strong><span style="color:#000000;">İstanbul Üniversitesi-Cerrahpaşa Öğrenci İşleri Daire Başkanlığı Program Gözden Geçirme ve İyileştirme Rapor Formu (415.1.18F) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.18f_program-gözden-geçirme-ve-i̇yileştirme-rapor-formu-rev.02-(1).docx">TIKLAYINIZ.</a></span></strong></span></span></p>
+
+<div class="row">
+<div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641920941214_111055" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641920941214_111055" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641920941214_111055" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641920941214_111055" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong><span><span><span><span>Ön Lisans/Lisans Programı Açılması İçin Gerekli Belgeler<span><span><span style="color:#333333"></span></span></span></span></span></span></span></strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641920941214_111055" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641920941214_111055" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><b><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans Programı Açma Dosya İçeriği;</span></span></span></b><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></p>
+
+<ul>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Fakülte/Meslek Yüksekokulu Kararı</span></span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans Programı Açılması İçin Özet Başvuru Formu (YÖKSİS-ABAYS sistemine yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.20f_on-lisans-programi-acilmasi-icin-ozet-basvuru-formu.docx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ön Lisans/Lisans Programları Programla İlgili Bilgiler Formu (YÖKSİS-ABAYS sistemine yüklenecektir.) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-onlisanslisans-programlari-programla-ilgili-bilgiler-formu.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Fakülte/Meslek Yüksekokullarında Yeni Bölüm/Program/Anabilim Dalı Açılması Teklif Formu (415.1.10F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.10f_fakulte_meslek-yuksekokullarinda-yeni-bolum-program-anabilim-dali-acilmasi-teklif-formu.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Fakülte/Yüksekokul/Meslek Yüksekokullarında Mevcut Bölüm/Programlara İlk Defa Öğrenci Alımı Sistem Bilgileri Formu (415.1.11F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.11f_fakulte_yo_myo%E2%80%99nda-mevcut-bolum-programlara-ilk-defa-ogrenci-alimi-sistem-bilgileri-formu_32128645.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ön Lisans/Lisans Programlarında Görev Alacak Öğretim Üyeleri Bilgi Formu (415.1.12F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.12f_onlisans-lisans-programinda-gorev-alacak-ogretim-uyeleri-bilgi-formu_32128646.xlsx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ön Lisans/Lisans Programlarında Görev Alacak Öğretim Üyeleri Kadro ve Çalışma Bilgileri Formu (415.1.13F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.13f_onlisans-lisans-programlarinda-gorev-alacak-ogretim-uyeleri-kadro-ve-calisma-bilgileri-formu_32128647.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ayrıntılı Gerekçe için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6-ayrintili-gerekce_637771672203239030-(1).docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></span>&nbsp;</li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Kısa&nbsp;Gerekçe (Maksimum: 255 karakter) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=kisa-gerekce_639062281224233463.docx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;"> ISCED Kodları için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=isced-kodlari.xlsx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">YÖKSİS'te Yer Almayan Programlar için Bilgi Formu, <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yoksis'te-yer-almayan-programlar-icin-bilgi-formu-(2).docx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></span></li>
+</ul>
+
+<p>&nbsp;</p>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans &nbsp;Programı Açılması YÖK tarafından uygun görüldükten sonra</span></span></span></span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><b><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans&nbsp;&nbsp;Programı Müfredat Oluşturma/Hazırlama Dosya İçeriği;</span></span></span></b><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></p>
+
+<ul>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Fakülte/Meslek Yüksekokulu Kararı</span></span></span></span></span></span></span><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Formu (Türkçe ve İngilizce) (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></span></li>
+	<li><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Ders Listesi&nbsp;(AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Ders&nbsp;İzlencesi&nbsp;(Türkçe ve İngilizce) (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></span></li>
+</ul>
+
+<p>&nbsp;</p>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">
+<div class="panel panel-default collapsible-item" id="Collapbsible_1641920941214_325365" style="margin-bottom:1px !important;height:auto;">
+<div role="tablist"><div class="panel-heading collapsible-item-heading" id="headingCollapbsible_1641920941214_325365" role="tab">
+<h3 class="panel-title collapsible-item-title" style="width: 100%;"><a aria-controls="collapseCollapbsible_1641920941214_325365" aria-expanded="false" class="collapsible-item-title-link-icon pull-right collapsed" data-parent="#accordion" data-toggle="collapse" href="#collapseCollapbsible_1641920941214_325365" role="button" aria-label="Genişlet" title="Genişlet"><span class="glyphicon glyphicon-chevron-down">&nbsp;</span></a> <a class="collapsed collapsible-item-title-link" style="color:black !important;"><strong><span><span><span><span><span><span><span style="color:#333333">Ön Lisans/Lisans Uzaktan Öğretim Programı Açılması için Gerekli Belgeler</span></span></span></span></span></span></span></strong></a></h3>
+</div></div>
+
+<div aria-expanded="false" aria-labelledby="headingCollapbsible_1641920941214_325365" class="panel-collapse collapsible-item-collapse collapse" id="collapseCollapbsible_1641920941214_325365" role="tabpanel" style="height: 0px;">
+<div class="panel-body collapsible-item-body">
+<ul>
+	<li style="text-align: justify;"><span style="font-size:11pt"><span style="tab-stops:list 36.0pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Uzaktan öğretim program açma ile ilgili planlama çalışmaları ilgili Fakülte Dekanlığı/Meslek Yüksekokulu Müdürlüğü&nbsp;&nbsp;ile İÜC Açık ve Uzaktan Eğitim Uygulama ve Araştırma Merkezi (AUZEM) tarafından yapılır. İlgili Fakülte Dekanlığı/Meslek Yüksekokulu Müdürlüğü tarafından Uzaktan Öğretim Programı açılmasında&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yuksekogretim_kurumlarinda_uzaktan_ogretime_iliskin_usul_ve_esaslar_637378627527172672.pdf" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">Yükseköğretim Kurumlarında Uzaktan Öğretime İlişkin Usul ve Esaslar</span></a><span style="color:#000000;">&nbsp;çerçevesinde planlama yapılır.</span></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Açılması planlanan programın koordinatörlüğünü üstlenecek kişi, başvuru evrakı hazırlanırken dikkat edilmesi gereken hususlarla ilgili olarak AUZEM Müdürlüğü ile ön görüşme yapar.</span></span></span></span></span></span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:10.0pt"><span style="line-height:107%"></span></span><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">İlgili Fakülte Dekanlığı/Meslek Yüksekokulu Müdürlüğü tarafından hazırlanan dosya içeriği,&nbsp;&nbsp;Fakülte/Meslek Yüksekokulu kararı ile birlikte resmi yazı ile AUZEM Müdürlüğüne iletilir.</span></span></span></span></span></span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:10.0pt"><span style="line-height:107%"></span></span><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">AUZEM'in açılacak program ile ilgili olumlu görüş bildirmesinden sonra program koordinatörü programın 1. yarıyılına ait ilk 4 haftalık ders notları ve sunumlarını dersi verecek öğretim elemanlarından temin eder ve AUZEM'e iletir/paylaşır.</span></span></span></span></span></span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:10.0pt"><span style="line-height:107%"></span></span><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">AUZEM tarafından ders notları ve sunumlar benzerlik taramasından geçirilerek kurumsal kimlik tasarımı yapılır.</span></span></span></span></span></span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:10.0pt"><span style="line-height:107%"></span></span><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">Derslerin ilk 4 haftalık ders anlatım çekimleri yapılır.&nbsp; Ders sunumları/videolar,&nbsp;Öğrenme Yönetim Sistemi içinde hazır hale getirilir ve YÖK tarafından incelenmesi için kullanıcı hesabı açılır.&nbsp;&nbsp;</span></span></span></span></span></span></span><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:10.0pt"><span style="line-height:107%"></span></span><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></span></li>
+	<li style="text-align: justify;"><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:107%"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="line-height:107%"><span style="font-family:&quot;Times New Roman&quot;,serif">AUZEM tarafından dosya içeriği&nbsp; Öğrenci İşleri Daire Başkanlığına resmi yazı ile gönderilir.</span></span></span></span></span></span></span></li>
+</ul>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><b><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans Uzaktan Öğretim Programı Açma Dosya İçeriği;</span></span></b><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></p>
+
+<ul>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Fakülte/Meslek Yüksekokulu Kararı</span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Uzaktan Öğretim Bilgi Derleme Formu (415.1.9F) (AUZEM tarafından doldurulur.) (YÖKSİS-ABAYS'a yüklenecektir.)&nbsp;için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-uzaktan-ogretim-sistemi-bilgi-derleme-formu.doc" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Uzaktan Öğretim Önlisans/Lisans Programları Programla İlgili Bilgiler Formu (YÖKSİS-ABAYS'a yüklenecektir.) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-uzaktan-ogretim-onlisanslisans-programlari-programla-ilgili-bilgiler-formu_637630858739057989.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Uzaktan Öğretim Önlisans/Lisans Programları Öğrenci Alımı Teklifi ve Ders Verecek Öğretim Eleman Formu (YÖKSİS-ABAYS'a yüklenecektir.) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=abays-uzaktan-ogretim-onlisanslisans-programlari-ogrenci-alimi-teklifi-ve-ders-verecek-ogretim-elemani-formu_638470515484696705.xlsx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Fakülte/Meslek Yüksekokullarında Yeni Bölüm/Program/Anabilim Dalı Açılması Teklif Formu (415.1.10F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.10f_fakulte_meslek-yuksekokullarinda-yeni-bolum-program-anabilim-dali-acilmasi-teklif-formu.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Fakülte/Yüksekokul/Meslek Yüksekokullarında Mevcut Bölüm/Programlara İlk Defa Öğrenci Alımı Sistem Bilgileri Formu (415.1.11F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.11f_fakulte_yo_myo%E2%80%99nda-mevcut-bolum-programlara-ilk-defa-ogrenci-alimi-sistem-bilgileri-formu_32128645.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ön Lisans/Lisans Programlarında Görev Alacak Öğretim Üyeleri Bilgi Formu (415.1.12F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.12f_onlisans-lisans-programinda-gorev-alacak-ogretim-uyeleri-bilgi-formu_32128646.xlsx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ön Lisans/Lisans Programlarında Görev Alacak Öğretim Üyeleri Kadro ve Çalışma Bilgileri Formu (415.1.13F) için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=415.1.13f_onlisans-lisans-programlarinda-gorev-alacak-ogretim-uyeleri-kadro-ve-calisma-bilgileri-formu_32128647.docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Ayrıntılı Gerekçe&nbsp;için&nbsp;</span><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=6-ayrintili-gerekce_637771672203239030-(1).docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;">TIKLAYINIZ.</span></a></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">Kısa Gerekçe&nbsp;(Maksimum: 255 karakter) için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=kisa-gerekce_639062281224233463.docx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=kisa-gerekce_637479172377076743-(1).docx" style="color:#0563c1; text-decoration:underline"><span style="color:#000000;"></span></a><span style="color:#000000;">ISCED Kodları için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=isced-kodlari.xlsx">TIKLAYINIZ.</a></span></span></span></span></span></span></span></li>
+	<li><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"><span style="color:#000000;">YÖKSİS'te Yer Almayan Programlar için Bilgi Formu, <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=yoksis'te-yer-almayan-programlar-icin-bilgi-formu-(2).docx">TIKLAYINIZ.</a><b>​​​​​​</b></span></span></span></span></span></span></span></li>
+</ul>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif">&nbsp;</span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans Uzaktan Öğretim Programı Açılması YÖK tarafından uygun görüldükten sonra</span></span></span></span></span></span></p>
+
+<p><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><b><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Ön Lisans/Lisans&nbsp;Uzaktan Öğretim Programı Müfredat Oluşturma/Hazırlama Dosya İçeriği;</span></span></b><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></p>
+
+<ul>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Fakülte/Meslek Yüksekokulu Kararı</span></span></span></span></span></span><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span><span style="font-size:11pt"><span style="line-height:normal"><span style="tab-stops:list 36.0pt"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif"></span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Formu (Türkçe ve İngilizce) (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Ders Listesi&nbsp;(AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></li>
+	<li><span style="color:#000000;"><span style="font-size:11pt"><span style="line-height:normal"><span style="font-family:Calibri,sans-serif"><span style="font-size:12.0pt"><span style="font-family:&quot;Times New Roman&quot;,serif">Müfredat Ders&nbsp;İzlencesi (Türkçe ve İngilizce) (AKSİS&nbsp;Otomasyon Sistem Çıktısı) - İmzalı/Onaylı</span></span></span></span></span></span></li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">&nbsp;</div>
+</div>
+</div>
+</div>
+</div>
+
+<div class="row">&nbsp;</div>
+</p>
+      </div><!-- end ngRepeat: x in contentList -->        
+    </div>
+  </div>
+</div>
+<!-- ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><div ng-repeat="x in contentList" ng-if="view_tab == $index" class="ng-scope" style=""> 
+  <update-title title="Kanunlar" class="ng-isolate-scope"></update-title>
+  <update-meta name="keywords" content="iuc, Üniversitesi-Cerrahpaşa, Kanunlar" class="ng-isolate-scope"></update-meta>
+  <update-meta name="description" content="Kanunlar" class="ng-isolate-scope"></update-meta>  
+  <update-meta property="og:title" content="Kanunlar" class="ng-isolate-scope"></update-meta>
+  <update-meta property="og:description" content="Kanunlar" class="ng-isolate-scope"></update-meta>
+</div><!-- end ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList --><!-- ngIf: view_tab == $index --><!-- end ngRepeat: x in contentList -->
+
+
+
+<script class="ng-scope">
+function fixAccordionAccessibility() {
+  document.querySelectorAll('.panel-heading[role="tab"]').forEach(function(heading) {
+    if (!heading.parentNode.getAttribute('role')) {
+      var wrapper = document.createElement('div');
+      wrapper.setAttribute('role', 'tablist');
+      heading.parentNode.insertBefore(wrapper, heading);
+      wrapper.appendChild(heading);
+    }
+  });
+
+  document.querySelectorAll('h4.panel-title').forEach(function(el) {
+    var h3 = document.createElement('h3');
+    h3.className = el.className;
+    h3.style.cssText = el.style.cssText;
+    h3.innerHTML = el.innerHTML;
+    el.parentNode.replaceChild(h3, el);
+  });
+
+  document.querySelectorAll('a.collapsible-item-title-link-icon').forEach(function(link) {
+    if (!link.getAttribute('aria-label')) {
+      link.setAttribute('aria-label', 'Genişlet');
+      link.setAttribute('title', 'Genişlet');
+    }
+  });
+}
+
+document.addEventListener('DOMContentLoaded', fixAccordionAccessibility);
+setTimeout(fixAccordionAccessibility, 1000);
+setTimeout(fixAccordionAccessibility, 2000);
+</script>                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                              </div> 
+</div>
+</div>
+    <div id="4300720051006E0044007300320078006900730067003100" class="ng-isolate-scope"><style ng-bind-template="
+#footer a  {
+    color: #d3ab49;
+   
+}
+  #footer a:hover  {
+    color: #395a73 ;
+   
+}
+  #footer p  {
+    color: #d3ab49;
+   
+}
+  .disPlayNone{
+  display:none;
+  }
+" class="ng-binding ng-scope">#footer a  {
+    color: #d3ab49;
+   
+}
+  #footer a:hover  {
+    color: #395a73 ;
+   
+}
+  #footer p  {
+    color: #d3ab49;
+   
+}
+  .disPlayNone{
+  display:none;
+  }</style>
+<aside id="footer-widgets" class="no-padding ng-scope">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-8 col-sm-8 col-xs-16">       
+        <h3 class="footer-widget-title ng-binding">
+          İletişim
+        </h3>
+          <p>
+  </p>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="fa fa-map-marker" aria-hidden="true">
+            </i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">İstanbul Üniversitesi-Cerrahpaşa Rektörlüğü, Öğrenci İşleri Daire Başkanlığı Üniversite Mahallesi, Üniversite Caddesi No:7, 34320 Avcılar/İstanbul</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="fa fa-phone" aria-hidden="true"></i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">
+            +90 2124040710  
+             </p>
+          </div>
+        </div>
+        <!-- ngIf: data.iletisim.hastanephone4 -->
+        <div class="row">
+          <div class="col-xs-1">
+           <i class="fa fa-fax"></i>
+          </div>
+          <div class="col-xs-10">
+            <p class="ng-binding">-</p>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-xs-1">
+            <i class="far fa-envelope" aria-hidden="true">
+            </i>
+          </div>
+          <div class="col-xs-10">
+            <p>
+              <a href="mailto:ogrenci@iuc.edu.tr" class="ng-binding">
+              ogrenci@iuc.edu.tr
+              </a>
+            </p>
+            
+             <!-- ngIf: $root.lang == 'tr' --><p ng-if="$root.lang == 'tr'" style="margin-top: 15px;" class="ng-scope"><a href="https://iuc.edu.tr/tr/content/iuc-surdurulebilirlik/iuc-surdurulebilirlik" target="_blank"><img src="https://cdn.iuc.edu.tr/FileHandler.ashx?f=OxRZCGbHXUy50vkMMe27tw" width="30%" alt="İÜC Sürdürülebilirlik" title="İÜC Sürdürülebilirlik"></a></p><!-- end ngIf: $root.lang == 'tr' -->
+            
+          </div>
+        </div>
+      </div>
+      <!--<div class="col-md-4 col-sm-8 col-xs-16">
+        <div class="row footer-widget">
+          <h3 class="footer-widget-title">
+          &nbsp;
+        </h3>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo1='ds'" ng-mouseover="fLogo1='ds_hover'" ng-mouseout="fLogo1='ds'" ng-if="data.unions.indexOf('union-ds') > -1">
+        <a ng-href="{{$root.isIUC ? 'https://www.iuc.edu.tr/tr/content/uluslararasi/uluslararasi' : 'https://uaik.iuc.edu.tr/?page_id=7741'}}" target="_blank" class="thumbnail">
+          <img width="40" ng-src="/css/theme/default/img/logo/{{ fLogo1 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo2='acaimpact'" ng-mouseover="fLogo2='acaimpact_hover'" ng-mouseout="fLogo2='acaimpact'" ng-if="data.unions.indexOf('union-ai') > -1">
+        <a href="https://academicimpact.un.org" class="thumbnail" target="_blank">
+          <img width="40" src="/css/theme/default/img/logo/{{ fLogo2 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo3='gsb'" ng-mouseover="fLogo3='gsb_hover'" ng-mouseout="fLogo3='gsb'" ng-if="data.unions.indexOf('union-gvsb') > -1">
+        <a href="https://www.gsb.gov.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo3 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo4='baunas'" ng-mouseover="fLogo4='baunas_hover'" ng-mouseout="fLogo4='baunas'" ng-if="data.unions.indexOf('union-bua') > -1">
+        <a href="https://www.baunas.org/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo4 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo5='coimbragroup'" ng-mouseover="fLogo5='coimbragroup_hover'" ng-mouseout="fLogo5='coimbragroup'" ng-if="data.unions.indexOf('union-cg') > -1"> 
+        <a href="https://www.coimbra-group.eu/" class="thumbnail" target="_blank">
+          <img width="80" src="/css/theme/default/img/logo/{{ fLogo5 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+      <div class="col-xs-4 col-md-4" ng-init="fLogo6='eua'" ng-mouseover="fLogo6='eua_hover'" ng-mouseout="fLogo6='eua'" ng-if="data.unions.indexOf('union-eua') > -1">
+        <a href="https://www.eua.be/" class="thumbnail" target="_blank">
+          <img width="68" src="/css/theme/default/img/logo/{{ fLogo6 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+          <div class="col-xs-4 col-md-4" ng-init="fLogo7='istuni'" ng-mouseover="fLogo7='istuni_hover'" ng-mouseout="fLogo7='istuni'" ng-if="data.unions.indexOf('union-iu') > -1">
+        <a href="https://www.iuc.edu.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo7 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+          <div class="col-xs-4 col-md-4" ng-init="fLogo8='auzef'" ng-mouseover="fLogo8='auzef_hover'" ng-mouseout="fLogo8='auzef'" ng-if="data.unions.indexOf('union-auzef') > -1">
+        <a href="https://auzef.iuc.edu.tr/" class="thumbnail" target="_blank">
+          <img width="60" src="/css/theme/default/img/logo/{{ fLogo8 }}.png" class="img-responsive" alt="Image">
+        </a>
+      </div>
+    </div>
+      </div>-->
+      <div class="col-md-4 col-sm-6 col-xs-12">
+        <h3 class="footer-widget-title ng-binding">
+           Bağlantılar
+        </h3>
+       <ul class="list-unstyled">
+          <!-- ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope" style="">
+            <div class="row">
+               <p> <a ng-href="https://www.iuc.edu.tr/tr/_" target="_" class="ng-binding" href="https://www.iuc.edu.tr/tr/_">İstanbul Üniversitesi-Cerrahpaşa
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope">
+            <div class="row">
+               <p> <a ng-href="https://www.iuc.edu.tr/tr/content/yerleskeler/iuc-avcilar-yerleskesi" target="_" class="ng-binding" href="https://www.iuc.edu.tr/tr/content/yerleskeler/iuc-avcilar-yerleskesi">Yerleşkeler
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks --><li ng-repeat="x in data.hotlinks" class="col-md-12 ng-scope">
+            <div class="row">
+               <p> <a ng-href="https://kvkk.iuc.edu.tr/tr/content/kisisel-verilerin-korunmasi/politikalar" target="_" class="ng-binding" href="https://kvkk.iuc.edu.tr/tr/content/kisisel-verilerin-korunmasi/politikalar">Kişisel Verilerin Korunması
+             </a></p>
+            </div>
+          
+          </li><!-- end ngRepeat: x in data.hotlinks -->
+        </ul>
+      </div>
+    </div>
+  </div>
+</aside>
+<!-- footer-widgets -->
+<footer id="footer" class="ng-scope">
+  <p class="ng-binding">
+    © 2026 Her hakkı
+    <a href="https://iuc.edu.tr" target="_blank" style="color:rgb(204, 153, 51)" class="ng-binding">İstanbul Üniversitesi-Cerrahpaşa</a>'ya aittir.
+  </p>
+
+</footer>
+
+
+ 
+      
+
+<div ng-controller="cmpFooterMockCtrl" class="ng-scope">
+
+
+
+
+
+</div>
+<div id="3600500042004E006D006D00780054007700560045003100" c-type="DataSource" c-name="ds_contact" class="ng-scope"></div>
+
+
+ <!--
+<div ng-if="page.url().indexOf('kutuphane.iuc.edu.tr')!=-1">
+<script type="text/javascript">
+function add_chatinline() {
+	var hccid = 28457412;
+	var nt = document.createElement("script");
+	nt.async = true;
+	nt.src = "https://www.mylivechat.com/chatinline.aspx?hccid=" + hccid;
+	var ct = document.getElementsByTagName("script")[0];
+	ct.parentNode.insertBefore(nt, ct);
+}
+
+add_chatinline();
+</script>
+</div>
+
+  <div ng-if="page.url().indexOf('kutuphane.iuc.edu.tr')==-1">
+  
+  <script type="text/javascript">
+  $(document).ready(function() {
+  var chatliveId=document.getElementsByClassName("mylivechat_inline");
+      var ell=chatliveId[0]
+	   ell.classList.add("disPlayNone");
+});
+</script>
+ 
+  
+  </div>
+   -->
+
+                        </div>
+  </div>
+</div>
+<div id="back-top" style="cursor:pointer;" class="ng-scope">
+    <a ng-click="$parent.backToTop();"><i class="fa fa-chevron-up"></i></a>
+</div>
+
+<div id="54005600680058006F004200320067007700410034003100" c-type="Generic" c-name="SEO" class="ng-scope ng-isolate-scope"><update-meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa" class="ng-scope ng-isolate-scope"></update-meta>
+<update-title title="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-title>  
+<update-meta name="keywords" content="https://www.iuc.edu.tr/tr/content/universitemiz/iletisim, İstanbul üniversitesi-cerrahpaşa iletişim, iüc birim öğrenci işleri büroları, öğrenci işleri daire başkanlığı, iüc öğrenci işleri daire başkanlığı, öğrenci işleri, iüc öğrenci işleri, öğrenci, iüc öğrenci, akademik takvim, iüc akademik takvim, yks, iüc yks,üniversite, eğitim, istanbul üniversitesi cerrahpaşa, iüc, istanbul university cerrahpaşa, birim öğrenci işleri büroları" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta name="description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta>   
+<update-meta name="author" content="İstanbul Üniversitesi-Cerrahpaşa" class="ng-scope ng-isolate-scope"></update-meta>   
+<update-meta property="og:title" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta property="og:url" content="https://ogrenci.iuc.edu.tr/tr/_" class="ng-scope ng-isolate-scope"></update-meta>
+<update-meta property="og:description" content="İstanbul Üniversitesi - Cerrahpaşa | Öğrenci İşleri Daire Başkanlığı" class="ng-scope ng-isolate-scope"></update-meta> </div>
+<div id="55007A007500520038004D00480062006900650063003100" c-type="Generic" c-name="Popup" class="ng-scope ng-isolate-scope"><div id="thover" style="display:none" ng-controller="cmp_popupim" class="ng-scope">        
+    <div id="tpopup" style="display: none;"> 
+     <!-- <input type="hidden" id="custId"   value="{{ data.kaynakUrl }}">-->
+      <div class="video" id="tvideo" style="display:none">        
+          <iframe id="video11" width="560" height="315" ng-src="" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope" allowfullscreen=""></iframe>
+      </div>  
+     <div class="img" id="timg" style="display:none"> 
+       <a href="" target="_blank"> <img class="align-middle" src="" width="45%%"> </a> 
+      </div>    
+   <div id="tclose">X</div>  
+  </div>
+</div>
+         </div>
+</div>
+
+
+    <div class="modal fade" id="captchaModal" tabindex="-1" role="dialog" aria-labelledby="captchaModalLabel">
+        <div class="modal-dialog modal-sm" role="document" style="min-width: 340px;">
+            <div class="modal-content">
+
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">
+                        <span>×</span>
+                    </button>
+                    <h4 class="modal-title" id="captchaModalLabel">Güvenlik Doğrulaması</h4>
+                </div>
+
+                <div class="modal-body text-center">
+                    <div id="modalCaptcha"><div style="width: 304px; height: 78px;"><div><iframe title="reCAPTCHA" width="304" height="78" role="presentation" name="a-mmtu48a44ifk" frameborder="0" scrolling="no" sandbox="allow-forms allow-popups allow-same-origin allow-scripts allow-top-navigation allow-modals allow-popups-to-escape-sandbox allow-storage-access-by-user-activation" src="https://www.google.com/recaptcha/api2/anchor?ar=1&amp;k=6LeqLCksAAAAAO4X1QxJWKKIKM9lVzR3lgu9hC2_&amp;co=aHR0cHM6Ly9vZ3JlbmNpLml1Yy5lZHUudHI6NDQz&amp;hl=tr&amp;v=ne1iDVwClkE7nKD3uA9Vqsvl&amp;size=normal&amp;anchor-ms=20000&amp;execute-ms=30000&amp;cb=imbhsoobuj20"></iframe></div><textarea id="g-recaptcha-response" name="g-recaptcha-response" class="g-recaptcha-response" style="width: 250px; height: 40px; border: 1px solid rgb(193, 193, 193); margin: 10px 25px; padding: 0px; resize: none; display: none;"></textarea></div><iframe style="display: none;"></iframe></div>
+                    <br>
+                    <div class="text-danger" id="modalCaptchaError"></div>
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-default" data-dismiss="modal">İptal</button>
+                    <button type="button" id="captchaConfirm" class="btn btn-primary">
+                        Devam Et
+       
+                    </button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+       <div class="modal fade" id="modalHata" tabindex="-1" role="dialog" aria-labelledby="modalHataLabel">
+       <div class="modal-dialog modal-sm" role="document" style="min-width: 340px;">
+           <div class="modal-content">
+
+               <div class="modal-header">
+                   <button type="button" class="close" data-dismiss="modal">
+                       <span>×</span>
+                   </button>
+                   <h4 class="modal-title" id="modalHataLabel">Uyarı</h4>
+               </div>
+
+               <div class="modal-body text-center">
+                   <div class="text-danger" id="modalHataError"></div>
+               </div>
+
+               <div class="modal-footer">
+                   <button type="button" class="btn btn btn-primary" data-dismiss="modal">Kapat</button>
+               </div>
+
+           </div>
+       </div>
+   </div>
+
+     <script src="/js/vendor-8dc9cb5f3c.min.js"></script>
+  <script src="/js/angular-locale_tr.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+  <script src="/js/update-meta.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+  <script src="/js/app.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+  <script src="/js/config.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+  <script src="/js/main.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+  <script src="/js/app.min.js?v=aac87361-811f-4c3d-9a6f-777a3560c6fe"></script>
+
+    <script src="https://service-cms.iuc.edu.tr/api/webclient/js?site=F7C8E47C8FA6443BACAABF1DB5C10219"></script>
+
+    
+
+    
+
+     <script src="https://cdn.userway.org/widget.js" data-account="7X1rvUoYdg"></script>
+<script>
+//if (window.location.hostname === 'bilgiislem.iuc.edu.tr') {
+
+//    // Engelsiz Çeviri Scripti
+//    var script1 = document.createElement('script');
+//    script1.src = 'https://webplugin.signfordeaf.com/istanbulUniversitesiCerrahpasa/engelsizCeviri.js';
+//    script1.onload = function() {
+//        engelsizCeviri.mount({
+//            hash: "810D6C80823146FCA79E7EC4A",
+//            color1: '#d5aa41',
+//            color2: '#d5aa41',
+//            position: 'leftTop',
+//            loadingBg: '#ffffff',
+//            logoShape: 'rectangle',
+//            logoPath: 'https://webplugin.signfordeaf.com/istanbulUniversitesiCerrahpasa/logo/logo.png'
+//        });
+//    };
+//    document.body.appendChild(script1);
+
+//    // WeTool Scripti
+//    var script2 = document.createElement('script');
+//    script2.src = 'https://api.weaccess.ai/static/tool/wetool.js';
+//    script2.onload = function() {
+//        weTool.mount({
+//            hash: 'afb03ed2-cd12-4fae-bc04-f3efab4abb1e',
+//            icon_alignment: 'bottomright',
+//            icon_color: '#d5aa41',
+//            icon_size: 'medium',
+//            icon_type: 'circle'
+//        });
+//    };
+//    document.body.appendChild(script2);
+
+//    }
+
+</script>
+    <script src="https://www.google.com/recaptcha/api.js?onload=onCaptchaLoad&amp;render=explicit" async="" defer=""></script>
+    <script>
+
+      var modalCaptchaId = null;
+      var activeForm = null;
+
+      function onCaptchaLoad() {
+      modalCaptchaId = grecaptcha.render('modalCaptcha', {
+      sitekey: '6LeqLCksAAAAAO4X1QxJWKKIKM9lVzR3lgu9hC2_',
+      callback: function () {
+                   }
+           });
+      }
+
+        $(document).ready(function(){
+
+  
+
+
+   $('#captchaConfirm').on('click', function () {
+
+    var captchaResponse = grecaptcha.getResponse(modalCaptchaId);
+    if (!captchaResponse) {
+        $("#modalCaptchaError").html("Lütfen robot olmadığınızı doğrulayınız.");
+        return;
+    }
+
+    var formData = $(activeForm).serialize();
+    formData=formData +  '&g-recaptcha-response=' + encodeURIComponent(captchaResponse);
+
+
+      paymentWindow = window.open(
+        "about:blank",
+        "_blank",
+        "width=1200,height=1000"
+      );
+      paymentWindow.document.open();
+paymentWindow.document.write(`
+<!doctype html>
+<html>
+<head>
+    <title>Ödeme Açılıyor</title>
+    <style>
+        body {
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: Arial, sans-serif;
+            background: #f5f5f5;
+        }
+        .box {
+            text-align: center;
+        }
+        .spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #ddd;
+            border-top: 5px solid #4CAF50;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body>
+    <div class="box">
+        <div class="spinner"></div>
+        <h2>Ödeme sayfası açılıyor…</h2>
+        <p>Lütfen bekleyiniz</p>
+    </div>
+</body>
+</html>
+`);
+
+
+    $.ajax({
+        url: "https://service-cms.iuc.edu.tr/api/webclient/f_odeme",
+        type: "POST",
+        data: formData,
+        success: function (response) {
+            if (response.MessageType === "success") {
+                paymentWindow.location.href = response.Data;
+            } else {
+                 paymentWindow.close();
+                $('#modalHataError').html(response.Message);
+                $('#modalHata').modal('show');
+            }
+        },
+          error: function () {
+               paymentWindow.close();
+              $('#modalHataError').html('hata oluştu.');
+              $('#modalHata').modal('show');
+      
+        },
+        complete: function () {
+            grecaptcha.reset(modalCaptchaId);
+            $('#captchaModal').modal('hide');
+        }
+    });
+});
+
+});
+
+    </script>
+
+  <script>
+      (function () {
+          var link = document.createElement('link');
+          link.rel = 'stylesheet';
+          link.href = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.css';
+          document.head.appendChild(link);
+
+          var script = document.createElement('script');
+          script.src = 'https://cdn.jsdelivr.net/gh/orestbida/cookieconsent@3.1.0/dist/cookieconsent.umd.js';
+          script.onload = function () {
+              CookieConsent.run({
+                  guiOptions: {
+                      consentModal: {
+                          layout: 'box wide',
+                          position: 'bottom left',
+                          equalWeightButtons: false,
+                          flipButtons: false
+                      }
+                  },
+                  categories: {
+                      necessary: { enabled: true, readOnly: true },
+                      functionality: { enabled: false, readOnly: false },
+                      analytics: {
+                          enabled: false,
+                          readOnly: false,
+                          onAccept: function () {
+                              window.dataLayer = window.dataLayer || [];
+                              function gtag() { dataLayer.push(arguments); }
+                              gtag('consent', 'update', { analytics_storage: 'granted' });
+                              gtag('config', 'G-2ZN58XTFV9');
+                          },
+                          onReject: function () {
+                              window.dataLayer = window.dataLayer || [];
+                              function gtag() { dataLayer.push(arguments); }
+                              gtag('consent', 'update', { analytics_storage: 'denied' });
+                          }
+                      }
+                  },
+                  language: {
+                      default: 'tr',
+                      translations: {
+                          tr: {
+                              consentModal: {
+                                  title: 'Bu web sitesi çerezlerine ilişkin bilgilendirme',
+                                  description: 'Web sitemizde daha iyi bir kullanıcı deneyimi sunabilmek ve ziyaretçilerimizin kullanım alışkanlıklarını anlamak için çerezler (cookie) kullanılmaktadır. Çerezlerin nasıl kullanıldığına dair daha detaylı bilgiye ulaşmak ve tercihlerinizi yönetmek için <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a> sayfamızı inceleyebilirsiniz.',
+                                  acceptAllBtn: 'Tümünü Kabul Et',
+                                  acceptNecessaryBtn: 'Reddet',
+                                  showPreferencesBtn: 'Tercihleri Yönet',
+                                  footer: '<a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a>'
+                              },
+                              preferencesModal: {
+                                  title: 'Çerez Tercihleri',
+                                  acceptAllBtn: 'Tümünü Kabul Et',
+                                  acceptNecessaryBtn: 'Reddet',
+                                  savePreferencesBtn: 'Tercihlerimi Kaydet',
+                                  closeIconLabel: 'Kapat',
+                                  serviceCounterLabel: 'Hizmet',
+                                  sections: [
+                                      {
+                                          title: 'Çerez Kullanımı',
+                                          description: 'Web sitemizi ziyaretiniz sırasında edindiğimiz bilgileri ne amaçla kullandığımızı seçebilirsiniz. Daha fazla bilgi için lütfen <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">çerez politikamızı</a> okuyun.'
+                                      },
+                                      {
+                                          title: 'Kesinlikle Gerekli Çerezler',
+                                          description: 'Bu çerezler internet sitesinin çalışması amacıyla gerekli olan çerezlerdir. Söz konusu çerezler kullanıcının talep etmiş olduğu bir bilgi toplumu hizmetinin (log-in olma, form doldurma, gizlilik tercihlerinin hatırlanması gibi) yerine getirilebilmesi için zorunlu olarak kullanılmaktadırlar.',
+                                          linkedCategory: 'necessary'
+                                      },
+                                      {
+                                          title: 'İşlevsel Çerezler',
+                                          description: 'Web sayfası veya uygulamalarda (masaüstü, mobil veya IoT cihazlardaki uygulamalar da dâhil olmak üzere) kullanılan kişiselleştirme ve tercihlerin hatırlanması amaçları ile kullanılan çerezlerdir.',
+                                          linkedCategory: 'functionality'
+                                      },
+                                      {
+                                          title: 'Performans-Analitik Çerezler',
+                                          description: 'İnternet sitelerinde kullanıcıların davranışlarını analiz etmek amacıyla istatistiki ölçüme imkân veren çerezlerdir. Bu çerezler, sitenin iyileştirilmesi için sıklıkla kullanılmakta olup bu duruma reklamların ilgili kişiler üzerindeki etkisinin ölçümü de dâhildir.',
+                                          linkedCategory: 'analytics'
+                                      },
+                                      {
+                                          title: 'Daha Fazla Bilgi',
+                                          description: 'Detaylı bilgi için lütfen İstanbul Üniversitesi-Cerrahpaşa <a href="https://cdn.iuc.edu.tr/FileHandler2.ashx?f=341.7plt_cerez-politikasi-ve-cerez-aydinlatma-metni.pdf" target="_blank" rel="noopener noreferrer">Çerez Politikası</a> sayfasını ziyaret edin.'
+                                      }
+                                  ]
+                              }
+                          }
+                      }
+                  }
+
+              });
+
+              if (CookieConsent.acceptedCategory('analytics')) {
+                  window.dataLayer = window.dataLayer || [];
+                  function gtag() { dataLayer.push(arguments); }
+                  gtag('consent', 'update', { analytics_storage: 'granted' });
+                  gtag('config', 'G-2ZN58XTFV9');
+               }
+
+          };
+          document.head.appendChild(script);
+      })();
+  </script>
+
+
+
+<script src="https://cdn.userway.org/widgetapp/2026-05-12-14-26-48/widget_app_base_1778596008290.js" async="" id="a11yWidgetSrc" crossorigin="anonymous" integrity="sha256-GGcKH510idaxebU2rJqYlZ26tdwSlQFI8ixTUOt4n/I="></script><script crossorigin="anonymous" integrity="sha256-Ggek8maPqUxwe6z9SvqQTxEMhWahOavU4pEkI5qshR8=" src="https://cdn.userway.org/widgetapp/2026-05-12-14-26-48/remediation/remediation_1778596008290.js"></script></body></html>
