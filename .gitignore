@@ -52,12 +52,6 @@ iuc-rag-chatbot/data/processed/
 *.pkl
 *.log
 
-# Temp/Output Text Files
-iuc-rag-chatbot/output.txt
-iuc-rag-chatbot/yandal_output*.txt
-iuc-rag-chatbot/kayit_yenileme*.txt
-iuc-rag-chatbot/rerank_skorlar.txt
-iuc-rag-chatbot/sss_chunk*.txt
-iuc-rag-chatbot/yandal_chunks.txt
-iuc-rag-chatbot/madde34.txt
-iuc-rag-chatbot/evaluation_results.json
+# Tests and Analyses Folder (Exclude temp scripts and text outputs from Git)
+iuc-rag-chatbot/tests_and_analyses/
+
