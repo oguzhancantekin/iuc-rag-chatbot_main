@@ -1,0 +1,31 @@
+# Core Frameworks & UI
+streamlit>=1.35.0
+fastapi>=0.110.0
+uvicorn>=0.28.0
+
+# LLM & Vector Store (LangChain)
+langchain>=0.2.0
+langchain-community>=0.2.0
+langchain-huggingface>=0.0.3
+langchain-ollama>=0.0.5
+langchain-text-splitters>=0.2.0
+
+# Vector DB & Search
+faiss-cpu>=1.8.0
+rank_bm25>=0.2.2
+sentence-transformers>=3.0.0
+torch>=2.2.0
+
+# Document Processing & Scraping
+PyMuPDF>=1.24.0
+beautifulsoup4>=4.12.0
+requests>=2.31.0
+selenium>=4.18.0
+
+# Fine-Tuning & Datasets (Optional, for GPU servers)
+transformers>=4.40.0
+peft>=0.10.0
+trl>=0.8.6
+datasets>=2.18.0
+accelerate>=0.29.0
+bitsandbytes>=0.43.0
