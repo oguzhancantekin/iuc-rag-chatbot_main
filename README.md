@@ -23,7 +23,8 @@ iuc-rag-chatbot_main/
 │   │   ├── raw/                 # Kaynak PDF ve HTML dosyaları (Git'e yüklenir)
 │   │   └── processed/           # İşlenmiş metin parçaları (Git ignore edilir)
 │   ├── src/                     # Uygulama kaynak kodları
-│   │   ├── app.py               # Streamlit Arayüzü
+│   │   ├── app.py               # Streamlit İstemci Arayüzü
+│   │   ├── api.py               # FastAPI RAG API Sunucusu (Yeni)
 │   │   ├── pipeline.py          # Veri İşleme & İndeksleme Hattı
 │   │   ├── rag_engine.py        # RAG Arama & Yanıt Motoru
 │   │   ├── query_rewriter.py    # Sorgu İyileştirici
@@ -75,12 +76,19 @@ python iuc-rag-chatbot/src/pipeline.py
 ```
 *Bu komut tamamlandığında `iuc-rag-chatbot/vectordb/` klasörü otomatik olarak oluşturulacaktır.*
 
-### 5. Adım: Chatbot'u Başlatın
-Uygulama arayüzünü çalıştırmak için:
+### 5. Adım: API Sunucusunu Başlatın
+RAG motorunu ve indeksleri bellek üzerinde sunacak olan FastAPI sunucusunu ayağa kaldırın:
+```bash
+uvicorn iuc-rag-chatbot.src.api:app --reload --port 8000
+```
+*API ayağa kalktığında `http://localhost:8000/health` adresinden GET isteği atarak veya `/docs` adresinden API dokümantasyonunu inceleyebilirsiniz.*
+
+### 6. Adım: Chatbot İstemci Arayüzünü Başlatın
+Streamlit istemci arayüzünü çalıştırmak için yeni bir terminal açıp sanal ortamı aktif ettikten sonra şu komutu çalıştırın:
 ```bash
 streamlit run iuc-rag-chatbot/src/app.py
 ```
-*Tarayıcınızda otomatik olarak açılan `http://localhost:8501` adresinden chatbot ile sohbet etmeye başlayabilirsiniz.*
+*Tarayıcınızda otomatik olarak açılan `http://localhost:8501` adresinden API tabanlı chatbot ile sohbet etmeye başlayabilirsiniz.*
 
 ---
 
@@ -90,3 +98,4 @@ Sistemin erişim ve yanıt kalitesini test etmek için `evaluation.py` scriptini
 ```bash
 python iuc-rag-chatbot/src/evaluation.py
 ```
+
