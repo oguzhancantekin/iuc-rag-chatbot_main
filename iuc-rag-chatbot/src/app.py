@@ -4,6 +4,7 @@ import os
 import sys
 import time
 import requests
+import base64
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -19,7 +20,7 @@ API_URL = "http://localhost:8000"
 
 st.set_page_config(
     page_title="İÜC Akademik Asistan",
-    page_icon="🎓",
+    page_icon="🏛️",
     layout="wide"
 )
 
@@ -32,44 +33,114 @@ def get_chunk_count():
     except:
         return 0
 
+# Logo yolunu belirle
+LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
+
+# Watermark için logoyu base64'e çevir
+base64_logo = ""
+if os.path.exists(LOGO_PATH):
+    with open(LOGO_PATH, "rb") as image_file:
+        base64_logo = base64.b64encode(image_file.read()).decode("utf-8")
+
+st.markdown(f"""
+<style>
+    /* Arka plan filigran (Watermark) */
+    .stApp::before {{
+        content: "";
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url("data:image/png;base64,{base64_logo}");
+        background-repeat: no-repeat;
+        background-position: center;
+        background-size: 40%;
+        opacity: 0.12; /* Görünürlük artırıldı */
+        z-index: 0;
+        pointer-events: none;
+    }}
+</style>
+""", unsafe_allow_html=True)
+
 st.markdown("""
 <style>
     .main-header {
-        background: linear-gradient(135deg, #C41E3A 0%, #8B0000 100%);
+        background: linear-gradient(135deg, #0F204B 0%, #1A2B4C 100%);
+        border-bottom: 4px solid #D4AF37;
         padding: 1.5rem 2rem;
         border-radius: 12px;
         margin-bottom: 1.5rem;
         color: white;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
-    .main-header h1 { color: white !important; font-size: 1.8rem !important; margin: 0 !important; font-weight: 700 !important; }
-    .main-header p { color: rgba(255,255,255,0.85) !important; margin: 0.3rem 0 0 0 !important; font-size: 0.9rem !important; }
+    .main-header h1 { color: #D4AF37 !important; font-size: 2rem !important; margin: 0 !important; font-weight: 800 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+    .main-header p { color: rgba(255,255,255,0.9) !important; margin: 0.3rem 0 0 0 !important; font-size: 0.95rem !important; letter-spacing: 0.5px; }
     .stat-card {
-        background: rgba(196, 30, 58, 0.1);
-        border: 1px solid rgba(196, 30, 58, 0.3);
+        background: rgba(15, 32, 75, 0.07);
+        border: 1px solid rgba(15, 32, 75, 0.15);
+        border-left: 4px solid #0F204B;
+        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
         border-radius: 8px;
-        padding: 0.6rem 1rem;
+        padding: 0.8rem 1rem;
         text-align: center;
         margin-bottom: 0.5rem;
+        transition: transform 0.2s;
+        backdrop-filter: blur(5px);
     }
-    .stat-value { font-size: 1.4rem; font-weight: 700; color: #C41E3A; }
-    .stat-label { font-size: 0.75rem; opacity: 0.7; }
+    .stat-card:hover { transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }
+    .stat-value { font-size: 1.5rem; font-weight: 800; color: #D4AF37; } /* Altın sarısı ile daha belirgin */
+    .stat-label { font-size: 0.8rem; opacity: 0.8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }
     .welcome-box {
-        border: 1px solid rgba(196, 30, 58, 0.2);
+        border-top: 4px solid #D4AF37;
+        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
         border-radius: 12px;
-        padding: 1.5rem;
-        margin-bottom: 1rem;
-        background: rgba(196, 30, 58, 0.03);
+        padding: 2rem;
+        margin-bottom: 1.5rem;
+        background: rgba(15, 32, 75, 0.06);
+        border: 1px solid rgba(15, 32, 75, 0.15);
+        backdrop-filter: blur(5px);
     }
-    .feature-item { display: flex; align-items: center; gap: 0.5rem; margin: 0.4rem 0; font-size: 0.9rem; }
+    .feature-item { display: flex; align-items: center; gap: 0.5rem; margin: 0.6rem 0; font-size: 0.95rem; } /* color:#333 silindi */
     .timing-badge {
         font-size: 0.75rem;
-        opacity: 0.6;
-        margin-top: 0.3rem;
-        padding: 2px 8px;
-        border-radius: 4px;
-        background: rgba(196, 30, 58, 0.05);
-        border: 1px solid rgba(196, 30, 58, 0.1);
+        font-weight: 600;
+        margin-top: 0.5rem;
+        padding: 4px 10px;
+        border-radius: 20px;
+        background: rgba(212, 175, 55, 0.1); /* Altın arka plan */
+        color: #D4AF37; /* Altın metin */
+        border: 1px solid rgba(212, 175, 55, 0.3);
         display: inline-block;
+    }
+    div.stButton > button {
+        background-color: #0F204B !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        border: none !important;
+        font-weight: 600 !important;
+        transition: all 0.3s ease !important;
+    }
+    div.stButton > button:hover {
+        background-color: #1A2B4C !important;
+        box-shadow: 0 4px 8px rgba(15, 32, 75, 0.2) !important;
+        color: #D4AF37 !important;
+    }
+    /* Chat bubbles styling */
+    [data-testid="stChatMessage"] {
+        border-radius: 15px !important;
+        padding: 15px 20px !important;
+        margin-bottom: 15px !important;
+        box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
+    }
+    /* Kullanıcı Mesajı (Altın Tonlu) */
+    [data-testid="stChatMessage"]:nth-child(odd) { 
+        background-color: rgba(212, 175, 55, 0.05) !important; 
+        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
+        border-left: 4px solid #D4AF37 !important;
+    }
+    /* Asistan Mesajı (Lacivert Tonlu) */
+    [data-testid="stChatMessage"]:nth-child(even) { 
+        background-color: rgba(15, 32, 75, 0.03) !important; 
+        border: 1px solid rgba(15, 32, 75, 0.1) !important; 
+        border-left: 4px solid #0F204B !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -113,6 +184,11 @@ def process_query_via_api(query, model_choice, temperature, chat_history):
         result["elapsed"] = time.time() - start_time
     return result
 
+def stream_data(text):
+    for word in text.split(" "):
+        yield word + " "
+        time.sleep(0.02)
+
 def trigger_example(q):
     st.session_state.trigger_query = q
 
@@ -139,6 +215,11 @@ if not api_alive:
     st.stop()
 
 with st.sidebar:
+    if os.path.exists(LOGO_PATH):
+        col1, col2, col3 = st.columns([1,2,1])
+        with col2:
+            st.image(LOGO_PATH, width=130)
+    st.markdown("---")
     st.markdown("## ⚙️ Ayarlar")
     model_choice = st.selectbox(
         "Model Seçimi",
@@ -176,7 +257,7 @@ with st.sidebar:
 
 st.markdown("""
 <div class="main-header">
-    <h1>🎓 İÜC Akademik Asistan</h1>
+    <h1>🏛️ İÜC Akademik Asistan</h1>
     <p>İstanbul Üniversitesi-Cerrahpaşa · Yapay Zeka Destekli Bilgi Sistemi</p>
 </div>
 """, unsafe_allow_html=True)
@@ -246,7 +327,7 @@ if user_query:
         with st.spinner("🔍 Belgeler taranıyor..."):
             result = process_query_via_api(user_query, model_choice, temperature, st.session_state.chat_history)
 
-        st.markdown(result["answer"])
+        st.write_stream(stream_data(result["answer"]))
         st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · API + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:

@@ -1,5 +1,7 @@
 import pickle
 import os
+import datetime
+import numpy as np
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from sentence_transformers import CrossEncoder
@@ -24,6 +26,7 @@ Yanıtların her zaman:
 - Kaynak belirtmeli (hangi yönetmelik/yönerge)
 - SADECE sorulan soruya cevap ver. Sorulmayan ek konuları, karşılaştırmaları veya ilgisiz maddeleri cevaba EKLEME.
 - Kaynak gösterirken sadece gerçek belge/dosya adlarını kullan. Context içindeki madde başlıklarını veya numaralarını "kaynak" olarak gösterme.
+- Eğer cevabı SADECE sana verilen SİSTEM BİLGİSİ'ne (örneğin bugünün tarihi) dayanarak veriyorsan ve BAĞLAM BELGELERİ tamamen ilgisizse, cevabının sonuna tam olarak şu etiketi ekle: <KAYNAK_YOK>
 Eğer bilgi belgelerinde yoksa "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
 """
 
@@ -119,22 +122,70 @@ def build_context(chunks):
         context_parts.append(f"[Kaynak: {display_source}]\n{content}")
     return "\n\n---\n\n".join(context_parts)
 
+def cosine_similarity(v1, v2):
+    return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
+
+def semantic_router(query, embedding_model):
+    # Intent 1: Akademik Takvim
+    takvim_ornekleri = [
+        "Vizeler ne zaman?",
+        "Bahar dönemi ne zaman başlıyor?",
+        "Tatil hangi gün?",
+        "Bütünleme sınav tarihleri nedir?",
+        "Ders seçim haftası ne zaman?",
+        "Kayıt yenileme ne zaman"
+    ]
+    
+    # Intent 2: Yönetmelik ve SSS
+    yonetmelik_ornekleri = [
+        "Kopya çekmenin cezası nedir?",
+        "Kayıt dondurma şartları nelerdir?",
+        "Kimler mazeret sınavına girebilir?",
+        "Ders geçme notu AGNO",
+        "Öğrenci belgesi nereden alınır?",
+        "Disiplin cezası",
+        "Yatay geçiş nasıl yapılır"
+    ]
+
+    # Intent 3: Genel/Sohbet (Tarih, Merhaba vs.)
+    genel_ornekler = [
+        "Bugün ayın kaçı?",
+        "Bugünün tarihi ne?",
+        "Merhaba",
+        "Sen kimsin?",
+        "Nasılsın?",
+        "Şu an hangi yıldayız?"
+    ]
+    
+    query_vec = embedding_model.embed_query(query)
+    takvim_vecs = embedding_model.embed_documents(takvim_ornekleri)
+    yonetmelik_vecs = embedding_model.embed_documents(yonetmelik_ornekleri)
+    genel_vecs = embedding_model.embed_documents(genel_ornekler)
+    
+    takvim_scores = [cosine_similarity(query_vec, v) for v in takvim_vecs]
+    yonetmelik_scores = [cosine_similarity(query_vec, v) for v in yonetmelik_vecs]
+    genel_scores = [cosine_similarity(query_vec, v) for v in genel_vecs]
+    
+    max_takvim = max(takvim_scores)
+    max_yonetmelik = max(yonetmelik_scores)
+    max_genel = max(genel_scores)
+    
+    # Eğer takvim örneklerine olan anlamsal yakınlık, hem yönetmelik hem de genel sohbet örneklerinden fazlaysa
+    # ve belirli bir eşiği aşıyorsa (alakasız soruları engellemek için), takvime yönlendir.
+    if max_takvim > max_yonetmelik and max_takvim > max_genel and max_takvim > 0.4:
+        return True
+    return False
+
 def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
     from query_rewriter import rewrite_query
     from academic_calendar import answer_calendar_query
 
-    # Akademik takvim sorusuysa direkt modülü kullan (chat_history eklendi!)
-    takvim_keywords = ["vize", "final", "bütünleme", "kayıt yenileme tarihi",
-                       "sınav tarihi", "akademik takvim", "ne zaman başlıyor",
-                       "büt ne zaman", "tatil ne zaman", "vizeler"]
-    # Yönetmelik-tipi sorular takvime yönlendirilmesin
-    yonetmelik_keywords = ["kimler girebilir", "kimler başvurabilir", "şartları",
-                           "koşulları", "nereden", "nasıl yapılır", "nedir",
-                           "ne gerekir", "hakkı var", "kaç kez"]
-    query_lower = query.lower()
-    is_calendar = any(kw in query_lower for kw in takvim_keywords)
-    is_regulation = any(kw in query_lower for kw in yonetmelik_keywords)
-    if is_calendar and not is_regulation:
+    # 🧠 Semantic Router (Akıllı Yönlendirme)
+    # Eski sistemdeki ilkel kelime eşleştirmeleri tamamen silindi.
+    # Artık cümlenin anlamsal matematiksel karşılığına göre niyet analizi yapılıyor.
+    is_calendar = semantic_router(query, vectorstore.embeddings)
+    
+    if is_calendar:
         calendar_answer = answer_calendar_query(query, chat_history)
         return {
             "answer": calendar_answer,
@@ -160,7 +211,11 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
             history_text += f"Kullanıcı: {turn['user']}\nAsistan: {safe_assistant}\n\n"
 
     # Eğitimde kullandığımız şablona (### Soru: ve ### Yanıt:) uyumlu hale getirildi
+    current_date_str = datetime.date.today().strftime("%d %B %Y")
+    
     prompt = f"""{SYSTEM_PROMPT}
+
+[SİSTEM BİLGİSİ: Bugünün tarihi {current_date_str}]
 
 {f'ÖNCEKİ KONUŞMA:{chr(10)}{history_text}' if history_text else ''}
 BAĞLAM BELGELERİ:
@@ -172,15 +227,21 @@ BAĞLAM BELGELERİ:
 ### Yanıt:
 """
 
-    response = llm.invoke(prompt)
-    # NOT: Eskiden list(set(...)) kullanilarak kaynaklar dedup ediliyordu,
-    # ancak set sirasiz oldugu icin en alakali (rerank sirasinda ust siraya
-    # cikan) kaynagin UI'da ilk gosterilmesi garanti degildi. dict.fromkeys
-    # ile sira korunarak dedup yapiliyor.
-    sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
+    response_text = llm.invoke(prompt)
+    
+    # Kaynak halüsinasyonunu engelleme (Örn: Sadece tarih sorulduğunda alakasız PDF kaynak göstermemesi için)
+    if "<KAYNAK_YOK>" in response_text:
+        response_text = response_text.replace("<KAYNAK_YOK>", "").strip()
+        sources = []
+    else:
+        # NOT: Eskiden list(set(...)) kullanilarak kaynaklar dedup ediliyordu,
+        # ancak set sirasiz oldugu icin en alakali (rerank sirasinda ust siraya
+        # cikan) kaynagin UI'da ilk gosterilmesi garanti degildi. dict.fromkeys
+        # ile sira korunarak dedup yapiliyor.
+        sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
 
     return {
-        "answer": response.strip(),
+        "answer": response_text.strip(),
         "sources": sources,
         "chunks": top_chunks
     }
