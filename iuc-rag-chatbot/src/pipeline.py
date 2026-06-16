@@ -11,6 +11,7 @@ import re
 import hashlib
 
 from config import PDF_DIR, HTML_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
+from shared import get_display_name
 
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 os.makedirs(VECTORDB_DIR, exist_ok=True)
@@ -122,8 +123,13 @@ def chunk_documents(documents):
                     duplicate_count += 1
                     continue
                 seen_chunk_hashes.add(chunk_hash)
+                
+                # Contextual Chunking: Parçanın başına belge adını ekle
+                display_source = get_display_name(doc["metadata"]["source"])
+                contextual_content = f"[Belge: {display_source}]\n{stripped}"
+                
                 chunks.append({
-                    "content": stripped,
+                    "content": contextual_content,
                     "metadata": {
                         **doc["metadata"],
                         "chunk_id": f"{doc['metadata']['source']}_chunk_{i}"

@@ -124,23 +124,34 @@ st.markdown("""
         color: #D4AF37 !important;
     }
     /* Chat bubbles styling */
+    .user-bubble {
+        background: linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%);
+        border: 1px solid rgba(212, 175, 55, 0.3);
+        border-left: 5px solid #D4AF37;
+        padding: 15px 20px;
+        border-radius: 15px 15px 0 15px;
+        color: #111;
+        font-weight: 500;
+        margin-left: 10%;
+        box-shadow: 0 4px 10px rgba(212, 175, 55, 0.08);
+    }
+    .assistant-bubble {
+        background: linear-gradient(135deg, rgba(15, 32, 75, 0.06) 0%, rgba(15, 32, 75, 0.02) 100%);
+        border: 1px solid rgba(15, 32, 75, 0.15);
+        border-left: 5px solid #0F204B;
+        padding: 15px 20px;
+        border-radius: 15px 15px 15px 0;
+        color: #111;
+        line-height: 1.6;
+        margin-right: 10%;
+        box-shadow: 0 4px 10px rgba(15, 32, 75, 0.05);
+    }
+    /* Hide the default Streamlit chat background so our bubbles pop */
     [data-testid="stChatMessage"] {
-        border-radius: 15px !important;
-        padding: 15px 20px !important;
-        margin-bottom: 15px !important;
-        box-shadow: 0 2px 8px rgba(0,0,0,0.04) !important;
-    }
-    /* Kullanıcı Mesajı (Altın Tonlu) */
-    [data-testid="stChatMessage"]:nth-child(odd) { 
-        background-color: rgba(212, 175, 55, 0.05) !important; 
-        border: 1px solid rgba(212, 175, 55, 0.2) !important; 
-        border-left: 4px solid #D4AF37 !important;
-    }
-    /* Asistan Mesajı (Lacivert Tonlu) */
-    [data-testid="stChatMessage"]:nth-child(even) { 
-        background-color: rgba(15, 32, 75, 0.03) !important; 
-        border: 1px solid rgba(15, 32, 75, 0.1) !important; 
-        border-left: 4px solid #0F204B !important;
+        background-color: transparent !important;
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
     }
 </style>
 """, unsafe_allow_html=True)
@@ -300,8 +311,10 @@ if len(st.session_state.messages) == 0:
 
 for message in st.session_state.messages:
     with st.chat_message(message["role"]):
-        st.markdown(message["content"])
-        if message["role"] == "assistant":
+        if message["role"] == "user":
+            st.markdown(f'<div class="user-bubble">{message["content"]}</div>', unsafe_allow_html=True)
+        else:
+            st.markdown(f'<div class="assistant-bubble">{message["content"]}</div>', unsafe_allow_html=True)
             if "elapsed" in message:
                 st.markdown(f"""<div class="timing-badge">⏱️ {message['elapsed']:.2f}s · API + Hibrit Arama</div>""", unsafe_allow_html=True)
             if "sources" in message and message["sources"]:
@@ -321,13 +334,13 @@ if "trigger_query" in st.session_state:
 if user_query:
     st.session_state.messages.append({"role": "user", "content": user_query})
     with st.chat_message("user"):
-        st.markdown(user_query)
+        st.markdown(f'<div class="user-bubble">{user_query}</div>', unsafe_allow_html=True)
 
     with st.chat_message("assistant"):
         with st.spinner("🔍 Belgeler taranıyor..."):
             result = process_query_via_api(user_query, model_choice, temperature, st.session_state.chat_history)
 
-        st.write_stream(stream_data(result["answer"]))
+        st.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
         st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · API + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:

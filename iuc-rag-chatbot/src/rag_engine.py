@@ -17,17 +17,15 @@ from shared import get_display_name
 # (shared.is_calendar_source) toplandi, bu dosyada ayrica tanimlanmiyor.
 
 SYSTEM_PROMPT = """Sen İstanbul Üniversitesi-Cerrahpaşa'nın resmi akademik asistanısın.
-Sana verilen bağlam belgelerini kullanarak öğrencilerin sorularını yanıtla.
-Yanıtların her zaman:
-- Türkçe olmalı
-- ASLA sohbet geçmişindeki önceki cevaplarını (özellikle takvim, tarih veya formatları) kopyalama ve tekrar etme. Her yeni soruya sıfırdan ve sadece yeni bağlama göre cevap ver.
-- Yalnızca verilen belgelere dayanmalı
-- Kısa, net ve anlaşılır olmalı
-- Kaynak belirtmeli (hangi yönetmelik/yönerge)
-- SADECE sorulan soruya cevap ver. Sorulmayan ek konuları, karşılaştırmaları veya ilgisiz maddeleri cevaba EKLEME.
-- Kaynak gösterirken sadece gerçek belge/dosya adlarını kullan. Context içindeki madde başlıklarını veya numaralarını "kaynak" olarak gösterme.
-- Eğer cevabı SADECE sana verilen SİSTEM BİLGİSİ'ne (örneğin bugünün tarihi) dayanarak veriyorsan ve BAĞLAM BELGELERİ tamamen ilgisizse, cevabının sonuna tam olarak şu etiketi ekle: <KAYNAK_YOK>
-Eğer bilgi belgelerinde yoksa "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
+Sana verilen BAĞLAM BELGELERİ'ni kullanarak öğrencilerin sorularını yanıtla.
+
+KESİN KURALLAR:
+1. Türkçe dilinde, kısa, net ve anlaşılır yanıt ver.
+2. YALNIZCA BAĞLAM BELGELERİNDE BULUNAN BİLGİLERE dayan. Bağlamda cevap yoksa KESİNLİKLE uydurma, "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
+3. Sorulmayan konuları, karşılaştırmaları veya ilgisiz maddeleri cevaba EKLEME.
+4. Kaynak belirtirken, bağlamın en başındaki [Belge: ...] etiketini referans al.
+5. ASLA önceki sohbet geçmişindeki takvimleri veya tarihleri yeni cevaba kopyalama.
+6. Eğer cevabı SADECE sana verilen SİSTEM BİLGİSİ'ne (örneğin bugünün tarihi) dayanarak veriyorsan ve BAĞLAM BELGELERİ tamamen ilgisizse, cevabının sonuna tam olarak şu etiketi ekle: <KAYNAK_YOK>
 """
 
 _reranker = None
@@ -125,65 +123,32 @@ def build_context(chunks):
 def cosine_similarity(v1, v2):
     return np.dot(v1, v2) / (np.linalg.norm(v1) * np.linalg.norm(v2))
 
-def semantic_router(query, embedding_model):
-    # Intent 1: Akademik Takvim
-    takvim_ornekleri = [
-        "Vizeler ne zaman?",
-        "Bahar dönemi ne zaman başlıyor?",
-        "Tatil hangi gün?",
-        "Bütünleme sınav tarihleri nedir?",
-        "Ders seçim haftası ne zaman?",
-        "Kayıt yenileme ne zaman"
+def semantic_router(query):
+    query_lower = query.lower()
+    
+    takvim_keywords = [
+        "ne zaman", "hangi tarih", "tarihi nedir", "başlıyor", "bitiyor", 
+        "akademik takvim", "vize tarihleri", "final tarihleri", "bütünleme tarihleri"
     ]
     
-    # Intent 2: Yönetmelik ve SSS
-    yonetmelik_ornekleri = [
-        "Kopya çekmenin cezası nedir?",
-        "Kayıt dondurma şartları nelerdir?",
-        "Kimler mazeret sınavına girebilir?",
-        "Ders geçme notu AGNO",
-        "Öğrenci belgesi nereden alınır?",
-        "Disiplin cezası",
-        "Yatay geçiş nasıl yapılır"
-    ]
-
-    # Intent 3: Genel/Sohbet (Tarih, Merhaba vs.)
-    genel_ornekler = [
-        "Bugün ayın kaçı?",
-        "Bugünün tarihi ne?",
-        "Merhaba",
-        "Sen kimsin?",
-        "Nasılsın?",
-        "Şu an hangi yıldayız?"
+    genel_keywords = [
+        "merhaba", "selam", "nasılsın", "sen kimsin", "adın ne", "bugün ayın kaçı", "bugünün tarihi"
     ]
     
-    query_vec = embedding_model.embed_query(query)
-    takvim_vecs = embedding_model.embed_documents(takvim_ornekleri)
-    yonetmelik_vecs = embedding_model.embed_documents(yonetmelik_ornekleri)
-    genel_vecs = embedding_model.embed_documents(genel_ornekler)
-    
-    takvim_scores = [cosine_similarity(query_vec, v) for v in takvim_vecs]
-    yonetmelik_scores = [cosine_similarity(query_vec, v) for v in yonetmelik_vecs]
-    genel_scores = [cosine_similarity(query_vec, v) for v in genel_vecs]
-    
-    max_takvim = max(takvim_scores)
-    max_yonetmelik = max(yonetmelik_scores)
-    max_genel = max(genel_scores)
-    
-    # Eğer takvim örneklerine olan anlamsal yakınlık, hem yönetmelik hem de genel sohbet örneklerinden fazlaysa
-    # ve belirli bir eşiği aşıyorsa (alakasız soruları engellemek için), takvime yönlendir.
-    if max_takvim > max_yonetmelik and max_takvim > max_genel and max_takvim > 0.4:
+    if any(kw in query_lower for kw in genel_keywords):
+        return False
+        
+    if any(kw in query_lower for kw in takvim_keywords):
         return True
+        
     return False
 
 def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
     from query_rewriter import rewrite_query
     from academic_calendar import answer_calendar_query
 
-    # 🧠 Semantic Router (Akıllı Yönlendirme)
-    # Eski sistemdeki ilkel kelime eşleştirmeleri tamamen silindi.
-    # Artık cümlenin anlamsal matematiksel karşılığına göre niyet analizi yapılıyor.
-    is_calendar = semantic_router(query, vectorstore.embeddings)
+    # 🧠 Akıllı Yönlendirme
+    is_calendar = semantic_router(query)
     
     if is_calendar:
         calendar_answer = answer_calendar_query(query, chat_history)
@@ -193,10 +158,24 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
             "chunks": []
         }
 
-    # Normal RAG akışı
-    rewritten_query = rewrite_query(query)
-    top_chunks = hybrid_search(rewritten_query, vectorstore, bm25, chunks, k=15)
-    top_chunks = rerank(rewritten_query, top_chunks, top_k=5)
+    # Normal RAG akışı (Multi-Query Retrieval)
+    queries_to_search = rewrite_query(query)
+    if not isinstance(queries_to_search, list):
+        queries_to_search = [queries_to_search]
+        
+    all_retrieved_chunks = []
+    seen_chunk_ids = set()
+    
+    for q in queries_to_search:
+        results = hybrid_search(q, vectorstore, bm25, chunks, k=15)
+        for chunk in results:
+            c_id = chunk["metadata"]["chunk_id"]
+            if c_id not in seen_chunk_ids:
+                seen_chunk_ids.add(c_id)
+                all_retrieved_chunks.append(chunk)
+                
+    # Havuzdaki tüm chunk'ları tek seferde kullanıcının Orijinal Sorusu'na göre sırala
+    top_chunks = rerank(query, all_retrieved_chunks, top_k=5)
     context = build_context(top_chunks)
 
     history_text = ""

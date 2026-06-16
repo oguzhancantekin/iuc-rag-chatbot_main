@@ -5,27 +5,24 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from langchain_ollama import OllamaLLM
 
 REWRITE_PROMPT = """Sen bir üniversite bilgi sistemi için sorgu optimizasyon asistanısın.
-Kullanıcının sorusunu, akademik yönetmelik ve yönergelerde arama yapmak için daha iyi bir sorguya dönüştür.
+Kullanıcının sorusunu, akademik yönetmelik ve yönergelerde arama yapmak için 3 farklı ve kapsamlı arama sorgusuna dönüştür.
 
 Kurallar:
-- Soruyu daha açık ve net hale getir
-- Eksik bağlamı tamamla
-- Kısaltmaları aç (örn: ÇAP → Çift Anadal Programı)
-- Yönetmelik terminolojisini kullan
-- Sadece yeniden yazılmış soruyu döndür, açıklama yapma
+1. İlk sorgu, kullanıcının sorusunun en resmi ve net hali olmalı.
+2. İkinci sorgu, soruyu farklı eşanlamlı kelimeler veya alternatif terimlerle sormalı.
+3. Üçüncü sorgu, sorunun bağlamını daha geniş veya dar tutarak farklı bir açıdan ele almalı.
+4. Kısaltmaları (Örn: ÇAP, AGNO) açmalısın.
+5. SADECE geçerli bir JSON dizisi (listesi) döndür, başka hiçbir metin veya açıklama ekleme.
 
-Örnekler:
-Kullanıcı: hoca onay vermezse?
-Yeniden yazılmış: Danışman öğrencinin ders kaydını onaylamazsa ne olur?
+Örnek Çıktı Formatı:
+[
+  "Çift Anadal Programına başvuru şartları nelerdir?",
+  "İkinci anadal yapmak için gerekli not ortalaması nedir?",
+  "ÇAP başvuru koşulları ve gerekli belgeler"
+]
 
-Kullanıcı: çap şartları
-Yeniden yazılmış: Çift Anadal Programına başvuru şartları nelerdir?
-
-Kullanıcı: not ortalaması kaç olmalı onur için
-Yeniden yazılmış: Onur öğrencisi olmak için gerekli minimum ağırlıklı genel not ortalaması (AGNO) nedir?
-
-Kullanıcı: {query}
-Yeniden yazılmış:"""
+Kullanıcı Sorusu: {query}
+JSON Çıktısı:"""
 
 _rewrite_llm = None
 
@@ -36,25 +33,36 @@ def get_rewrite_llm():
     return _rewrite_llm
 
 def rewrite_query(query):
-    # DEVRE DISI: gemma3:4b rewriter testi sonucu Content Acc %58->%54,
-    # Recall@5 %76->%70'e dustu. Model sorgu anlamini bozuyor
-    # (ornek: "sinavi"->"siniri", "universite"->"ogretim uyesi").
-    # Daha iyi bir rewriter modeli bulunana kadar kapatildi.
-    return query
+    # Eger sorgu cok uzunsa (zaten yeterince detaysa) sadece kendini dondur
+    if len(query.split()) > 15:
+        return [query]
+        
     try:
-        # 12 kelimeden uzun sorgularda rewriting yapma (zaten yeterince açık)
-        if len(query.split()) > 12:
-            return query
         llm = get_rewrite_llm()
         prompt = REWRITE_PROMPT.format(query=query)
-        rewritten = llm.invoke(prompt).strip()
-        if len(rewritten) > 200 or len(rewritten) < 5:
-            return query
-        print(f"Sorgu yeniden yazildi: '{query}' -> '{rewritten}'")
-        return rewritten
+        rewritten_text = llm.invoke(prompt).strip()
+        
+        # Markdown kod bloklarini temizle (eger LLM ```json ... ``` kullanirsa)
+        if rewritten_text.startswith("```json"):
+            rewritten_text = rewritten_text[7:]
+        if rewritten_text.startswith("```"):
+            rewritten_text = rewritten_text[3:]
+        if rewritten_text.endswith("```"):
+            rewritten_text = rewritten_text[:-3]
+            
+        rewritten_text = rewritten_text.strip()
+        
+        import json
+        queries = json.loads(rewritten_text)
+        
+        if isinstance(queries, list) and len(queries) > 0:
+            print(f"Çoklu Sorgu Üretildi: {queries}")
+            return queries
+        else:
+            return [query]
     except Exception as e:
-        print(f"Query rewrite hatası: {e}")
-        return query
+        print(f"Query rewrite hatası (JSON ayıklanamadı): {e}")
+        return [query]
 
 if __name__ == "__main__":
     test_queries = [
