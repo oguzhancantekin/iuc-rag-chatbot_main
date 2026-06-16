@@ -1,13 +1,13 @@
 {
   "metrics": {
-    "rag_topic_accuracy": 42.0,
-    "rag_content_accuracy": 57.99999999999999,
-    "ragless_topic_accuracy": 28.000000000000004,
-    "ragless_content_accuracy": 32.0,
-    "avg_recall_at_5": 76.0,
-    "avg_mrr": 0.469,
-    "avg_latency_rag": 7.764980211257934,
-    "avg_latency_ragless": 11.694369797706605
+    "rag_topic_accuracy": 40.0,
+    "rag_content_accuracy": 70.0,
+    "ragless_topic_accuracy": 36.0,
+    "ragless_content_accuracy": 18.0,
+    "avg_recall_at_5": 78.0,
+    "avg_mrr": 0.5206666666666666,
+    "avg_latency_rag": 3.5616352128982545,
+    "avg_latency_ragless": 3.3698453378677367
   },
   "detailed_results": [
     {
@@ -22,18 +22,18 @@
         "80"
       ],
       "rag": {
-        "answer": "Uzaktan öğretim programlarına kayıtlı öğrencilerin derslerdeki devam gerektiren faaliyetleri, öğretimi sürdüren ilgili birim kurulları belirler. (Kaynak: Üniversite Belgesi, MADDE 11) Devam zorunluluğu bulunmayan dersler için dört sınav hakkı tanınır. (Kaynak: 2547 Sayılı Yükseköğretim Kanunu, MADDE 25)",
+        "answer": "Devam şartını yerine getirmeyen öğrencilerin Bitirme ve Bütünleme sınavlarına girme hakkı yoktur. Zorunlu ve isteğe bağlı yabancı dil hazırlık programlarında dönem bitirme sınavlarına girebilmek için güz ve bahar dönemlerinde ayrı ayrı olmak üzere toplam ders saatinin en az %80'ine katılmış olmak zorundadır (Kaynak: 4110.1y).",
         "topic_hit": true,
-        "content_hit": false,
-        "latency": 46.05543565750122,
-        "recall_at_5": 1.0,
-        "mrr": 1.0
+        "content_hit": true,
+        "latency": 17.75177311897278,
+        "recall_at_5": 0.0,
+        "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Derslerine devam zorunlu olmuyor.\"dur. Bu, her öğrencinin derslere devam etme konusunda farklı nedenleri olabilir ve bu nedenle bir yüzdelikle ifade edilemez.",
+        "answer": "Bu sorunun cevabı, \"Derslere devam zorunluluğu yüzde 100'dür.\" şeklinde olabilir. Bu, derslere katılmanın ve okulda başarılı olmanın önemini vurgular.",
         "topic_hit": true,
         "content_hit": false,
-        "latency": 4.703225135803223
+        "latency": 1.5264415740966797
       }
     },
     {
@@ -46,18 +46,18 @@
         "öğrenim süresinin"
       ],
       "rag": {
-        "answer": "Kayıt dondurma süresi, öğrencinin durumuna göre değişir. Normal şartlarda kayıt dondurma her defasında bir veya iki yarıyıl bir yıl olmak üzere öğrencinin toplamda normal öğrenim süresinin en çok yarısı kadar olabilir (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği). Askerlik, tutukluluk ve mahkûmiyet durumlarında ise kayıt dondurma, bu hallerin süresi kadardır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
+        "answer": "Kayıt dondurma süresi, öğrencinin durumuna göre değişir. Kayıt dondurma her defasında, bir veya iki yarıyıl bir yıl olmak üzere öğrencinin toplamda normal öğrenim süresinin en çok yarısı kadar olabilir. Askerlik, tutukluluk ve mahkûmiyet durumlarında ise kayıt dondurma, bu hallerin süresi kadardır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 9.705604076385498,
+        "latency": 4.23949408531189,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"dondurma süresi\"nin ne olduğunu bilmemiz gerekiyor. Dondurma süresi, bir dondurmanın yapımında kullanılan zamanı ifade eder. Bu süre, dondurmanın tadını ve dokusunu etkiler.\n\nDondurma süresinin uzunluğu, dondurmanın tadını ve dokusunu etkileyebilir. Örneğin, uzun bir dondurma süresi, dondurmanın daha yoğun ve lezzetli olmasını sağlayabilir. Kısa bir dondurma süresi ise, dondurmanın daha hafif ve yumuşak olmasını sağlayabilir.\n\nDondurma süresini belirleyen birçok faktör vardır. Bunların arasında kullanılan malzemelerin kalitesi, dondurma makinesinin türü ve dondurmanın yapıldığı ortamın sıcaklığı yer alır.\n\nUmarım bu açıklama yardımcı olur!",
-        "topic_hit": false,
+        "answer": "Bu sorunun cevabı, \"kayıt dondurma süresi\"nin bir ölçüsü olduğunu belirtiyor. Bu, bir kişinin hayatı boyunca sahip olabileceği maksimum miktarda bilgi veya deneyim anlamına gelir.\n\nKayıt dondurma süresinin bir ölçüsünün, bir kişinin hayatı boyunca sahip olabileceği maksimum miktarda bilgi veya deneyim olduğunu söyleyebiliriz. Bu, bir kişinin hayatı boyunca sahip olabileceği maksimum miktarda bilgi veya deneyim anlamına gelir.\n\nBu nedenle, bu sorunun cevabı \"kayıt dondurma süresi\"dir.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 11.24394416809082
+        "latency": 2.7383224964141846
       }
     },
     {
@@ -72,18 +72,18 @@
         "3,49"
       ],
       "rag": {
-        "answer": "Genel not ortalaması 3'ü aşmalıdır. (Kaynak: Sıkça Sorulan Sorular)",
+        "answer": "Genel not ortalaması 3.00 ve üzeri olmalıdır. kaynak: Sıkça Sorulan Sorular",
         "topic_hit": false,
-        "content_hit": false,
-        "latency": 5.039884090423584,
-        "recall_at_5": 1.0,
-        "mrr": 0.25
+        "content_hit": true,
+        "latency": 2.392197608947754,
+        "recall_at_5": 0.0,
+        "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu soruya doğrudan bir yanıt verilmesi zor. Çünkü \"onur öğrencisi olmak için not ortalaması\" kavramı, farklı okullarda ve eğitim sistemlerinde farklı anlamlara gelebilir. \n\nAncak, genel olarak şu şekilde düşünülür:\n\n*   **Yükseköğretim kurumlarında:** Onur öğrencisi olmak için genellikle en az 3.50 veya 4.00 gibi bir not ortalamasına sahip olmak gerekir.\n*   **Lisans düzeyinde:** Bazı bölümlerde, özellikle rekabetin yüksek olduğu alanlarda, daha yüksek bir not ortalaması (örneğin, 3.80 ve üzeri) istenebilir.\n*   **Lise düzeyinde:** Onur öğrencisi olmak için belirli bir not ortalaması belirlenmiş olabilir, ancak bu genellikle okulun kendi politikasına bağlıdır.\n\nSonuç olarak, \"onur öğrencisi olmak için not ortalaması\"nın kesin değeri, eğitim kurumunun ve bölümünün politikalarına göre değişir.",
-        "topic_hit": true,
+        "answer": "Bu sorunun cevabı, bir öğrencinin bir üniversite programına kabul edilmek için ne kadar iyi performans göstermesi gerektiğiyle ilgili. Genellikle, yüksek not ortalamaları (örneğin, 3.5 veya daha fazla) bir öğrenciyi başarılı olmaya ve bir üniversitede yer almayı hak etmeye yardımcı olur. Ancak, belirli gereksinimler program ve okulun özelliklerine göre değişebilir.\n\nBu nedenle, sorunun cevabı şudur: Bir öğrencinin bir üniversite programına kabul edilmek için yüksek not ortalamaları (örneğin, 3.5 veya daha fazla) elde etmesi gerekir.",
+        "topic_hit": false,
         "content_hit": false,
-        "latency": 12.1350417137146
+        "latency": 2.833885908126831
       }
     },
     {
@@ -99,15 +99,15 @@
         "answer": "Genel not ortalamasının 3.00 olması gerekmektedir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.972237586975098,
-        "recall_at_5": 1.0,
-        "mrr": 0.2
+        "latency": 2.3984692096710205,
+        "recall_at_5": 0.0,
+        "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"AGNO\" kelimesinin kısaltmasıdır. Bu kelime, \"Agno\" anlamına gelir ve bu da İtalyanca'da \"sarı\" veya \"güneşli\" anlamına gelir.\n\nSoruyu daha iyi anlamak için, sorunun bağlamını bilmemiz gerekir. Örneğin, soruda bir şeyin rengi hakkında bilgi veriliyorsa, AGNO kelimesi o şeyin rengini ifade edebilir.\n\nAncak, sorunun kendisi açıkça belirtmediği için, AGNO'nun ne anlama geldiğini kesin olarak belirlemek mümkün değildir.",
-        "topic_hit": false,
+        "answer": "Bu soruyu çözmek için, \"AGNO\" kelimesinin anlamını bilmemiz gerekiyor. Bu kelime, \"Agno\" olarak yazılır ve \"Öğrenci\" anlamına gelir.\n\nSorunun özü şudur: Yüksek onur öğrencisi olmak için AGNO kaç olmalıdır?\n\nCevap: 1\n\nBu soruyu çözmek için, \"AGNO\" kelimesinin anlamını bilmemiz gerekiyor. Bu kelime, \"Agno\" olarak yazılır ve \"Öğrenci\" anlamına gelir. Sorunun özü şudur: Yüksek onur öğrencisi olmak için AGNO kaç olmalıdır? Cevap 1'dir.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 8.520987749099731
+        "latency": 2.913917064666748
       }
     },
     {
@@ -120,18 +120,18 @@
         "yönetim kurulu"
       ],
       "rag": {
-        "answer": "Dönem içinde yapılan ara sınavlara katılamayan öğrenciler, geçerli bir mazeret belirtip belgeledikleri takdirde mazeret sınavına girebilirler. [Kaynak: 4110.1y] Yabancı dil yeterlilik sınavına katılamayan öğrenciler için ayrıca mazeret sınavı yapılmaz. [Kaynak: 4110.1y] Uzaktan eğitimle yürütülen lisansüstü programlarda ise başarı notu, ara sınav not ortalamasının %20 si ile yarıyıl sonu sınavı veya bütünleme sınavının %80 inin toplamı alınarak hesaplanır. Ara sınava geçerli mazereti nedeniyle giremeyen öğrenciler, durumlarını beş iş günü içinde ilgili enstitüye bildirmek zorundadır. Mazereti ilgili enstitü yönetim kurulunca kabul edilen öğrenciler mazeret sınavına girerler. [Kaynak: resmi gazetede yayimlanan iu cerrahpasa lisansustu egitim ve]",
+        "answer": "[Kaynak: 4110.1y] Dönem içinde yapılan ara sınavlara katılamayan öğrenciler, geçerli bir mazeret belirtip belgeledikleri takdirde mazeret sınavına girebilirler. [Kaynak: resmi gazetede yayimlanan iu cerrahpasa lisansustu egitim ve] Ara sınava geçerli mazereti nedeniyle giremeyen öğrenciler, durumlarını beş iş günü içinde ilgili enstitüye bildirmek zorundadır. Mazereti ilgili enstitü yönetim kurulunca kabul edilen öğrenciler mazeret sınavına girerler.",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 14.030871629714966,
-        "recall_at_5": 1.0,
-        "mrr": 0.2
+        "latency": 3.8620142936706543,
+        "recall_at_5": 0.0,
+        "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu soruyu daha iyi anlamak için, \"soru\" kısmını biraz daha açabiliriz. Örneğin, \"soru\" şu olabilir:\n\n**\"Bir sınav için hangi dersleri öğrenmeliyim?\"** veya **\"Hangi alanlarda bilgi edinerek sınava hazırlanmalıyım?\"**\n\nAncak, sorununun orijinal haliyle ilgili olarak, bir cevap oluşturmak zor. Lütfen sorunuzu daha açık bir şekilde ifade etmenizi rica ederim.",
+        "answer": "Bu sorunun cevabı, \"Sınava girebilecek kişilerin belirlenmesi\"dir. Bu, genellikle bir başvuru süreci ve ardından yapılan değerlendirme ile sağlanır.\n\nUmarım bu yardımcı olur! 😊",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 6.599521160125732
+        "latency": 1.4103882312774658
       }
     },
     {
@@ -145,18 +145,18 @@
         "girebilir"
       ],
       "rag": {
-        "answer": "📅 **Akademik Takvim Sonuçları:**\n\n🔹 [AKADEMİK DÖNEMİ] Yarıyıl/Yıl Sonu Bütünleme Sınavlarının Başlangıcı\n🔹 [AKADEMİK DÖNEMİ] Yarıyıl/Yıl Sonu Bütünleme Sınavları Bitiş Tarihi\n🔹 [AKADEMİK DÖNEMİ] Yarıyıl/Yıl Sonu Bitirme ve Bütünleme Sınav Tarihlerinin İlanı İçin Son Gün\n🔹 [BAHAR DÖNEMİ] 16 Haziran 2026 — Bütünleme Sınavı Sonuçlarının İlanı\n\n*(Kaynak: Akademik Takvim PDF)*",
+        "answer": "Yarıyıl sonunda bitirme sınavına girmeyen veya girip de başarısız olan öğrenciler ise bütünleme sınavına girerler. (Kaynak: resmi gazetede yayimlanan iu cerrahpasa lisansustu egitim ve) Ayrıca, dönem içinde yapılan ara sınavlara katılamayan öğrenciler mazeret belirtmeleri halinde mazeret sınavına girebilirler. (Kaynak: 4110.1y)",
         "topic_hit": true,
-        "content_hit": false,
-        "latency": 0.10958194732666016,
+        "content_hit": true,
+        "latency": 3.4612224102020264,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bütünleme sınavına girmeye yetkili olan kişiler şunlardır:\n\n*   **Üniversitelerin lisans programlarının son sınıf öğrencileri:** Programlarının bitişine yakın veya bitmiş olan öğrenciler.\n*   **Yüksek lisans programlarının son sınıf öğrencileri:** Yüksek lisans programlarının son sınıfı okuyan ve diplomalarını alacak olanlar.\n*   **Bazı özel eğitim kurumlarının mezunları:** Bazı kurumlarda (örneğin, bazı meslek yüksekokulları veya teknik üniversiteler) bütünleme sınavı düzenlenebilir ve bu sınavlara belirli şartları sağlayan mezunlar da girebilir.\n\n**Önemli Not:** Bütünleme sınavına girmeye yetkili olup olmadığını öğrenmek için başvuracağınız kurumun (üniversite, okul vb.) ilgili duyurusunu dikkatlice okumanız ve sınavın başvuru koşullarını kontrol etmeniz önemlidir.",
-        "topic_hit": true,
-        "content_hit": true,
-        "latency": 11.435503721237183
+        "answer": "Bu sorunun cevabı, \"Kimler?\"dir. Bu, bir sınavın kimler tarafından alınabileceğini veya kimlerin katılabileceğini anlamak için bir soruya yanıt vermektir. Cevap, bu soruyu soran kişinin bakış açısına bağlıdır. Örneğin, bir öğretmen bir sınavı vermek için öğrencilerin katılmasına izin verebilirken, bir öğrenci sınava katılmak için başvuramaz.\n\nBu nedenle, \"Kimler?\"in cevabı, sorunun bağlamına bağlıdır. Ancak genel olarak, bu soru, bir şeyin kim tarafından yapılacağını veya kimlerin katılabileceğini anlamak için kullanılır.",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 2.6884589195251465
       }
     },
     {
@@ -169,18 +169,18 @@
         "tek dersi kalan"
       ],
       "rag": {
-        "answer": "Mezuniyeti için tek dersi kalan öğrencilere verilen özel sınav hakkıdır. Bütünleme sınavına kimler girebiliyorsa, onlar da tek ders sınavına girebilirler. (Kaynak: Sıkça Sorulan Sorular)",
+        "answer": "Tek ders sınavı, 2547 Sayılı Yükseköğretim Kanunu’nun Geçici Madde 2 kapsamında, mezun olmak üzere takip ettiği eğitim öğretim programının biri hariç diğer derslerini başarılı olarak tamamlayan ancak başaramadıkları tek ders sebebiyle ilişkileri kesilen öğrenciler için açılan sınavdır. Bu sınavlara, ilgili yükseköğretim kurumuna üç ay içinde müracaatları halinde girilebilir (Kaynak: 2547 Sayılı Yükseköğretim Kanunu).",
         "topic_hit": true,
-        "content_hit": true,
-        "latency": 5.963411808013916,
+        "content_hit": false,
+        "latency": 3.623009443283081,
         "recall_at_5": 1.0,
-        "mrr": 0.25
+        "mrr": 0.2
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"soru\" ve \"yanıt\" arasındaki farkı anlamakla ilgilidir. Sorular, cevaplar aramaya yöneliklerdir ve genellikle bir yanıt gerektirir. Yanıtlar ise sorulara verilen cevaplardır. Bu durumda, soru \"soru\" ve \"yanıt\" arasındaki farktır ve cevabı \"soru\" ve \"yanıt\" arasındaki farktır.\n\nUmarım bu açıklama yardımcı olmuştur!",
+        "answer": "Bu sorunun cevabı, \"soru\" ve \"yanıt\" bölümlerine ayrılmış. Cevap şu şekilde:\n\n**Sorun:** Soruyu nasıl formüle edeceğiz? (Soru)\n\n**Yanıt:** Soru, net ve anlaşılır bir şekilde ifade edilmelidir. Hedeflenen bilgiyi doğru bir şekilde yakalayan bir dil kullanılmalıdır. Ayrıca, sorunun kapsamı ve derinliği de göz önünde bulundurulmalıdır. (Yanıt)\n\nBu cevap, soruyu nasıl formüle edeceğinize dair temel prensipleri vurgular. Umarım bu yardımcı olur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 7.286826133728027
+        "latency": 2.6090691089630127
       }
     },
     {
@@ -193,18 +193,18 @@
         "2,00"
       ],
       "rag": {
-        "answer": "Mezuniyet için genel not ortalamasının 4.00 üzerinden en az 2.00 olması gerekmektedir. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği, MADDE 31)",
+        "answer": "Mezuniyet için genel not ortalamasının 4.00 üzerinden en az 2.00 olması gerekmektedir. (Kaynak: Çift Anadal Programı Yönergesi)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 6.132614612579346,
-        "recall_at_5": 1.0,
-        "mrr": 0.25
+        "latency": 2.5719869136810303,
+        "recall_at_5": 0.0,
+        "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu, bir yanıtın nasıl oluşturulacağını gösteren bir örnek. Bu, bir yanıtı oluşturmak için kullanabileceğiniz bir şablon veya çerçeve olabilir.",
+        "answer": "Bu, sorunun cevabını oluşturmak için kullanılabilecek bir yanıt. Cevap, sorunun cevabı ile aynıdır.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.133573770523071
+        "latency": 1.1459503173828125
       }
     },
     {
@@ -218,18 +218,18 @@
         "iş günü"
       ],
       "rag": {
-        "answer": "Öğrenciler sınav sonuçlarına itirazlarını sonuçların ilanından itibaren beş iş günü içinde yazılı olarak ilgili birime yapabilir. (Kaynak: Sıkça Sorulan Sorular)",
+        "answer": "Öğrenciler sınav sonuçlarına itirazlarını sonuçların ilanından itibaren beş iş günü içinde ilgili birime yazılı olarak yapabilir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 5.685546636581421,
+        "latency": 2.5299205780029297,
         "recall_at_5": 1.0,
         "mrr": 0.2
       },
       "ragless": {
-        "answer": "Bu soruyu yanıtlamak için, sorunun ne olduğunu anlamamız gerekiyor. Sorun, bir şeyin nasıl yapılacağını veya bir şeyi nasıl yapacağımızı bilmemiz gerektiğidir. Bu durumda, sorunun, bir şeyin nasıl yapılacağını veya bir şeyi nasıl yapacağımızı bilmemiz gerektiğidir.\n\nSorunun cevabı, soruyu yanıtlamak için kullanabileceğimiz bilgileri içerir. Örneğin, sorunun cevabı, bir şeyin nasıl yapılacağını veya bir şeyi nasıl yapacağımızı bilmemiz gerektiğidir.\n\nBu durumda, sorunun cevabı, bir şeyin nasıl yapılacağını veya bir şeyi nasıl yapacağımızı bilmemiz gerektiğidir. Bu nedenle, soruyu yanıtlamak için kullanabileceğimiz bilgileri içerir.\n\nUmarım bu yardımcı olur!",
+        "answer": "Bu sorunun cevabı, \"Soru\" ile başlar. Bu, soruyu veya soruyu yanıtlamayı bekleyen bir soruyu ifade eder.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 9.97290563583374
+        "latency": 1.2653462886810303
       }
     },
     {
@@ -245,15 +245,15 @@
         "answer": "Katkı payı veya öğrenim ücretini ödemeyen öğrencilerin kaydı yenilenmez ve o dönem öğrencilik haklarından yararlanamazlar. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 6.07578182220459,
+        "latency": 2.6683576107025146,
         "recall_at_5": 1.0,
-        "mrr": 0.25
+        "mrr": 0.2
       },
       "ragless": {
-        "answer": "Evet, harç ödenmemesi durumunda genellikle kayıt yenilenir. Üniversitelerin ve diğer eğitim kurumlarının harç ödeme politikaları farklılık gösterebilir ancak çoğu durumda harç ödemeden yapılan kayıtların iptal edilip yeni bir kayıt dönemi için başvuru yapılması gerekmektedir.\n\n**Önemli Not:** Bu konuda kesin bilgi almak için mutlaka ilgili üniversitenizin veya okulunuzun öğrenci işleri bölümüne danışmanız en doğrusudur. Çünkü her kurumun kendi özel kuralları ve prosedürleri bulunmaktadır.",
-        "topic_hit": false,
+        "answer": "Evet, harç ödenmediği takdirde kayıt yenileme işlemi genellikle otomatik olarak yapılır. Ancak, bu durum üniversitenin veya okulun kurallarına ve politikalarına göre değişiklik gösterebilir. \n\n**Önemli Not:** Kayıt yenileme işleminin kesin olarak nasıl gerçekleşeceği ve hangi tarihlerde yapılacağı hakkında en doğru bilgiyi almak için mutlaka ilgili üniversitenizin/okulunuzun öğrenci işleri birimini veya web sitesini kontrol etmeniz önemlidir.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 7.915591716766357
+        "latency": 2.1921346187591553
       }
     },
     {
@@ -266,18 +266,18 @@
         "3,00"
       ],
       "rag": {
-        "answer": "Üstten ders alabilmek için bulunduğunuz yarıyılın tüm derslerini almış ve AGNO şartını sağlamış olmanız gerekir. Bu şart, genel not ortalamanızın 1,80 in altında olmamasıdır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
+        "answer": "Üstten ders alabilmek için bulunduğunuz yarıyılın tüm derslerini almış ve AGNO şartını sağlamış olmanız gerekir. Bu şart, AGNO'nun 4.00 üzerinden en az 3.00 olmasıdır. Kaynak: [Sıkça Sorulan Sorular]",
         "topic_hit": true,
-        "content_hit": false,
-        "latency": 6.687001466751099,
+        "content_hit": true,
+        "latency": 2.9930410385131836,
         "recall_at_5": 1.0,
-        "mrr": 0.3333333333333333
+        "mrr": 0.2
       },
       "ragless": {
-        "answer": "AGNO'nun üstten ders alabilmesi için, AGNO'nun değerinin 100'den büyük olması gerekir. Bu, AGNO'nun 100'ün üzerinde bir değere sahip olması gerektiği anlamına gelir.",
+        "answer": "AGNO'nun üstten ders alabilmesi için, AGNO'nun değerinin 100'den büyük olması gerekir. Yani AGNO > 100 olmalıdır.",
         "topic_hit": true,
         "content_hit": false,
-        "latency": 4.947084426879883
+        "latency": 1.2871747016906738
       }
     },
     {
@@ -291,18 +291,18 @@
         "iş günü"
       ],
       "rag": {
-        "answer": "İlgili birimin öğrenci bürosuna sınav kağıdının yeniden incelenmesi talebi, sınav notlarının ilan edilmesinden itibaren üç iş günü içinde yapılabilir. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği) Sınav sonuçlarına itirazlar, İstanbul Üniversitesi-Cerrahpaşa Önlisans ve Lisans Eğitim ve Öğretim Yönetmeliği’nin ilgili hükümlerine göre yapılır. (Kaynak: 4110.1y)",
+        "answer": "Sınav sonuçlarına itirazlar, sınav sonuçlarının ilan edilmesinden itibaren üç iş günü içinde ilgili birimin öğrenci bürosuna dilekçe ile yapılabilir. İtiraz mercileri itirazı kabul ya da reddederek altmış gün içerisinde karar verir. (Kaynak: 2547 Sayılı Yükseköğretim Kanunu, MADDE 27)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 8.823724746704102,
+        "latency": 3.2641234397888184,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabını vermek için, itiraza ne kadar süre olduğunu ve itirazın ne kadar yaygın olabileceğini bilmemiz gerekir. Bu nedenle, bu soruyu cevaplamak zordur. Ancak, genel olarak, bir itirazın ne kadar yaygın olduğuna bağlı olarak, itirazın ne kadar zaman alacağını tahmin edebiliriz.\n\nÖrneğin, eğer bir itiraz çok sayıda kişiye yönelikse ve birçok kişi aynı şeyi itiraz etmesi durumunda, itirazın daha uzun sürmesi olasıdır. Aynı şekilde, eğer bir itiraz sadece birkaç kişiye yönelikse ve bu kişiler farklı şeyler itiraz ediyorsa, itirazın daha kısa sürmesi olasıdır.\n\nSonuç olarak, bir itirazın ne kadar zaman alacağını tahmin etmek için, itirazın ne kadar yaygın olduğunu ve itiraz edenlerin neyi itiraz ettiğini bilmemiz gerekir.",
+        "answer": "Bu sorunun cevabı, itiraza neden olan faktörlere bağlıdır. İşte bazı olasılıklar:\n\n*   **Hızlı bir şekilde:** Eğer itiraz, örneğin yanlış bir karar veya kanıtlanmış bir hata üzerine ise, itirazın hemen ardından yapılabilir.\n*   **Orta düzeyde:** Eğer itiraz, örneğin bir ürünün kalitesine veya hizmetin sunulma şekline yönelikse, itiraz için birkaç gün veya hafta gerekebilir.\n*   **Uzun süreli:** Eğer itiraz, örneğin yasal bir konuda veya büyük bir soruna yönelikse, itiraz için aylarca veya hatta yıllar geçebilir.\n\nİtirazın ne kadar sürede yanıtlanacağını etkileyen diğer faktörler şunlardır:\n\n*   **İtiraza konu olan kurumun tepki verme hızı.**\n*   **İtirazın karmaşıklığı.**\n*   **İtiraz eden kişinin iletişim kurma becerisi.**\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 11.834788084030151
+        "latency": 3.9513766765594482
       }
     },
     {
@@ -316,18 +316,18 @@
         "ders ekleme"
       ],
       "rag": {
-        "answer": "Yandal Programı Yönergesi’ne göre (Kaynak: Yandal Programı Yönergesi), yandal programına başvurular anadal lisans programının en erken üçüncü ve en geç altıncı yarıyılın başında yapılabilir.",
-        "topic_hit": false,
+        "answer": "Kayıt dondurma başvurusu, anadal lisans programının en erken üçüncü yarıyılının başında veya en geç dört yıllık programlarda beşinci yarıyılın başında yapılabilir. Kayıt dondurma başvuruları, ilgili fakültenin Öğrenci İşleri Bürosuna Başvuru Formu (EK 1) ve Not Durum Belgesi (Transkript) ile birlikte yapılır. ([Kaynak: Yandal Programı Yönergesi - MADDE 6] )",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 6.080155372619629,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
+        "latency": 3.6196272373199463,
+        "recall_at_5": 1.0,
+        "mrr": 0.3333333333333333
       },
       "ragless": {
-        "answer": "Bu sorunun cevabını oluşturmak için, bu tür bir yanıtın nasıl yapılandırılacağını ve oluşturulacağını anlamak önemlidir. Bu nedenle, bu soruyu daha iyi yanıtlamak için bazı ek bilgiler ekleyebilirim.\n\nÖncelikle, sorunun temel amacını anlamamız gerekiyor. Sorunun amacı, belirli bir konu hakkında bilgi sağlamaktır. Bu nedenle, sorunun cevabını oluştururken, bu konuya ilişkin bilgileri kullanmamız gerekir.\n\nİkinci olarak, sorunun cevabının nasıl yapılandırılacağını anlamamız gerekiyor. Sorunun cevabı, genellikle birkaç bölümden oluşur. Bu bölümler şunlardır:\n\n* Giriş\n* Gelişme\n* Sonuç\n\nGiriş bölümünde, soruyu ve cevaplamayı amaçladığımız konuyu tanıtıyoruz. Gelişme bölümünde ise, bu konu hakkında bilgi sağlıyoruz. Sonuç bölümünde ise, bilgileri özetliyoruz ve cevabımızı sunuyoruz.\n\nÜçüncü olarak, sorunun cevabını nasıl oluşturabileceğimizi anlamamız gerekiyor. Sorunun cevabını oluştururken, aşağıdaki adımları izleyebiliriz:\n\n1. Soruyu dikkatlice okuyun ve anlayın.\n2. Bu konu hakkında bilgi edinin.\n3. Cevabınızı yapılandırın.\n4. Cevabınızı yazın.\n5. Cevabınızı kontrol edin ve düzeltin.\n\nBu adımları izleyerek, sorunun cevabını doğru ve etkili bir şekilde oluşturabiliriz.\n\nSon olarak, bu tür bir yanıtı nasıl oluşturabileceğimizi anlamamız gerekiyor. Bu tür bir yanıtı oluştururken, aşağıdaki hususları göz önünde bulundurmalıyız:\n\n* Yanıtın amacını belirleyin.\n* Yanıtın kapsamını belirleyin.\n* Yanıtın hedef kitlesini belirleyin.\n* Yanıtın stilini ve tonunu belirleyin.\n* Yanıtı yazın ve düzenleyin.\n* Yanıtı kontrol edin ve düzeltin.\n\nBu hususları göz önünde bulundurarak, bu tür bir yanıtı doğru ve etkili bir şekilde oluşturabiliriz.\n\nUmarım bu bilgiler, sorunun cevabını oluşturmanıza yardımcı olur.",
-        "topic_hit": false,
+        "answer": "Bu soruyu yanıtlamak için, \"kayıt dondurma\" kavramını anlamamız gerekiyor. Kayıt dondurma, bir finansal işlemde, belirli bir süre boyunca (genellikle birkaç ay) ödeme yapmayı durdurmak anlamına gelir. Bu, genellikle bir kredi veya borç sözleşmesinin başlangıcında yapılır ve daha sonraki işlemlerin etkisini azaltır.\n\nSorunun bağlamı, \"en geç ne zamana kadar başvurulmalıdır?\" şeklinde olduğundan, bu işlemin başlaması için uygun zamanlama hakkında bilgi arıyor olmalıyız. Genellikle, bir kredi veya borç sözleşmesinin başlangıcında, finansal kurumlar genellikle belirli bir süre boyunca ödeme yapmayı durdurmak için müşterilerini kaydını dondurmaya teşvik ederler. Bu, müşterinin daha sonraki işlemlerin etkisini azaltmasına ve daha iyi koşullar altında kredi alabilmesine yardımcı olur.\n\nAncak, kayıt dondurma işleminin başlaması için belirli bir zaman sınırı yoktur. Müşteriler, kendi ihtiyaçlarına ve finansal durumlarına göre bu işlemi başlatabilirler. Ancak, genellikle, bir kredi veya borç sözleşmesinin başlangıcında, bu işlem daha uygun hale gelir.\n\nBu nedenle, \"kayıt dondurma\" işleminin başlaması için en uygun zamanlama, müşterinin kredi veya borç sözleşmesinin başlangıcına kadar olan süredir. Bu süre zarfında, müşteri ödeme yapmayı durdurabilir ve daha sonraki işlemlerin etkisini azaltabilir.\n\nUmarım bu açıklama sorunuzu yanıtlamaya yardımcı olmuştur.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 25.144795417785645
+        "latency": 5.917493104934692
       }
     },
     {
@@ -341,18 +341,18 @@
         "haklarından"
       ],
       "rag": {
-        "answer": "Evet, katkı payı veya öğrenim ücretinin ödenmemesi durumunda Senatonun kararı ve Yükseköğretim Kurulunun onayı ile dört yıl üst üste katkı payı veya öğrenim ücretinin ödenmemesi nedeniyle öğrencilerin ilişikleri kesilebilir (Kaynak: Önlisans ve Lisans Yönetmeliği (Web)). Kayıt yenileme AKSİS sistemi üzerinden yapılır ve harç ödenmezse kaydı yenilenmez (Kaynak: Sıkça Sorulan Sorular).",
-        "topic_hit": false,
-        "content_hit": true,
-        "latency": 8.855982542037964,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
-      },
-      "ragless": {
-        "answer": "Bu sorunun cevabı, \"Hayır\" olacaktır. İşte nedenleri:\n\n* **Temel İlkeler:** Eğitim sistemlerinin çoğu, öğrencilerin potansiyellerini keşfetmelerine ve geliştirmelerine yardımcı olmayı amaçlar. Bu, sadece akademik başarıyı değil, aynı zamanda kişisel gelişim, sosyal beceriler ve etik değerler gibi alanları da kapsar.\n* **Eşit Fırsat:** Kayıt silme, öğrencilerin eğitim fırsatlarını ortadan kaldırır ve bu durum, özellikle dezavantajlı pozisyondaki öğrenciler için büyük bir adaletsizliktir.\n* **Alternatif Çözümler:** Öğrencinin karşılaştığı zorluklar (örneğin, finansal sıkıntılar, aile sorunları) göz önünde bulundurularak, alternatif çözümler bulunabilir. Bu çözümler arasında rehberlik hizmetleri, burslar, destek programları ve psikolojik danışmanlık yer alabilir.\n\nKısacası, bir öğrencinin kaydını silmek, eğitim sisteminin temel amacına ters düşen ve öğrencilerin haklarını ihlal eden bir eylemdir.",
+        "answer": "Evet, katkı payı veya öğrenim ücretinin dört yıl üst üste ödenmemesi ve kayıt yenilenmemesi nedeniyle Senatonun kararı ve Yükseköğretim Kurulunun onayı ile öğrencilerin ilişikleri kesilebilir. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 14.159492492675781
+        "latency": 3.1560959815979004,
+        "recall_at_5": 1.0,
+        "mrr": 1.0
+      },
+      "ragless": {
+        "answer": "Bu sorunun cevabı, \"Hayır\" olacaktır.\n\n**Açıklama:**\n\nSoruda, bir öğrencinin kaydının silinip sililmeyeceği sorulduğunda, bu durumun öğrenci üzerindeki olumsuz etkilerini göz ardı etmek anlamına gelir. Kaydı silmek, öğrencinin eğitim hayatını ve geleceğini olumsuz etkileyebilir. Bu nedenle, kaydı silme kararı alınırken dikkatli olunmalı ve alternatif çözümler değerlendirilmelidir.\n\n**Ek Bilgi:**\n\nEğer bir öğrenci okuldan uzaklaştırmak gibi bir durum söz konusu ise, bu durumu daha yapıcı bir şekilde ele almak önemlidir. Örneğin, öğrencinin sorunlarını çözmek için rehber öğretmenlerden veya diğer uzmanlardan yardım alınabilir. Ayrıca, öğrencinin geleceği için uygun bir eğitim kurumuna kaydolması sağlanabilir.\n\nUmarım bu açıklama sorunuzu yanıtlamıştır.",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 3.5113627910614014
       }
     },
     {
@@ -365,18 +365,18 @@
         "onay"
       ],
       "rag": {
-        "answer": "Ders kaydı, öğrenci işleri bürosuna müracaat eden ve ders kayıtlarını AKSİS Öğrenci Otomasyon Sistemi üzerinden yapan öğrencilerin ders kayıtları, akademik danışman onayı olmadan geçerli sayılmaz. Danışman onayı olmadan ders kayıtları geçersizdir (Kaynak: Sıkça Sorulan Sorular).",
+        "answer": "Ders Alma (Seçme) ve Danışman Onayı işlemlerinin başlama süreçlerinde danışmanın onayı gerekmektedir. (Kaynak: 411.1.20f 2026 2027 eğitim öğretim yılı florence nightingale)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 7.3888092041015625,
+        "latency": 2.694279670715332,
         "recall_at_5": 1.0,
         "mrr": 0.2
       },
       "ragless": {
-        "answer": "Ders kayıt onayını genellikle **akademik danışmanınız** veya bölüm başkanınız verir. Ancak okulunuzun kurallarına ve prosedürlerine göre değişiklik gösterebilir. Bu nedenle, ders kaydınızı yaparken okulunuzun ilgili biriminden bilgi almanız en doğrusudur.",
-        "topic_hit": true,
+        "answer": "Bu sorunun cevabı, ders kayıt onayı veren kişi veya kurumdur. Bu genellikle bir okul, üniversite veya eğitim departmanı olabilir.",
+        "topic_hit": false,
         "content_hit": true,
-        "latency": 5.53092885017395
+        "latency": 1.2608628273010254
       }
     },
     {
@@ -392,18 +392,18 @@
         "yüzde yirmi"
       ],
       "rag": {
-        "answer": "Çift anadal yapmak isteyen öğrencinin, bu Yönergede belirlenen diğer şartların yanı sıra, kayıt olduğu yıldaki ilgili programın Yükseköğretim Kurulu tarafından belirlenen başarı sıralaması şartını da sağlamış olması gerekir. Başvurduğu döneme kadar anadal önlisans lisans programında alması gereken tüm dersleri başarmış olması, başvurusu sırasındaki AGNO sunun 4.00 üzerinden en az 3.00 olması ve anadal önlisans lisans programının ilgili sınıfında başarı sıralaması itibariyle en üst %20 de bulunması gerekir. [Çift Anadal Programı Yönergesi]",
+        "answer": "Çift anadal programına başvurabilmek için aşağıdaki şartların sağlanması gerekir:\n\n*   Ön lisans programlarında kayıtlı öğrenciler, en erken ikinci yarıyılının başında veya en geç üçüncü yarıyılın başında başvurabilir. (Kaynak: Çift Anadal Programı Yönergesi)\n*   Başvurduğu döneme kadar anadal önlisans lisans programında alması gereken tüm dersleri başarmış olması, not ortalamasının 4.00 üzerinden en az 3.00 olması ve anadal önlisans lisans programının ilgili sınıfında başarı sıralamasının en üst %20’de bulunması gerekir. (Kaynak: Çift Anadal Programı Yönergesi)\n*   Yetenek sınavı ile öğrenci alınan bir diploma programında çift anadal yapmak isteyen öğrenci, yapılacak yetenek sınavında da başarılı olmalıdır. (Kaynak: Çift Anadal Programı Yönergesi)\n*   Çift anadal yapacağı birimin Yönetim Kurulu kararı ile kabul edilir. (Kaynak: Çift Anadal Programı Yönergesi)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 10.762913465499878,
+        "latency": 5.343735933303833,
         "recall_at_5": 1.0,
-        "mrr": 1.0
+        "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Yanıt\" bölümünde yer almaktadır. Bu bölüm, soruyu yanıtlamaktadır ve bu da sorunun cevabıdır.",
-        "topic_hit": false,
+        "answer": "Bu sorunun cevabı, \"Yanıt\" bölümünde yer almaktadır. Cevap, \"Çift anadal başvuru şartları nelerdir?\" şeklindedir.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 4.236905097961426
+        "latency": 1.2506279945373535
       }
     },
     {
@@ -421,15 +421,15 @@
         "answer": "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.91013765335083,
+        "latency": 2.1218631267547607,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu soru biraz karmaşık. Cevap, \"başarısızlık\" kavramına dayanıyor. Başarısızlık, bir hedefi elde etmek için yapılan çabaların sonuç vermemesidir. Bu nedenle, \"başarısızlık\" oranını ölçmek için, başarıyı tanımlamanız gerekir.\n\nBaşarı, genellikle belirli bir standarda ulaşmak olarak tanımlanır. Örneğin, bir sınavda yüksek puan almak, bir projeyi zamanında tamamlamak veya bir hedefe ulaşmak gibi. Ancak, başarının tanımı kişiden kişiye değişebilir ve aynı zamanda bağlama bağlı olabilir.\n\nBu nedenle, \"başarısızlık\" oranını ölçmek için, başarıyı tanımlamanız ve ardından bu standarda ulaşma çabalarının sonuçlarını değerlendirmeniz gerekir. Başarısızlık oranı, başarıya ulaşmayan çabaların yüzdesidir.\n\nBu durumda, soru \"ÇAP yapmak için sınıf başarısında yüzde kaçta olmak gerekir?\" sorusuna cevap verirken, \"başarı\" kavramını tanımlamanız ve ardından bu başarıyı elde etmek için yapılan çabaların sonuçlarını değerlendirmeniz gerekir.\n\nAncak, sorunun kendisi de bir paradokstur. Çünkü \"başarısızlık\" oranı, başarıya ulaşma çabalarının başarısızlığına bağlıdır. Başarıya ulaşmak için yapılan çabalar başarısız olursa, \"başarısızlık\" oranı artar.\n\nBu nedenle, sorunun cevabı, \"başarısızlık\" kavramının tanımı ve bu kavramın ölçülmesiyle ilgilidir. Bu durumda, soruyu cevaplamak için daha fazla bilgiye ihtiyaç vardır.",
-        "topic_hit": true,
+        "answer": "Bu soru, bir programlama problemine ilişkin bir kavramı anlamayı gerektiriyor. İşte sorunun cevabı ve açıklaması:\n\n**Cevap:**\n\nBir programlama probleminde \"başarıda yüzde kaçta\" ifadesi, o programın belirli bir görevi ne kadar iyi yerine getirdiğini ölçmek için kullanılır. Bu durumda, programın başarısını değerlendirmek için, programın tamamlanan kısmını veya istenen sonucu elde etme oranını ifade eder.\n\n**Açıklama:**\n\n*   **Başarımde yüzde kaçta:** Bir programlama probleminde \"başarımde yüzde kaçta\" ifadesi, bir programın belirli bir görevi ne kadar iyi yerine getirdiğini ölçmek için kullanılır. Bu durumda, programın tamamlanan kısmını veya istenen sonucu elde etme oranını ifade eder.\n*   **Örneğin:** Bir programın 90%'ı başarılıysa, bu, programın tamamlanmış ve istenilen sonucu vermiştir anlamına gelir. Ancak, %10'luk bir hata payı olabilir.\n\nBu nedenle, \"başarımde yüzde kaçta\" ifadesi, bir programlama probleminde başarıyı ölçmek için kullanılan bir araçtır.\n\nUmarım bu açıklama soruyu anlamanıza yardımcı olmuştur!",
+        "topic_hit": false,
         "content_hit": false,
-        "latency": 18.7226779460907
+        "latency": 5.055481672286987
       }
     },
     {
@@ -444,18 +444,18 @@
         "yıl"
       ],
       "rag": {
-        "answer": "Anadal programından mezuniyet hakkı elde eden ve henüz çift anadal programını bitiremeyen öğrencilerin öğrenim süresi çift anadal diploma programına kayıt yaptırdığı eğitim öğretim yılından itibaren 2547 Sayılı Kanunun 44 üncü maddesinin (c) fıkrasında belirtilen azami süredir.\nKaynak: Çift Anadal Programı Yönergesi (Senato)",
+        "answer": "Çift anadal programından mezuniyet için öğrencilerin öğrenim süresi, çift anadal diploma programına kayıt yaptırdığı eğitim öğretim yılından itibaren 2547 Sayılı Kanunun 44 üncü maddesinin (c) fıkrasında belirtilen azami süredir. Kaynak: Çift Anadal Programı Yönergesi (Senato).",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 8.134979963302612,
+        "latency": 3.292076349258423,
         "recall_at_5": 1.0,
-        "mrr": 0.25
+        "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu soruyu yanıtlamak için, \"çift anadal programı\"nın ne olduğunu ve bunun nasıl tamamlanması gerektiğini anlamamız gerekiyor. Çift anadal programı, bir üniversitede iki ana dersi aynı anda alan öğrencilere verilir. Bu programın başarılı bir şekilde tamamlanabilmesi için, öğrencinin her iki ana dersini de başarıyla bitirmesi gerekir.\n\nBu nedenle, \"çift anadal programı\"nın ne zaman tamamlanması gerektiği sorusuna cevap vermek için, öğrencinin her iki ana dersini de ne kadar sürede tamamlayacağını bilmemiz gerekiyor. Bu süre, üniversitenin kurallarına ve öğrencinin çalışma temposuna bağlı olarak değişebilir.\n\nAncak genel olarak, \"çift anadal programı\"nın tamamlanması genellikle dört ila altı yıl arasında sürer. Öğrenci, her iki ana dersini de başarıyla bitirmek için yoğun bir şekilde çalışmalı ve ders programına uyum sağlamalıdır.\n\nUmarım bu açıklama sorunuzu yanıtlamıştır.",
+        "answer": "Bu soruyu yanıtlamak için, \"çift anadal programı\"nın ne olduğunu ve bu programın nasıl tamamlanması gerektiğini anlamamız gerekiyor. Çift anadal programı, bir öğrencinin iki farklı ana dalda (örneğin, bilgisayar mühendisliği ve fizik) dersler alıp mezun olmaya çalışmasını ifade eder. Bu tür bir programı başarıyla tamamlamak için belirli kurallar ve gereklilikler vardır.\n\nGenellikle, çift anadal programını tamamlamak için aşağıdaki adımlar izlenir:\n\n1.  **Programın Onayı:** Öğrenci, iki ana dalı birleştiren bir \"çift anadal\" programına başvuru yapar ve bu programın onayı alınır.\n2.  **Ders Seçimi:** Öğrenci, her iki ana dalda da alması gereken dersleri dikkatlice seçer. Bu dersler, her iki ana dalın gereksinimlerini karşılamalıdır.\n3.  **Kredi Transferi:** Bazı durumlarda, öğrenci bir ana daldan diğerine ders kredilerini transfer edebilir. Ancak bu durum, üniversitenin kurallarına ve politikalarına bağlıdır.\n4.  **Mezuniyet Koşulları:** Öğrencinin her iki ana dalda da gerekli dersleri alması, belirli not ortalamalarını sağlaması ve diğer mezuniyet koşullarını yerine getirmesi gerekir.\n\nBu nedenle, \"çift anadal programı\"nın tamamlanması için bir takvim veya zaman çizelgesi yoktur. Bu programın tamamlanma süresi, öğrencinin seçtiği derslere, not ortalamasına ve üniversitenin kurallarına bağlıdır.\n\nUmarım bu açıklama sorunuzu yanıtlamaya yardımcı olmuştur.",
         "topic_hit": false,
-        "content_hit": true,
-        "latency": 12.758229732513428
+        "content_hit": false,
+        "latency": 6.4618542194366455
       }
     },
     {
@@ -470,18 +470,18 @@
         "hayır"
       ],
       "rag": {
-        "answer": "Hayır, aynı anda birden fazla çift anadal programına kayıt yapılamaz. (Kaynak: Çift Anadal Programı Yönergesi (Senato), (7))",
+        "answer": "Hayır, aynı anda birden fazla çift anadal programına kayıt olunamaz. (Kaynak: Çift Anadal Programı Yönergesi (Senato), (7))",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 5.657408714294434,
+        "latency": 2.5889108180999756,
         "recall_at_5": 1.0,
         "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu, bir zorluktur! Bu sorunun cevabı \"Evet\" olmalıdır. Bunun nedeni, \"Anak\" ve \"Anak\" kelimelerinin aynı zaman diliminde kullanılabilmesi nedeniyle, bu soruyu çözmek için daha fazla bilgiye ihtiyaç vardır.",
+        "answer": "Evet, aynı anda birden fazla çift anadal programına kayıt edilebilir. Bu, özellikle çok sayıda farklı disiplin ve ilgi alanlı öğrenciye sahip olan üniversitelerde yaygın bir uygulamadır. Öğrenciler, kendi ilgi alanlarına ve hedeflerine en uygun programları seçmek için birden fazla programa kaydolabilirler.\n\nBu durumun bazı avantajları şunlardır:\n\n*   **Daha fazla seçenek:** Öğrencilerin daha geniş bir yelpazede programlardan seçim yapma olanağına sahip olurlar.\n*   **Uygunluk:** Öğrenciler, ilgi alanlarına ve kariyer hedeflerine en uygun programı seçebilirler.\n*   **Esneklik:** Öğrenciler, derslerini ve uzmanlıklarını zaman içinde değiştirebilirler.\n\nAncak, aynı anda birden fazla programa kayıt edilmesinin bazı dezavantajları da vardır:\n\n*   **Daha yüksek maliyet:** Birden fazla programa kayıt olmak, daha yüksek bir okul ücreti anlamına gelebilir.\n*   **Daha fazla çalışma yükü:** Öğrenciler, birden fazla program için ders çalışmak zorunda kalabilirler, bu da daha fazla çalışma yüküne neden olabilir.\n\nSonuç olarak, aynı anda birden fazla programa kayıt edilip edilmeyeceğinin kararı, öğrencinin bireysel ihtiyaçlarına ve hedeflerine bağlıdır.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 5.460460424423218
+        "latency": 5.0143280029296875
       }
     },
     {
@@ -497,18 +497,18 @@
         "2,00"
       ],
       "rag": {
-        "answer": "Anadol AGNO’sunun 4.00 üzerinden 3.00’ün altına düşmesi durumunda kaydının silinecektir. (Kaynak: Çift Anadal Programı Yönergesi)",
+        "answer": "Anadal AGNO'sunun 4.00 üzerinden 3.00’ün altına düşmesi durumunda kaydının silineceği belirtilmiştir (Kaynak: Çift Anadal Programı Yönergesi). Ayrıca, anadal AGNO'sunun bir defaya mahsus 4.00 üzerinden 2,50'ye kadar düşmesine izin verilmektedir. Ancak bu seviyenin ikinci kez 4.00 üzerinden 3.00’ün altına düşmesi durumunda kaydı silinir (Kaynak: Çift Anadal Programı Yönergesi).",
         "topic_hit": false,
-        "content_hit": false,
-        "latency": 6.237120866775513,
+        "content_hit": true,
+        "latency": 5.366000652313232,
         "recall_at_5": 1.0,
-        "mrr": 0.5
+        "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Yanıt: Yok\" olabilir. Çünkü bu bir mantık sorusu değil, sadece bir boşluk var ve onu doldurmanız gereken bir soru. Bu durumda, doğru cevap yoktur.",
-        "topic_hit": false,
+        "answer": "Çap ortalaması 3'e eşit altına düşerse kaydı silinir. Bu, genellikle otomobil endüstrisinde kullanılan bir güvenlik standardıdır.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 4.852105617523193
+        "latency": 1.2960684299468994
       }
     },
     {
@@ -521,18 +521,18 @@
         "2,50"
       ],
       "rag": {
-        "answer": "Yandal Programı Yönergesi’ne (kaynak: İstanbul Üniversitesi-Cerrahpaşa Yandal Programı Yönergesi) göre, yandal programa başvuru için öğrencilerin aşağıdaki şartları taşıması gerekmektedir:\n\n*   Bir diploma programına kayıtlı olmaları.\n*   Öngörülen şartları taşıyor olmaları.\n*   Yatay geçiş esaslarına uygun olarak başvurabilmeleri (kaynak: Sıkça Sorulan Sorular (Web)).",
-        "topic_hit": true,
-        "content_hit": false,
-        "latency": 8.606921195983887,
-        "recall_at_5": 1.0,
-        "mrr": 0.3333333333333333
-      },
-      "ragless": {
-        "answer": "Bu sorunun cevabı, \"Yanıt\" olarak belirtilen bölümdeki bilgidir. Bu, bir yanıtın veya cevapların bir özetini içerdiğini gösterir.",
+        "answer": "Yandal programına kabul, Fakülte Yönetim Kurulu kararı ile kesinleşir. Program koordinatörü MADDE 7 (1) Yandal programındaki derslerin belirlenmesinde ve bunların alınacağı yarıyılların planlanmasında öğrencilere yardımcı olmak ve yandal programının amacına uygun biçimde yürütülmesini sağlamak üzere, yandal yapılan Fakülte Dekanlığı tarafından öğretim üyeleri arasından bir Yandal Program Koordinatörü görevlendirilir. (2) Yandal Program Koordinatörü, öğrencilerin anadal programındaki danışmanları ve ilgili Bölüm Başkanlığı ile koordinasyon halinde görev yapar. Öğrencinin bu belgeyi alabilmesi için anadalındaki ağırlıklı genel not ortalamasının (AGNO) en az 2.00 olması gerekir. KAYIT TARİHLERİNE BAKINIZ. Yatay geçiş başvuru tarihlerine, web sayfamızda bulunan Akademik Takvim sekmesinden ulaşabilirsiniz.  Yandal Programı Yönergesi kaynak gösterilmiştir.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.44740891456604
+        "latency": 5.115503787994385,
+        "recall_at_5": 1.0,
+        "mrr": 0.5
+      },
+      "ragless": {
+        "answer": "Bu sorunun cevabı, şu şekilde olabilir:\n\n**Yanıt:**\n\n*   **Başlangıç:** Bir başlangıç noktası veya temel bilgi.\n*   **Yönalım:** Bu başlangıç noktasından elde edilen sonuçların veya bilgilerin yönü.\n*   **Sonuç:** Yanalım sonucunun bir sonucu veya sonuca ulaşılması.\n\nBu, bir yan programının nasıl çalıştığına dair bir açıklama sunuyor. Yan programlar genellikle bir dizi adımı takip eder ve her adımın bir sonucu vardır. Bu adımlar ve sonuçlar, yan programın amacına ulaşana kadar devam eder.\n\n**Ek olarak şunları ekleyebilirsiniz:**\n\n*   Yan programların, orijinal programın hatalarını düzeltmek veya daha iyi hale getirmek için kullanılabilmesi.\n*   Yan programların, orijinal programın belirli bir bölümünü yeniden kullanmak için kullanılabilmesi.\n*   Yan programların, orijinal programın davranışını değiştirmek için kullanılabilmesi.\n\nUmarım bu açıklama yardımcı olur!",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 3.9077014923095703
       }
     },
     {
@@ -548,15 +548,15 @@
         "answer": "Yandal programını başarıyla tamamlayan öğrencilere eğitim aldıkları alanda, diploma yerine geçmeyen Yandal Sertifikası düzenlenir. (Kaynak: Yandal Programı Yönergesi, Madde 8) Bu belgeyi alabilmek için anadalındaki ağırlıklı genel not ortalamasının (AGNO) en az 2.00 olması gerekir. (Kaynak: Yandal Programı Yönergesi, Madde 8)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 8.14914608001709,
+        "latency": 3.3410394191741943,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Yandal programını başarıyla tamamlayana ne verilir?\" kısmına işaret ediyor. Bu kısım, bir yandal programının ne olduğunu açıklıyor.\n\n**Yandal Programı:** Bir üniversitenin lisans veya yüksek lisans bölümlerine ek olarak sunulan, belirli bir alanda uzmanlaşmayı hedefleyen kısa süreli eğitim programıdır. Genellikle, öğrencilerin ilgi alanlarına göre daha derinlemesine bilgi edinmelerini sağlar ve kariyerlerine yön vermelerine yardımcı olur.\n\n**Yandal Programına Ne Verilir?**\n\nYandal programına, genellikle aşağıdaki şekillerde faydalar verilir:\n\n*   **Ücret İndirimi:** Yandal programın ücreti, lisans veya yüksek lisans ücretlerinden düşülür.\n*   **Kredi Transferi:** Yandal programdaki bazı dersler, lisans veya yüksek lisans programlarına transfer edilebilir ve öğrencilerin eğitim sürelerini kısaltabilir.\n*   **Özel Kaynaklara Erişim:** Yandal program öğrencileri, programın konusuyla ilgili özel laboratuvarlar, atölyeler veya uzmanlarla çalışma fırsatı bulabilir.\n*   **Staj İmkanları:** Yandal programlar genellikle ilgili sektörlerde staj imkanı sunar.\n\nBu nedenle, yandal programına \"ne verilir?\" sorusunun cevabı, üniversitenin yandal programının özelliklerine ve koşullarına göre değişiklik gösterir. Ancak, temel olarak öğrencilere eğitimlerini desteklemek ve kariyerlerine katkıda bulunmak amacıyla çeşitli faydalar sağlanır.",
+        "answer": "Bu bir bilmece! Cevap \"Zaman\"dır.\n\nSoruda şöyle deniyor: \"Bir şeyi yapmaya ne verilir?\"\n\nBu, bir şeyin değerini ölçmek için kullanılan birim olan zamanı ifade ediyor.\n\nUmarım bu bilmecenin cevabını bulmanıza yardımcı olmuştur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 18.07917881011963
+        "latency": 2.004464626312256
       }
     },
     {
@@ -573,15 +573,15 @@
         "answer": "Çift anadal tam bir diploma programıdır ve mezuniyette iki ayrı diploma verilir. Yandal ise sadece sertifika ile sonuçlanan ek bir programdır. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 6.142022132873535,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
+        "latency": 2.640594244003296,
+        "recall_at_5": 1.0,
+        "mrr": 0.25
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"temel fark\"ın ne olduğunu bilmemize bağlı. Temel fark, iki şeyin farklı olmasının nedeni olan özelliklerdir. Bu durumda, iki şeyin farklı olmasının nedeni olan özellikler şunlar olabilir:\n\n*   **Farklı türler:** İki şeyin farklı tür olması, onların farklı özelliklere sahip olduğu anlamına gelir. Örneğin, bir insan ve bir köpek aynı tür değildir, çünkü farklı davranışlara sahiptirler.\n*   **Farklı yaşlar:** İki şeyin farklı yaşlarda olması, onların farklı özelliklere sahip olduğu anlamına gelir. Örneğin, bir bebek ve bir yetişkin aynı tür değildir, çünkü farklı fiziksel yeteneklere sahiptirler.\n*   **Farklı cinsiyetler:** İki şeyin farklı cinsiyette olması, onların farklı özelliklere sahip olduğu anlamına gelir. Örneğin, bir erkek ve bir kadın aynı tür değildir, çünkü farklı üreme organlarına sahiptirler.\n\nBu nedenle, \"temel fark\"ın ne olduğunu bilmemiz, iki şeyin farklı olmasının nedeni olan özellikleri anlamamıza yardımcı olacaktır.",
+        "answer": "Bu sorunun cevabı, \"temel fark\"ın ne olduğunu anlamakla ilgilidir. Çiftler ve tekiler farklı kavramlardır. Çiftler, iki veya daha fazla kişi veya nesneden oluşur, yani her birinin karşılığı vardır. Örneğin, bir erkek ve bir kadın bir çift olabilir. Tekiler ise, yalnızca bir kişi veya neshtendir. Örneğin, bir kedi bir tekidir.\n\nBu nedenle, \"çiftler ve tekiler arasındaki temel fark\" şudur: **Çiftler iki veya daha fazla unsurdan oluşurken, tekiler yalnızca bir unsurdan oluşur.**\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 13.17506718635559
+        "latency": 2.9570722579956055
       }
     },
     {
@@ -594,18 +594,18 @@
         "süre verilir"
       ],
       "rag": {
-        "answer": "Anadal programından mezun olan ancak yandal programını tamamlayamayan öğrencilere, anadal programına ait lisans diplomaları verilir. Buna karşılık, yandal programı için ayrı Not Durum Belgesi (Transkript) düzenlenir. Yandal programından kayıt sildiren öğrenci aynı yandal programına tekrar kayıt yaptıramaz. (Kaynak: Yandal Programı Yönergesi)",
-        "topic_hit": false,
+        "answer": "Anadal programından mezuniyet hakkını elde eden ancak yandal programını bitiremeyen öğrencilere ilgili Yönetim Kurulunun kararı ile en fazla iki yarıyıl ek süre tanınır. (Kaynak: Yandal Programı Yönergesi, MADDE 5)",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 7.645153760910034,
+        "latency": 2.8313591480255127,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Yandal öğrencisi anadaldan mezun olduğunda yandalı, **sonlandırılır**. Yani, yandal programına devam etme hakkını kaybeder ve yandal derslerini tamamlayamaz.\n\nAncak, bazı durumlarda yandal diploması da alınabilir. Bu durum genellikle aşağıdaki koşulların sağlanması halinde geçerlidir:\n\n*   Yandal programının tüm derslerini başarıyla tamamlamış olmak\n*   Yandal programının gerektirdiği diğer şartları (örneğin, belirli bir not ortalamasını sağlamak) karşılamak\n\nBu durumda, yandal diploması, yandal programının sonunda alınan bir diplomadır ve anadolu bölümü mezduanla birlikte değerlendirilebilir.\n\n**Özetle:** Yandal programına devam etmek için gerekli olan şartları sağladığınızda, yandal diploması alabilirsiniz. Ancak, şartları sağlamadığınızda yandal programınız sonlandırılır.",
+        "answer": "Bu bir klasik paradoks! Yandal, öğrenciye (yani mezuna) bağlıdır. Mezun, yandalın bir parçası olarak öğrenmeye devam ederken, yandalın kendisi mezunun öğrenme sürecinden bağımsız değildir.\n\nÖzetle, cevap şudur: **Yandal, mezunun öğrenmeye devam etmesinden oluşur.**\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 11.071064233779907
+        "latency": 1.9779694080352783
       }
     },
     {
@@ -619,10 +619,10 @@
         "altına"
       ],
       "rag": {
-        "answer": "Anadal AGNO'sunun 4.00 üzerinden 3.00’ün altına düşmesi durumunda çift anadal programından kaydı silinir (Kaynak: Çift Anadal Programı Yönergesi). Yandal programı için ayrı not durum belgesi düzenlenir ve yandal programında başarılı olduğu dersler, anadal Not Durum Belgesinde gösterilmez ve AGNO'ya katılmaz (Kaynak: Yandal Programı Yönergesi). Bu nedenle, yandal programı nedeniyle AGNO'nun düşmesi durumunda kayıt silinir.",
-        "topic_hit": true,
+        "answer": "Anadal AGNO'sunun 4.00 üzerinden 3.00’ün altına düşmesi durumunda çift anadal programından kaydı silinir. (Kaynak: Çift Anadal Programı Yönergesi) Ayrıca, yandal programında başarılı olduğu dersler, anadal Not Durum Belgesinde (Transkript) gösterilmez ve AGNO ya katılmaz. (Kaynak: Yandal Programı Yönergesi)",
+        "topic_hit": false,
         "content_hit": true,
-        "latency": 9.451478719711304,
+        "latency": 3.381751537322998,
         "recall_at_5": 1.0,
         "mrr": 0.2
       },
@@ -630,7 +630,7 @@
         "answer": "AGNO, 100 altına düşerse kayıt silinir.",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 2.897571325302124
+        "latency": 0.9283037185668945
       }
     },
     {
@@ -646,18 +646,18 @@
         "akademik dönem"
       ],
       "rag": {
-        "answer": "Öğrenci, staj yapacağı işyerindeki yetkiliye Staj Defterinin (EK-2) son sayfasında yer alan Staj Sicil Fişi ni (EK-3) ve istenen diğer belgeleri staja başladığı güne kadar teslim etmelidir. Kaynak: Önlisans Staj Yönergesi",
+        "answer": "Öğrenci, staj yapacağı işyerindeki yetkiliye Staj Defterinin (EK-2) son sayfasında yer alan Staj Sicil Fişi ni (EK-3) ve istenen diğer belgeleri staja başladığı güne kadar teslim etmelidir. Kaynak: Önlisans Staj Yönergesi, MADDE 11",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 7.023102760314941,
+        "latency": 3.3012208938598633,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu soruyu cevaplamak için, \"ne zaman\" kelimesinin anlamını ve stajın bağlamını dikkate almalıyız. Staj sırasında bir şeyleri teslim etmek genellikle belirli bir zaman diliminde veya olayda gerçekleşen bir eylemi ifade eder.\n\nÖrneğin:\n\n*   \"Staj boyunca her hafta bir rapor teslim etmeliyim.\" (Belirli bir zaman dilimi)\n*   \"Proje tamamlandığında sunumu teslim etmeliyim.\" (Bir olayın gerçekleşmesi)\n\nBu nedenle, \"ne zaman\" kelimesini staj defterinin teslim edilmesini istediğiniz belirli zaman veya olayla ilgili olarak kullanmanız gerekir. Örneğin:\n\n*   \"Stajımın son haftasında defteri teslim etmeliyim.\"\n*   \"Projenin sonunda defteri teslim etmeliyim.\"\n\nUmarım bu açıklama, staj defterini ne zaman teslim etmeniz gerektiği konusunda size yardımcı olur!",
+        "answer": "Bu soruyu cevaplamak için, \"staj defterini ne zaman teslim etmeliyim?\" ifadesinin anlamını ve bağlamını anlamak gerekir. Bu ifade, bir stajyerin (genellikle öğrenci) bir staj süresince öğrendiği bilgileri veya deneyimleri, işverenine veya eğitmenine sunması gerektiğinde kullanılan bir ifadedir.\n\nBu durumda, \"teslim etmek\" kelimesi, bilgiyi aktarmak, raporlamak veya sunmak anlamına gelir. Yani, stajyerin öğrendiklerini ve geliştirdiklerini başkalarına (örneğin, işverenine veya eğitmenine) sunması gerekir. Bu genellikle bir rapor, sunum veya tartışma yoluyla yapılır.\n\nBu nedenle, \"staj defterini ne zaman teslim etmeliyim?\" sorusuna verebilecek en iyi cevap şudur: **Staj süresince öğrendiğiniz ve geliştirdiğiniz bilgileri, işvereninizle veya eğitmeninizle düzenli olarak paylaşmalısınız. Ayrıca, stajın sonunda bir rapor veya sunum hazırlayarak tüm deneyimlerinizi özetlemelisiniz.**\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": true,
-        "content_hit": true,
-        "latency": 11.728621006011963
+        "content_hit": false,
+        "latency": 4.314905405044556
       }
     },
     {
@@ -672,18 +672,18 @@
         "müfredat"
       ],
       "rag": {
-        "answer": "Mühendislik fakültesi öğrencileri için staj zorunludur. Staj zorunluluğu bölüme göre değişmektedir. (Kaynak: Sıkça Sorulan Sorular)",
+        "answer": "Staj zorunluluğu bölüme göre değişmektedir. Mühendislik fakültesi öğrencileri için staj zorunludur.",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 6.080270051956177,
+        "latency": 3.2646565437316895,
         "recall_at_5": 1.0,
         "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu, bir yanıtı oluşturmak için kullanılabilecek bir soru. Cevap, sorunun cevabı olabilir. Bu, bir döngüde olduğu gibi, bir şeyleri daha da karmaşık hale getirebilir.\n\nUmarım bu yardımcı olur!",
+        "answer": "Bu bir bilmece! Cevap \"sor\"dur.\n\nBilmece: Ben bir kelimeyim, soruyu cevaplıyorum. Kimim ben?",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.995485305786133
+        "latency": 1.2236413955688477
       }
     },
     {
@@ -698,18 +698,18 @@
         "iş günü"
       ],
       "rag": {
-        "answer": "Sınav sonuçlarına itirazlar, sonuçların ilanından itibaren beş iş günü içinde yazılı olarak ilgili birime yapılabilir. (Kaynak: Sıkça Sorulan Sorular)",
+        "answer": "Disiplin cezalarına karşı on beş gün içinde üniversite yönetim kuruluna itiraz edilebilir. (Kaynak: 2547 Sayılı Yükseköğretim Kanunu) İtirazın kabulü halinde yetkili disiplin amiri veya kurulu otuz gün içinde karar verir.",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 5.56195592880249,
+        "latency": 3.9920032024383545,
         "recall_at_5": 1.0,
         "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu soruya doğrudan cevap vermek zor. Çünkü \"itirazın reddi süreci\" ve bu sürecin ne kadar sürdüğü, ülkeye ve ilgili kurumun politikalarına göre değişebilir. Ancak genel olarak, bir karara itiraz etme süreci şu adımları içerir:\n\n1.  **İtiraz Bildiriminin Yapılması:** Karardan memnun olmayan kişi, yazılı olarak itirazını bildirir.\n2.  **İlk Değerlendirme:** İlgili kurum, itirazın doğruluğunu ve gerekçesini değerlendirir.\n3.  **Kararın Geri Gönderilmesi:** Kurum, itirazı kabul ederse kararı yeniden gönderir; reddederse itirazın nedenlerini açıklar.\n4.  **Son Değerlendirme (Gerekirse):** İtiraz sahibi, kurumun kararını sorgulayabilir ve son bir değerlendirme talep edebilir.\n\nBu süreçte geçen süre, itirazın karmaşıklığına, ilgili kurumun işleyişine ve yasal düzenlemelere bağlı olarak değişebilir. Genellikle, ilk değerlendirme ve kararın geri gönderilmesi için birkaç hafta ila ay kadar zaman gerekebilir. Son değerlendirme ise daha uzun sürebilir.\n\n**Önemli Not:** Bu sadece genel bir bilgi olup, belirli bir ülkedeki veya kurumdaki itiraz süreçleri farklılık gösterebilir. İtiraz sürecine başlamadan önce ilgili kurumun web sitesini ziyaret ederek veya doğrudan iletişime geçerek güncel bilgileri edinmeniz önemlidir.\n\nUmarım bu açıklama sorunuzu yanıtlamaya yardımcı olmuştur.",
-        "topic_hit": false,
+        "answer": "Staj değerlendirme sonucuna itiraz, **itiraza dayalı olarak en geç 7 gün içinde** yapılmalıdır. Ancak, bu süre stajyerin ve işveren/kurumun anlaşması doğrultusunda uzatılabilir. Bu nedenle, itirazın zamanlaması konusunda her iki taraf arasında net bir mutabakat sağlanması önemlidir.\n\n**Önemli Not:** İtiraz süresinin aşılması durumunda değerlendirme sonucu kesinleşmiş sayılır ve bu karara karşı daha sonra hukuki yollara başvurmak mümkün olmayabilir. Bu nedenle, itiraz sürecine zamanında başlamak ve tüm belgeleri eksiksiz sunmak büyük önem taşır.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 18.991719722747803
+        "latency": 2.844635486602783
       }
     },
     {
@@ -727,15 +727,15 @@
         "answer": "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 5.05737829208374,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
+        "latency": 2.3830959796905518,
+        "recall_at_5": 1.0,
+        "mrr": 0.25
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, bir haftanın 7 günü olduğunu ve stajın 1 veya 2 gün yapıldığını varsayarak, 5 ila 6 gün staj yapılabileceğini gösterir. Bu durumda, 5 veya 6 gün staj yapılabilir.\n\nUmarım bu yardımcı olmuştur!",
+        "answer": "Bu sorunun cevabı, bir haftada (7 gün) staj yapıldığında kaç gün staj yapılamayacağını sormaktadır. Bir haftada 7 gün vardır ve bu 7 günde staj yapmak mümkün değildir. Bu nedenle cevap **0 gün**'dür.\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": true,
-        "content_hit": true,
-        "latency": 6.194606781005859
+        "content_hit": false,
+        "latency": 1.7462854385375977
       }
     },
     {
@@ -753,15 +753,15 @@
         "answer": "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 4.988144159317017,
+        "latency": 2.5194320678710938,
         "recall_at_5": 1.0,
         "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, bu tür bir durumun nasıl ele alınması gerektiği konusunda net bir yanıt değildir. Ancak, bazı genel ilkeler şunlardır:\n\n*   **Sorumluluk:** Bir olayda kimin sorumluluğu olduğu belirlenmelidir. Bu, olayın doğasına ve ilgili tarafların eylemlerine bağlı olacaktır.\n*   **Sigorta:** Birçok kuruluş, hizmetleri veya faaliyetleri sırasında meydana gelen hasar veya yaralanmalara karşı sigortalıdır. Sigorta poliçesi, bir olayda kimin ödeme yapması gerektiğini belirleyebilir.\n*   **Hukuki danışmanlık:** Karmaşık durumlarda, hukuki danışmanlık almak faydalı olabilir. Bir avukat, olayın yasal sonuçlarını değerlendirebilir ve en iyi eylemi tavsiye edebilir.\n\nBu nedenle, bir olayda kimin ödeme yapması gerektiği konusunda kesin bir yanıt yoktur. Durumun özel koşullarına göre karar verilmelidir.",
+        "answer": "Bu sorunun cevabı, **sorumlu tarafın belirlenmediği için, bu konuda bir anlaşmazlık yaşanmaktadır.**\n\nGenellikle, bu tür durumlarda, sorumluluk paylaşıldığında veya net bir şekilde tanımlanmadığında, taraflar arasında bir anlaşmaya varmak veya yasal mercilere başvurmak en uygun çözüm olabilir. \n\nAncak, sorunun özünde, bu tür durumların önlenmesi için, sözleşmelerde ve hizmet anlaşmalarında, sorumlulukların açıkça belirtilmesi önemlidir.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 12.35166883468628
+        "latency": 2.3902132511138916
       }
     },
     {
@@ -775,18 +775,18 @@
         "tarihlerinde"
       ],
       "rag": {
-        "answer": "2024-2025 Eğitim-Öğretim Yılı Bahar Yarıyılı Kurum İçi Yatay Geçiş Başvurusu 28 Ocak 2025 tarihinde yapılmıştır. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge)",
+        "answer": "Yükseköğretim Kurumlarının belirlenen yatay geçiş kontenjanları ile başvuru ve değerlendirme takvimi, Yükseköğretim Kurulu Başkanlığı web sayfasında ilan edilir. Ön lisans derecesi verilen diploma programlarında yatay geçiş kontenjanları ile başvuru ve değerlendirme takvimi ikinci yarıyıl için Ocak ayı, üçüncü yarıyıl için ise Temmuz ayı içinde ilan edilir. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge, İlan MADDE 13)",
         "topic_hit": true,
         "content_hit": false,
-        "latency": 7.005234718322754,
+        "latency": 3.8484184741973877,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Yanıt: Bu soru çok karmaşık.\" olabilir. 😊\n\nCiddi olmasak da, bu tür soruların karmaşıklığını vurgulamaya yardımcı oluyor. Umarım bu yanıt size bir gülüşe neden olur!",
-        "topic_hit": false,
+        "answer": "Bu sorunun cevabını bulmak için, \"yatay geçiş başvuruları\"nın ne olduğunu anlamamız gerekiyor. Bu terim, genellikle bir ülkenin sınırlarını aşan veya farklı bir devlet tarafından kabul edilmeyen kişilerin hareketlerini ifade eder. Bu tür başvurular genellikle güvenlik endişeleri veya yasal uyumsuzluklar nedeniyle reddedilir.\n\nBu nedenle, \"yatay geçiş başvuruları\"nın ne zaman ve nereye yapılacağını bilmek önemlidir. Bu tür başvuruların genellikle belirli kurallara ve prosedürlere tabi olduğu ve bu kuralların ihlali durumunda reddedilebileceği unutulmamalıdır.\n\n**Özetle:**\n\n*   **Ne:** \"Yatay geçiş başvuruları\" terimi, bir ülkenin sınırlarını aşan veya farklı bir devlet tarafından kabul edilmeyen kişilerin hareketlerini ifade eder.\n*   **Ne Zaman:** Bu tür başvurular genellikle güvenlik endişeleri veya yasal uyumsuzluklar nedeniyle reddedilir.\n*   **Nereye:** Bu tür başvuruların belirli kurallara ve prosedürlere tabi olduğu ve bu kuralların ihlali durumunda reddedilebileceği unutulmamalıdır.\n\nUmarım bu açıklama, sorunuzun cevabını anlamanıza yardımcı olmuştur.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 5.270992279052734
+        "latency": 4.673339366912842
       }
     },
     {
@@ -801,18 +801,18 @@
         "2,00"
       ],
       "rag": {
-        "answer": "Kurum içi yatay geçiş için genel not ortalamasının (AGNO) en az 2.50 puan olması şarttır (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge, Madde 4).",
-        "topic_hit": true,
-        "content_hit": false,
-        "latency": 6.053550720214844,
+        "answer": "Yatay geçiş için genel not ortalamasının en az 2.00 olması gerekmektedir. (Kaynak: Önlisans ve Lisans Yönetmeliği)",
+        "topic_hit": false,
+        "content_hit": true,
+        "latency": 2.7426459789276123,
         "recall_at_5": 1.0,
-        "mrr": 1.0
+        "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"AGNO\" kelimesinin anlamı ve bu kelimeyi kullanarak ne yapmak istediğinizi bilmekle ilgilidir. Bu kelime, \"en iyi\" anlamına gelir. Yani, bir şey için en iyi sonucu elde etmek için AGNO kadar çaba göstermelisiniz.\n\nBu nedenle, yanıt şudur:\n\n*   **AGNO** (en iyi)\n*   **AGNO** (en iyi)\n*   **AGNO** (en iyi)\n\nUmarım bu yardımcı olur!",
-        "topic_hit": false,
+        "answer": "Kurum içi yatay geçişler için AGNO (Arabulucu, Gözlemci, Danışman, Operatör) sayısı, kurumun büyüklüğüne ve karmaşıklığına bağlı olarak değişir. Ancak genel bir kılavuz olarak en az **3-5** AGNO'nun olması önerilir.\n\nİşte bu sayının neden bu aralıkta olması gerektiğine dair daha detaylı bir açıklama:\n\n*   **Arabulucu (1):** Geçiş sürecinin koordinasyonunu sağlamak, paydaşlar arasında iletişimi kolaylaştırmak ve anlaşmazlıkları çözmek için kritik öneme sahiptir.\n*   **Gözlemci (1-2):** Geçişin ilerleyişini takip etmek, potansiyel sorunları erken tespit etmek ve veri toplamak için gereklidir. Farklı departmanlardan gözlemciler, farklı bakış açılarını sağlayabilir.\n*   **Danışman (1-2):** Geçiş sürecine uzmanlık bilgisi sunmak, riskleri değerlendirmek ve iyileştirme önerileri geliştirmek için önemlidir. Bu rol, genellikle deneyimli bir yönetici veya uzman tarafından üstlenilir.\n*   **Operatör (1):** Geçişin teknik ve operasyonel yönlerini yönetmek, gerekli sistemlerin entegrasyonunu sağlamak ve geçiş planının uygulanmasını takip etmek için gereklidir.\n\n**Ek olarak:**\n\n*   Daha büyük kurumlarda veya daha karmaşık geçişlerde, bu rolleri üstlenebilecek daha fazla AGNO'ya ihtiyaç duyulabilir.\n*   AGNO'ların etkinliği, eğitimleri, deneyimleri ve kurum içindeki ilişkileri ile de doğrudan ilgilidir.\n\n**Özetle:** En az 3-5 AGNO ile başlamak iyi bir başlangıç noktasıdır, ancak kurumun özel ihtiyaçlarına göre bu sayı ayarlanmalıdır.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 7.770419120788574
+        "latency": 6.520416259765625
       }
     },
     {
@@ -826,18 +826,18 @@
         "taban puan"
       ],
       "rag": {
-        "answer": "Evet, Merkezi Yerleştirme Puanı ile (Ek Madde 1) yatay geçiş yapmak mümkündür. Bu konuda daha detaylı bilgi için Ek Madde-1 Uyarınca Merkezi Yerleştirme Puanı ile Yatay Geçiş başlıklı kılavuzun TIKLAYINIZ. Kayıt dondurma işlemleri kayıtlı olduğunuz Fakülte Meslek Yüksekokulları tarafından yürütülmektedir. Kayıt dondurma talebinizi içeren dilekçenizi biriminiz öğrenci işlerine teslim etmeniz gerekmektedir.",
+        "answer": "Evet, Merkezi Yerleştirme Puanı ile (Ek Madde 1) yatay geçiş yapılabilir. Ancak bu geçiş için 2025-YKS Milli Sporcu kayıt tarihleri henüz belirtilmemiştir. Ayrıca, Ek Madde 1 kapsamında Merkezi Yerleştirme Puanı ile yatay geçiş hakkı kazanan öğrencilerin kayıt için gerekli belgeleri ve başvuru sürecini öğrenmek üzere 2024-2025 Eğitim-Öğretim Yılı Güz Yarıyılı Ek Madde-1 Uyarınca Merkezi Yerleştirme Puanı ile Yatay Geçiş Başvuru Kılavuzunu (03.07.2024) incelemeniz önerilir. [Kaynak: ogrenci.iuc.edu.tr]",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 9.557101726531982,
+        "latency": 4.904120206832886,
         "recall_at_5": 1.0,
-        "mrr": 0.3333333333333333
+        "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Evet\" veya \"Hayır\" şeklinde olacaktır.\n\n**Cevap:** Hayır.\n\n**Açıklama:**\n\n*   **Madde 1'in anlamı:** Madde 1, genellikle bir şeyi yapma veya izin verme anlamına gelir. Bu durumda, \"bir şeyin yapılmasına izin verilebilir mi?\" sorusu, \"yapılabilir mi?\" sorusuna karşılık gelmektedir.\n*   **Yatay geçiş:** Yatağın yatay olarak hareket etmesi mümkün değildir.\n\nBu nedenle, Madde 1'in bu bağlamdaki cevabı \"Hayır\" olacaktır.",
+        "answer": "Bu sorunun cevabı, \"Evet\" veya \"Hayır\" ile cevaplanabilir.\n\n*   **Evet**, çünkü \"ek maden\" (maden) kelimesi, \"ek\" (ek) kelimesini kullanarak bir şeyin ek olarak yapılmasına izin veriyor. Bu nedenle, \"ek maden\" (maden) kelimesi, \"ek maden\" (maden) kelimesinin anlamını değiştirebilir ve bu da \"ek maden\" (maden) kelimesinin anlamını değiştirerek, \"ek maden\" (maden) kelimesini kullanmaya izin veriyor.\n\n*   **Hayır**, çünkü \"ek maden\" (maden) kelimesi, \"ek\" (ek) kelimesini kullanarak bir şeyin ek olarak yapılmasına izin vermiyor. Bu nedenle, \"ek maden\" (maden) kelimesi, \"ek maden\" (maden) kelimesinin anlamını değiştiremiyor ve bu da \"ek maden\" (maden) kelimesinin anlamını değiştirmiyor.\n\nBu nedenle, sorunun cevabı, \"Evet\" veya \"Hayır\" ile cevaplanabilir.",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 7.799562215805054
+        "latency": 4.573571443557739
       }
     },
     {
@@ -852,18 +852,18 @@
         "yönetim kurulu"
       ],
       "rag": {
-        "answer": "Evet, yatay geçişle gelen öğrencilerin önceki diploma programından almış ve başarılı olduğu derslerin intibak işlemleri, yerleştirildikleri diploma programının bağlı bulunduğu birimin yönetim kurulunca yapılır. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge) Ancak bu durumun gerçekleşebilmesi için öğrencinin kayıt işlemi tamamlanıp, intibak işlemleri kesinleştikten sonra öğrencilerin bilgileri Öğrenci Otomasyon Sistemine girilir ve YÖKSİS e aktarımı sağlanır. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge)",
+        "answer": "İlgili öğrencinin önceki dönemlerde aldığı derslerin intibak işlemleri, yerleştirildiği diploma programının bağlı bulunduğu birimin yönetim kurulunca yapılır. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 9.645119905471802,
+        "latency": 2.703298568725586,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu soruya kesin bir evet veya hayır cevabı vermek mümkün değildir. Öğrencinin önceki derslerden muaf olup olmaması, birçok faktöre bağlıdır ve her okulun/üniversitenin kendi politikaları vardır. İşte bu konuyu etkileyen bazı önemli noktalar:\n\n**Muafiyetin Belirlendiği Faktörler:**\n\n* **Önceki Eğitim Seviyesi:** Öğrencinin lise veya önlisans eğitimindeki not ortalaması, muafiyet kararında büyük rol oynar. Yüksek bir not ortalamasına sahip öğrenciler, daha fazla dersi muaf olabilirler.\n* **Yeni Dersi İçeriği ve Geçmiş Derslerle İlişkisi:** Yeni alacakları dersin içeriğinin, öğrencinin önceki derslerde öğrendiği konularla ne kadar örtüştüğü önemlidir. Benzer konuları kapsayan dersler genellikle daha kolay muaf edilebilir.\n* **Okulun/Üniversitenin Politikaları:** Her okul veya üniversite, ders muafiyetlerini belirleyen kendi politikalarına sahiptir. Bu politikalar, not ortalaması eşikleri, derslerin içeriği ve diğer kriterleri içerebilir. Bazı okullar, belirli bir bölümdeki öğrencilere otomatik olarak bazı dersleri muaf edebilirken, bazıları daha katı kurallar uygulayabilir.\n* **Dersin Zorluk Derecesi:** Yeni alacakları dersin zorluk derecesi de muafiyet kararını etkileyebilir. Daha zorlu dersler genellikle daha yüksek not ortalaması gerektirebilir.\n* **Transfer Süreci ve Değerlendirme:** Öğrencinin transfer süreci sırasında, önceki eğitimindeki başarıları ve yeni derste başarılı olabilme potansiyeli değerlendirilir. Bu değerlendirme sonucunda muafiyet kararı verilebilir veya belirli derslerin alınması gerekebilir.\n\n**Muafiyet Nasıl Elde Edilir?**\n\n* **Önceden Bilgi Edinmek:** Öğrencinin, yeni alacağı dersten önce okulun/üniversitenin muafiyet politikalarını araştırması önemlidir.\n* **Danışmanla Görüşmek:** Okulun/üniversitedeki akademik danışmanıyla görüşerek, öğrencinin durumuna özel bir değerlendirme yapılması istenebilir.\n* **Gerekli Belgeleri Hazırlamak:** Öğrencinin, önceki eğitimindeki not transkriptlerini ve diğer ilgili belgeleri hazırlaması gerekebilir.\n\n**Sonuç olarak:**\n\nYatay geçiş yapan bir öğrencinin önceki dersleri muaf olup olmaması, birçok faktöre bağlıdır ve her okulun/üniversitenin kendi politikalarına göre değerlendirilir. Öğrencinin, durumu hakkında bilgi edinmek, danışmanla görüşmek ve gerekli belgeleri hazırlamak önemlidir.\n\n**Ek Bilgi:** Bu bilgiler genel bir rehber niteliğindedir. En doğru bilgiyi almak için ilgili okulun/üniversitenin akademik ofisinden veya bölüm başkanından bilgi almanız önerilir.",
-        "topic_hit": true,
+        "answer": "Evet, bu sorunun cevabı **evet**dir. Öğrencilerin önceki derslerdeki bilgileri (yani, \"muafiyet\"ler) yeni bir derse veya konuya geçiş yaparken kullanabilmeleri önemlidir. Bu, öğrenme sürecini daha verimli hale getirir ve öğrencilerin daha hızlı uyum sağlamasına yardımcı olur.\n\nBu tür sorular genellikle \"transfer\" kavramını test eder - yani, bir öğrenme ortamında edinilen bilgilerin başka bir öğrenme ortamına nasıl aktarıldığını.",
+        "topic_hit": false,
         "content_hit": true,
-        "latency": 32.54688501358032
+        "latency": 2.653108835220337
       }
     },
     {
@@ -880,15 +880,15 @@
         "answer": "Yaz okulunda bir dönemde en fazla 10 ulusal kredi (yaklaşık 15-16 AKTS) değerinde ders alınabilir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 6.416656494140625,
+        "latency": 3.6814115047454834,
         "recall_at_5": 1.0,
         "mrr": 0.5
       },
       "ragless": {
-        "answer": "Bu soru için bir cevap bulmak zor. \"En fazla\" kavramı, farklı insanların farklı beklentilere sahip olduğunu gösteriyor. Örneğin, bir öğrenci için \"en fazla\" olan şey, bir başka öğrenci için \"en az\" olan şey olabilir.\n\nAncak, soruyu daha iyi anlamak ve daha uygun bir yanıt vermek için bazı ek bilgiler sunabilirim:\n\n*   **Kontekst:** Bu soru hangi bağlamda soruldu? Örneğin, bir üniversite dersi mi, bir kredi kursu mu, yoksa başka bir eğitim programı mı?\n*   **Amaç:** Soru sorulmasının amacı nedir? Örneğin, öğrencilerin öğrenme kapasitesini ölçmek mi, yoksa belirli bir konuyu ne kadar iyi anladıklarını belirlemek mi?\n\nBu soruların cevaplarına göre, \"en fazla\" kavramını daha iyi tanımlayabilir ve daha uygun bir yanıt verebiliriz.\n\n**Örnek olarak:**\n\nEğer soru, bir üniversite dersi için soruluyorsa, \"en fazla\" olan şey, öğrencinin o konuyla ilgili bilgi düzeyini ve becerisini ifade edebilir. Bu durumda, öğrencinin sınav sonuçları, ödevleri ve sunumları gibi faktörler dikkate alınabilir.\n\nEğer soru, bir kredi kursu için soruluyorsa, \"en fazla\" olan şey, öğrencinin o konuyla ilgili deneyimini ve uzmanlığını ifade edebilir. Bu durumda, öğrencinin iş deneyimi, araştırma projeleri veya diğer ilgili faaliyetleri dikkate alınabilir.\n\nUmarım bu bilgiler, soruyu daha iyi anlamanıza ve daha uygun bir yanıt vermenize yardımcı olur.",
-        "topic_hit": false,
-        "content_hit": true,
-        "latency": 19.309566736221313
+        "answer": "Bu soru için, \"en fazla\" kelimesinin ne anlama geldiğini netleştirmek önemlidir. Bu durumda, \"en fazla\" kelimesi, bir dersin veya kredi değerinin mümkün olan maksimum miktarı anlamına gelir.\n\nBu nedenle, sorunun cevabı şudur:\n\n**Bir yaz okulunda en fazla kredi değerinde ders alınabilir.**\n\nBu cevap, sorunun anlamını ve amacını doğru bir şekilde ifade etmektedir. Ayrıca, \"en fazla\" kelimesinin kullanımını da vurgulamaktadır.\n\nUmarım bu açıklama yardımcı olmuştur!",
+        "topic_hit": true,
+        "content_hit": false,
+        "latency": 2.877265214920044
       }
     },
     {
@@ -903,18 +903,18 @@
         "taban puan"
       ],
       "rag": {
-        "answer": "Evet, İstanbul Üniversitesi-Cerrahpaşa önlisans ve lisans programı öğrencilerinin başka üniversitelerin yaz öğretiminde ders alabilmeleri mümkündür. Ancak bu durum aşağıdaki şartlara tabidir (Kaynak: 411.16y):\n\n*   Dersler, Fakülte Yönetimi Kurulu tarafından onaylanmalıdır (Kaynak: Yaz Okulu Duyurusu Maddesi 2).\n*   Alınacak derslerin ulusal kredi değerleri Fakültenin lisans programlarında okutulan derslerle aynı veya daha fazla olmalı ve ders içerikleri en az %70 oranında uyumlu olmalıdır (Kaynak: Yaz Okulu Duyurusu Maddesi 4).\n*   Dersler yaz döneminde en fazla 10 ulusal kredi alınabilir ve toplamda bir öğrenci eğitim süresi içinde yaz okulundan en fazla 20 ulusal kredi alabilir (Kaynak: Yaz Okulu Duyurusu Maddesi 7).",
+        "answer": "Evet, İstanbul Üniversitesi - Cerrahpaşa önlisans ve lisans programı öğrencilerinin başka üniversitelerin yaz öğretiminde ders alabilmeleri mümkündür. Bu durum, 411.16y Yönerge kapsamında düzenlenmiştir (Kaynak: 411.16y). Ancak bu süreçte bazı şartların yerine getirilmesi gerekmektedir. Başka bir üniversiteden yaz okulunda ders almak isteyen öğrencilerin, ekteki dilekçe örneğini doldurarak fakülte yönetim kurulu tarafından değerlendirilmesini sağlamalıdırlar (Kaynak: Yaz Okulu Duyurusu). Fakülte Yönetim Kurulu onayı olmadan alınan dersler kabul edilmeyecektir (Kaynak: Yaz Okulu Duyurusu, Madde 2-1). Ayrıca, alınan derslerin ulusal veya AKTS kredileri en az %70 oranında uyumlu olmalı ve ders içerikleri de buna uygun olmalıdır (Kaynak: Yaz Okulu Duyurusu, Madde 4-5). Ders alma talepleri, bölümün görüşü doğrultusunda fakülte tarafından değerlendirilecektir (Kaynak: Yaz Okulu Duyurusu, Madde 2-1).",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 14.307700634002686,
+        "latency": 6.516561508178711,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Evet\" veya \"Hayır\" şeklinde olacaktır. Soruyu daha iyi anlamak için biraz daha detay ekleyelim:\n\n*   **Sorunun Teması:** Bir şeyin başka bir yerden (örneğin, okuldan) alınabilir olup olmadığını sormaktadır. Bu, fiziksel bir nesneyi taşımakla veya bir fikri/bilgiyi aktarmayla ilgili olabilir.\n*   **Soruya Cevap Olarak Kullanılabilecek Örnekler:**\n\n    *   \"Bir kitap başka bir kütüphaneden alınabilir mi?\" (Bilgi transferi)\n    *   \"Bir araba başka bir yerden taşınabilir mi?\" (Fiziksel taşıma)\n    *   \"Yeni bir dil öğrenmek için başka bir ülkeden alınabilir mi?\" (Öğrenme/bilgi edinme)\n\n**Sonuç:** Sorunun cevabı, sorunun bağlamına ve ne tür bir \"alınma\" olduğu ile ilgili olacaktır. Ancak genel olarak, sorunun cevabı \"Evet\" olabilir çünkü birçok durumda, bir şeyin başka bir yerden alınması mümkündür.",
+        "answer": "Bu sorunun cevabı, \"Evet\" veya \"Hayır\" şeklinde olacaktır. Soruyu daha iyi anlamak için, sorunun bağlamını ve amacını bilmemiz gerekir. Örneğin, bu soru bir sınavda sorulmuş olabilir veya bir tartışma başlatmak amacıyla sorulmuş olabilir.\n\nEğer bu soru bir sınavda sorulmuşsa, öğrencilerin bu soruyu doğru cevaplayabilmesi için konu hakkında yeterli bilgiye sahip olması gerekir. Aynı şekilde, eğer bu soru bir tartışma başlatmak amacıyla sorulmuşsa, katılımcıların birbirlerine karşı argümanlarını sunabilmeleri ve kanıtlanabilir bilgilerle destekleyebilmeleri gerekir.\n\nBu nedenle, sorunun cevabını belirlemek için, sorunun bağlamını ve amacını anlamamız gerekir. Ancak, genel olarak, bu soruya \"Evet\" veya \"Hayır\" şeklinde cevap verilebilir.",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 13.37890887260437
+        "latency": 3.380650520324707
       }
     },
     {
@@ -928,18 +928,18 @@
         "agno hesabına"
       ],
       "rag": {
-        "answer": "Evet, yaz okulunda alınan dersler AGNO hesabına dahil edilir. (Kaynak: Yaz Okulu Duyurusu)",
+        "answer": "Evet, yaz okulunda alınan derslerin AGNO hesabına dahil olduğu belirtilmektedir (Kaynak: Yaz Okulu Duyurusu). Ancak, alınacak derslerin ulusal kredi sınırını aşmaması ve fakülte tarafından belirlenen uyumluluk şartlarını sağlaması gerekmektedir (Kaynak: Yaz Okulu Duyurusu).",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 5.107020378112793,
+        "latency": 3.408323287963867,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Evet, yaz okulundaki AGNO (Alkolün Genetik ve Nörolojik Etkileri) ile ilgili eğitimler, bireylerin alkol kullanım alışkanlıklarını ve sonuçlarını anlamaları açısından önemli bir etkiye sahip olabilir. İşte bu etkilerin potansiyel yolları:\n\n*   **Bilgi ve Farkındalık Artışı:** Yaz okulu dersleri, AGNO'nun karmaşıklığına dair bilgi sağlayarak katılımcıların alkolün beyin üzerindeki etkileri, genetik faktörlerin rolü ve uzun vadeli sağlık sonuçları hakkında farkındalıklarını artırabilir. Bu artan farkındalık, daha bilinçli kararlar almalarına yol açabilir.\n*   **Risk Değerlendirmesi:** Katılımcılar, kendi genetik yatkınlıklarını ve alkolün beyinleri nasıl etkileyebileceğini anlayarak, kişisel risklerini daha iyi değerlendirebilirler. Bu farkındalık, özellikle yüksek riskli gruplar için önemlidir.\n*   **Alışkanlıkları Değiştirme:** AGNO'nun etkileri hakkında bilgi sahibi olmak, bireylerin alkol tüketim alışkanlıklarını değiştirmelerine veya azaltmalarına yardımcı olabilir. Bilgi, motivasyonu artırabilir ve daha sağlıklı davranışlar geliştirmeye yönelik adımlar atmalarını sağlayabilir.\n*   **Toplumsal Farkındalık:** Yaz okulu dersleri, AGNO'nun toplumsal boyutunu da vurgulayarak, alkol kullanımının potansiyel sonuçları hakkında farkındalık yaratmaya yardımcı olabilir. Bu, daha sağlıklı bir toplum için daha fazla destek ve anlayışa yol açabilir.\n\n**Önemli Not:** Yaz okulundaki AGNO dersleri, bireyleri alkolün etkileri konusunda bilgilendirmek ve bilinçlendirmek için tasarlanmıştır. Ancak, bu dersler, alkol kullanımını teşvik etmez veya tavsiye etmez. Alkol kullanımıyla ilgili herhangi bir endişeniz varsa, lütfen bir sağlık uzmanına danışın.\n\nUmarım bu yanıt yardımcı olmuştur!",
-        "topic_hit": true,
-        "content_hit": true,
-        "latency": 24.061352252960205
+        "answer": "Bu soruyu yanıtlamak için, sorunun ne olduğunu ve nasıl yanıtlanması gerektiğini anlamak önemlidir. Sorunun özü şudur: \"Yaz okulu notlarını öğrenmek için hangi yöntemleri kullanmalıyım?\" Bu, bir öğrenci veya yazılı bir metin için bir yanıt oluşturmak için kullanılabilir.\n\nİşte bu soruya yanıt olarak hazırlanmış bir yanıt:\n\n**Yaz Okulu Notlarını Öğrenmek İçin Kullanabileceğiniz Yöntemler:**\n\n1.  **Ön Hazırlık:**\n    *   **Hedef Belirleme:** Yaz okuluna neden kayıt yaptınız? (Not yükseltmek, belirli bir konu öğrenmek vb.) Hedefinizi belirlemek, motivasyonunuzu artıracaktır.\n    *   **Zaman Yönetimi:** Ders programınızı ve diğer aktivitelerinizi gözden geçirin. Her ders için yeterli zaman ayırın ve dinlenmeyi unutmayın.\n    *   **Malzemeler Hazırlama:** Gerekli ders materyallerini (kitaplar, not defteri, kalem vb.) hazırlayın.\n\n2.  **Ders İçinde Aktif Katılım:**\n    *   **Not Alma:** Ders sırasında önemli noktaları ve ana fikirleri not alın. Kısa notlar almak, daha sonra tekrar gözden geçirmek için faydalı olacaktır.\n    *   **Soru Sormak:** Anlamadığınız konuları veya sorularınızı öğretmeninize sormaktan çekinmeyin.\n    *   **Tartışmalara Katılmak:** Ders arkadaşlarınızla tartışmalara katılın ve farklı bakış açılarını öğrenin.\n\n3.  **Ders Sonrası Tekrar ve Pekiştirme:**\n    *   **Notları Gözden Geçirme:** Ders sonrasında notlarınızı gözden geçirin ve eksik gördüğünüz yerleri tamamlayın.\n    *   **Özet Çıkarma:** Her dersin sonunda önemli noktaları özetleyin. Bu, bilgilerinizi pekiştirmenize yardımcı olacaktır.\n    *   **Tekrar Çalışma:** Düzenli olarak tekrar çalışın. Özellikle zorlandığınız konuları daha sık tekrar edin.\n\n4.  **Ek Kaynaklar Kullanmak:**\n    *   **Online Kaynaklar:** Ders materyallerini desteklemek için online kaynakları (videolar, makaleler, forumlar vb.) kullanın.\n    *   **Öğretmenle Görüşme:** Anlamadığınız konuları veya zorlandığınız dersleri öğretmeninizle görüşün.\n\n5.  **Motivasyonu Koruma:**\n    *   **Kendinize Güvenin:** Başarabileceğinize inanın ve kendinizi motive edin.\n    *   **Hedeflerinize Odaklanın:** Hedeflerinizi hatırlayın ve onlara ulaşmak için çaba gösterin.\n    *   **Dinlenmeyi Unutmayın:** Yorgun olduğunuzda ders çalışmaktan uzaklaşın ve dinlenin.\n\nBu yöntemleri kullanarak yaz okulunda başarılı olabilirsiniz. Başarılar!\n\n---\n\nUmarım bu yanıt, sorunuza kapsamlı bir şekilde cevap vermiştir. Başka sorularınız varsa lütfen çekinmeyin.",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 10.481151819229126
       }
     },
     {
@@ -953,18 +953,18 @@
         "tarihlerinde"
       ],
       "rag": {
-        "answer": "Daha önce alınan derslerden muafiyet için kayıt döneminde dilekçe ile ilgili birime başvurulması gerekmektedir. (Kaynak: Sıkça Sorulan Sorular)",
-        "topic_hit": true,
-        "content_hit": true,
-        "latency": 5.739711046218872,
+        "answer": "Muafiyet sınavları, eğitim-öğretim yılının başında açılan sınavlardır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 2.393026351928711,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Yanıt: Muafiyet başvuruları, genellikle bir kişinin belirli koşullar altında (örneğin, bir vaka veya durum) bir şeyi yapma hakkını elde etmeye çalıştığı zaman yapılır. Bu, bir yasal işlemde, bir izin talebinde veya başka bir durumda olabilir.\n\nUmarım bu açıklama yardımcı olur!",
+        "answer": "Bu sorunun cevabı, \"muafiyet başvuruları genellikle bir olay veya durumun ortaya çıkışından sonra yapılır.\" Bu, örneğin, bir suç işinden sonra, bir doğal felaket sonrası veya bir yasal değişiklikten sonra olabilir. Başka bir deyişle, bir şeyin meydana gelmesiyle ilgili olarak yapılan başvurular.\n\nUmarım bu açıklama yardımcı olur!",
         "topic_hit": true,
         "content_hit": false,
-        "latency": 5.779978275299072
+        "latency": 1.8814115524291992
       }
     },
     {
@@ -978,18 +978,18 @@
         "harf notu"
       ],
       "rag": {
-        "answer": "Alt yarıyıla yıla ait dersin izleyen yarıyılda yılda tekrar edilmesi durumunda alınan not, dersin tekrar edildiği mevcut Rev.00 yarıyıl yıl AGNO hesabına katılır. Hesaplama sonucu, virgülden sonra iki hane olacak şekilde yuvarlatılır. Başarısızlık durumu MADDE 23 (1) Yarıyıl esası uygulamasında herhangi bir yarıyıl, yıl esası uygulamasında ise herhangi bir yıl sonunda AGNO su 1,80 in altında kalan öğrenciler, sınamalı öğrenci sayılır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
+        "answer": "Muaf olunan dersler, not ortalaması hesaplamasına katılmaz. Başarısızlık durumunda yarıyıl veya yıl esasına göre AGNO'ya etkisi olur. Bu durumda, not virgülden sonra iki hane olacak şekilde yuvarlatılır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 10.848791599273682,
+        "latency": 3.0256824493408203,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"transkript\" kelimesinin anlamı ve kullanımıyla ilgilidir. Bir transkript, bir konuşma, toplantı veya etkinliğin yazılabilecek biçimindeki kaydıdır. Genellikle ses ve video kayıtlarının metin versiyonu olarak kullanılır.\n\n**Transkriptlerdeki Notların İşlenmesi:**\n\n*   **Önemli Noktalar:** Transkriptteki önemli noktaları, ana fikirleri, kararları veya tartışmaları belirlemek için notlar alınır.\n*   **Kilit Kelimeler/İfadeler:** Tartışılan temel konuları veya kullanılan önemli kelime ve ifadeleri işaretlemek için notlar kullanılır.\n*   **Katılımcılar:** Kimin konuştuğu veya hangi görüşlerin paylaşıldığı gibi bilgileri not almak önemlidir.\n*   **Zaman Damgaları:** Konuşmanın hangi noktasında hangi bilgi verildiğini belirlemek için zaman damgaları (saat ve dakika) not edilir.\n\n**Notların Transkriptte İşlenmesi:**\n\n1.  **Özetleme:** Transkripti okuduktan sonra, ana fikirleri ve önemli noktaları özetleyen bir rapor yazılır.\n2.  **Analiz:** Özetlenen bilgileri analiz ederek, konuşmanın anlamını ve amacını belirlemek için çalışılır.\n3.  **Raporlama:** Analiz sonuçlarını içeren bir rapor hazırlanır. Bu raporda, konuşmanın ana noktaları, katılımcıların görüşleri ve çıkarılan dersler yer alır.\n\nUmarım bu açıklama sorunuzu yanıtlamıştır!",
+        "answer": "Bu sorunun cevabı, \"transkript\" teriminin ne anlama geldiğini ve bir öğrencinin transkriptine nasıl erişebileceğini anlamayı içeriyor. İşte bu soruların cevapları:\n\n**Transkript Nedir?**\n\nBir transkript, bir dersin veya programın özetidir. Genellikle ders notlarının, sınav sonuçlarının, görevlendirmelerin ve diğer ilgili bilgilerin bir araya gelmesiyle oluşturulur. Transkriptler, öğrencilerin akademik başarılarını değerlendirmek, belirli konular hakkında bilgi edinmek veya kariyer planlaması yapmak için kullanılır.\n\n**Transkripte Nasıl Erişilir?**\n\n*   **Üniversiteler/Yüksekokullar:** Öğrenciler genellikle üniversitelerinin veya yüksekokullarının web siteleri üzerinden transkriptlerine erişebilirler. Bu işlem genellikle öğrencinin kimlik bilgilerini kullanarak yapılır ve transkript dijital olarak gönderilir.\n*   **E-Transkript Hizmetleri:** Bazı üniversiteler, transkript hizmeti veren özel şirketlerle anlaşmıştır. Bu şirketler aracılığıyla transkript istenebilir ve genellikle daha hızlı bir şekilde elde edilebilir.\n*   **Yazılı Talep:** Eğer dijital erişim mümkün değilse, bazı üniversiteler yazılı olarak transkript talep etme imkanı sunar. Bu durumda, öğrencinin kimlik bilgileriyle birlikte bir başvuru formu doldurması ve gerekli belgeleri (örneğin, kimlik kartı fotokopisi) göndermesi gerekir.\n\n**Transkriptte Ne Bulunur?**\n\nBir transkript genellikle aşağıdaki bilgileri içerir:\n\n*   Öğrencinin adı ve öğrenci numarası\n*   Alınan derslerin listesi (ders kodu, ders adı, kredi sayısı, öğretim üyesi)\n*   Her ders için notlar (sınıf ortalaması, sınav notları vb.)\n*   Derslerle ilgili diğer bilgiler (örneğin, dersin açıklaması, ders kitaplarının bilgileri)\n\nUmarım bu bilgiler transkriptler hakkında daha iyi bir anlayış kazanmanıza yardımcı olur.",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 18.546215534210205
+        "latency": 7.429369688034058
       }
     },
     {
@@ -1003,18 +1003,18 @@
         "aksis"
       ],
       "rag": {
-        "answer": "Kayıt yenileme işlemi, akademik takvimde belirlenen tarihlerde AKSİS sistemi üzerinden yapılır. Katkı payını ve/veya öğrenim ücretini ödemeniz durumunda kayıt yenilemenizi sağlar. Gerekli hallerde Üniversite Yönetim Kurulu tarafından bu sürelerde değişiklik yapılabilir. [Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği]",
+        "answer": "Kayıt yenileme işlemi, öğrenci otomasyon sistemi (AKSİS) üzerinden belirlenen tarihler arasında yapılır. Kayıt yenileme işlemini gerçekleştirecek öğrencilerin, katkı payı ve öğrenim ücreti ödemelerini yapabilmeleri için ders alma (seçme) ve danışman onayı işlemlerinin tamamlanmış olması gerekmektedir. [411.1.13F]",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 8.10700249671936,
+        "latency": 3.273357629776001,
         "recall_at_5": 1.0,
-        "mrr": 0.5
+        "mrr": 0.25
       },
       "ragless": {
-        "answer": "Bu sorunun cevabını oluşturmak için, bu tür bir yanıtın nasıl oluşturulacağını anlamak önemlidir. İşte bazı öneriler:\n\n*   **Soruyu anlayın:** Sorunun ne hakkında olduğunu ve neye cevap vermesini istediğini tam olarak anlayın.\n*   **Araştırma yapın:** Cevap bulmak için gerekli bilgileri araştırın. Bu, kitaplar, internet veya diğer kaynakları kullanmayı içerebilir.\n*   **Cevabınızı yazın:** Cevabınızın açık, öz ve doğru olduğundan emin olun.\n*   **Cevabınızı kontrol edin:** Cevabınızı göndermeden önce, hatalar veya yanlış bilgiler olmadığından emin olmak için dikkatlice okuyun.\n\nBu önerileri izleyerek, herhangi bir soruyu doğru ve etkili bir şekilde yanıtlayabilirsiniz.",
+        "answer": "Bu sorunun cevabı, \"soru\"nun kendisi. Bu bir paradoks! Soruyu sormak, onu cevaplamak için bir yol oluşturur, ancak aynı zamanda cevabın özünü de tanımlar.\n\n**Özetle:** Cevap, sorunun kendisidir.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 10.776764392852783
+        "latency": 1.6648271083831787
       }
     },
     {
@@ -1029,18 +1029,18 @@
         "e-Devlet"
       ],
       "rag": {
-        "answer": "Öğrenci belgesi AKSİS sistemi üzerinden veya öğrenci işleri biriminden alınabilir. kaynak: [Sıkça Sorulan Sorular]",
+        "answer": "Öğrenci belgesi AKSİS sistemi üzerinden veya öğrenci işleri biriminden alınabilir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 5.2618255615234375,
+        "latency": 2.172208786010742,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Öğrenci belgeleri genellikle aşağıdaki yerlerden temin edilebilir:\n\n*   **Okul/Üniversite Sekreteri Ofisi:** En yaygın ve güvenilir kaynaklardır. Öğrenci kimlik kartı, öğrenci numarası, transkript gibi belgeler buradan alınabilir.\n*   **E-Devlet:** E-Öğrenci Kimliği, öğrenci belgesi ve diğer ilgili belgeleri E-Devlet üzerinden temin edilebilir. (https://efatura.gov.tr/)\n*   **Okul/Üniversite Web Siteleri:** Bazı okullar ve üniversiteler, öğrenci belgelerine online erişim imkanı sunabilirler.\n*   **Öğrencinin Kayıtlı Olduğu Kurum:** Öğrencinin kayıtlı olduğu okul veya üniversitenin ilgili birimi (örneğin, öğrenci işleri) size gerekli belgeleri sağlayabilir.\n\nHangi belgeye ihtiyacınız olduğunu belirtirseniz daha spesifik bilgi verebilirim. Örneğin, \"E-Öğrenci Kimliği nereden temin edilebilir?\" gibi bir soru sorabilirsiniz.",
-        "topic_hit": true,
+        "answer": "Öğrenci belgeleri genellikle aşağıdaki yerlerden temin edilebilir:\n\n*   **Okul/Üniversite Sekreteri Ofisi:** En yaygın ve güvenilir kaynaklardır. Öğrenci kimlik kartı, öğrenci numarasını içeren belgeler, ders kayıtları, not tutma sistemleri gibi belgeleri buradan alabilirsiniz.\n*   **E-Devlet:** E-Okul sistemi üzerinden öğrenci bilgilerine erişilebilir ve bazı belgelerin elektronik kopyalarını indirebilirsiniz. (https://eokul.meb.gov.tr/)\n*   **Okul/Üniversite Web Siteleri:** Bazı okullar ve üniversiteler, web sitelerinde öğrenci belgelerine veya ilgili bilgilere ulaşım imkanı sunar.\n*   **Öğrencinin Kayıtlı Olduğu Bölüm Sekreteri:** Eğer okul büyükse, bölüm sekreterliği de öğrenci belgeleri konusunda yardımcı olabilir.\n\nHangi belgeye ihtiyacınız olduğunu belirtirseniz daha spesifik bir cevap verebilirim. Örneğin, \"öğrenci kimlik kartı nereden temin edilebilir?\" gibi bir soru sorabilirsiniz.",
+        "topic_hit": false,
         "content_hit": true,
-        "latency": 13.731621026992798
+        "latency": 4.177535057067871
       }
     },
     {
@@ -1055,18 +1055,18 @@
         "e-Devlet"
       ],
       "rag": {
-        "answer": "Transkript AKSİS sistemi üzerinden veya öğrenci işleri biriminden temin edilebilir. Kaynak: [Sıkça Sorulan Sorular]",
+        "answer": "Transkript AKSİS sistemi üzerinden veya öğrenci işleri biriminden temin edilebilir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 5.533788681030273,
+        "latency": 2.2886204719543457,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabını oluşturmak için, soruyu daha iyi anlamamız ve hangi bilgilerin gerekli olduğunu belirlememiz gerekiyor. Şu anda sadece bir soru var ve bu soru, \"sorunun cevabı nasıl bulunur?\" gibi bir soruyu sormuyor. Bu, soruyu çözmek için kullanmamız gereken adımları açıklıyor.\n\n**Soruyu Çözme Adımları:**\n\n1.  **Soruyu Anlayın:** Sorunun ne hakkında olduğunu ve neyi sormaya çalıştığını tam olarak anlayın.\n2.  **Gerekli Bilgileri Belirleyin:** Cevabı bulmak için hangi bilgilerin gerekli olduğunu belirleyin.\n3.  **Bilgiyi Toplayın:** Gerekli bilgileri toplayın. Bu, kitapları okumak, interneti araştırmak veya bir uzmandan yardım almak anlamına gelebilir.\n4.  **Cevabı Oluşturun:** Topladığınız bilgileri kullanarak cevabınızı oluşturun.\n5.  **Kontrol Edin:** Cevabınız doğru ve mantıklı olup olmadığını kontrol edin.\n\nBu adımları izleyerek, herhangi bir soruyu çözebiliriz. Bu durumda, soruyu anlamak, gerekli bilgileri belirlemek ve bilgiyi toplamak için zaman ayırmamız gerekiyor.\n\nUmarım bu açıklama yardımcı olmuştur! Başka sorularınız varsa lütfen çekinmeyin.",
+        "answer": "Bu soruların cevabı, sorunun ne olduğunu ve hangi bilgiyi aradığını anlamak için daha fazla bağlama ihtiyaç vardır. Lütfen soruyu veya sorunu daha ayrıntılı olarak açıklayın, böylece size yardımcı olabilirim.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 16.19808578491211
+        "latency": 1.384981393814087
       }
     },
     {
@@ -1080,18 +1080,18 @@
         "aksis"
       ],
       "rag": {
-        "answer": "Bu konuyla ilgili akademik takvimde net bir tarih bulunamadı. (Sadece öğrencileri ilgilendiren ana sınav ve kayıt tarihleri listelenmektedir.) Lütfen dönemi belirterek tekrar sorunuz.",
-        "topic_hit": false,
-        "content_hit": false,
-        "latency": 0.15072941780090332,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
-      },
-      "ragless": {
-        "answer": "Akademik takvime ulaşmanın birkaç yolu vardır:\n\n*   **Üniversitenizin web sitesi:** Çoğu üniversite, akademik takvimlerini ana web sitelerinde \"Hakkımızda\", \"Genel\" veya \"Takvim\" gibi bölümlerde yayınlar.\n*   **Üniversitenizin öğrenci portalı/intranet'i:** Öğrenci portalınızda genellikle akademik takvime doğrudan erişiminiz olur.\n*   **Akademik biriminizin web sitesi:** Bölümünüzün veya fakültenizin web sitelerinde de takvim bilgilerine ulaşabilirsiniz.\n*   **Üniversiteye ait iletişim kanalları:** Üniversitenin e-posta listeleri, sosyal medya hesapları veya öğrenci hizmetleri departmanı aracılığıyla takvime dair duyurular yapılabilir.\n\nHangi üniversiteden bahsettiğinizi belirtirseniz size daha spesifik bir kaynak sağlayabilirim.",
+        "answer": "Akademik takvim İstanbul Üniversitesi-Cerrahpaşa nın resmi web sitesinden ve öğrenci işleri sayfasından erişilebilir. [Kaynak: Sıkça Sorulan Sorular] Ayrıca, farklı yıllara ait akademik takvimlere ogrenci.iuc.edu.tr adresinden ulaşılabilir. [Kaynak: 2025-2026 Lisansüstü Akademik Takvim]",
         "topic_hit": true,
         "content_hit": true,
-        "latency": 11.538530111312866
+        "latency": 3.2155168056488037,
+        "recall_at_5": 1.0,
+        "mrr": 1.0
+      },
+      "ragless": {
+        "answer": "Bu soru, \"Yanıt\" olarak belirtilen bir cevabın yerini alıyor. Bu nedenle, bu bölüm boş kalacaktır. Cevap, sorunun içeriğine ve bağlamına göre oluşturulmalıdır. Örneğin, sorunun cevabı, belirli bir konu hakkında bilgi sağlayabilir veya bir problemi çözebilir.\n\nAncak, sorunun kendisi de bir soru olduğundan, \"Yanıt\" bölümü boş bırakılmıştır.",
+        "topic_hit": false,
+        "content_hit": false,
+        "latency": 2.0138630867004395
       }
     },
     {
@@ -1105,18 +1105,18 @@
         "evrak kayıt"
       ],
       "rag": {
-        "answer": "Ders muafiyeti talebiniz, kayıt tarihinden itibaren on iş günü içinde kayıt yaptırdığınız Fakülte Öğrenci İşleri Bürosuna verilmesi gerekir. (Kaynak: DGS Kayıt Kılavuzu, Madde 2)",
+        "answer": "Ders muafiyeti talebiniz, kayıt tarihinden itibaren on iş günü içinde kayıt yaptırdığınız Fakülteye yapılmalıdır. (Kaynak: DGS Kayıt Kılavuzu) Ayrıca, ders muafiyeti işlemleri İstanbul Üniversitesi-Cerrahpaşa İntibak ve Muafiyet İşlemleri Yönergesi doğrultusunda yürütülür. (Kaynak: İntibak ve Muafiyet İşlemleri Yönergesi)",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 6.430714130401611,
+        "latency": 3.2509958744049072,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Ders muafiyeti için nereye dilekçe vermeliyim?\" şeklinde. Bu soru, ders muafiyetinin nasıl başvurulacağını veya sağlanacağını sorgulamaktadır. Cevap ise, bu başvurunun hangi kurumlara veya yetkililere yapılması gerektiğini belirtir.\n\nUmarım bu açıklama yardımcı olmuştur!",
-        "topic_hit": true,
+        "answer": "Bu soruyu yanıtlamak için, \"dilekçe\" ve \"muafiyet\" kavramlarını anlamamız gerekiyor.\n\n**Dilekçe:** Bir dilekçe, bir konuyla ilgili resmi bir yazıdır. Genellikle bir şahıs veya kurum tarafından belirli bir amaçla hazırlanır ve gönderilir. Dilekçeler genellikle bir başvuru, şikayet, bilgi talebi veya öneri gibi içerir.\n\n**Muafiyet:** Muafiyet ise, bir zorunluluktan veya kuraldan kurtulma durumudur. Bu durumda, bir kişi veya kurum belirli bir şartı yerine getirmediği için bir kuralın uygulanmasından muaf tutulabilir.\n\nBu iki kavramı bir araya getirdiğimizde, sorunun cevabı şu şekilde ortaya çıkar: **Dilekçe ile muafiyet başvurusu yapmak, bir konuda belirli bir zorunluluğu veya kuralı yerine getirmediğinizi resmi olarak ifade etmek ve bu nedenle o zorunluluktan veya kuraldan kurtulmak için yapılan bir başvurudur.**\n\n**Örnek:** Bir öğrenci, okul tarafından belirlenen bir sınavda başarılı olamadığı için, ders muafiyeti başvurusunda bulunabilir. Bu başvuruyu dilekçe şeklinde hazırlayarak, okul yönetimine sunar.\n\nUmarım bu açıklama sorunuzu yanıtlamıştır!",
+        "topic_hit": false,
         "content_hit": false,
-        "latency": 6.493185520172119
+        "latency": 4.966442108154297
       }
     },
     {
@@ -1129,18 +1129,18 @@
         "olmaması gerekir"
       ],
       "rag": {
-        "answer": "Yatay geçiş için gerekli şartlardan biri, öğrencinin disiplin cezası almamış olmasıdır. (Kaynak: Yatay Geçiş Esaslarına İlişkin Yönerge, Madde 12) Disiplin cezası alan bir öğrenci, bu nedenle yatay geçiş yapamaz.",
-        "topic_hit": false,
+        "answer": "Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği madde 30 uyarınca, öğrencilerin Yükseköğretim Kurumları Öğrenci Disiplin Yönetmeliği hükümlerine göre yükseköğretim kurumundan çıkarma cezası almış olmaları halinde ilgili birim yönetim kurulu kararıyla Üniversite ile ilişikleri kesilir. Bu nedenle disiplin cezası alan bir öğrencinin ÇAP (Katkı Payı) yapması mümkün değildir.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 6.8941566944122314,
+        "latency": 3.4246819019317627,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, \"Evet\" ve \"Hayır\" olarak ikiye bölünmüştür.\n\n**Evet:**\n\n*   **Öğrenci ÇAP'ı (Çapraz Öğrenci Programı):** Bu programlar genellikle üniversite derslerini yüksek okullardan öğrenen öğrencilere sunar.\n*   **Ek Dersler/Ek Çalışma:** Öğrenciler, bu programlar aracılığıyla ek dersler veya ek çalışma imkanları elde edebilirler.\n*   **Öğrenme Ortamı:** Öğrencilerin öğrenme ortamı genellikle üniversitelerin dershaneleri veya benzeri yerlerdir.\n\n**Hayır:**\n\n*   **Sınavlara Giriş:** ÇAP programı öğrencileri, üniversite sınavlarına (örneğin YGS, LYS, YÖKSÜS) doğrudan giremezler.\n*   **Üniversiteye Yerleşme:** Bu programlar, üniversitelere yerleşmek için bir yol değildir.\n*   **Temel Eğitim:** ÇAP programı öğrencileri, temel üniversite eğitimini üniversitelerden alırlar.\n\n**Özetle:** ÇAP programı, öğrencilerin üniversite derslerini yüksek okullardan öğrenmelerine olanak sağlayan bir araçtır, ancak üniversite sınavlarına girmeye veya üniversiteye yerleşmeye doğrudan bir yol değildir.\n\nUmarım bu açıklama yardımcı olmuştur!",
-        "topic_hit": false,
+        "answer": "Bu soruyu yanıtlamak için, \"ÇAP\"ın ne anladığını ve bunun nasıl bir disiplin olduğunu anlamamız gerekiyor. \"ÇAP\", muhtemelen \"Çapraz Disiplin Uygulama Programı\" veya benzeri bir şey anlamına geliyor. Bu durumda, bir öğrencinin farklı disiplinlerden bilgi ve beceriler edinerek daha iyi sonuçlar elde etmesini sağlamak için yapılan bir uygulamadır.\n\nBu nedenle, sorunun cevabı şu şekilde olabilir:\n\n**Evet, bir öğrenci ÇAP (Çapraz Disiplin Uygulama Programı) aracılığıyla daha başarılı olabilir.** Çünkü bu program, öğrencinin farklı disiplinlerdeki bilgileri ve becerilerini birleştirmesini sağlar. Bu da öğrencinin problem çözme yeteneğini, yaratıcılığını ve eleştirel düşünme becerisini geliştirir.\n\n**Örnekler:**\n\n*   Bir mühendis, yazılım geliştirme konusunda bilgi sahibi olabilir.\n*   Bir doktor, pazarlama stratejileri hakkında bilgi sahibi olabilir.\n*   Bir sanatçı, matematiksel prensipleri kullanarak eserler yaratabilir.\n\nBu tür disiplinler arası yaklaşımlar, günümüzün karmaşık sorunlarına çözüm bulmak için önemlidir.\n\n**Sonuç olarak:** ÇAP programları, öğrencilerin daha iyi hazırlanması ve gelecekteki başarılarını artırması için harika bir araçtır.",
+        "topic_hit": true,
         "content_hit": false,
-        "latency": 16.416144609451294
+        "latency": 5.028332471847534
       }
     },
     {
@@ -1153,18 +1153,18 @@
         "yükseköğretim kurumları"
       ],
       "rag": {
-        "answer": "Sınavlarda kopya yapan, kopya girişiminde bulunan veya kopyaya yardım edenler ile sınav kâğıtlarının değerlendirilmesi sırasında kopya yaptığı ya da yardım ettiği tespit edilen öğrenciler o sınavdan sıfır (0) almış sayılır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği, Madde 6)",
+        "answer": "Sınavlarda kopya yapan, kopya girişiminde bulunan veya kopyaya yardım edenler ile sınav kâğıtlarının değerlendirilmesi sırasında kopya yaptığı ya da yardım ettiği tespit edilen öğrenciler o sınavdan sıfır (0) almış sayılır. (Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği)",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 7.516613006591797,
+        "latency": 2.9818902015686035,
         "recall_at_5": 1.0,
         "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu soru için bir cevap yok. Bu, sorunun kendisiyle ilgili bir şeydir. Cevap, soruyu sormayan kişi tarafından verilmelidir.",
-        "topic_hit": false,
-        "content_hit": false,
-        "latency": 4.2469892501831055
+        "answer": "Bu bir zorluk! Cevap, sınavda kopya yapmak için kullanılan yöntemler ve bu yöntemlerin sonuçları hakkında bilgi gerektiriyor. İşte olası cevaplar ve açıklamaları:\n\n**1. Genel Cevap:**\n\n\"Sınavda kopya yapmak, öğrencinin akademik dürüstlükten uzak durmasıdır ve genellikle başarısızlık, uyarı, hatta okuldan atılma gibi cezalarla sonuçlanır.\"\n\n**2. Detaylı Cevap (Örnekler):**\n\n*   **Başarısızlık:** Kopya çeken öğrenci, sınavda başarısız olabilir ve not ortalaması düşebilir.\n*   **Uyarı:** Öğrenciye yazılı veya sözlü olarak uyarı verilebilir.\n*   **Ceza:** Sınavdan geçersiz kılma, okulun disiplin kurallarına göre ceza verme (uyarma, kınama, uzaklaştırma vb.)\n*   **Akademik Dürüstlük Eksikliği:** Kopya yapmak, öğrencinin akademik dürüstlük anlayışını zayıflatır ve gelecekteki çalışmalarında da sorunlara yol açabilir.\n\n**3. Daha Uzun Cevap (Nedenleri ve Sonuçları):**\n\n\"Sınavda kopya yapmak, öğrencilerin bilgi eksikliğinden, sınav stresi nedeniyle veya başarısızlık korkusundan kaynaklanabilir. Ancak bu durum, akademik dürüstlükten uzak durmak ve başkalarının emeğine saygısız olmak anlamına gelir. Sonuç olarak, kopya çeken öğrenci genellikle sınavda başarısız olur, akademik itibarını zedeler ve gelecekteki eğitim hayatında zorluklarla karşılaşabilir.\"\n\n**Önemli Not:** Bu cevaplar genel bir çerçeve sunmaktadır. Sınavın türüne (lise, üniversite, vb.) ve okulun disiplin kurallarına göre farklı sonuçlar doğurabilir.\n\nUmarım bu açıklama yardımcı olmuştur!",
+        "topic_hit": true,
+        "content_hit": true,
+        "latency": 6.782633304595947
       }
     },
     {
@@ -1179,18 +1179,18 @@
         "harç"
       ],
       "rag": {
-        "answer": "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin.",
-        "topic_hit": false,
-        "content_hit": false,
-        "latency": 4.989367246627808,
-        "recall_at_5": 0.0,
-        "mrr": 0.0
-      },
-      "ragless": {
-        "answer": "Bu sorunun cevabı, öğrencinin kimlik kartının kaybedilmesi durumunda yapılması gerekenleri açıklar. İşte bu konuda dikkat edilmesi gerekenler:\n\n1.  **Kaydı Bildirin:** Öğrenciyi hemen okulun ilgili birimine (varsa güvenlik görevlisi veya öğrenci işleri) kaydettirmesi gerekir.\n2.  **İmza ve Açıklama:** Kayıt sırasında, kimlik kartının kaybedilme nedeni hakkında imza alınır ve açıklama yapılır. Bu, gelecekteki sorunları önlemeye yardımcı olur.\n3.  **Yeni Kimlik Kartı Başvurusu:** Öğrencinin yeni bir kimlik kartı başvurusunda bulunması gerekir. Bunun için gerekli belgeler okul tarafından sağlanabilir veya öğrenciye bilgi verilir.\n4.  **Kimlik Kartı Yenileme Süreci:** Yeni kimlik kartı başvurusu yapıldıktan sonra, okulun belirlediği prosedüre göre kimlik kartının yenilenmesi yapılır.\n\n**Ek Bilgiler:**\n\n*   Bazı okullar, kimlik kartı kaybı durumunda öğrenciye bir uyarı mektubu gönderir.\n*   Öğrencinin kimlik kartı kaybolması durumunda, okulun güvenlik politikalarına uyması önemlidir.\n*   Kimlik kartının kaybedilmesi durumunda, öğrencinin okulda geçireceği süre boyunca kimlik belgesi olmadan derslere katılması mümkün olmayabilir. Bu nedenle, kimlik kartını güvenli bir şekilde saklamak veya yedek bir kimlik belgesine sahip olmak önemlidir.\n\nUmarım bu bilgiler yardımcı olur!",
+        "answer": "Kimlik kartınızı kaybettiğinizde öğrenci işleri birimine dilekçe ile başvurarak yeni kimlik kartı çıkartabilirsiniz. İÜC Kart ile ilgili işlemler için Kart İşlemleri birimine başvurmanız gerekmektedir. (Kaynak: Sıkça Sorulan Sorular)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 18.868215799331665
+        "latency": 2.680006980895996,
+        "recall_at_5": 1.0,
+        "mrr": 1.0
+      },
+      "ragless": {
+        "answer": "Öğrenci kimlik kartı kaybolduğunda yapılması gerekenler şunlardır:\n\n1. **Hemen Bildirimde Bulunun:** Kaybın gerçekleştiği okula veya öğrenci işlerine en kısa sürede haber verin. Bu, kartınızın bulunma olasılığını artırabilir ve okulunuzun gerekli işlemleri başlatmasına yardımcı olur.\n2. **Kaybolduğunu Onaylayın:** Okulunuzun kayıp bildirim formunu doldurun. Bu formda kimlik kartının kaybolduğu tarih, saat ve olası yerler hakkında bilgi vermeniz istenecektir.\n3. **Yeni Bir Kimlik Kartı Başvurusu Yapın:** Kayıp bildirimi sonrası okulunuz size yeni bir öğrenci kimlik kartı başvuru formu verecektir. Bu formda gerekli bilgileri (adınız, soyadınız, doğum tarihiniz, sınıfınız vb.) eksiksiz ve doğru bir şekilde doldurun.\n4. **Gerekli Belgeleri Hazırlayın:** Yeni kimlik kartı için genellikle aşağıdaki belgeler istenir:\n    *   Öğrenci Kimlik Kartı Başvuru Formu\n    *   Kimliğinizi Kanıtlayan Belge (Nüfus Cüzdanı, Pasaport vb.)\n    *   Öğrenci Belgesi (Transkript veya Öğrenci Kayıt Belgesi)\n5. **Ücreti Ödeyin:** Yeni kimlik kartı başvuru ücretini ödeyin. Ücret okulunuza göre değişebilir.\n6. **Kimlik Kartınızı Alın:** Başvurunuzun ardından yeni kimlik kartınız okul tarafından size teslim edilecektir.\n\n**Ek Bilgiler:**\n\n*   Bazı okullar, kayıp kimlik kartı için bir ücret talep edebilir. Bu ücretin tutarı okulunuza göre değişir.\n*   Kimlik kartınızı kaybetmeniz durumunda, bazı durumlarda geçici bir öğrenci belgesi almanız gerekebilir. Bu belgeyi kullanarak derslere devam edebilirsiniz.\n\n**Önemli:** Okulunuzun kayıp kimlik kartı prosedürlerini öğrenmek için okulunuzun öğrenci işleri bölümüne danışmanız önemlidir. Her okulun bu konuda farklı kuralları olabilir.",
+        "topic_hit": true,
+        "content_hit": true,
+        "latency": 7.6361000537872314
       }
     },
     {
@@ -1204,18 +1204,18 @@
         "bakanlar kurulu"
       ],
       "rag": {
-        "answer": "Yaz okulu öğretim ücreti, Yükseköğretim Kurulunca belirlenecek miktarda alınır. Bu ücret, toplam ikiyüzseksen ders saatine karşılık olmak ve 46 ncı madde uyarınca belirlenen yıllık öğrenci katkı payının iki katını aşmamak üzere tespit edilir. (Kaynak: 2547 Sayılı Yükseköğretim Kanunu) Ayrıca, normal süresi içinde mezun olamayan veya lisans düzeyinde ikinci bir yüksek öğretim yapan öğrencilerden zamlı katkı payı alınabilir. (Kaynak: 2547 Sayılı Yükseköğretim Kanunu)",
-        "topic_hit": true,
+        "answer": "Bu konuda bilgim bulunmamaktadır, lütfen Maliye Bakanlığı ve Yükseköğretim Kurulunun uygun görüşü üzerine tespit edilen esasları öğrenin. [Kaynak: 2547 Sayılı Yükseköğretim Kanunu] Ayrıca, Senato tarafından belirlenen diğer yaz öğretimi ücretleri hakkında da bilgi alabilirsiniz. [Kaynak: 411.16y]",
+        "topic_hit": false,
         "content_hit": false,
-        "latency": 10.802034616470337,
+        "latency": 3.415296792984009,
         "recall_at_5": 0.0,
         "mrr": 0.0
       },
       "ragless": {
-        "answer": "Bu sorunun cevabı, yaz okulu ücretlerinin belirlenmesinde kullanılan çeşitli faktörlere dayanmaktadır. İşte bu faktörler:\n\n*   **Maliyetler:** Okulun işletme maliyetleri (personel maaşları, kira, elektrik, güvenlik vb.) ücretlerin belirlenmesinde önemli bir rol oynar.\n*   **Rekabet:** Aynı bölgede bulunan diğer yaz okullarının ücretleri de bir faktördür. Rekabetin yoğun olduğu bölgelerde ücretler genellikle daha düşük olabilir.\n*   **Programın Kalitesi:** Ders müfredatı, eğitmenlerin deneyimi ve öğretim yöntemleri gibi programın kalitesi, ücretlerdeki farklılıkları etkileyebilir. Daha kaliteli bir program sunan okullar genellikle daha yüksek ücretler talep eder.\n*   **Konaklama:** Okulun konaklama imkanları (kolej, pansiyon vb.) ücretlere dahil edilip edilmediği önemlidir. Konaklama hizmeti sunulan okulların ücretleri genellikle daha yüksektir.\n*   **Ekstraterilerik Aktiviteler:** Spor, sanat veya diğer ekstraterilerik aktivitelerin ücretli olup olmadığı da ücretlendirme sürecinde dikkate alınır.\n*   **Talep ve Arz:** Yaz okuluna olan talep ve arz dengesi de ücretleri etkileyebilir. Yüksek talep gören okullarda ücretler daha yüksek olabilir.\n\nBu faktörlerin bir kombinasyonu, yaz okulunun ücretini belirlemede kullanılır. Her okulun kendi maliyetlerini, rekabet durumunu ve programının özelliklerini göz önünde bulundurarak ücretini belirler.\n\nUmarım bu açıklama, yaz okulu ücretlerinin nasıl belirlendiği konusunda size daha iyi bir fikir vermiştir.",
+        "answer": "Bu sorunun cevabı, yaz okulu ücretlerinin belirlenmesinde kullanılan çeşitli faktörlere bağlıdır. İşte bu faktörlerden bazıları:\n\n*   **Maliyetler:** Okulun işletme maliyetleri (personel maaşları, kira, eğitim materyalleri vb.) ücretlerin belirlenmesinde önemli bir rol oynar.\n*   **Rekabet:** Aynı bölgedeki diğer yaz okullarının ücretleri de bir fiyatlandırma faktörüdür.\n*   **Programın Kalitesi ve Uzmanlığı:** Öğretmenlerin deneyimi, ders planlarının kalitesi ve sunulan özel programlar (dil eğitimi, sanat dersleri vb.) ücretleri etkileyebilir.\n*   **Konaklama:** Okulun konaklama imkanları (kapanışlı veya açık) ücretlere dahil edilebilir veya ayrı olarak belirlenebilir.\n*   **Ek Hizmetler:** Yemek, ulaşım, sosyal etkinlikler gibi ek hizmetlerin maliyeti de ücretlendirmeye dahil olabilir.\n*   **Talep:** Özellikle popüler dersler veya uzmanlık alanları için talep arttıkça ücretler yükselebilir.\n\nBu faktörlerin kombinasyonu, yaz okulunun ücretini belirler. Farklı okullar farklı ağırlıklar atayabilir ve bu nedenle aynı programın farklı okullarda farklı fiyatlara sunulması mümkündür.\n\nUmarım bu açıklama yardımcı olmuştur!",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 20.713879823684692
+        "latency": 5.134060382843018
       }
     },
     {
@@ -1230,18 +1230,18 @@
         "yönetim kurulu"
       ],
       "rag": {
-        "answer": "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin.",
+        "answer": "DGS sonucuna göre kayıt yapan öğrencilere muafiyet verilmez. (Kaynak: İntibak ve Muafiyet İşlemleri Yönergesi, Madde 9)",
         "topic_hit": false,
-        "content_hit": false,
-        "latency": 4.9156036376953125,
+        "content_hit": true,
+        "latency": 2.3571791648864746,
         "recall_at_5": 1.0,
-        "mrr": 0.2
+        "mrr": 0.25
       },
       "ragless": {
-        "answer": "Bu sorunun cevabını oluşturmak için, \"intibak\" teriminin anlamını ve bu terimin kullanıldığı bağlamı anlamamız gerekiyor.\n\n**İntibak (Özellikle Psikolojide)**\n\nPsikoloji alanında \"intibak\", bir olayın veya deneyimin bireyin zihninde uyandırdığı duygusal, düşünsel ve davranışsal tepkileri ifade eder. Başka bir deyişle, bir olaydan sonra kişinin bu olayı nasıl hissettiğini, düşündüğünü ve tepki verdiğini kapsar.\n\n**İntibak Süreci**\n\nİntibak süreci genellikle şu adımlardan oluşur:\n\n1.  **Oluşum:** Bir olayın veya deneyimin zihinde bir \"oluşumu\" gerçekleşir. Bu, olayın bireye ilk olarak sunulduğu an olabilir.\n2.  **Duygusal Tepki:** Oluşumdan sonra, birey bu olayla ilgili duygular yaşar (örneğin, korku, üzüntü, heyecan).\n3.  **Düşünsel İşleme:** Duygusal tepkiler, bireyin zihninde düşünceler ve yorumlamalar oluşturur.\n4.  **Davranışsal Tepki:** Düşünceler ve yorumlamalar, bireyin davranışlarını etkileyebilir (örneğin, kaçınma, saldırganlık, yardım isteme).\n\n**\"İntibak işlemleri neye göre yapılır?\" sorusuna cevap**\n\nBu soruya cevap verirsek, \"intibak işlemleri\" terimi genellikle bu intibak sürecinin değerlendirilmesini veya ölçülmesini ifade eder. Bu, bir olayın veya deneyimin bireyin zihnindeki etkilerini anlamak için kullanılan çeşitli yöntemleri (örneğin, anketler, görüşmeler, testler) içerir.\n\n**Özetle:** \"İntibak işlemleri neye göre yapılır?\" sorusuna cevap olarak, bir olayın veya deneyimin bireyin zihnindeki etkilerinin değerlendirilmesi ve ölçülmesi için kullanılan yöntemleri ifade eder. Bu, intibak sürecinin farklı aşamalarını anlamayı ve bu süreçteki faktörlerin rolünü belirlemeyi amaçlar.\n\nUmarım bu açıklama sorunuzu yanıtlamıştır!",
+        "answer": "Bu soru için bir yanıt yok. Bu, sorunun kendisinin eksik olduğunu gösteriyor.",
         "topic_hit": false,
         "content_hit": false,
-        "latency": 26.989033460617065
+        "latency": 1.0105440616607666
       }
     },
     {
@@ -1255,18 +1255,18 @@
         "sertifika"
       ],
       "rag": {
-        "answer": "Yandal Sertifikası, diploma yerine geçmektedir. Ancak bu belgeyi alabilmek için öğrencinin anadal programındaki ağırlıklı genel not ortalamasının (AGNO) en az 2.00 olması gerekmektedir. [Kaynak: Yandal Programı Yönergesi - MADDE 8]",
+        "answer": "Evet, Yandal programını tamamlayan öğrencilere eğitim aldıkları alanda, diploma yerine geçmeyen bir Yandal Sertifikası düzenlenir. Bu belgeyi alabilmek için öğrencinin anadalındaki ağırlıklı genel not ortalamasının (AGNO) en az 2.00 olması gerekir.\nKaynak: [Yandal Programı Yönergesi](411.12y)",
         "topic_hit": false,
         "content_hit": true,
-        "latency": 6.951510906219482,
+        "latency": 3.0896613597869873,
         "recall_at_5": 1.0,
-        "mrr": 0.5
+        "mrr": 1.0
       },
       "ragless": {
-        "answer": "Bu soruyu yanıtlamak için, \"yanıt\" ve \"sertifika\" kavramlarını anlamak gerekir. Bu durumda, \"sertifika\" kelimesi genellikle bir elektronik belgeyi ifade eder. Bu nedenle, sorunun cevabı şuna olacaktır:\n\n**Yanıt:** Sertifikayı diploma yerine kullanmak mümkün değildir. Bir sertifika, belirli bir bilgi veya beceri için bir onay niteliğindedir ve resmi bir eğitim belgesi gibi kullanılmaz. Eğitim belgeleri (diplomalar, lisanslar vb.) genellikle bir kişinin eğitim geçmişini ve başarılarını gösteren resmi belgelerdir.\n\nUmarım bu açıklama yardımcı olmuştur!",
+        "answer": "Yanıtı oluşturmak için, sorunun ve yanıtın içeriğini anlamam gerekiyor. Bu durumda, \"yanıt\" kelimesi, bir cevabı ifade ediyor. Yani, soruyu cevaplamak veya açıklamak gerekiyor. Ancak, sorunun kendisi eksik olduğu için, genel bir yanıt verebilirim:\n\n**Yanıt:** Cevap, sorunun özüne ve amacına uygun olarak verilmelidir. Sorunun anlaşılması ve doğru bir şekilde yanıtlanması önemlidir. Yanıtın açık, net ve anlaşılır olması gerekir. Ayrıca, cevabın kaynağına güvenilir ve doğrulanabilir olmalıdır.\n\nBu genel yanıt, sorunun içeriğine bağlı olarak daha spesifik hale getirilebilir. Örneğin, eğer soru \"Yanıt nedir?\" ise, cevap \"Yanıt, bir soruna verilen cevaptır.\" şeklinde olabilir.\n\nUmarım bu yardımcı olur! Lütfen sorunuzu tam olarak belirtin, böylece size daha iyi bir yanıt verebilirim.",
         "topic_hit": false,
-        "content_hit": true,
-        "latency": 8.755178689956665
+        "content_hit": false,
+        "latency": 3.596925735473633
       }
     }
   ]

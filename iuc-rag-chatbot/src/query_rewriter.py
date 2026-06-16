@@ -36,10 +36,14 @@ def get_rewrite_llm():
     return _rewrite_llm
 
 def rewrite_query(query):
-    return query  # TEMPORARILY DISABLED FOR TESTING
+    # DEVRE DISI: gemma3:4b rewriter testi sonucu Content Acc %58->%54,
+    # Recall@5 %76->%70'e dustu. Model sorgu anlamini bozuyor
+    # (ornek: "sinavi"->"siniri", "universite"->"ogretim uyesi").
+    # Daha iyi bir rewriter modeli bulunana kadar kapatildi.
+    return query
     try:
-        # 5 kelimeden uzun sorgularda rewriting yapma
-        if len(query.split()) > 5:
+        # 12 kelimeden uzun sorgularda rewriting yapma (zaten yeterince açık)
+        if len(query.split()) > 12:
             return query
         llm = get_rewrite_llm()
         prompt = REWRITE_PROMPT.format(query=query)

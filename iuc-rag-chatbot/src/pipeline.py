@@ -1,8 +1,6 @@
 import os
 import json
 import pickle
-import torch
-import hashlib  
 import fitz  # PyMuPDF
 from bs4 import BeautifulSoup
 from langchain_text_splitters import RecursiveCharacterTextSplitter
@@ -12,7 +10,7 @@ from rank_bm25 import BM25Okapi
 import re
 import hashlib
 
-from config import PDF_DIR, HTML_DIR, PROCESSED_DIR, VECTORDB_DIR
+from config import PDF_DIR, HTML_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
 
 os.makedirs(PROCESSED_DIR, exist_ok=True)
 os.makedirs(VECTORDB_DIR, exist_ok=True)
@@ -60,7 +58,7 @@ def load_all_documents():
             if len(text) > 100:
                 content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
                 if content_hash in seen_hashes:
-                    print(f"  ⚠ DUPLICATE atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
+                    print(f"  [DUPLICATE] atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
                     continue
                 seen_hashes[content_hash] = filename
                 documents.append({
@@ -71,8 +69,13 @@ def load_all_documents():
                         "filepath": filepath
                     }
                 })
-                print(f"  ✓ {filename[:60]}")
+                print(f"  + {filename[:60]}")
 
+    # NOT: Bu dongude eskiden ayni extract/hash/append blogu IKI KEZ
+    # ust uste yazilmisti. Ilk blok "continue" ile devam ettiginde ikinci
+    # blok hicbir zaman calismiyordu (zaten skip edilen dosyaya tekrar
+    # bakiyordu); duplicate olmayan dosyalarda ise ayni is iki kez
+    # tekrarlaniyordu. Tek, temiz bir dongu olarak birlestirildi.
     print(f"\nHTML sayfalar okunuyor...")
     for filename in os.listdir(HTML_DIR):
         if filename.endswith(".html"):
@@ -81,7 +84,7 @@ def load_all_documents():
             if len(text) > 100:
                 content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
                 if content_hash in seen_hashes:
-                    print(f"  ⚠ DUPLICATE atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
+                    print(f"  [DUPLICATE] atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
                     continue
                 seen_hashes[content_hash] = filename
                 documents.append({
@@ -92,26 +95,7 @@ def load_all_documents():
                         "filepath": filepath
                     }
                 })
-                print(f"  ✓ {filename[:60]}")
-                continue
-
-            # Diger HTML dosyalari icin normal islem
-            text = extract_html(filepath)
-            if len(text) > 100:
-                content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
-                if content_hash in seen_hashes:
-                    print(f"  ⚠ DUPLICATE atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
-                    continue
-                seen_hashes[content_hash] = filename
-                documents.append({
-                    "content": text,
-                    "metadata": {
-                        "source": filename,
-                        "type": "html",
-                        "filepath": filepath
-                    }
-                })
-                print(f"  ✓ {filename[:60]}")
+                print(f"  + {filename[:60]}")
 
     print(f"\nToplam doküman: {len(documents)}")
     return documents
@@ -151,10 +135,9 @@ def chunk_documents(documents):
 
 def build_faiss_index(chunks):
     print("\nFAISS indeksi oluşturuluyor...")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
     embedding_model = HuggingFaceEmbeddings(
         model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        model_kwargs={"device": device}
+        model_kwargs={"device": DEVICE}
     )
 
     texts = [c["content"] for c in chunks]

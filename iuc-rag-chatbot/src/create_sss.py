@@ -33,6 +33,8 @@ SSS_DATA = [
     {"soru": "Onur öğrencisi olmak için not ortalaması kaç olmalı?", "cevap": "Genel not ortalaması 3.00 ile 3.49 arasında olan öğrenciler Onur Öğrencisi sayılır."},
     {"soru": "Yüksek onur öğrencisi kime denir?", "cevap": "Genel not ortalaması 3.50 ve üzeri olan öğrenciler Yüksek Onur Öğrencisi sayılır."},
     {"soru": "Onur öğrencisi olmak için gerekli not ortalaması nedir?", "cevap": "Genel not ortalaması 3.00 ile 3.49 arasında olan öğrenciler Onur Öğrencisi sayılır. 3.50 ve üzeri olanlar ise Yüksek Onur Öğrencisi sayılır."},
+    {"soru": "Öğrenci kimlik kartımı kaybettim ne yapmalıyım?", "cevap": "Kimlik kartınızı kaybettiğinizde öğrenci işleri birimine dilekçe ile başvurarak yeni kimlik kartı çıkartabilirsiniz. İÜC Kart ile ilgili işlemler için Kart İşlemleri birimine başvurmanız gerekmektedir."},
+    {"soru": "Akademik takvime nereden erişebilirim?", "cevap": "Akademik takvim İstanbul Üniversitesi-Cerrahpaşa'nın resmi web sitesinden ve öğrenci işleri sayfasından erişilebilir. Akademik takvimde kayıt, sınav, tatil tarihleri ve diğer önemli akademik tarihler yer almaktadır."},
 ]
 
 def create_sss_documents():

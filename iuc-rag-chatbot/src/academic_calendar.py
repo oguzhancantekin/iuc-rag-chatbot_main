@@ -5,29 +5,51 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 import fitz
 from config import PDF_DIR
+from shared import is_calendar_source
 
-# 2025-2026 akademik takvim PDF'leri
-TAKVIM_PDFS = [
-    "f=411.1.1f-on-lisans-lisans-ayrintili-takvim.pdf",
-    "f=ilan-411.1.16-on-lisans-lisans-ozet-akademik-takvimi.pdf",
-    "f=411.1.16f-206-2027-egitim-ogretim-yili-on-lisans-ve-lisans-ozet-akademik-takvimi.pdf",
-    "f=411.1.1f-2026-2027-egi.-ogr.-yili-on-lis.-ve-lis.-ayrintili-akad.-takv.-formu.pdf",
-]
+# NOT: Eskiden burada elle yazilmis 4 dosya adindan olusan sabit bir
+# TAKVIM_PDFS listesi vardi. Dosya adi tek bir karakter degisse (yeni
+# akademik yil PDF'i farkli isimle gelse) liste sessizce eskirdi.
+# Artik PDF_DIR icindeki tum dosyalar taranip shared.is_calendar_source
+# ile takvim PDF'i olup olmadigi otomatik tespit ediliyor; bu da
+# rag_engine.py'deki (hic kullanilmayan) ayri CALENDAR_FILE_PATTERNS
+# tanimiyla aradaki tutarsizligi ortadan kaldiriyor.
 
-def extract_calendar_text():
+_calendar_cache = None  # extract_calendar_text() sonucu burada tutulur
+
+
+def _discover_calendar_pdfs():
+    if not os.path.isdir(PDF_DIR):
+        return []
+    return [f for f in os.listdir(PDF_DIR) if f.endswith(".pdf") and is_calendar_source(f)]
+
+
+def extract_calendar_text(force_reload=False):
+    """Takvim PDF'lerinin metnini cikarir ve bellekte cache'ler.
+
+    Eskiden bu fonksiyon her takvim sorusunda (her /ask cagrisinda) 4 PDF'i
+    yeniden acip yeniden parse ediyordu. Suresinin disk + PDF parse maliyeti
+    sorgu basina gereksiz yere tekrarlaniyordu; artik sonuc process icinde
+    bir kez hesaplanip saklaniyor.
+    """
+    global _calendar_cache
+    if _calendar_cache is not None and not force_reload:
+        return _calendar_cache
+
     texts = []
-    for pdf_name in TAKVIM_PDFS:
+    for pdf_name in _discover_calendar_pdfs():
         filepath = os.path.join(PDF_DIR, pdf_name)
-        if os.path.exists(filepath):
-            try:
-                doc = fitz.open(filepath)
-                text = ""
-                for page in doc:
-                    text += page.get_text()
-                doc.close()
-                texts.append({"file": pdf_name, "text": text})
-            except Exception as e:
-                pass
+        try:
+            doc = fitz.open(filepath)
+            text = ""
+            for page in doc:
+                text += page.get_text()
+            doc.close()
+            texts.append({"file": pdf_name, "text": text})
+        except Exception as e:
+            print(f"Takvim PDF okuma hatasi ({pdf_name}): {e}")
+
+    _calendar_cache = texts
     return texts
 
 def search_calendar(query, texts, chat_history=None):

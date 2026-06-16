@@ -3,7 +3,6 @@ import os
 import json
 import time
 import pickle
-import torch
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from langchain_ollama import OllamaLLM
@@ -12,7 +11,7 @@ from langchain_ollama import OllamaLLM
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from rag_engine import ask
-from config import VECTORDB_DIR, BASE_DIR
+from config import VECTORDB_DIR, BASE_DIR, DEVICE
 
 # 50 Soruluk Genişletilmiş Golden Dataset
 GOLDEN_DATASET = [
@@ -369,10 +368,9 @@ def calculate_recall_and_mrr(chunks, expected_sources):
 
 def evaluate():
     print("Sistem yukleniyor...")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
     embedding_model = HuggingFaceEmbeddings(
         model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        model_kwargs={"device": device}
+        model_kwargs={"device": DEVICE}
     )
     
     try:

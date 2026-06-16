@@ -1,49 +1,18 @@
-import re
 import pickle
 import os
-import torch
 from langchain_huggingface import HuggingFaceEmbeddings
 from langchain_community.vectorstores import FAISS
 from sentence_transformers import CrossEncoder
 
-from config import VECTORDB_DIR
+from config import VECTORDB_DIR, DEVICE
+from shared import get_display_name
 
-# Kaynak dosya adlarini kullaniciya gosterilecek okunabilir isimlere cevirir.
-SOURCE_DISPLAY_NAMES = {
-    "411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi": "Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği",
-    "iu-cerrahpasa-onlisans-ve-lisans-yonetmeligi-web": "Önlisans ve Lisans Yönetmeliği (Web)",
-    "411.3y_iuc-cift-anadal-programi-yonergesi": "Çift Anadal Programı Yönergesi",
-    "411.4y_iuc-yandal-programi-yonergesi": "Yandal Programı Yönergesi",
-    "411.14y_iuc-lisans-staj-yonergesi": "Lisans Staj Yönergesi",
-    "411.17y_iuc-onlisans-staj-yonergesi": "Önlisans Staj Yönergesi",
-    "411.15y_iuc-hastalik-raporlari-yonergesi": "Hastalık Raporları Yönergesi",
-    "411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda": "Yatay Geçiş Esaslarına İlişkin Yönerge",
-    "411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi": "İntibak ve Muafiyet İşlemleri Yönergesi",
-    "sss_manuel": "Sıkça Sorulan Sorular",
-    "ogrenci.iuc.edu.tr_tr_content_sss_": "Sıkça Sorulan Sorular (Web)",
-    "1.5.2547": "2547 Sayılı Yükseköğretim Kanunu",
-    "Yaz Okulu Duyurusu": "Yaz Okulu Duyurusu",
-    "2025-dgs-kayit-kilavuzu": "DGS Kayıt Kılavuzu",
-    "411.6y_iuc-mufredat-guncel": "Müfredat Güncelleme ve İntibak Esasları",
-    "cap-yonerge-senatoda-kabul-edilen": "Çift Anadal Programı Yönergesi (Senato)",
-}
-
-
-def get_display_name(source):
-    """Kaynak dosya adini okunabilir bir isme cevirir. Eslesme yoksa, temizlenmis dosya adini dondurur."""
-    cleaned = source.replace("f=", "").replace(".pdf", "").replace(".html", "")
-    for key, display_name in SOURCE_DISPLAY_NAMES.items():
-        if key in cleaned:
-            return display_name
-
-    # UUID formatindaki dosya adlari icin genel bir isim kullan
-    uuid_pattern = r'^[0-9a-f]{8}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{12}$'
-    if re.match(uuid_pattern, cleaned, re.IGNORECASE):
-        return "Üniversite Belgesi"
-
-    # Eslesme bulunamadiysa: alt cizgileri bosluga cevir, ilk parcayi al
-    fallback = cleaned.split("_")[0].replace("-", " ")
-    return fallback[:60]
+# NOT: SOURCE_DISPLAY_NAMES / get_display_name burada app.py ile birebir
+# kopya halindeydi; artik shared.py'den import ediliyor (tek kaynak).
+# Ayrica burada hic kullanilmayan CALENDAR_FILE_PATTERNS/is_calendar_source
+# ciftiyle academic_calendar.py'deki gercekte calisan TAKVIM_PDFS listesi
+# birbirinden bagimsizdi; takvim dosyasi tespiti artik tek yerde
+# (shared.is_calendar_source) toplandi, bu dosyada ayrica tanimlanmiyor.
 
 SYSTEM_PROMPT = """Sen İstanbul Üniversitesi-Cerrahpaşa'nın resmi akademik asistanısın.
 Sana verilen bağlam belgelerini kullanarak öğrencilerin sorularını yanıtla.
@@ -64,20 +33,18 @@ def get_reranker():
     global _reranker
     if _reranker is None:
         print("Re-ranking modeli yükleniyor...")
-        device = "cuda" if torch.cuda.is_available() else "cpu"
         _reranker = CrossEncoder(
             "cross-encoder/mmarco-mMiniLMv2-L12-H384-v1",
-            device=device
+            device=DEVICE
         )
-        print(f"Re-ranking modeli hazır! (device: {device})")
+        print(f"Re-ranking modeli hazır! (device: {DEVICE})")
     return _reranker
 
 def load_indexes():
     print("İndeksler yükleniyor...")
-    device = "cuda" if torch.cuda.is_available() else "cpu"
     embedding_model = HuggingFaceEmbeddings(
         model_name="sentence-transformers/paraphrase-multilingual-MiniLM-L12-v2",
-        model_kwargs={"device": device}
+        model_kwargs={"device": DEVICE}
     )
     vectorstore = FAISS.load_local(
         VECTORDB_DIR,
@@ -91,8 +58,9 @@ def load_indexes():
     print("İndeksler yüklendi!")
     return vectorstore, bm25, chunks
 
-def hybrid_search(query, vectorstore, bm25, chunks, k=10, alpha=0.4):
-    faiss_results = vectorstore.similarity_search_with_score(query, k=10)
+def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.4):
+    faiss_k = max(k * 2, 20)  # Bug fix: FAISS havuzunu genişlet (eskiden sabit 10'du)
+    faiss_results = vectorstore.similarity_search_with_score(query, k=faiss_k)
     faiss_scores = {}
     for doc, score in faiss_results:
         chunk_id = doc.metadata.get("chunk_id", "")
@@ -135,21 +103,6 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=10, alpha=0.4):
     top_chunks = [item[1][1] for item in sorted_results[:k]]
     return top_chunks
 
-# Akademik takvim dosyalarini tespit etmek icin kullanilan pattern
-CALENDAR_FILE_PATTERNS = [
-    "akademik-takvim",
-    "akademik_takvim",
-    "ayrintili-akademik",
-    "lisansustu-akademik",
-    "ozet-akademik",
-    "ozet-onlisans-lisans-ozet-akademik",
-]
-
-
-def is_calendar_source(source):
-    source_lower = source.lower()
-    return any(pattern in source_lower for pattern in CALENDAR_FILE_PATTERNS)
-
 def rerank(query, chunks, top_k=5):
     reranker = get_reranker()
     pairs = [[query, chunk["content"]] for chunk in chunks]
@@ -174,8 +127,15 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
     takvim_keywords = ["vize", "final", "bütünleme", "kayıt yenileme tarihi",
                        "sınav tarihi", "akademik takvim", "ne zaman başlıyor",
                        "büt ne zaman", "tatil ne zaman", "vizeler"]
-    if any(kw in query.lower() for kw in takvim_keywords):
-        calendar_answer = answer_calendar_query(query, chat_history) # Buraya chat_history paslandorıldı
+    # Yönetmelik-tipi sorular takvime yönlendirilmesin
+    yonetmelik_keywords = ["kimler girebilir", "kimler başvurabilir", "şartları",
+                           "koşulları", "nereden", "nasıl yapılır", "nedir",
+                           "ne gerekir", "hakkı var", "kaç kez"]
+    query_lower = query.lower()
+    is_calendar = any(kw in query_lower for kw in takvim_keywords)
+    is_regulation = any(kw in query_lower for kw in yonetmelik_keywords)
+    if is_calendar and not is_regulation:
+        calendar_answer = answer_calendar_query(query, chat_history)
         return {
             "answer": calendar_answer,
             "sources": ["Akademik Takvim PDF"],
@@ -184,7 +144,7 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
 
     # Normal RAG akışı
     rewritten_query = rewrite_query(query)
-    top_chunks = hybrid_search(rewritten_query, vectorstore, bm25, chunks, k=10)
+    top_chunks = hybrid_search(rewritten_query, vectorstore, bm25, chunks, k=15)
     top_chunks = rerank(rewritten_query, top_chunks, top_k=5)
     context = build_context(top_chunks)
 
@@ -213,7 +173,11 @@ BAĞLAM BELGELERİ:
 """
 
     response = llm.invoke(prompt)
-    sources = list(set([c["metadata"].get("source", "") for c in top_chunks]))
+    # NOT: Eskiden list(set(...)) kullanilarak kaynaklar dedup ediliyordu,
+    # ancak set sirasiz oldugu icin en alakali (rerank sirasinda ust siraya
+    # cikan) kaynagin UI'da ilk gosterilmesi garanti degildi. dict.fromkeys
+    # ile sira korunarak dedup yapiliyor.
+    sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
 
     return {
         "answer": response.strip(),

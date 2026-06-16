@@ -4,47 +4,18 @@ import os
 import sys
 import time
 import requests
-import re
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
 from config import VECTORDB_DIR
+from shared import get_display_name
+
+# NOT: SOURCE_DISPLAY_NAMES ve get_display_name() burada rag_engine.py ile
+# birebir kopya halindeydi (iki dosyada ayni sozluk, ayni fonksiyon).
+# Artik shared.py'den import ediliyor; yeni bir kaynak dosyasi eklendiginde
+# tek yerde guncelleme yeterli.
 
 API_URL = "http://localhost:8000"
-
-# Kaynak dosya adlarini kullaniciya gosterilecek okunabilir isimlere cevirir.
-SOURCE_DISPLAY_NAMES = {
-    "411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi": "Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği",
-    "iu-cerrahpasa-onlisans-ve-lisans-yonetmeligi-web": "Önlisans ve Lisans Yönetmeliği (Web)",
-    "411.3y_iuc-cift-anadal-programi-yonergesi": "Çift Anadal Programı Yönergesi",
-    "411.4y_iuc-yandal-programi-yonergesi": "Yandal Programı Yönergesi",
-    "411.14y_iuc-lisans-staj-yonergesi": "Lisans Staj Yönergesi",
-    "411.17y_iuc-onlisans-staj-yonergesi": "Önlisans Staj Yönergesi",
-    "411.15y_iuc-hastalik-raporlari-yonergesi": "Hastalık Raporları Yönergesi",
-    "411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda": "Yatay Geçiş Esaslarına İlişkin Yönerge",
-    "411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi": "İntibak ve Muafiyet İşlemleri Yönergesi",
-    "sss_manuel": "Sıkça Sorulan Sorular",
-    "ogrenci.iuc.edu.tr_tr_content_sss_": "Sıkça Sorulan Sorular (Web)",
-    "1.5.2547": "2547 Sayılı Yükseköğretim Kanunu",
-    "Yaz Okulu Duyurusu": "Yaz Okulu Duyurusu",
-    "2025-dgs-kayit-kilavuzu": "DGS Kayıt Kılavuzu",
-    "411.6y_iuc-mufredat-guncel": "Müfredat Güncelleme ve İntibak Esasları",
-    "cap-yonerge-senatoda-kabul-edilen": "Çift Anadal Programı Yönergesi (Senato)",
-}
-
-def get_display_name(source):
-    """Kaynak dosya adini okunabilir bir isme cevirir. Eslesme yoksa, temizlenmis dosya adini dondurur."""
-    cleaned = source.replace("f=", "").replace(".pdf", "").replace(".html", "")
-    for key, display_name in SOURCE_DISPLAY_NAMES.items():
-        if key in cleaned:
-            return display_name
-
-    uuid_pattern = r'^[0-9a-f]{8}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{4}[\s\-][0-9a-f]{12}$'
-    if re.match(uuid_pattern, cleaned, re.IGNORECASE):
-        return "Üniversite Belgesi"
-
-    fallback = cleaned.split("_")[0].replace("-", " ")
-    return fallback[:60]
 
 st.set_page_config(
     page_title="İÜC Akademik Asistan",
