@@ -18,14 +18,16 @@ from shared import get_display_name
 
 SYSTEM_PROMPT = """Sen İstanbul Üniversitesi-Cerrahpaşa'nın resmi akademik asistanısın.
 Sana verilen BAĞLAM BELGELERİ'ni kullanarak öğrencilerin sorularını yanıtla.
-
-KESİN KURALLAR:
-1. Türkçe dilinde, kısa, net ve anlaşılır yanıt ver.
-2. YALNIZCA BAĞLAM BELGELERİNDE BULUNAN BİLGİLERE dayan. Bağlamda cevap yoksa KESİNLİKLE uydurma, "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
-3. Sorulmayan konuları, karşılaştırmaları veya ilgisiz maddeleri cevaba EKLEME.
-4. Kaynak belirtirken, bağlamın en başındaki [Belge: ...] etiketini referans al.
-5. ASLA önceki sohbet geçmişindeki takvimleri veya tarihleri yeni cevaba kopyalama.
-6. Eğer cevabı SADECE sana verilen SİSTEM BİLGİSİ'ne (örneğin bugünün tarihi) dayanarak veriyorsan ve BAĞLAM BELGELERİ tamamen ilgisizse, cevabının sonuna tam olarak şu etiketi ekle: <KAYNAK_YOK>
+Yanıtların her zaman:
+- Türkçe olmalı
+- ASLA sohbet geçmişindeki önceki cevaplarını kopyalama. Her yeni soruya sıfırdan cevap ver.
+- Yalnızca verilen belgelere dayanmalı
+- Kısa, net ve anlaşılır olmalı
+- Kaynak belirtirken bağlamın başındaki [Belge: ...] etiketini referans al
+- SADECE sorulan soruya cevap ver. Sorulmayan ek konuları cevaba EKLEME.
+- Rakamları, not ortalamalarını (AGNO), yüzdeleri ve süreleri kaynak metinde geçtiği şekliyle tam olarak yaz (Örn: "3" yerine "3.00", "yüzde 70" yerine "%70").
+- Eğer cevabı SADECE SİSTEM BİLGİSİ'ne dayanarak veriyorsan ve BAĞLAM BELGELERİ ilgisizse, cevabının sonuna şu etiketi ekle: <KAYNAK_YOK>
+Eğer bilgi belgelerinde yoksa "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
 """
 
 _reranker = None
@@ -126,9 +128,24 @@ def cosine_similarity(v1, v2):
 def semantic_router(query):
     query_lower = query.lower()
     
+    # Yönetmelik/prosedür sorusu olduğunu gösteren anahtar kelimeler.
+    # Bunlar varsa ASLA takvime yönlendirme.
+    yonetmelik_keywords = [
+        "şart", "koşul", "nasıl", "nedir", "kaç gün", "ne kadar", "kimler",
+        "başvuru", "başvurulmalı", "gerekir", "zorunlu", "yapılır", "verilir",
+        "tamamlanmalı", "süre", "agno", "not ortalaması", "kredi", "ders",
+        "staj", "yatay geçiş", "muafiyet", "kayıt dondur", "harç",
+        "diploma", "sertifika", "itiraz", "dilekçe", "disiplin", "kopya",
+        "yaz okulu", "çap", "çift anadal", "yandal"
+    ]
+    
+    # Spesifik takvim soruları — sadece gerçek tarih/dönem soruları
     takvim_keywords = [
-        "ne zaman", "hangi tarih", "tarihi nedir", "başlıyor", "bitiyor", 
-        "akademik takvim", "vize tarihleri", "final tarihleri", "bütünleme tarihleri"
+        "akademik takvim", "takvime",
+        "vize tarihleri", "final tarihleri", "bütünleme tarihleri",
+        "vize ne zaman", "final ne zaman", "bütünleme ne zaman",
+        "sınavlar ne zaman", "kayıt tarihleri",
+        "ders başlangıcı", "dönem başlangıcı", "yarıyıl başlangıcı"
     ]
     
     genel_keywords = [
@@ -136,6 +153,10 @@ def semantic_router(query):
     ]
     
     if any(kw in query_lower for kw in genel_keywords):
+        return False
+    
+    # Yönetmelik anahtar kelimesi varsa kesinlikle RAG'e gönder
+    if any(kw in query_lower for kw in yonetmelik_keywords):
         return False
         
     if any(kw in query_lower for kw in takvim_keywords):
