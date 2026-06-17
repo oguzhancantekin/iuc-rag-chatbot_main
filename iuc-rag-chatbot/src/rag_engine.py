@@ -21,11 +21,11 @@ Sana verilen BAĞLAM BELGELERİ'ni kullanarak öğrencilerin sorularını yanıt
 Yanıtların her zaman:
 - Türkçe olmalı
 - ASLA sohbet geçmişindeki önceki cevaplarını kopyalama. Her yeni soruya sıfırdan cevap ver.
-- Yalnızca verilen belgelere dayanmalı
-- Kısa, net ve anlaşılır olmalı
-- Kaynak belirtirken bağlamın başındaki [Belge: ...] etiketini referans al
-- SADECE sorulan soruya cevap ver. Sorulmayan ek konuları cevaba EKLEME.
-- Rakamları, not ortalamalarını (AGNO), yüzdeleri ve süreleri kaynak metinde geçtiği şekliyle tam olarak yaz (Örn: "3" yerine "3.00", "yüzde 70" yerine "%70").
+- Yalnızca verilen belgelere dayanmalı ve ASLA kendi yorumunu katmamalı.
+- ADIM ADIM DÜŞÜN: Cevabını oluşturmadan önce metindeki sayısal verileri, tarihleri ve şartları adım adım analiz et.
+- Rakamları, not ortalamalarını (AGNO), yüzdeleri ve süreleri kaynak metinde geçtiği şekliyle KELİMESİ KELİMESİNE tam olarak yaz (Örn: "3" yerine "3.00", "yüzde 70" yerine "%70"). Bu kural çok kritiktir.
+- Kısa, net ve doğrudan sorulan soruya odaklı olmalı. Sorulmayan konuları ekleme.
+- Kaynak belirtirken bağlamın başındaki [Belge: ...] etiketini referans al.
 - Eğer cevabı SADECE SİSTEM BİLGİSİ'ne dayanarak veriyorsan ve BAĞLAM BELGELERİ ilgisizse, cevabının sonuna şu etiketi ekle: <KAYNAK_YOK>
 Eğer bilgi belgelerinde yoksa "Bu konuda bilgim bulunmamaktadır, lütfen öğrenci işleri ile iletişime geçin." de.
 """
@@ -61,7 +61,28 @@ def load_indexes():
     print("İndeksler yüklendi!")
     return vectorstore, bm25, chunks
 
-def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.4):
+def get_topic_filters(query):
+    query_lower = query.lower()
+    filters = []
+    if "çap" in query_lower or "çift anadal" in query_lower or "cift anadal" in query_lower:
+        filters.append("cift-anadal")
+    if "yandal" in query_lower or "yan dal" in query_lower:
+        filters.append("yandal")
+    if "staj" in query_lower:
+        filters.append("staj")
+    if "yatay geçiş" in query_lower or "yatay gecis" in query_lower:
+        filters.append("yatay-gecis")
+    if "yaz okulu" in query_lower:
+        filters.append("yaz okulu")
+    if "muafiyet" in query_lower or "intibak" in query_lower:
+        filters.append("muafiyet")
+    if "disiplin" in query_lower or "kopya" in query_lower:
+        filters.append("disiplin")
+    if "hastalık" in query_lower or "rapor" in query_lower:
+        filters.append("hastalik")
+    return filters
+
+def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filters=None):
     faiss_k = max(k * 2, 20)  # Bug fix: FAISS havuzunu genişlet (eskiden sabit 10'du)
     faiss_results = vectorstore.similarity_search_with_score(query, k=faiss_k)
     faiss_scores = {}
@@ -96,6 +117,12 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.4):
             if ps in chunk["metadata"]["source"]:
                 bonus = ps_bonus
                 break
+
+        if topic_filters:
+            for tf in topic_filters:
+                if tf in chunk["metadata"]["source"].lower():
+                    bonus += 0.5  # Massive boost for exact document match
+                    break
 
         final_scores[chunk_id] = (
             alpha * faiss_score + (1 - alpha) * bm25_score + bonus,
@@ -187,8 +214,10 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
     all_retrieved_chunks = []
     seen_chunk_ids = set()
     
+    topic_filters = get_topic_filters(query)
+
     for q in queries_to_search:
-        results = hybrid_search(q, vectorstore, bm25, chunks, k=15)
+        results = hybrid_search(q, vectorstore, bm25, chunks, k=15, topic_filters=topic_filters)
         for chunk in results:
             c_id = chunk["metadata"]["chunk_id"]
             if c_id not in seen_chunk_ids:
@@ -227,7 +256,8 @@ BAĞLAM BELGELERİ:
 ### Yanıt:
 """
 
-    response_text = llm.invoke(prompt)
+    response_obj = llm.invoke(prompt)
+    response_text = response_obj.content if hasattr(response_obj, "content") else str(response_obj)
     
     # Kaynak halüsinasyonunu engelleme (Örn: Sadece tarih sorulduğunda alakasız PDF kaynak göstermemesi için)
     if "<KAYNAK_YOK>" in response_text:

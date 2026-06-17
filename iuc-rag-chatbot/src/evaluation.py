@@ -10,8 +10,9 @@ from langchain_ollama import OllamaLLM
 # Klasor yollarini ekle
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from rag_engine import ask
-from config import VECTORDB_DIR, BASE_DIR, DEVICE
+from config import VECTORDB_DIR, DEVICE
+from shared import get_llm
+from rag_engine import ask, hybrid_search
 
 # 50 Soruluk Genişletilmiş Golden Dataset
 GOLDEN_DATASET = [
@@ -383,8 +384,8 @@ def evaluate():
         print(f"HATA: İndeksler yuklenemedi. Pipeline'in calistigindan emin olun. (Hata: {e})")
         return
 
-    # Ollama baglantisini hazirla
-    llm = OllamaLLM(model="gemma3:4b", temperature=0.1)
+    # Baglantiyi hazirla (Groq/Ollama Hibrit)
+    llm = get_llm(temperature=0.1)
     
     results = []
     

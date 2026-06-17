@@ -2,23 +2,22 @@ import sys
 import os
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from langchain_ollama import OllamaLLM
+from shared import get_llm
 
-REWRITE_PROMPT = """Sen bir üniversite bilgi sistemi için sorgu optimizasyon asistanısın.
-Kullanıcının sorusunu, akademik yönetmelik ve yönergelerde arama yapmak için 3 farklı ve kapsamlı arama sorgusuna dönüştür.
+REWRITE_PROMPT = """Sen bir üniversite bilgi sistemi için uzman bir akademik asistansın.
+Amacımız, kullanıcının sorusunu "Yönetmelik ve Yönergeler" veri tabanında (Vektör Arama) bulabilmek için HyDE (Hypothetical Document Embeddings) yöntemi uygulamaktır.
+Kullanıcının sorusunu al ve SADECE 3 elemanlı bir JSON dizisi (listesi) döndür. Başka hiçbir açıklama yazma.
 
-Kurallar:
-1. İlk sorgu, kullanıcının sorusunun en resmi ve net hali olmalı.
-2. İkinci sorgu, soruyu farklı eşanlamlı kelimeler veya alternatif terimlerle sormalı.
-3. Üçüncü sorgu, sorunun bağlamını daha geniş veya dar tutarak farklı bir açıdan ele almalı.
-4. Kısaltmaları (Örn: ÇAP, AGNO) açmalısın.
-5. SADECE geçerli bir JSON dizisi (listesi) döndür, başka hiçbir metin veya açıklama ekleme.
+JSON Dizisinin Elemanları:
+1. Orijinal Sorunun Resmi Hali: Sorunun daha akademik ve resmi kelimelerle yazılmış net hali.
+2. Kısa Yönetmelik Maddesi (HyDE): Eğer sen bir resmi üniversite yönetmeliği olsaydın, bu sorunun cevabını içeren o yönetmelik maddesi nasıl yazılırdı? Resmi ve ciddi bir tonda varsayımsal (hipotetik) kısa bir madde uydur.
+3. Uzun Açıklayıcı Paragraf (HyDE): Sorunun cevabını detaylandıran, akademik bir dil ve terminoloji ile yazılmış varsayımsal bir rehber paragrafı uydur.
 
 Örnek Çıktı Formatı:
 [
-  "Çift Anadal Programına başvuru şartları nelerdir?",
-  "İkinci anadal yapmak için gerekli not ortalaması nedir?",
-  "ÇAP başvuru koşulları ve gerekli belgeler"
+  "Yaz okulunda en fazla kaç kredi değerinde ders alınabilir?",
+  "Yaz okulunda alınabilecek derslerin toplamı 10 krediyi geçemez. Öğrenciler bir yaz döneminde en fazla 3 ders alabilirler.",
+  "Üniversitemiz yaz öğretimi yönergesine göre, öğrencilerin yaz okulunda alabilecekleri derslerin kredi yükü, güz ve bahar yarıyıllarındaki başarı durumlarına bakılmaksızın sınırlandırılmıştır. İlgili akademik takvimde belirtilen kurallar çerçevesinde, öğrenciler toplamda en fazla 10 AKTS kredisini aşmayacak şekilde ders seçimi yapabilirler."
 ]
 
 Kullanıcı Sorusu: {query}
@@ -29,7 +28,7 @@ _rewrite_llm = None
 def get_rewrite_llm():
     global _rewrite_llm
     if _rewrite_llm is None:
-        _rewrite_llm = OllamaLLM(model="gemma3:4b", temperature=0.0)
+        _rewrite_llm = get_llm(temperature=0.0)
     return _rewrite_llm
 
 def rewrite_query(query):
@@ -40,7 +39,9 @@ def rewrite_query(query):
     try:
         llm = get_rewrite_llm()
         prompt = REWRITE_PROMPT.format(query=query)
-        rewritten_text = llm.invoke(prompt).strip()
+        response = llm.invoke(prompt)
+        rewritten_text = response.content if hasattr(response, "content") else str(response)
+        rewritten_text = rewritten_text.strip()
         
         # Markdown kod bloklarini temizle (eger LLM ```json ... ``` kullanirsa)
         if rewritten_text.startswith("```json"):

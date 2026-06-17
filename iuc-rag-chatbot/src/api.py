@@ -8,7 +8,7 @@ from typing import List, Dict, Any
 # Klasor yollarini sys.path'e ekle
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
-from langchain_ollama import OllamaLLM
+from shared import get_llm
 from rag_engine import ask, load_indexes
 
 app = FastAPI(
@@ -54,8 +54,8 @@ def ask_question(request: QueryRequest):
     try:
         start_time = time.time()
         
-        # Ollama LLM nesnesini olustur
-        llm = OllamaLLM(model=request.model_choice, temperature=request.temperature)
+        # RAG motorunu cagir (Groq/Ollama Hibrit)
+        llm = get_llm(temperature=request.temperature)
         
         # RAG motorunu cagir
         result = ask(

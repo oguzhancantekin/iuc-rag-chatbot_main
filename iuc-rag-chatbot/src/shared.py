@@ -59,3 +59,19 @@ CALENDAR_FILE_PATTERNS = [
 def is_calendar_source(source):
     source_lower = source.lower()
     return any(pattern in source_lower for pattern in CALENDAR_FILE_PATTERNS)
+
+def get_llm(temperature=0.0):
+    import os
+    from dotenv import load_dotenv
+    load_dotenv()
+    groq_api_key = os.getenv("GROQ_API_KEY")
+    if groq_api_key:
+        from langchain_groq import ChatGroq
+        return ChatGroq(
+            api_key=groq_api_key,
+            model_name="llama-3.3-70b-versatile",
+            temperature=temperature
+        )
+    else:
+        from langchain_ollama import OllamaLLM
+        return OllamaLLM(model="gemma3:4b", temperature=temperature)
