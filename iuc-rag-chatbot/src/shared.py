@@ -88,11 +88,17 @@ class RobustLLM:
         self.current_key_idx = 0
 
     def invoke(self, prompt):
-        from langchain_groq import ChatGroq
         from langchain_ollama import OllamaLLM
         import time
         
         # Eger anahtar varsa Groq uzerinden donerek dene
+        if self.keys:
+            try:
+                from langchain_groq import ChatGroq
+            except ImportError:
+                print("[Rotator] Uyari: langchain_groq kütüphanesi bulunamadı! Groq atlanıp Ollama'ya geçilecek.")
+                self.keys = []
+                
         if self.keys:
             attempts = len(self.keys)
             for attempt in range(attempts):

@@ -265,23 +265,40 @@ def process_query_via_api(query, model_choice, temperature, chat_history):
         "chat_history": chat_history
     }
     try:
+        # Timeout 120 saniye. Eger model cok yavas yanit verirse veya cokerse 
+        # asagidaki except bloguna dusecek.
         response = requests.post(f"{API_URL}/ask", json=payload, timeout=120)
         if response.status_code == 200:
             result = response.json()
         else:
             result = {
-                "answer": f"API Sunucusu Hata Döndürdü (Kod {response.status_code}): {response.text}",
+                "answer": f"⚠️ **Sistem Uyarı:** API Sunucusu beklenmeyen bir hata döndürdü (Kod {response.status_code}). Lütfen tekrar deneyin.",
                 "sources": [],
                 "chunks": [],
                 "elapsed": 0.0
             }
-    except Exception as e:
+    except requests.exceptions.Timeout:
         result = {
-            "answer": f"API Sunucusuna bağlanırken teknik bir hata oluştu. (Detay: {str(e)[:150]})",
+            "answer": "⏳ **Zaman Aşımı (Timeout):** Model şu anda aşırı yoğun veya sistem yanıt veremeyecek kadar yavaş çalışıyor. Lütfen sorunuzu basitleştirerek tekrar deneyin veya farklı bir model seçin.",
+            "sources": [],
+            "chunks": [],
+            "elapsed": 120.0
+        }
+    except requests.exceptions.ConnectionError:
+        result = {
+            "answer": "🔌 **Bağlantı Hatası:** API sunucusuna ulaşılamıyor. FastAPI sunucusunun (uvicorn) arka planda çalıştığından emin olun.",
             "sources": [],
             "chunks": [],
             "elapsed": 0.0
         }
+    except Exception as e:
+        result = {
+            "answer": f"🛠️ **Teknik Hata:** API sunucusuna bağlanırken teknik bir sorun oluştu. (Detay: {str(e)[:150]})",
+            "sources": [],
+            "chunks": [],
+            "elapsed": 0.0
+        }
+        
     if "elapsed" not in result or result["elapsed"] == 0.0:
         result["elapsed"] = time.time() - start_time
     return result
