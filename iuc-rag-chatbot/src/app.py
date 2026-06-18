@@ -462,8 +462,8 @@ example_questions = [
     "Yaz okulunda en fazla kaç kredi alabilirim?",
     "Onur öğrencisi olmak için ne gerekir?",
     "Kayıt dondurma süresi ne kadar?",
-    "çap şartları",
-    "hoca onay vermezse ne olur?",
+    "Çap şartları nelerdir?",
+    "Hoca ders kaydını onaylamazsa ne olur?",
     "Mazeret sınavına kimler girebilir?",
     "Yatay geçiş başvuruları ne zaman?"
 ]
