@@ -27,6 +27,171 @@ st.set_page_config(
     layout="wide"
 )
 
+# Logo yolunu belirle
+LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
+
+# Watermark için logoyu base64'e çevir
+base64_logo = ""
+if os.path.exists(LOGO_PATH):
+    with open(LOGO_PATH, "rb") as image_file:
+        base64_logo = base64.b64encode(image_file.read()).decode("utf-8")
+
+# ── Dark Mode State & CSS Injection (FOUC Önleyici En Üst Blok) ──
+if "dark_mode" not in st.session_state:
+    st.session_state.dark_mode = True
+
+dark = st.session_state.dark_mode
+
+if dark:
+    bg_primary = "#050814"
+    bg_card = "rgba(15, 25, 45, 0.4)"
+    text_color = "#e0e0e0"
+    border_color = "rgba(212, 175, 55, 0.25)"
+    user_bubble_bg = "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)"
+    user_bubble_text = "#f8f0d8"
+    assistant_bubble_bg = "linear-gradient(135deg, rgba(20, 40, 80, 0.4) 0%, rgba(10, 20, 50, 0.2) 100%)"
+    assistant_bubble_text = "#dbe4f0"
+    stat_bg = "rgba(15, 25, 45, 0.5)"
+    input_bg = "rgba(10, 15, 25, 0.95)"
+    input_text = "#ffffff"
+    watermark_opacity = "0.08"
+else:
+    bg_primary = "#f4f6f9"
+    bg_card = "rgba(255, 255, 255, 0.7)"
+    text_color = "#111111"
+    border_color = "rgba(15, 32, 75, 0.2)"
+    user_bubble_bg = "linear-gradient(135deg, rgba(212, 175, 55, 0.2) 0%, rgba(212, 175, 55, 0.05) 100%)"
+    user_bubble_text = "#111111"
+    assistant_bubble_bg = "linear-gradient(135deg, rgba(15, 32, 75, 0.08) 0%, rgba(15, 32, 75, 0.03) 100%)"
+    assistant_bubble_text = "#111111"
+    stat_bg = "rgba(255, 255, 255, 0.6)"
+    input_bg = "rgba(255, 255, 255, 0.95)"
+    input_text = "#111111"
+    watermark_opacity = "0.15"
+
+st.markdown(f"""
+<style>
+    /* Filigran */
+    [data-testid="stAppViewContainer"]::before {{
+        content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+        background-image: url("data:image/png;base64,{base64_logo}");
+        background-repeat: no-repeat; background-position: center; background-size: 50%;
+        opacity: {watermark_opacity}; z-index: 0; pointer-events: none;
+    }}
+    
+    /* Global Themes */
+    {"" if not dark else '''
+    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp { background-color: #050814 !important; }
+    [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background: rgba(8, 12, 24, 0.8) !important; border-right: 1px solid rgba(255, 255, 255, 0.05); }
+    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #e0e0e0 !important; }
+    '''}
+    {"" if dark else '''
+    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp { background-color: #f4f6f9 !important; }
+    [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background: rgba(230, 235, 240, 0.9) !important; border-right: 1px solid rgba(0, 0, 0, 0.05); }
+    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #111111 !important; }
+    '''}
+
+    /* Toggle Switch Rengi (SARI KUTU KESİN ÇÖZÜM) */
+    div[data-testid="stToggle"] {{
+        background-color: {"rgba(255, 255, 255, 0.05)" if dark else "#D4AF37"} !important;
+        padding: 10px 15px !important;
+        border-radius: 12px !important;
+        border: 2px solid {"rgba(212, 175, 55, 0.5)" if dark else "#000000"} !important;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
+    }}
+    div[data-testid="stToggle"] * {{
+        color: {"#e0e0e0" if dark else "#000000"} !important;
+        font-weight: 700 !important;
+    }}
+
+    /* ====== SELECTBOX (MODEL SEÇİMİ) VE DROPDOWN ====== */
+    .stSelectbox > div[data-baseweb="select"] {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 8px !important; }}
+    .stSelectbox > div[data-baseweb="select"] * {{ color: {input_text} !important; background-color: transparent !important; }}
+    div[data-baseweb="popover"], ul[role="listbox"] {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 8px !important; }}
+    li[role="option"] {{ background-color: {input_bg} !important; color: {input_text} !important; }}
+    li[role="option"]:hover {{ background-color: rgba(212, 175, 55, 0.2) !important; }}
+    
+    /* ====== CHAT INPUT (ARAMA YERİ) ====== */
+    [data-testid="stChatInput"] {{ background-color: transparent !important; }}
+    [data-testid="stChatInput"] * {{ background-color: transparent !important; }}
+    [data-testid="stChatInput"] > div {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 12px !important; overflow: hidden !important; }}
+    [data-testid="stChatInput"] textarea {{ color: {input_text} !important; }}
+    [data-testid="stChatInput"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.8 !important; }}
+
+    /* ====== BEĞEN/BEĞENMEME BUTONLARI (KIND="SECONDARY") ====== */
+    div[data-testid="stButton"] button[kind="secondary"] {{
+        background: transparent !important;
+        background-color: transparent !important;
+        border: 1px solid rgba(150,150,150,0.6) !important;
+        border-radius: 20px !important;
+        color: {text_color} !important;
+        box-shadow: none !important;
+        padding: 4px 12px !important;
+        transform: none !important;
+        min-height: 0px !important;
+        height: auto !important;
+    }}
+    div[data-testid="stButton"] button[kind="secondary"] * {{
+        color: {text_color} !important;
+    }}
+    div[data-testid="stButton"] button[kind="secondary"]:hover {{
+        background: rgba(150,150,150,0.1) !important;
+        background-color: rgba(150,150,150,0.1) !important;
+        border-color: rgba(150,150,150,0.8) !important;
+    }}
+
+    /* ====== ANA BUTONLAR (KIND="PRIMARY" ve DOWNLOAD BUTONU) ====== */
+    div[data-testid="stButton"] button[kind="primary"], 
+    div.stDownloadButton > button {{
+        background: linear-gradient(135deg, rgba(15, 32, 75, 0.9) 0%, rgba(20, 40, 80, 0.8) 100%) !important;
+        background-color: transparent !important;
+        color: #ffffff !important;
+        border-radius: 8px !important;
+        border: none !important;
+        font-weight: 600 !important;
+        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+    }}
+    div[data-testid="stButton"] button[kind="primary"] *, 
+    div.stDownloadButton > button * {{ color: #ffffff !important; }}
+    
+    div[data-testid="stButton"] button[kind="primary"]:hover, 
+    div.stDownloadButton > button:hover {{
+        background: linear-gradient(135deg, rgba(20, 40, 80, 1) 0%, rgba(30, 50, 100, 0.9) 100%) !important;
+        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
+        color: #D4AF37 !important;
+        transform: translateY(-2px) !important;
+    }}
+    div[data-testid="stButton"] button[kind="primary"]:active, 
+    div.stDownloadButton > button:active {{
+        transform: scale(0.95) !important;
+        box-shadow: inset 0 3px 8px rgba(0,0,0,0.4) !important;
+    }}
+    
+    /* Cards & Headers */
+    .main-header {{ background: linear-gradient(135deg, rgba(15, 32, 75, 0.8) 0%, rgba(26, 43, 76, 0.6) 100%); border-bottom: 3px solid #D4AF37; padding: 2rem; border-radius: 16px; margin-bottom: 2rem; color: white !important; }}
+    .main-header h1 {{ color: #E5C158 !important; font-size: 2.2rem !important; margin: 0 !important; font-weight: 800 !important; }}
+    .main-header p {{ color: rgba(255,255,255,0.85) !important; margin: 0.5rem 0 0 0 !important; font-size: 1.05rem !important; }}
+    .stat-card {{ background: {stat_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; border-radius: 12px; padding: 1.2rem; text-align: center; margin-bottom: 1rem; }}
+    .stat-value {{ font-size: 1.8rem; font-weight: 800; color: #D4AF37; }}
+    .stat-label {{ font-size: 0.85rem; opacity: 0.9; font-weight: 600; text-transform: uppercase; color: {text_color}; }}
+    .welcome-box {{ background: {bg_card}; border-top: 4px solid #D4AF37; border: 1px solid {border_color}; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }}
+    .feature-item {{ display: flex; align-items: center; gap: 0.8rem; margin: 0.8rem 0; font-size: 1.05rem; color: {text_color}; }}
+    .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; padding: 15px 20px; border-radius: 15px 15px 0 15px; color: {user_bubble_text} !important; margin-left: 10%; margin-bottom: 15px; }}
+    .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; border-left: 4px solid #4A90E2; padding: 15px 20px; border-radius: 15px 15px 15px 0; color: {assistant_bubble_text} !important; line-height: 1.6; margin-right: 10%; margin-bottom: 15px; }}
+    [data-testid="stChatMessage"] {{ background-color: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }}
+</style>
+""", unsafe_allow_html=True)
+
+
+
+
+
+
+
+
+
+
+
 # ── Geri Bildirim (RLHF) Yardımcı Fonksiyonları ──
 def load_feedback():
     if os.path.exists(FEEDBACK_FILE):
@@ -81,192 +246,6 @@ def get_chunk_count():
     except:
         return 0
 
-# Logo yolunu belirle
-LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
-
-# Watermark için logoyu base64'e çevir
-base64_logo = ""
-if os.path.exists(LOGO_PATH):
-    with open(LOGO_PATH, "rb") as image_file:
-        base64_logo = base64.b64encode(image_file.read()).decode("utf-8")
-
-# ── Dark Mode State ──
-if "dark_mode" not in st.session_state:
-    st.session_state.dark_mode = False
-
-dark = st.session_state.dark_mode
-
-# ── Renk Paleti (Tema Bazlı) ──
-if dark:
-    bg_primary = "#0a0f1a"
-    bg_card = "rgba(212, 175, 55, 0.08)"
-    text_color = "#e0e0e0"
-    border_color = "rgba(212, 175, 55, 0.25)"
-    user_bubble_bg = "linear-gradient(135deg, rgba(212, 175, 55, 0.20) 0%, rgba(212, 175, 55, 0.08) 100%)"
-    user_bubble_text = "#f0e6c8"
-    assistant_bubble_bg = "linear-gradient(135deg, rgba(30, 50, 100, 0.40) 0%, rgba(20, 35, 70, 0.25) 100%)"
-    assistant_bubble_text = "#d0d8e8"
-    stat_bg = "rgba(212, 175, 55, 0.10)"
-    stat_border = "rgba(212, 175, 55, 0.30)"
-else:
-    bg_primary = "#ffffff"
-    bg_card = "rgba(15, 32, 75, 0.07)"
-    text_color = "#111"
-    border_color = "rgba(15, 32, 75, 0.15)"
-    user_bubble_bg = "linear-gradient(135deg, rgba(212, 175, 55, 0.15) 0%, rgba(212, 175, 55, 0.05) 100%)"
-    user_bubble_text = "#111"
-    assistant_bubble_bg = "linear-gradient(135deg, rgba(15, 32, 75, 0.06) 0%, rgba(15, 32, 75, 0.02) 100%)"
-    assistant_bubble_text = "#111"
-    stat_bg = "rgba(15, 32, 75, 0.07)"
-    stat_border = "rgba(15, 32, 75, 0.15)"
-
-st.markdown(f"""
-<style>
-    /* Arka plan filigran (Watermark) */
-    .stApp::before {{
-        content: "";
-        position: fixed;
-        top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url("data:image/png;base64,{base64_logo}");
-        background-repeat: no-repeat;
-        background-position: center;
-        background-size: 40%;
-        opacity: {0.06 if dark else 0.12};
-        z-index: 0;
-        pointer-events: none;
-    }}
-    /* Dark Mode global overrides */
-    {"" if not dark else '''
-    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp { background-color: #0a0f1a !important; }
-    [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background-color: #0d1526 !important; }
-    
-    /* Metin renklerini düzeltme */
-    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #e0e0e0 !important; }
-    
-    /* Girdi alanları ve alt kısım düzeltmeleri */
-    .stTextInput input, .stSelectbox select, [data-testid="stChatInput"] textarea { background-color: #1a2540 !important; color: #e0e0e0 !important; border: 1px solid rgba(212, 175, 55, 0.3) !important; }
-    [data-testid="stChatInput"] { background-color: #0a0f1a !important; }
-    '''}
-</style>
-""", unsafe_allow_html=True)
-
-st.markdown(f"""
-<style>
-    .main-header {{
-        background: linear-gradient(135deg, #0F204B 0%, #1A2B4C 100%);
-        border-bottom: 4px solid #D4AF37;
-        padding: 1.5rem 2rem;
-        border-radius: 12px;
-        margin-bottom: 1.5rem;
-        color: white;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
-    }}
-    .main-header h1 {{ color: #D4AF37 !important; font-size: 2rem !important; margin: 0 !important; font-weight: 800 !important; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }}
-    .main-header p {{ color: rgba(255,255,255,0.9) !important; margin: 0.3rem 0 0 0 !important; font-size: 0.95rem !important; letter-spacing: 0.5px; }}
-    .stat-card {{
-        background: {stat_bg};
-        border: 1px solid {stat_border};
-        border-left: 4px solid #0F204B;
-        box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-        border-radius: 8px;
-        padding: 0.8rem 1rem;
-        text-align: center;
-        margin-bottom: 0.5rem;
-        transition: transform 0.2s;
-        backdrop-filter: blur(5px);
-    }}
-    .stat-card:hover {{ transform: translateY(-2px); box-shadow: 0 4px 8px rgba(0,0,0,0.1); }}
-    .stat-value {{ font-size: 1.5rem; font-weight: 800; color: #D4AF37; }}
-    .stat-label {{ font-size: 0.8rem; opacity: 0.8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; }}
-    .welcome-box {{
-        border-top: 4px solid #D4AF37;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.08);
-        border-radius: 12px;
-        padding: 2rem;
-        margin-bottom: 1.5rem;
-        background: {bg_card};
-        border: 1px solid {border_color};
-        backdrop-filter: blur(5px);
-    }}
-    .feature-item {{ display: flex; align-items: center; gap: 0.5rem; margin: 0.6rem 0; font-size: 0.95rem; }}
-    .timing-badge {{
-        font-size: 0.75rem;
-        font-weight: 600;
-        margin-top: 0.5rem;
-        padding: 4px 10px;
-        border-radius: 20px;
-        background: rgba(212, 175, 55, 0.1);
-        color: #D4AF37;
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        display: inline-block;
-    }}
-    div.stButton > button {{
-        background-color: #0F204B !important;
-        color: #ffffff !important;
-        border-radius: 8px !important;
-        border: none !important;
-        font-weight: 600 !important;
-        transition: all 0.3s ease !important;
-    }}
-    div.stButton > button:hover {{
-        background-color: #1A2B4C !important;
-        box-shadow: 0 4px 8px rgba(15, 32, 75, 0.2) !important;
-        color: #D4AF37 !important;
-    }}
-    /* Chat bubbles styling */
-    .user-bubble {{
-        background: {user_bubble_bg};
-        border: 1px solid rgba(212, 175, 55, 0.3);
-        border-left: 5px solid #D4AF37;
-        padding: 15px 20px;
-        border-radius: 15px 15px 0 15px;
-        color: {user_bubble_text} !important;
-        font-weight: 500;
-        margin-left: 10%;
-        box-shadow: 0 4px 10px rgba(212, 175, 55, 0.08);
-    }}
-    .assistant-bubble {{
-        background: {assistant_bubble_bg};
-        border: 1px solid rgba(15, 32, 75, 0.15);
-        border-left: 5px solid #0F204B;
-        padding: 15px 20px;
-        border-radius: 15px 15px 15px 0;
-        color: {assistant_bubble_text} !important;
-        line-height: 1.6;
-        margin-right: 10%;
-        box-shadow: 0 4px 10px rgba(15, 32, 75, 0.05);
-    }}
-    /* Hide the default Streamlit chat background so our bubbles pop */
-    [data-testid="stChatMessage"] {{
-        background-color: transparent !important;
-        border: none !important;
-        box-shadow: none !important;
-        padding: 0 !important;
-    }}
-    /* Feedback butonları */
-    .feedback-container {{
-        display: flex;
-        gap: 8px;
-        margin-top: 8px;
-    }}
-    .feedback-btn {{
-        padding: 4px 12px;
-        border-radius: 16px;
-        font-size: 0.8rem;
-        cursor: pointer;
-        border: 1px solid rgba(150,150,150,0.3);
-        background: transparent;
-        transition: all 0.2s;
-    }}
-    .feedback-btn:hover {{ transform: scale(1.1); }}
-    .feedback-done {{
-        font-size: 0.75rem;
-        color: #D4AF37;
-        font-weight: 600;
-        padding: 4px 0;
-    }}
-</style>
-""", unsafe_allow_html=True)
 
 def check_api_health():
     try:
@@ -365,7 +344,7 @@ with st.sidebar:
     )
     temperature = st.slider("Sıcaklık (Creativity)", 0.0, 1.0, 0.1, 0.05)
 
-    # 🌙 Dark Mode Toggle
+    # 🌙 Dark Mode Toggle (Pill Tasarımı ile)
     st.markdown("<small style='opacity:0.7;'>⚠️ Soru yanıtlanırken tema değiştirmeyin.</small>", unsafe_allow_html=True)
     dark_toggle = st.toggle("🌙 Karanlık Mod", value=st.session_state.dark_mode, key="dark_toggle")
     if dark_toggle != st.session_state.dark_mode:
@@ -376,7 +355,7 @@ with st.sidebar:
 
     col_btn1, col_btn2 = st.columns(2)
     with col_btn1:
-        if st.button("🗑️ Geçmişi Sil", use_container_width=True):
+        if st.button("🗑️ Geçmişi Sil", use_container_width=True, type="primary"):
             st.session_state.messages = []
             st.session_state.chat_history = []
             st.session_state.total_queries = 0
@@ -450,33 +429,32 @@ if "total_time" not in st.session_state:
 if "feedback_given" not in st.session_state:
     st.session_state.feedback_given = set()
 
-if len(st.session_state.messages) == 0:
-    st.markdown("""
-    <div class="welcome-box">
-        <h3 style="margin-top:0">👋 Merhaba! Size nasıl yardımcı olabilirim?</h3>
-        <p style="opacity:0.8; font-size:0.9rem;">Yönetmelikler, akademik takvim ve yönergeler hakkında sorularınızı sorabilirsiniz.</p>
-        <div class="feature-item">✅ Kaynak gösteriyor — hangi yönetmelikten geldiğini belirtiyor</div>
-        <div class="feature-item">✅ API Tabanlı Mimari — FastAPI ile hızlı ve güvenli veri akışı</div>
-        <div class="feature-item">✅ Geri Bildirim — Cevapları 👍/👎 ile değerlendirin</div>
-    </div>
-    """, unsafe_allow_html=True)
+st.markdown("""
+<div class="welcome-box">
+    <h3 style="margin-top:0">👋 Merhaba! Size nasıl yardımcı olabilirim?</h3>
+    <p style="opacity:0.8; font-size:0.9rem;">Yönetmelikler, akademik takvim ve yönergeler hakkında sorularınızı sorabilirsiniz.</p>
+    <div class="feature-item">✅ Kaynak gösteriyor — hangi yönetmelikten geldiğini belirtiyor</div>
+    <div class="feature-item">✅ API Tabanlı Mimari — FastAPI ile hızlı ve güvenli veri akışı</div>
+    <div class="feature-item">✅ Geri Bildirim — Cevapları 👍/👎 ile değerlendirin</div>
+</div>
+""", unsafe_allow_html=True)
 
-    st.markdown("**💡 Örnek sorular — tıklayarak deneyin:**")
-    example_questions = [
-        "Derslere devam zorunluluğu yüzde kaçtır?",
-        "Yaz okulunda en fazla kaç kredi alabilirim?",
-        "Onur öğrencisi olmak için ne gerekir?",
-        "Kayıt dondurma süresi ne kadar?",
-        "çap şartları",
-        "hoca onay vermezse ne olur?",
-        "Mazeret sınavına kimler girebilir?",
-        "Yatay geçiş başvuruları ne zaman?"
-    ]
+st.markdown("**💡 Örnek sorular — tıklayarak deneyin:**")
+example_questions = [
+    "Derslere devam zorunluluğu yüzde kaçtır?",
+    "Yaz okulunda en fazla kaç kredi alabilirim?",
+    "Onur öğrencisi olmak için ne gerekir?",
+    "Kayıt dondurma süresi ne kadar?",
+    "çap şartları",
+    "hoca onay vermezse ne olur?",
+    "Mazeret sınavına kimler girebilir?",
+    "Yatay geçiş başvuruları ne zaman?"
+]
 
-    cols = st.columns(4)
-    for i, question in enumerate(example_questions):
-        with cols[i % 4]:
-            st.button(question, on_click=trigger_example, args=(question,), key=f"btn_{i}", use_container_width=True)
+cols = st.columns(4)
+for i, question in enumerate(example_questions):
+    with cols[i % 4]:
+        st.button(question, on_click=trigger_example, args=(question,), key=f"btn_{i}", use_container_width=True, type="primary")
 
 for idx, message in enumerate(st.session_state.messages):
     with st.chat_message(message["role"]):
@@ -495,6 +473,7 @@ for idx, message in enumerate(st.session_state.messages):
                             st.markdown(f"📄 **{clean_name}**")
             # 👍/👎 Geri Bildirim Butonları
             if idx not in st.session_state.feedback_given:
+                
                 fb_col1, fb_col2, fb_spacer = st.columns([1, 1, 8])
                 with fb_col1:
                     if st.button("👍", key=f"fb_pos_{idx}", help="Bu cevap faydalıydı"):
@@ -504,6 +483,7 @@ for idx, message in enumerate(st.session_state.messages):
                     if st.button("👎", key=f"fb_neg_{idx}", help="Bu cevap yetersizdi"):
                         handle_feedback(idx, "negative")
                         st.rerun()
+                
             else:
                 st.markdown('<div class="feedback-done">✅ Geri bildiriminiz kaydedildi!</div>', unsafe_allow_html=True)
 
@@ -545,3 +525,6 @@ if user_query:
 
         if len(st.session_state.chat_history) > 10:
             st.session_state.chat_history = st.session_state.chat_history[-10:]
+            
+        # DOM u tam yenilemek icin (Beğen butonlarının ilk soruda hemen çıkması için)
+        st.rerun()
