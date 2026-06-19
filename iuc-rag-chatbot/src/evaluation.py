@@ -483,6 +483,9 @@ def evaluate():
                 "latency": latency_ragless
             }
         })
+        
+        # Groq (Free Tier) Dakika Basina Istek (RPM) limitini asmamak icin ufak bir bekleme:
+        time.sleep(4)
 
     # Genel Oranlar
     rag_topic_acc = (rag_topic_hits / total) * 100
@@ -511,6 +514,7 @@ def evaluate():
     print(f"{'='*80}\n")
 
     # Sonuçları JSON dosyasına kaydet
+    BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
     output_path = os.path.join(BASE_DIR, "evaluation_results.json")
     with open(output_path, "w", encoding="utf-8") as f:
         json.dump({
