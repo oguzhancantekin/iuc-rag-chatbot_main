@@ -480,7 +480,8 @@ for idx, message in enumerate(st.session_state.messages):
         else:
             st.markdown(f'<div class="assistant-bubble">{message["content"]}</div>', unsafe_allow_html=True)
             if "elapsed" in message:
-                st.markdown(f"""<div class="timing-badge">⏱️ {message['elapsed']:.2f}s · API + Hibrit Arama</div>""", unsafe_allow_html=True)
+                engine = message.get("engine", "API")
+                st.markdown(f"""<div class="timing-badge">⏱️ {message['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
             if "sources" in message and message["sources"]:
                 sources_clean = [s for s in message["sources"] if s]
                 if sources_clean:
@@ -519,8 +520,9 @@ if user_query:
         with st.spinner("🔍 Belgeler taranıyor..."):
             result = process_query_via_api(user_query, model_choice, temperature, st.session_state.chat_history)
 
+        engine = result.get("engine", "API")
         st.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
-        st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · API + Hibrit Arama</div>""", unsafe_allow_html=True)
+        st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:
             sources_clean = [s for s in result["sources"] if s]
@@ -534,7 +536,8 @@ if user_query:
             "role": "assistant",
             "content": result["answer"],
             "sources": result["sources"],
-            "elapsed": result["elapsed"]
+            "elapsed": result["elapsed"],
+            "engine": result.get("engine", "API")
         })
         st.session_state.chat_history.append({"user": user_query, "assistant": result["answer"]})
         st.session_state.total_queries += 1

@@ -109,7 +109,9 @@ class RobustLLM:
                         model_name="llama-3.3-70b-versatile",
                         temperature=self.temperature
                     )
-                    return llm.invoke(prompt)
+                    res = llm.invoke(prompt)
+                    res.engine = "Groq Cloud"
+                    return res
                 except Exception as e:
                     error_str = str(e).lower()
                     print(f"\n[Rotator] Groq API Key {self.current_key_idx + 1} HATA verdi! Detay: {error_str[:80]}...")
@@ -129,12 +131,18 @@ class RobustLLM:
         print("\n[Fallback] Hibrit Sistem Devrede: Groq devre disi, OLLAMA (gemma3:4b) motoruna yonlendiriliyor...")
         try:
             ollama = OllamaLLM(model="gemma3:4b", temperature=self.temperature)
-            return ollama.invoke(prompt)
+            res = ollama.invoke(prompt)
+            class LocalResponse:
+                def __init__(self, content):
+                    self.content = content
+                    self.engine = "Yerel Ollama"
+            return LocalResponse(res)
         except Exception as e:
             # Eger bilgisayarda Ollama acik degilse veya coktu ise kullaniciyi bilgilendir.
             class DummyResponse:
                 def __init__(self, content):
                     self.content = content
+                    self.engine = "Sistem Hatası"
             return DummyResponse(f"⚠️ **Sistem Hatası:** Bulut API sunucuları (Groq) limitlere ulaştı ve yerel destek motoru (Ollama) başlatılamadı.\n\nLütfen bir süre bekleyin veya API anahtarlarınızı güncelleyin. (Ollama Hatası: {str(e)[:100]})")
 
 def get_llm(temperature=0.0):

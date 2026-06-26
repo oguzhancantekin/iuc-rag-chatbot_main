@@ -268,6 +268,7 @@ BAĞLAM BELGELERİ:
 
     response_obj = llm.invoke(prompt)
     response_text = response_obj.content if hasattr(response_obj, "content") else str(response_obj)
+    engine_used = getattr(response_obj, "engine", "Bilinmeyen Motor")
     
     # Kaynak halüsinasyonunu engelleme (Örn: Sadece tarih sorulduğunda alakasız PDF kaynak göstermemesi için)
     if "<KAYNAK_YOK>" in response_text:
@@ -283,7 +284,8 @@ BAĞLAM BELGELERİ:
     return {
         "answer": response_text.strip(),
         "sources": sources,
-        "chunks": top_chunks
+        "chunks": top_chunks,
+        "engine": engine_used
     }
 
 if __name__ == "__main__":

@@ -82,7 +82,8 @@ def ask_question(request: QueryRequest):
             "answer": result["answer"],
             "sources": result["sources"],
             "chunks": safe_chunks,
-            "elapsed": elapsed
+            "elapsed": elapsed,
+            "engine": result.get("engine", "Bilinmeyen Motor")
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Sorgu islenirken hata olustu: {str(e)}")
