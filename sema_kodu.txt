@@ -1,0 +1,32 @@
+graph TD
+    %% Stil Tanımlamaları
+    classDef user fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+    classDef rotator fill:#fff3e0,stroke:#ff9800,stroke-width:2px,color:#000;
+    classDef cloud fill:#e8f5e9,stroke:#4caf50,stroke-width:2px,color:#000;
+    classDef error fill:#ffebee,stroke:#f44336,stroke-width:2px,stroke-dasharray: 5 5,color:#000;
+    classDef local fill:#ede7f6,stroke:#673ab7,stroke-width:2px,color:#000;
+    classDef output fill:#e1f5fe,stroke:#03a9f4,stroke-width:2px,color:#000;
+
+    A[Kullanıcı Sorgusu]:::user --> B{RobustLLM<br/>Anahtar Yönlendirici}:::rotator
+    
+    subgraph Bulut Motoru [Bulut Motoru - Birincil Sistem]
+        B -->|API Key 1| C1[Groq Cloud<br/>Llama 3.3 70B]:::cloud
+        B -->|API Key 2| C2[Groq Cloud<br/>Llama 3.3 70B]:::cloud
+        B -->|API Key N| C3[Groq Cloud<br/>Llama 3.3 70B]:::cloud
+    end
+
+    C1 -.->|Limit Doldu / Hata 429| B
+    C2 -.->|Limit Doldu / Hata 429| B
+    
+    C1 -->|Başarılı Yanıt| Z[Kullanıcı Arayüzü]:::output
+    C2 -->|Başarılı Yanıt| Z
+    C3 -->|Başarılı Yanıt| Z
+
+    B -.->|Tüm Anahtarlar Tükendi<br/>veya İnternet Koptu| F{Hata Yakalayıcı<br/>Fallback Modeli}:::error
+    
+    subgraph Yerel Donanım [Yerel Donanım - İkincil Sistem]
+        F -->|Ollama API İsteği| G[Yerel Bilgisayar<br/>RTX 4060 GPU]:::local
+        G --> H[Ollama Motoru<br/>Gemma 3 4B]:::local
+    end
+
+    H -->|Yerel Çıkarım Yanıtı| Z

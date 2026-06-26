@@ -1,0 +1,66 @@
+\documentclass[a4paper,12pt]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[turkish]{babel}
+\usepackage{geometry}
+\usepackage{array}
+\usepackage{booktabs}
+\usepackage{setspace}
+\usepackage{graphicx}
+\usepackage[autostyle=true]{csquotes}
+\DeclareQuoteStyle{turkish}
+  {\guillemotleft}{\guillemotright}[0.05em]
+  {\guillemotleft}{\guillemotright}
+
+\bibliographystyle{ieeetr}   
+
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+\setstretch{1.2}
+
+\begin{document}
+\begin{center}
+
+\textbf{\Large İSTANBUL ÜNİVERSİTESİ – CERRAHPAŞA}\\[4pt]
+\textbf{\Large BİLGİSAYAR MÜHENDİSLİĞİ BÖLÜMÜ}\\[8pt]
+\textbf{\large BİTİRME PROJESİ GÖRÜŞME TUTANAĞI (NO: 3)}
+\end{center}
+\vspace{1cm}
+\hfill 02/06/2026 \\[6pt]
+\noindent \textbf{Proje Başlığı:} Üniversite Bilgi Sistemi için Yapay Zekâ Destekli RAG Chatbot Tasarımı \\[6pt]
+\textbf{Proje Danışmanı:} Doç. Dr. Muhammed Erdem İsenkul \hfill \textbf{İmzası:} \\[6pt]
+\textbf{Proje Ekip Üyeleri:}
+
+\begin{tabular}{p{2cm}p{4cm}p{6cm}}
+Üye 1 & 1306210070 & Tekin Tanır \\
+Üye 2 & 1306220048 & Oğuzhan Cantekin \\
+Üye 3 & 1306220026 & Umut Furkan Kılıç \\
+\end{tabular}
+
+\subsection*{Toplantıya Dair Proje Ekibinin Notları}
+\noindent Bu toplantıda, RAGAS metrikleriyle elde edilen performans test sonuçları, sisteme entegre edilen hata toleransı (fault tolerance) mekanizması ve son kullanıcı arayüzünde yapılan nihai iyileştirmeler danışmanımıza sunulmuştur. Ayrıca bitirme tezinin son taslağı değerlendirilmiştir.
+
+\textbf{Gelinen Durum ve Alınan Kararlar:}
+\begin{itemize}
+    \item \textbf{Performans Ölçümleri (RAGAS):} 50 soruluk genişletilmiş test veri seti kullanılarak RAG'li ve RAG'siz (saf LLM) durumların analizleri tamamlanmış, RAG mimarisinin sisteme kattığı doğruluk oranı artışı grafiksel olarak belgelenmiştir.
+    \item \textbf{Hata Toleranslı "Dual-Engine" Mimarisi:} Bulut tabanlı Groq API kotalarının dolması veya ağ kesintisi gibi kriz anlarına karşı "Local Fallback" (Yerel Yedekleme) sistemi kurulmuştur. Ağ kesildiğinde sistemin otomatik olarak Ollama üzerinden (Gemma 3) yerel motorla çalışmaya devam etmesi sağlanmıştır.
+    \item \textbf{Arayüz (UI) İyileştirmeleri:} Streamlit arayüzündeki kenar çubuğuna (sidebar); sıcaklık (temperature) ayarı, model değiştirme opsiyonu ve geçmiş sohbet dökümünü PDF/TXT olarak dışa aktarma (export) özellikleri eklenmiştir.
+    \item \textbf{Raporlama:} Raporun literatür ve tartışma kısımları revize edilmiş, performans grafikleri LaTeX üzerinden boyutlandırılarak rapora başarıyla gömülmüştür.
+\end{itemize}
+
+\textbf{Sonraki Adımlar:}
+\begin{itemize}
+    \item Proje sunumu için poster ve slayt hazırlıklarına başlanması.
+    \item Kod tabanının temizlenerek (refactoring) GitHub reposunun açık kaynak standartlarına uygun şekilde belgelenmesi (README.md).
+    \item Bitirme raporunun jüri formatına son kez uygunluk kontrolünün yapılarak teslim onayı için sisteme yüklenmesi.
+\end{itemize}
+
+\vspace{1cm}
+
+\subsection*{Toplantıya Dair Proje Danışmanının Notları}
+\noindent 
+Sistemin çökmesini engelleyen "Dual-Engine" (Çift Motorlu) yedekleme mimarisinin başarıyla entegre edilmiş olması, uygulamanın kurumsal düzeyde (production-ready) kullanılabilirliği açısından son derece değerli bir mühendislik hamlesidir. RAGAS performans testlerinin tamamlanarak sonuçların rapora nicel metriklerle ve grafiklerle sunulması, çalışmanın akademik savunulabilirliğini önemli ölçüde artırmıştır.
+
+Prototipin temel teknik gereksinimleri büyük ölçüde sağladığı ve hedeflenen kullanım senaryolarında tutarlı sonuçlar ürettiği gözlemlenmiştir. Öğrencilerin bundan sonraki süreçte proje sunumuna odaklanmaları ve jüri karşısında özellikle "yerel ağda KVKK uyumlu LLM çıkarımı" argümanını ve uygulanan hibrit arama mimarisini ön plana çıkarmaları tavsiye edilmiştir. Raporun son hali büyük oranda tatmin edicidir, ufak düzeltmelerin ardından teslim aşamasına geçilebilir.
+
+\vspace{3cm}
+
+\end{document}

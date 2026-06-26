@@ -1,0 +1,52 @@
+graph TD
+    %% Stil Tanimlamalari
+    classDef presentation fill:#e3f2fd,stroke:#1565c0,stroke-width:2px,color:#000;
+    classDef logic fill:#fff3e0,stroke:#e65100,stroke-width:2px,color:#000;
+    classDef data fill:#e8f5e9,stroke:#2e7d32,stroke-width:2px,color:#000;
+    classDef user fill:#f3e5f5,stroke:#6a1b9a,stroke-width:2px,color:#000;
+
+    U((Kullanıcı)):::user
+
+    subgraph SUNUM [Sunum Katmani - Presentation Layer]
+        UI[Streamlit Web Arayuzu]:::presentation
+        Chat[Sohbet Gecmisi Yonetimi]:::presentation
+    end
+
+    subgraph MANTIK [Is Mantigi Katmani - Business Logic Layer]
+        Query[Soru Alimi ve On Isleme]:::logic
+        HyDE[HyDE Coklu Sorgu Uretimi]:::logic
+        Retriever[BM25 + FAISS Hibrit Arama]:::logic
+        LLM[RobustLLM - Llama 3.3 / Gemma]:::logic
+        Gen[Yanit Uretimi ve Atiflandirma]:::logic
+    end
+
+    subgraph VERI [Veri Katmani - Data Layer]
+        Raw[Ham PDF Belgeleri]:::data
+        FAISS[(FAISS Vektor Veritabani)]:::data
+        BM25[(BM25 Kelime İndeksi)]:::data
+        Meta[JSON Meta Veriler]:::data
+    end
+
+    %% Baglantilar
+    U -->|Soru Sorar| UI
+    UI --> Chat
+    UI -->|Metin Iletimi| Query
+    
+    Query --> HyDE
+    HyDE --> Retriever
+    
+    Retriever -->|Vektor Sorgusu| FAISS
+    Retriever -->|Kelime Sorgusu| BM25
+    Retriever -->|Belge Cekme| Meta
+    
+    FAISS -.-> Retriever
+    BM25 -.-> Retriever
+    Meta -.-> Retriever
+    
+    Retriever -->|Ilgili Parcalar| Gen
+    HyDE -->|Sorgu| Gen
+    Gen <-->|Zeka Istegi| LLM
+    Gen -->|Nihai Yanit| UI
+    
+    Raw -.->|Gomulme Islemi| FAISS
+    Raw -.->|Indeksleme| BM25

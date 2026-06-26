@@ -550,9 +550,9 @@ Literatür taraması boyunca incelenen tüm alt başlıklar, teknolojiler ve yö
 
 Proje geliştirme sürecinde benimsenen metodoloji ile veri setinin temininden ön işlenmesine kadar olan tüm aşamalar bu bölümün odak noktasını oluşturmaktadır. Ayrıca, hibrit arama algoritmaları ve deneysel araçlar irdelenerek; sistemin bütünsel işleyişi şekil \ref{fig:akis}'te görselleştirilmiştir.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\includegraphics[width=1.0\textwidth]{akis_diagrami.png} % Buraya diyagramının dosya adını yaz
+\resizebox{!}{19cm}{\includegraphics{akis_diagrami.png}}
 \caption{Proje Genel Veri İşleme ve RAG Akış Diyagramı}
 \label{fig:akis}
 \end{figure}
@@ -821,17 +821,17 @@ Sistem, sürdürülebilirlik ve ölçeklenebilirlik prensipleri gözetilerek mod
 Bu bölümde, Bitirme Projesi kapsamında mimari tasarımı tamamlanan ve prototip aşamasına getirilen sistemin uygulama detayları, kullanıcı arayüzü (UI/UX) kararları ve veritabanı şemaları sunulmuştur. Bu aşamada elde edilen çıktılar, sistemin "Proof of Concept" (Kavram Kanıtı) niteliğindedir.
 
 \section{Deneysel Sonuçlar}
-Sistemin prototip aşamasında gerçekleştirilen testlerde, 'Çift Motorlu' (Dual-Engine) mimari sayesinde Groq API üzerinden Llama-3.3-70B modeliyle yapılan sorgularda ortalama yanıt süresi \textbf{0.5 saniye} gibi rekor bir seviyeye inmiştir. Olası internet kesintilerinde yerel donanımdaki Ollama (Gemma-3) modeline düşüş (fallback) yapıldığında ise yanıt süresi 2.3 saniye olarak gözlemlenmiştir. Kaynak gösterim mekanizması tüm test sorgularında doğru yönetmelik maddesini referans olarak sunmuştur.
+Sistemin prototip aşamasında gerçekleştirilen testlerde, 'Çift Motorlu' (Dual-Engine) mimari sayesinde Groq API üzerinden Llama-3.3-70B modeliyle yapılan sorgularda ortalama yanıt süresi (hibrit arama ve re-ranking aşamaları dahil) \textbf{1.5 - 2.5 saniye} aralığında ölçülerek son derece akıcı bir kullanıcı deneyimi sunmuştur. Olası internet kesintilerinde veya API kotaları dolduğunda yerel donanımdaki Ollama (Gemma-3) modeline düşüş (fallback) yapıldığında ise, donanımın sınırlarına bağlı olarak yanıt süresi 15 - 20 saniye bandında seyretmiş ancak uygulamanın tamamen çökmesi engellenmiştir. Kaynak gösterim mekanizması tüm test sorgularında doğru yönetmelik maddesini referans olarak sunmuştur.
 
 \section{Donanımsal Tasarım}
-Sistem yerel çıkarım için RTX~4060~Mobile (8~GB VRAM) üzerinde çalıştırılmıştır. Llama~3 modeli 4-bit kuantizasyon (NF4) ile yüklenmiş; bu sayede 8~GB VRAM kısıtı içinde çalışma sağlanmıştır. Detaylı donanım özellikleri Tablo~\ref{tab:donanim}'da verilmiştir.
+Sistem yerel çıkarım (Local Fallback) senaryosunda RTX~4060~Mobile (8~GB VRAM) üzerinde çalıştırılmıştır. Yerel motor olarak "Gemma 3 (4B)" modeli Ollama altyapısı üzerinden 4-bit kuantizasyon optimizasyonuyla yüklenmiş; bu sayede 8~GB VRAM kısıtı aşılmadan kararlı bir yerel çalışma sağlanmıştır. Detaylı donanım özellikleri Tablo~\ref{tab:donanim}'da verilmiştir.
 
 \section{Yazılım Mimarisi ve Veri Tabanı}
 Sistemde hibrit arama (Hybrid Search) yapabilmek için vektörel ve terim tabanlı olmak üzere iki farklı veri yapısının senkronize çalışması öngörülmüştür. Sistemin Groq API ve yerel model arasındaki geçişleri yöneten mimarisi Şekil \ref{fig:dual_engine}'de gösterilmiştir.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\fbox{\parbox[c][8cm][c]{0.9\textwidth}{\centering \textbf{[BURAYA GROQ VE YEREL MODEL HİBRİT ÇALIŞMA ŞEMASI EKLENECEKTİR]}}}
+\resizebox{15cm}{!}{\includegraphics{hibrit_calisma.png}}
 \caption{Çift Motorlu (Dual-Engine) RAG Mimarisi İş Akışı}
 \label{fig:dual_engine}
 \end{figure}
@@ -863,9 +863,9 @@ Son kullanıcıların (öğrenciler ve idari personel) sistemle etkileşime geç
 \subsection{Sohbet Ekranı ve Kaynak Gösterimi}
 Sistemin en önemli özelliği olan "Açıklanabilir Yapay Zeka" (Explainable AI) prensibi arayüze yansıtılmıştır. Sistem, üretilen her cevabın altına, bilginin alındığı resmi kaynağı (Örn: \textit{Lisans Eğitim-Öğretim Yönetmeliği, Madde 14}) referans olarak eklemektedir. Aşağıda belirtilen tasarım ilkeleri ve kaynak gösterme mimarisinin canlı sisteme entegre edilmiş hali Şekil \ref{fig:ui_design}'de sunulmuştur.
 
-\begin{figure}[H]
+\begin{figure}[htbp]
 \centering
-\fbox{\parbox[c][10cm][c]{0.9\textwidth}{\centering \textbf{[BURAYA STREAMLIT KULLANICI ARAYÜZÜNÜN EKRAN GÖRÜNTÜSÜ EKLENECEKTİR]}}}
+\includegraphics[width=15cm, height=9cm, keepaspectratio]{arayuz.png}
 \caption{Geliştirilen Chatbot Arayüzü ve Kaynak Referans Gösterimi (Prototip)}
 \label{fig:ui_design}
 \end{figure}
@@ -940,7 +940,7 @@ Tasarlanan sistemin, literatürdeki muadillerine ve geleneksel yöntemlere göre
 
 \subsection{Güçlü Yönler (Strengths)}
 \begin{itemize}
-    \item \textbf{Veri Mahremiyeti ve KVKK Uyumu:} Sistemin tamamen yerel ağda (Localhost/Intranet) çalışması ve verinin OpenAI/Google gibi dış sunuculara gönderilmemesi, kurumsal veri güvenliğini garanti altına almaktadır.
+    \item \textbf{KVKK Uyumu ve Esnek Veri Mahremiyeti:} Sistemde RAG için işlenen belgeler (üniversite yönetmelikleri, takvimler vb.) herkese açık kamu verileridir ve kişisel veri (PII) içermemektedir. Bu sebeple yüksek performanslı Groq Bulut API'si güvenle kullanılabilmektedir. Ancak gelecekte öğrenci notları gibi gizli verilerin işlenmesi gerekirse, sistemin "Çift Motorlu (Dual-Engine)" hibrit yapısı sayesinde dış internet bağlantısı kesilip sistemin tek tuşla \%100 yerel (Localhost/Ollama) çalıştırılması mümkündür. Bu esneklik, kurumsal veri güvenliğini ileriye dönük olarak garanti altına almaktadır.
     \item \textbf{Açıklanabilir Yapay Zeka (XAI):} Üretilen her cevabın altında, bilginin dayandığı resmi yönetmelik maddesinin referans olarak gösterilmesi, sistemin şeffaflığını artırmakta ve kullanıcı güvenini sağlamaktadır.
     \item \textbf{Hibrit Arama Yeteneği:} Sadece anlamsal (vektör) değil, terimsel (BM25) aramanın da birleştirilmesi sayesinde, "Madde 14" gibi teknik terimlerdeki erişim hatası minimize edilmiştir.
     \item \textbf{Maliyet Etkinliği:} Llama 3 ve Mistral gibi açık kaynaklı modellerin kullanılması, lisans ve API maliyetlerini sıfıra indirerek sürdürülebilir bir yapı sunmaktadır.
@@ -949,7 +949,7 @@ Tasarlanan sistemin, literatürdeki muadillerine ve geleneksel yöntemlere göre
 \subsection{Zayıf Yönler ve Kısıtlar (Weaknesses \& Limitations)}
 \begin{itemize}
     \item \textbf{Donanım Bağımlılığı:} Yerel LLM çıkarımı (Inference) yapabilmek için yüksek VRAM kapasitesine sahip GPU (En az 8GB - 16GB) gereksinimi, sistemin sunucu maliyetini artırabilir. \textit{Bu kısıt, 4-bit kuantizasyon ve yerel çıkarım planı ile yönetilebilir bir maliyet düzeyine indirgenmiştir.}
-    \item \textbf{Yanıt Süresi (Latency):} Hibrit arama ve Yeniden Sıralama (Re-ranking) katmanlarının eklenmesi, işlem süresini artırarak yanıt süresinin 2-3 saniye bandına çıkmasına neden olabilir. \textit{Üniversite bilgi sistemlerinde 2--3 saniyelik yanıt süresi, yanlış bilgi verme riskiyle kıyaslandığında kabul edilebilir bir doğruluk-hız dengesi sunmaktadır.}
+    \item \textbf{Değişken Yanıt Süresi (Latency):} Sistemin birincil motoru olan Groq Cloud API (Llama 3.3) ile yanıt süreleri 1.5 -- 2.5 saniye gibi muazzam hızlara ulaşsa da; olası bir kriz anında (API kotalarının dolması) devreye giren Yerel (Local) Ollama motorunda bu süre, cihazın GPU donanım kapasitesine bağlı olarak 15--20 saniye bandına çıkabilmektedir. \textit{Üniversite bilgi sistemlerinde yerel (fallback) çalışma sırasındaki bu gecikme; uygulamanın çökmemesi ve kritik durumlarda dahi kesintisiz hizmet vermesi güvencesiyle kıyaslandığında, son derece kabul edilebilir bir hız-güvenilirlik dengesi sunmaktadır.}
     \item \textbf{Bilgi Güncelliği ve Bakım:} Yönetmelikler değiştiğinde (Örn: Senato kararları), vektör veritabanının yeniden indekslenmesi veya güncellenmesi gerekliliği operasyonel bir bakım yükü oluşturmaktadır. \textit{Periyodik indeksleme ve belge sürüm takibiyle bu bakım yükü kontrollü ve izlenebilir bir süreç olarak yönetilebilir.}
 \end{itemize}
 
