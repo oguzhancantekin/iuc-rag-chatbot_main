@@ -1,0 +1,48 @@
+{
+  "güz_yarıyılı": {
+    "eğitim_öğretim_başlangıcı": "29 Eylül 2025",
+    "eğitim_öğretim_bitişi": "16 Ocak 2026",
+    "yarıyıl_içi_ara_sınav_vize_başlangıç_tarihi": "17 Kasım 2025",
+    "yarıyıl_içi_ara_sınav_vize_bitiş_tarihi": "28 Kasım 2025",
+    "yarıyıl_sonu_bitirme_final_sınavları_başlangıcı": "19 Ocak 2026",
+    "yarıyıl_sonu_bitirme_final_sınavları_bitiş_tarihi": "30 Ocak 2026",
+    "bütünleme_sınavlarının_başlangıcı": "9 Şubat 2026",
+    "bütünleme_sınavları_bitiş_tarihi": "14 Şubat 2026",
+    "hazırlık_eğitimi_başlangıcı": "29 Eylül 2025",
+    "hazırlık_eğitimi_bitişi": "9 Ocak 2026"
+  },
+  "bahar_yarıyılı": {
+    "eğitim_öğretim_başlangıcı": "23 Şubat 2026",
+    "eğitim_öğretim_bitişi": "19 Haziran 2026",
+    "yarıyıl_içi_ara_sınav_vize_başlangıç_tarihi": "13 Nisan 2026",
+    "yarıyıl_içi_ara_sınav_vize_bitiş_tarihi": "24 Nisan 2026",
+    "yarıyıl_sonu_bitirme_final_sınavları_başlangıcı": "22 Haziran 2026",
+    "yarıyıl_sonu_bitirme_final_sınavları_bitiş_tarihi": "3 Temmuz 2026",
+    "bütünleme_sınavlarının_başlangıcı": "13 Temmuz 2026",
+    "bütünleme_sınavları_bitiş_tarihi": "18 Temmuz 2026",
+    "hazırlık_eğitimi_başlangıcı": "16 Şubat 2026",
+    "hazırlık_eğitimi_bitişi": "5 Haziran 2026"
+  },
+  "yeni_öğrenci_kayıtları": {
+    "yks_kayıtları": {
+      "e-devlet_kayıt_tarihi_başlangıcı": "1 Eylül 2025",
+      "e-devlet_kayıt_tarihi_bitişi": "3 Eylül 2025",
+      "şahsen_başvuru_kayıt_tarihi_başlangıcı": "1 Eylül 2025",
+      "şahsen_başvuru_kayıt_tarihi_bitişi": "5 Eylül 2025"
+    },
+    "uluslararası_öğrenci_kayıtları": {
+      "kayıt_başlangıcı": "4 Ağustos 2025",
+      "kayıt_tarihi_için_son_gün": "13 Ağustos 2025",
+      "türkçe_yeterlilik_sınavı": "12 Eylül 2025",
+      "zorunlu_hazırlık_sınıfı_yeterlilik_sınavı": "16 Eylül 2025"
+    }
+  },
+  "yeterlilik_sınavları": {
+    "yabancı_uyruklu_öğrenci_türkçe_yeterlilik_sınavı_güz_dönemi": "12 Eylül 2025",
+    "yabancı_dil_zorunlu_hazırlık_yeterlilik_sınavı_güz_dönemi": "16 Eylül 2025",
+    "zorunlu_kredili_yabancı_dil_yeterlilik_sınavı": "19 Eylül 2025"
+  },
+  "notlar": [
+    "Cerrahpaşa Tıp Fakültesi, Diş Hekimliği Fakültesi, Florence Nightingale Hemşirelik Fakültesi, Veteriner Fakültesi ile Eczacılık Fakültesinin Takvimleri ayrı olarak belirlenir."
+  ]
+}

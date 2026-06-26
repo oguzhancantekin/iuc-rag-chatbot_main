@@ -303,6 +303,70 @@ def process_query_via_api(query, model_choice, temperature, chat_history):
         result["elapsed"] = time.time() - start_time
     return result
 
+def process_query_via_api_stream(query, model_choice, temperature, chat_history, message_placeholder):
+    start_time = time.time()
+    payload = {
+        "query": query,
+        "model_choice": model_choice,
+        "temperature": temperature,
+        "chat_history": chat_history
+    }
+    
+    result = {
+        "answer": "",
+        "sources": [],
+        "chunks": [],
+        "elapsed": 0.0,
+        "engine": "API"
+    }
+    
+    try:
+        response = requests.post(f"{API_URL}/ask_stream", json=payload, stream=True, timeout=120)
+        
+        if response.status_code != 200:
+            result["answer"] = f"⚠️ **Sistem Uyarı:** API Sunucusu hata döndürdü (Kod {response.status_code})."
+            message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
+            return result
+            
+        full_answer = ""
+        for line in response.iter_lines():
+            if line:
+                decoded_line = line.decode('utf-8')
+                if decoded_line.startswith("data: "):
+                    data_str = decoded_line[6:]
+                    if data_str == "[DONE]":
+                        break
+                        
+                    try:
+                        data = json.loads(data_str)
+                        if data.get("type") == "meta":
+                            result["sources"] = data.get("sources", [])
+                            result["chunks"] = data.get("chunks", [])
+                            result["engine"] = data.get("engine", "API")
+                        elif data.get("type") == "chunk":
+                            full_answer += data.get("content", "")
+                            # Cursor (▌) efekti ile anlik guncelle
+                            message_placeholder.markdown(f'<div class="assistant-bubble">{full_answer} ▌</div>', unsafe_allow_html=True)
+                    except json.JSONDecodeError:
+                        pass
+        
+        # Final tam halini bas
+        message_placeholder.markdown(f'<div class="assistant-bubble">{full_answer}</div>', unsafe_allow_html=True)
+        result["answer"] = full_answer
+        
+    except requests.exceptions.Timeout:
+        result["answer"] = "⏳ **Zaman Aşımı (Timeout):** API sunucusu yanıt vermedi."
+        message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
+    except requests.exceptions.ConnectionError:
+        result["answer"] = "🔌 **Bağlantı Hatası:** API sunucusuna ulaşılamıyor."
+        message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
+    except Exception as e:
+        result["answer"] = f"🛠️ **Teknik Hata:** {str(e)[:150]}"
+        message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
+        
+    result["elapsed"] = time.time() - start_time
+    return result
+
 def stream_data(text):
     for word in text.split(" "):
         yield word + " "
@@ -517,11 +581,14 @@ if user_query:
         st.markdown(f'<div class="user-bubble">{user_query}</div>', unsafe_allow_html=True)
 
     with st.chat_message("assistant"):
-        with st.spinner("🔍 Belgeler taranıyor..."):
-            result = process_query_via_api(user_query, model_choice, temperature, st.session_state.chat_history)
+        message_placeholder = st.empty()
+        
+        # Ilk basta yukleniyor mesaji veya animasyonu goster
+        message_placeholder.markdown('<div class="assistant-bubble">🔍 Düşünüyorum...</div>', unsafe_allow_html=True)
+        
+        result = process_query_via_api_stream(user_query, model_choice, temperature, st.session_state.chat_history, message_placeholder)
 
         engine = result.get("engine", "API")
-        st.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
         st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:

@@ -105,17 +105,6 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filte
     max_bm25 = max(bm25_scores_raw) if max(bm25_scores_raw) > 0 else 1
     bm25_normalized = bm25_scores_raw / max_bm25
 
-    priority_sources = [
-        ("sss_manuel", 0.08),
-        ("411.1y_iuc-onlisans", 0.05),
-        ("iu-cerrahpasa-onlisans-ve-lisans-yonetmeligi-web", 0.05),
-        ("411.3y_iuc-cift-anadal", 0.05),
-        ("411.21y_iuc-on-lisans-ve-lisans", 0.05),
-        ("411.4y_iuc-yandal", 0.03),
-        ("411.14y_iuc-lisans-staj", 0.03),
-        ("411.15y_iuc-hastalik", 0.03),
-    ]
-
     final_scores = {}
     for i, chunk in enumerate(chunks):
         chunk_id = chunk["metadata"]["chunk_id"]
@@ -123,14 +112,17 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filte
         bm25_score = float(bm25_normalized[i])
 
         bonus = 0
-        for ps, ps_bonus in priority_sources:
-            if ps in chunk["metadata"]["source"]:
-                bonus = ps_bonus
-                break
+        source_lower = chunk["metadata"].get("source", "").lower()
+        if "yönetmelik" in source_lower or "yonetmelik" in source_lower:
+            bonus += 0.05
+        elif "yönerge" in source_lower or "yonerge" in source_lower:
+            bonus += 0.03
+        elif "sss" in source_lower or "sorulan" in source_lower:
+            bonus += 0.08
 
         if topic_filters:
             for tf in topic_filters:
-                if tf in chunk["metadata"]["source"].lower():
+                if tf in source_lower:
                     bonus += 0.5  # Massive boost for exact document match
                     break
 
@@ -165,78 +157,78 @@ def cosine_similarity(v1, v2):
 def semantic_router(query):
     query_lower = query.lower()
     
-    # Yönetmelik/prosedür sorusu olduğunu gösteren anahtar kelimeler.
-    # Bunlar varsa ASLA takvime yönlendirme.
-    yonetmelik_keywords = [
-        "şart", "koşul", "nasıl", "nedir", "kaç gün", "ne kadar", "kimler",
-        "başvuru", "başvurulmalı", "gerekir", "zorunlu", "yapılır", "verilir",
-        "tamamlanmalı", "süre", "agno", "not ortalaması", "kredi", "ders",
-        "staj", "yatay geçiş", "muafiyet", "kayıt dondur", "harç",
-        "diploma", "sertifika", "itiraz", "dilekçe", "disiplin", "kopya",
-        "yaz okulu", "çap", "çift anadal", "yandal"
-    ]
-    
-    # Spesifik takvim soruları — sadece gerçek tarih/dönem soruları
-    takvim_keywords = [
-        "akademik takvim", "takvime",
-        "vize tarihleri", "final tarihleri", "bütünleme tarihleri",
-        "vize ne zaman", "final ne zaman", "bütünleme ne zaman",
-        "sınavlar ne zaman", "kayıt tarihleri",
-        "ders başlangıcı", "dönem başlangıcı", "yarıyıl başlangıcı"
-    ]
-    
-    genel_keywords = [
-        "merhaba", "selam", "nasılsın", "sen kimsin", "adın ne", "bugün ayın kaçı", "bugünün tarihi"
-    ]
-    
+    # 1. Açıkça takvim kelimesi geçiyorsa direkt takvime gönder
+    if "takvim" in query_lower:
+        return True
+        
+    # 2. Genel sohbetse RAG'e gönderme
+    genel_keywords = ["merhaba", "selam", "nasılsın", "sen kimsin", "adın ne", "bugün ayın kaçı", "bugünün tarihi"]
     if any(kw in query_lower for kw in genel_keywords):
         return False
-    
-    # Yönetmelik anahtar kelimesi varsa kesinlikle RAG'e gönder
+        
+    # 3. Yönetmelik ve şart bildiren güçlü kelimeler varsa RAG'e gönder (takvime DEĞİL)
+    yonetmelik_keywords = [
+        "şart", "koşul", "nasıl", "nedir", "kaç gün", "ne kadar", "kimler",
+        "başvurulmalı", "gerekir", "zorunlu", "yapılır", "verilir",
+        "tamamlanmalı", "agno", "not ortalaması", "kredi",
+        "yatay geçiş", "muafiyet", "kayıt dondur", "harç",
+        "diploma", "sertifika", "itiraz", "dilekçe", "disiplin", "kopya",
+        "çap", "çift anadal", "yandal", "yüzde"
+    ]
     if any(kw in query_lower for kw in yonetmelik_keywords):
         return False
         
-    if any(kw in query_lower for kw in takvim_keywords):
+    # 4. Zaman belirten kelime + Etkinlik kelimesi kombinasyonu
+    zaman_sorulari = ["ne zaman", "hangi tarih", "tarihi nedir", "hangi gün", "başlıyor", "bitiyor", "başlangıç", "bitiş"]
+    etkinlikler = ["vize", "final", "bütünleme", "sınav", "kayıt", "ders", "okul", "dönem", "yarıyıl"]
+    
+    is_time_question = any(z in query_lower for z in zaman_sorulari)
+    is_event = any(e in query_lower for e in etkinlikler)
+    
+    if is_time_question and is_event:
         return True
         
+    # 5. Sadece vizeler/finaller kelimesi geçiyorsa takvime bakma ihtimali çok yüksek
+    if any(kw in query_lower for kw in ["vizeler", "finaller", "bütler", "bütünlemeler"]):
+        return True
+
     return False
 
-def ask(query, vectorstore, bm25, chunks, llm, chat_history=None):
+def ask(query, vectorstore, bm25, chunks, llm, chat_history=None, stream=False):
     from query_rewriter import rewrite_query
-    from academic_calendar import answer_calendar_query
+    from academic_calendar import format_calendar_context
 
     # 🧠 Akıllı Yönlendirme
     is_calendar = semantic_router(query)
     
     if is_calendar:
-        calendar_answer = answer_calendar_query(query, chat_history)
-        return {
-            "answer": calendar_answer,
-            "sources": ["Akademik Takvim PDF"],
-            "chunks": []
-        }
-
-    # Normal RAG akışı (Multi-Query Retrieval)
-    queries_to_search = rewrite_query(query)
-    if not isinstance(queries_to_search, list):
-        queries_to_search = [queries_to_search]
+        context_str = format_calendar_context()
+        context = f"AŞAĞIDAKİ JSON VERİSİ İSTANBUL ÜNİVERSİTESİ-CERRAHPAŞA AKADEMİK TAKVİMİDİR. Soruyu SADECE bu JSON verisine bakarak Türkçe ve doğal bir cümleyle cevapla:\n\n{context_str}"
+        top_chunks = []
+        sources = ["Akademik Takvim JSON"]
+    else:
+        # Normal RAG akışı (Multi-Query Retrieval)
+        queries_to_search = rewrite_query(query)
+        if not isinstance(queries_to_search, list):
+            queries_to_search = [queries_to_search]
+            
+        all_retrieved_chunks = []
+        seen_chunk_ids = set()
         
-    all_retrieved_chunks = []
-    seen_chunk_ids = set()
-    
-    topic_filters = get_topic_filters(query)
+        topic_filters = get_topic_filters(query)
 
-    for q in queries_to_search:
-        results = hybrid_search(q, vectorstore, bm25, chunks, k=15, topic_filters=topic_filters)
-        for chunk in results:
-            c_id = chunk["metadata"]["chunk_id"]
-            if c_id not in seen_chunk_ids:
-                seen_chunk_ids.add(c_id)
-                all_retrieved_chunks.append(chunk)
-                
-    # Havuzdaki tüm chunk'ları tek seferde kullanıcının Orijinal Sorusu'na göre sırala
-    top_chunks = rerank(query, all_retrieved_chunks, top_k=5)
-    context = build_context(top_chunks)
+        for q in queries_to_search:
+            results = hybrid_search(q, vectorstore, bm25, chunks, k=15, topic_filters=topic_filters)
+            for chunk in results:
+                c_id = chunk["metadata"]["chunk_id"]
+                if c_id not in seen_chunk_ids:
+                    seen_chunk_ids.add(c_id)
+                    all_retrieved_chunks.append(chunk)
+                    
+        # Havuzdaki tüm chunk'ları tek seferde kullanıcının Orijinal Sorusu'na göre sırala
+        top_chunks = rerank(query, all_retrieved_chunks, top_k=5)
+        context = build_context(top_chunks)
+        sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
 
     history_text = ""
     if chat_history:
@@ -266,6 +258,19 @@ BAĞLAM BELGELERİ:
 ### Yanıt:
 """
 
+    if stream:
+        def generate():
+            if hasattr(llm, 'stream'):
+                for chunk in llm.stream(prompt):
+                    if hasattr(chunk, 'content'):
+                        yield chunk.content
+                    else:
+                        yield str(chunk)
+            else:
+                res = llm.invoke(prompt)
+                yield res.content if hasattr(res, "content") else str(res)
+        return generate(), sources, top_chunks
+
     response_obj = llm.invoke(prompt)
     response_text = response_obj.content if hasattr(response_obj, "content") else str(response_obj)
     engine_used = getattr(response_obj, "engine", "Bilinmeyen Motor")
@@ -274,12 +279,6 @@ BAĞLAM BELGELERİ:
     if "<KAYNAK_YOK>" in response_text:
         response_text = response_text.replace("<KAYNAK_YOK>", "").strip()
         sources = []
-    else:
-        # NOT: Eskiden list(set(...)) kullanilarak kaynaklar dedup ediliyordu,
-        # ancak set sirasiz oldugu icin en alakali (rerank sirasinda ust siraya
-        # cikan) kaynagin UI'da ilk gosterilmesi garanti degildi. dict.fromkeys
-        # ile sira korunarak dedup yapiliyor.
-        sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
 
     return {
         "answer": response_text.strip(),

@@ -2,8 +2,10 @@ import sys
 import os
 import time
 from fastapi import FastAPI, HTTPException
+from fastapi.responses import StreamingResponse
 from pydantic import BaseModel
 from typing import List, Dict, Any
+import json
 
 # Klasor yollarini sys.path'e ekle
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
@@ -87,3 +89,53 @@ def ask_question(request: QueryRequest):
         }
     except Exception as e:
         raise HTTPException(status_code=500, detail=f"Sorgu islenirken hata olustu: {str(e)}")
+
+@app.post("/ask_stream")
+def ask_question_stream(request: QueryRequest):
+    if vectorstore is None or bm25 is None or chunks is None:
+        raise HTTPException(
+            status_code=503, 
+            detail="Arama indeksleri yuklenemedi. Lutfen pipeline.py'i calistirip yerel veritabani dizinini kontrol edin."
+        )
+    
+    try:
+        llm = get_llm(temperature=request.temperature)
+        
+        generator, sources, top_chunks = ask(
+            query=request.query,
+            vectorstore=vectorstore,
+            bm25=bm25,
+            chunks=chunks,
+            llm=llm,
+            chat_history=request.chat_history,
+            stream=True
+        )
+        
+        safe_chunks = []
+        for c in top_chunks:
+            safe_chunks.append({
+                "content": c.get("content", ""),
+                "metadata": c.get("metadata", {})
+            })
+        
+        def sse_generator():
+            meta = {
+                "type": "meta",
+                "sources": sources,
+                "chunks": safe_chunks,
+                "engine": "Hibrit Motor (Stream)"
+            }
+            yield f"data: {json.dumps(meta, ensure_ascii=False)}\n\n"
+            
+            for chunk_text in generator:
+                if chunk_text:
+                    payload = {"type": "chunk", "content": chunk_text}
+                    yield f"data: {json.dumps(payload, ensure_ascii=False)}\n\n"
+                    
+            yield "data: [DONE]\n\n"
+            
+        return StreamingResponse(sse_generator(), media_type="text/event-stream")
+        
+    except Exception as e:
+        raise HTTPException(status_code=500, detail=f"Streaming sorgusu islenirken hata olustu: {str(e)}")
+

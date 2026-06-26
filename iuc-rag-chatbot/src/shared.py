@@ -145,5 +145,53 @@ class RobustLLM:
                     self.engine = "Sistem Hatası"
             return DummyResponse(f"⚠️ **Sistem Hatası:** Bulut API sunucuları (Groq) limitlere ulaştı ve yerel destek motoru (Ollama) başlatılamadı.\n\nLütfen bir süre bekleyin veya API anahtarlarınızı güncelleyin. (Ollama Hatası: {str(e)[:100]})")
 
+    def stream(self, prompt):
+        from langchain_ollama import OllamaLLM
+        import time
+        
+        if self.keys:
+            try:
+                from langchain_groq import ChatGroq
+            except ImportError:
+                self.keys = []
+                
+        if self.keys:
+            attempts = len(self.keys)
+            for attempt in range(attempts):
+                current_key = self.keys[self.current_key_idx]
+                try:
+                    llm = ChatGroq(
+                        api_key=current_key,
+                        model_name="llama-3.3-70b-versatile",
+                        temperature=self.temperature
+                    )
+                    for chunk in llm.stream(prompt):
+                        yield chunk
+                    return
+                except Exception as e:
+                    error_str = str(e).lower()
+                    if "429" in error_str or "rate limit" in error_str or "tokens" in error_str or "too many requests" in error_str:
+                        self.current_key_idx = (self.current_key_idx + 1) % len(self.keys)
+                        time.sleep(1)
+                        continue
+                    else:
+                        break
+
+        try:
+            ollama = OllamaLLM(model="gemma3:4b", temperature=self.temperature)
+            for chunk in ollama.stream(prompt):
+                class LocalChunk:
+                    def __init__(self, content):
+                        self.content = content
+                if isinstance(chunk, str):
+                    yield LocalChunk(chunk)
+                else:
+                    yield chunk
+        except Exception as e:
+            class DummyChunk:
+                def __init__(self, content):
+                    self.content = content
+            yield DummyChunk(f"⚠️ Sistem Hatası: {str(e)[:100]}")
+
 def get_llm(temperature=0.0):
     return RobustLLM(temperature=temperature)
