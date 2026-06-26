@@ -106,7 +106,7 @@ class RobustLLM:
                 try:
                     llm = ChatGroq(
                         api_key=current_key,
-                        model_name="llama-3.1-8b-instant",
+                        model_name="llama-3.3-70b-versatile",
                         temperature=self.temperature
                     )
                     res = llm.invoke(prompt)
