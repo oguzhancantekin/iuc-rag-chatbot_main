@@ -10,7 +10,7 @@ from rank_bm25 import BM25Okapi
 import re
 import hashlib
 
-from config import PDF_DIR, HTML_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
+from config import PDF_DIR, HTML_DIR, MD_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
 from shared import get_display_name
 
 os.makedirs(PROCESSED_DIR, exist_ok=True)
@@ -44,6 +44,16 @@ def extract_html(filepath):
             return clean_text(soup.get_text(separator="\n"))
     except Exception as e:
         print(f"HTML okuma hatası {filepath}: {e}")
+        return ""
+
+def extract_md(filepath):
+    try:
+        with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
+            # MD dosyalarini saf metin olarak donduruyoruz.
+            # RAG sistemi (RecursiveCharacterTextSplitter) basliklari (#) ayristirmada iyidir.
+            return f.read().strip()
+    except Exception as e:
+        print(f"MD okuma hatası {filepath}: {e}")
         return ""
 
 
@@ -93,6 +103,27 @@ def load_all_documents():
                     "metadata": {
                         "source": filename,
                         "type": "html",
+                        "filepath": filepath
+                    }
+                })
+                print(f"  + {filename[:60]}")
+
+    print(f"\nMarkdown (MD) sayfalar okunuyor...")
+    for filename in os.listdir(MD_DIR):
+        if filename.endswith(".md"):
+            filepath = os.path.join(MD_DIR, filename)
+            text = extract_md(filepath)
+            if len(text) > 50: # MD kisa olabilir
+                content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
+                if content_hash in seen_hashes:
+                    print(f"  [DUPLICATE] atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
+                    continue
+                seen_hashes[content_hash] = filename
+                documents.append({
+                    "content": text,
+                    "metadata": {
+                        "source": filename,
+                        "type": "md",
                         "filepath": filepath
                     }
                 })

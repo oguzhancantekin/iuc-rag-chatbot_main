@@ -8,6 +8,7 @@ DATA_DIR = os.path.join(BASE_DIR, "data")
 RAW_DIR = os.path.join(DATA_DIR, "raw")
 PDF_DIR = os.path.join(RAW_DIR, "pdfs")
 HTML_DIR = os.path.join(RAW_DIR, "html")
+MD_DIR = os.path.join(RAW_DIR, "markdowns")
 PROCESSED_DIR = os.path.join(DATA_DIR, "processed")
 VECTORDB_DIR = os.path.join(BASE_DIR, "vectordb")
 MODELS_DIR = os.path.join(BASE_DIR, "models")
@@ -23,7 +24,7 @@ MODEL_PATH = os.path.join(MODELS_DIR, "llama3-iuc-finetuned")
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
 
 # Tüm dizinleri oluştur
-for d in [PDF_DIR, HTML_DIR, PROCESSED_DIR, VECTORDB_DIR, MODELS_DIR]:
+for d in [PDF_DIR, HTML_DIR, MD_DIR, PROCESSED_DIR, VECTORDB_DIR, MODELS_DIR]:
     os.makedirs(d, exist_ok=True)
 
 if __name__ == "__main__":
