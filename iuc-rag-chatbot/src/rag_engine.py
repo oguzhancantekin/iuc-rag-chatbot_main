@@ -21,15 +21,16 @@ Sana verilen BAĞLAM BELGELERİ'ni kullanarak öğrencilerin sorularını yanıt
 
 KURALLAR:
 1. Türkçe cevap ver.
-2. SADECE VE SADECE sorunun net cevabını ver. Belgedeki fıkraları, uzun cümleleri KOPYALAMA.
+2. BAĞLAMDAKİ BİLGİLERİ KULLANARAK sorunun net cevabını ver. Uzun ve gereksiz cümleler kurma, ancak cevabı bağlamdan mantıklı bir şekilde çıkarabiliyorsan kesinlikle cevapla.
 3. Cevabının en altına mutlaka yeni bir satır açarak "Kaynak: [Belge Adı] - Madde X" formatında referansını yaz. Eger Madde yoksa sadece belge adini yaz.
 4. Rakamları ve yüzdeleri metindeki gibi yaz ("yüzde 70" yerine "%70").
+5. ÖNEMLİ: Eğer maddeleme (liste) yapacaksan, listeye başlamadan önce MUTLAKA bir satır boşluk (Enter) bırak. Aksi halde maddeler yan yana yapışır.
 
 ÖRNEK 1:
 Kullanıcı: Derslere devam zorunluluğu yüzde kaçtır?
-Bağlam: [Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği] Zorunlu ve isteğe bağlı yabancı dil hazırlık programlarında ... toplam ders saatinin en az %80 ine katılmış olmak zorunludur. Madde 11.
-Yanıt: Derslere devam zorunluluğu %80'dir.
-Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği - Madde 11
+Bağlam: [Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği] Öğrenciler, ilk kez aldıkları veya devamsızlıktan kaldıkları teorik derslerin en az %70'ine, uygulamalı derslerin ise en az %80'ine devam etmek zorundadır. Madde 19.
+Yanıt: Derslere devam zorunluluğu teorik dersler için %70, uygulamalı dersler için ise %80'dir.
+Kaynak: Önlisans ve Lisans Eğitim-Öğretim Yönetmeliği - Madde 19
 
 ÖRNEK 2:
 Kullanıcı: Yaz okulunda en fazla kaç kredi alabilirim?
@@ -37,7 +38,7 @@ Bağlam: [Kaynak: Yaz Okulu Duyurusu] Yaz okulunda bir öğrenci en fazla 10 ulu
 Yanıt: Yaz okulunda en fazla 10 ulusal kredi alabilirsiniz.
 Kaynak: Yaz Okulu Duyurusu
 
-Eğer bilgi belgelerde yoksa "Bu konuda bilgim bulunmamaktadır." de.
+Eğer bilgi, verilen BAĞLAM BELGELERİ içinde HİÇBİR ŞEKİLDE bulunmuyorsa "Bu konuda bilgim bulunmamaktadır." de.
 """
 
 _reranker = None
@@ -90,6 +91,14 @@ def get_topic_filters(query):
         filters.append("disiplin")
     if "hastalık" in query_lower or "rapor" in query_lower:
         filters.append("hastalik")
+    
+    exclude_mufredat = any(k in query_lower for k in ["yaz okulu", "staj", "çap", "cift anadal", "çift anadal", "yandal", "erasmus"])
+    if not exclude_mufredat and any(k in query_lower for k in ["müfredat", "mufredat", "akts", "kredi", "yarıyıl", "sınıf", "ders planı", "hangi ders", "zorunlu ders", "seçmeli ders"]):
+        filters.append("mufredat")
+        
+    if any(k in query_lower for k in ["hoca", "kimdir", "kim", "başkanı", "başkan yardımcısı", "uzmanlık", "çalışıyor", "alanı", "prof", "doç", "dr", "öğretim", "kadro", "akademik", "anabilim"]):
+        filters.append("akademik")
+        
     return filters
 
 def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filters=None):
@@ -135,10 +144,21 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filte
     top_chunks = [item[1][1] for item in sorted_results[:k]]
     return top_chunks
 
-def rerank(query, chunks, top_k=5):
+def rerank(query, chunks, top_k=8):
     reranker = get_reranker()
     pairs = [[query, chunk["content"]] for chunk in chunks]
     scores = reranker.predict(pairs)
+    
+    # Özel Tablo Kurtarma: Cross-Encoder tabloları yok ettiği için, müfredat sorusuysa bypass et!
+    query_lower = query.lower()
+    exclude_mufredat = any(k in query_lower for k in ["yaz okulu", "staj", "çap", "cift anadal", "çift anadal", "yandal", "erasmus"])
+    is_mufredat_query = not exclude_mufredat and any(k in query_lower for k in ["müfredat", "mufredat", "akts", "kredi", "yarıyıl", "sınıf", "ders planı", "hangi ders", "zorunlu ders", "seçmeli ders"])
+    
+    for i, chunk in enumerate(chunks):
+        source_lower = chunk["metadata"].get("source", "").lower()
+        if is_mufredat_query and "mufredat" in source_lower:
+            scores[i] += 10.0  # Cross-encoder'ın eksi puan vermesini ezip ilk sıraya taşır
+            
     ranked = sorted(zip(scores, chunks), key=lambda x: x[0], reverse=True)
     return [chunk for _, chunk in ranked[:top_k]]
 
@@ -226,7 +246,7 @@ def ask(query, vectorstore, bm25, chunks, llm, chat_history=None, stream=False):
                     all_retrieved_chunks.append(chunk)
                     
         # Havuzdaki tüm chunk'ları tek seferde kullanıcının Orijinal Sorusu'na göre sırala
-        top_chunks = rerank(query, all_retrieved_chunks, top_k=5)
+        top_chunks = rerank(query, all_retrieved_chunks, top_k=8)
         context = build_context(top_chunks)
         sources = list(dict.fromkeys(c["metadata"].get("source", "") for c in top_chunks))
 

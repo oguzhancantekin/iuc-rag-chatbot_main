@@ -135,7 +135,7 @@ def load_all_documents():
 def chunk_documents(documents):
     splitter = RecursiveCharacterTextSplitter(
         chunk_size=1024,
-        chunk_overlap=100,
+        chunk_overlap=200,
         separators=["\n\n", "\n", ".", " "]
     )
 

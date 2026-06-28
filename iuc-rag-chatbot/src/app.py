@@ -613,5 +613,18 @@ if user_query:
         if len(st.session_state.chat_history) > 10:
             st.session_state.chat_history = st.session_state.chat_history[-10:]
             
-        # DOM u tam yenilemek icin (Beğen butonlarının ilk soruda hemen çıkması için)
-        st.rerun()
+        # DOM u tam yenilemek (st.rerun) sayfanin titremesine yol aciyordu.
+        # Rerun atmamak icin yeni uretilen cevabin butonlarini manuel olarak burada ciziyoruz.
+        # Bu butonlarin "key" degerleri dongudekilerle ayni oldugu icin Streamlit mimarisinde
+        # mukemmel ve titresimsiz bir sekilde calisir.
+        new_idx = len(st.session_state.messages) - 1
+        if new_idx not in st.session_state.feedback_given:
+            fb_col1, fb_col2, fb_spacer = st.columns([1, 1, 8])
+            with fb_col1:
+                if st.button("👍", key=f"fb_pos_{new_idx}", help="Bu cevap faydalıydı"):
+                    handle_feedback(new_idx, "positive")
+                    st.rerun()
+            with fb_col2:
+                if st.button("👎", key=f"fb_neg_{new_idx}", help="Bu cevap yetersizdi"):
+                    handle_feedback(new_idx, "negative")
+                    st.rerun()
