@@ -10,7 +10,7 @@ from rank_bm25 import BM25Okapi
 import re
 import hashlib
 
-from config import PDF_DIR, HTML_DIR, MD_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
+from config import PDF_DIR, HTML_DIR, MD_DIR, JSON_DIR, PROCESSED_DIR, VECTORDB_DIR, DEVICE
 from shared import get_display_name
 
 os.makedirs(PROCESSED_DIR, exist_ok=True)
@@ -128,6 +128,33 @@ def load_all_documents():
                     }
                 })
                 print(f"  + {filename[:60]}")
+
+    print(f"\nJSON sayfalar okunuyor...")
+    for filename in os.listdir(JSON_DIR):
+        if filename.endswith(".json"):
+            filepath = os.path.join(JSON_DIR, filename)
+            try:
+                with open(filepath, "r", encoding="utf-8") as f:
+                    data = json.load(f)
+                    if isinstance(data, list):
+                        for i, item in enumerate(data):
+                            if "soru" in item and "cevap" in item:
+                                text = f"Soru: {item['soru']}\nCevap: {item['cevap']}"
+                                content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
+                                if content_hash in seen_hashes:
+                                    continue
+                                seen_hashes[content_hash] = f"{filename}_{i}"
+                                documents.append({
+                                    "content": text,
+                                    "metadata": {
+                                        "source": filename,
+                                        "type": "json",
+                                        "filepath": filepath
+                                    }
+                                })
+                        print(f"  + {filename[:60]}")
+            except Exception as e:
+                print(f"JSON okuma hatası {filepath}: {e}")
 
     print(f"\nToplam doküman: {len(documents)}")
     return documents
