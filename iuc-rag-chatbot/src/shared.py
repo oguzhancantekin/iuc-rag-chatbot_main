@@ -20,6 +20,12 @@ SOURCE_DISPLAY_NAMES = {
     "2025-dgs-kayit-kilavuzu": "DGS Kayıt Kılavuzu",
     "411.6y_iuc-mufredat-guncel": "Müfredat Güncelleme ve İntibak Esasları",
     "cap-yonerge-senatoda-kabul-edilen": "Çift Anadal Programı Yönergesi (Senato)",
+    "degisim_programlari": "Öğrenci Değişim Programları (Erasmus/Farabi/Mevlana)",
+    "akademik_kadro": "Akademik Kadro ve Araştırma Alanları",
+    "mufredat_ders_plani": "Müfredat ve Ders Planı",
+    "kulupler": "Öğrenci Kulüpleri Listesi",
+    "staj_is_akisi": "Staj İş Akışı",
+    "staj_kurallari": "Staj Kuralları",
 }
 
 
@@ -62,12 +68,13 @@ def is_calendar_source(source):
 
 
 class RobustLLM:
-    def __init__(self, temperature=0.0):
+    def __init__(self, temperature=0.0, model_name="llama-3.3-70b-versatile"):
         import os
         from dotenv import load_dotenv
         load_dotenv()
         
         self.temperature = temperature
+        self.model_name = model_name
         self.keys = []
         
         # Olası tüm GROQ_API_KEY varyasyonlarını topla
@@ -106,7 +113,7 @@ class RobustLLM:
                 try:
                     llm = ChatGroq(
                         api_key=current_key,
-                        model_name="llama-3.3-70b-versatile",
+                        model_name=self.model_name,
                         temperature=self.temperature
                     )
                     res = llm.invoke(prompt)
@@ -162,7 +169,7 @@ class RobustLLM:
                 try:
                     llm = ChatGroq(
                         api_key=current_key,
-                        model_name="llama-3.3-70b-versatile",
+                        model_name=self.model_name,
                         temperature=self.temperature
                     )
                     for chunk in llm.stream(prompt):
@@ -193,5 +200,5 @@ class RobustLLM:
                     self.content = content
             yield DummyChunk(f"⚠️ Sistem Hatası: {str(e)[:100]}")
 
-def get_llm(temperature=0.0):
-    return RobustLLM(temperature=temperature)
+def get_llm(temperature=0.0, model_name="llama-3.3-70b-versatile"):
+    return RobustLLM(temperature=temperature, model_name=model_name)

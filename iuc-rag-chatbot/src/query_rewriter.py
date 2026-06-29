@@ -28,7 +28,7 @@ _rewrite_llm = None
 def get_rewrite_llm():
     global _rewrite_llm
     if _rewrite_llm is None:
-        _rewrite_llm = get_llm(temperature=0.0)
+        _rewrite_llm = get_llm(temperature=0.0, model_name="llama-3.3-70b-versatile")
     return _rewrite_llm
 
 def rewrite_query(query):

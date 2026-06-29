@@ -37,8 +37,13 @@ Kullanıcı: Yaz okulunda en fazla kaç kredi alabilirim?
 Bağlam: [Kaynak: Yaz Okulu Duyurusu] Yaz okulunda bir öğrenci en fazla 10 ulusal kredi değerinde ders alabilir.
 Yanıt: Yaz okulunda en fazla 10 ulusal kredi alabilirsiniz.
 Kaynak: Yaz Okulu Duyurusu
+ÖRNEK 3:
+Kullanıcı: Erasmus'a ne zaman başvurabilirim?
+Bağlam: [Kaynak: degisim_programlari] Değişim programlarının başvuru tarihleri her yıl güncellenmektedir. Lütfen ilgili resmi web sayfasını ziyaret ediniz: https://erasmus.iuc.edu.tr/tr/_
+Yanıt: Erasmus başvuru tarihleri her akademik yıl güncellenmektedir. En güncel bilgi için lütfen https://erasmus.iuc.edu.tr/tr/_ adresini ziyaret ediniz.
+Kaynak: degisim_programlari
 
-Eğer bilgi, verilen BAĞLAM BELGELERİ içinde HİÇBİR ŞEKİLDE bulunmuyorsa "Bu konuda bilgim bulunmamaktadır." de.
+Eğer bilgi, verilen BAĞLAM BELGELERİ içinde tamamen eksikse "Bu konuda net bir bilgim bulunmamaktadır" diyebilirsin. Ancak bağlam metninden mantıksal olarak çıkarabileceğin, dolaylı da olsa soruyu yanıtlamaya yetecek ilgili bilgiler varsa, bu bilgileri kullanarak öğrenciye yol gösterici, mantıklı bir cevap oluştur. Mümkün olduğunca yardımcı olmaya çalış. Bağlamda konuyla alakalı ama sorunun %100 direkt yanıtı olmayan bilgiler (örneğin süreç, yönlendirme veya genel kurallar) varsa, bu kurallardan yola çıkarak doğru bilgiyi sentezle. Sadece metin tamamen alakasızsa (Örn: Hoca onayı sorulurken, Yemekhane menüsü verilmişse) "Bu konuda bilgim bulunmamaktadır." de.
 """
 
 _reranker = None
@@ -89,25 +94,35 @@ def get_topic_filters(query):
         filters.append("muafiyet")
     if "disiplin" in query_lower or "kopya" in query_lower:
         filters.append("disiplin")
-    if "hastalık" in query_lower or "rapor" in query_lower:
+    if "hastalık" in query_lower or "rapor" in query_lower or "mazeret" in query_lower:
         filters.append("hastalik")
+    if "onay" in query_lower or "danışman" in query_lower or "kayıt" in query_lower or "ders seç" in query_lower:
+        filters.append("danisman")
+        filters.append("411.1y")
     
     exclude_mufredat = any(k in query_lower for k in ["yaz okulu", "staj", "çap", "cift anadal", "çift anadal", "yandal", "erasmus"])
     if not exclude_mufredat and any(k in query_lower for k in ["müfredat", "mufredat", "akts", "kredi", "yarıyıl", "sınıf", "ders planı", "hangi ders", "zorunlu ders", "seçmeli ders"]):
         filters.append("mufredat")
         
-    if any(k in query_lower for k in ["hoca", "kimdir", "kim", "başkanı", "başkan yardımcısı", "uzmanlık", "çalışıyor", "alanı", "prof", "doç", "dr", "öğretim", "kadro", "akademik", "anabilim"]):
+    import re
+    akademik_pattern = r'\b(kimdir|uzmanlık|prof|doç|akademik kadro|anabilim)\b'
+    if re.search(akademik_pattern, query_lower):
         filters.append("akademik")
+        
+    if any(k in query_lower for k in ["erasmus", "farabi", "mevlana", "değişim program", "degisim program", "yurtdışı"]):
+        filters.append("degisim")
         
     return filters
 
-def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filters=None):
-    faiss_k = max(k * 2, 20)  # Bug fix: FAISS havuzunu genişlet (eskiden sabit 10'du)
+def hybrid_search(query, vectorstore, bm25, chunks, k=25, alpha=0.3, topic_filters=None):
+    faiss_k = max(k * 2, 30)  # FAISS havuzunu genişlet
     faiss_results = vectorstore.similarity_search_with_score(query, k=faiss_k)
     faiss_scores = {}
     for doc, score in faiss_results:
         chunk_id = doc.metadata.get("chunk_id", "")
-        faiss_scores[chunk_id] = (1 - score, doc)
+        # FAISS varsayılan olarak L2 distance döndürür (0 en iyi). Bunu benzerlik (0-1) skoruna çevirmek için:
+        normalized_score = 1 / (1 + score)
+        faiss_scores[chunk_id] = (normalized_score, doc)
 
     tokenized_query = query.lower().split()
     bm25_scores_raw = bm25.get_scores(tokenized_query)
@@ -123,16 +138,18 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=15, alpha=0.3, topic_filte
         bonus = 0
         source_lower = chunk["metadata"].get("source", "").lower()
         if "yönetmelik" in source_lower or "yonetmelik" in source_lower:
-            bonus += 0.05
+            bonus += 0.15  # PDF Yönergelerini Web sitelerinden üstün tut
         elif "yönerge" in source_lower or "yonerge" in source_lower:
-            bonus += 0.03
+            bonus += 0.15
+        elif "sss_manuel" in source_lower:
+            bonus += 0.7  # SSS Manuel dosyasını tüm konulardan üstün tut (0.25'ten 0.7'ye çıkarıldı)
         elif "sss" in source_lower or "sorulan" in source_lower:
             bonus += 0.08
 
         if topic_filters:
             for tf in topic_filters:
                 if tf in source_lower:
-                    bonus += 0.5  # Massive boost for exact document match
+                    bonus += 0.3  # Topic bonusu
                     break
 
         final_scores[chunk_id] = (
@@ -157,7 +174,7 @@ def rerank(query, chunks, top_k=8):
     for i, chunk in enumerate(chunks):
         source_lower = chunk["metadata"].get("source", "").lower()
         if is_mufredat_query and "mufredat" in source_lower:
-            scores[i] += 10.0  # Cross-encoder'ın eksi puan vermesini ezip ilk sıraya taşır
+            scores[i] += 2.0  # Cross-encoder'ı zehirlemeden (logit dengesini bozmadan) hafif öne çıkart
             
     ranked = sorted(zip(scores, chunks), key=lambda x: x[0], reverse=True)
     return [chunk for _, chunk in ranked[:top_k]]

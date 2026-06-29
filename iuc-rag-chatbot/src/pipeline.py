@@ -20,7 +20,7 @@ def clean_text(text):
     text = re.sub(r'Dok\.?No[:.]?\s*[\w.\-]+\s*(?:İlk\s*)?Yay\.?\s*Tar[:.]?\s*[\d.\-]+(?:\s*Revizyon\s*(?:No)?\s*Tar[:.]?\s*[\d.\-]+)?', ' ', text, flags=re.IGNORECASE)
     text = re.sub(r'ELEKTRON[İI]K\s*N[ÜU]SHADIR\.?\s*BASILI\s*HAL[İI]\s*KONTROLS[ÜU]Z\s*KOPYADIR\.?', ' ', text, flags=re.IGNORECASE)
     text = re.sub(r'\s+', ' ', text)
-    text = re.sub(r'[^\w\s.,;:!?()%-]', ' ', text)
+    text = re.sub(r'[^\w\s.,;:!?()%\-çğıöşüÇĞİÖŞÜ]', ' ', text)
     return text.strip()
 
 def extract_pdf(filepath):

@@ -21,91 +21,91 @@ GOLDEN_DATASET = [
         "question": "Derslere devam zorunluluğu yüzde kaçtır?",
         "keywords": ["devam", "zorunlu"],
         "expected_facts": ["%70", "%80", "70", "80"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Kayıt dondurma süresi en fazla ne kadardır?",
         "keywords": ["kayıt dondurma", "süre"],
         "expected_facts": ["yarı", "öğrenim süresinin"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Onur öğrencisi olmak için not ortalaması kaç olmalı?",
         "keywords": ["onur", "ortalama"],
         "expected_facts": ["3.00", "3,00", "3.49", "3,49"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Yüksek onur öğrencisi olmak için AGNO kaç olmalıdır?",
         "keywords": ["yüksek onur", "agno"],
         "expected_facts": ["3.50", "3,50"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Mazeret sınavına kimler girebilir?",
         "keywords": ["mazeret", "sınav"],
         "expected_facts": ["haklı ve geçerli", "yönetim kurulu"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Bütünleme sınavına kimler girebilir?",
         "keywords": ["bütünleme", "sınav"],
         "expected_facts": ["başarısız", "koşulu sağlayan", "girebilir"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Tek ders sınavı nedir ve kimler girebilir?",
         "keywords": ["tek ders", "sınav"],
         "expected_facts": ["mezuniyet", "tek dersi kalan"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Mezuniyet için minimum AGNO kaçtır?",
         "keywords": ["mezuniyet", "agno"],
         "expected_facts": ["2.00", "2,00"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Not itirazı nasıl ve kaç gün içinde yapılır?",
         "keywords": ["itiraz", "gün"],
         "expected_facts": ["5", "beş", "iş günü"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Harç ödenmezse kayıt yenilenir mi?",
         "keywords": ["harç", "kayıt yenileme"],
         "expected_facts": ["yenilenmez", "yapamaz"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Üstten ders alabilmek için AGNO kaç olmalıdır?",
         "keywords": ["üstten", "agno", "ders"],
         "expected_facts": ["3.00", "3,00"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Sınav sonuçlarına kaç gün içinde itiraz edilebilir?",
         "keywords": ["sınav", "itiraz", "gün"],
         "expected_facts": ["5", "beş", "iş günü"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Kayıt dondurmak için en geç ne zamana kadar başvurulmalıdır?",
         "keywords": ["kayıt dondurma", "başvuru"],
         "expected_facts": ["başlangıç", "ilk haftası", "ders ekleme"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Katkı payı ödemeyen öğrencinin kaydı silinir mi?",
         "keywords": ["katkı payı", "kayıt", "silinir"],
         "expected_facts": ["silinmez", "yenilenmez", "haklarından"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Ders kayıt onayını kim verir?",
         "keywords": ["danışman", "onay", "ders"],
         "expected_facts": ["danışman", "onay"],
-        "expected_sources": ["411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
 
     # Çift Anadal (ÇAP) Soruları
@@ -113,31 +113,31 @@ GOLDEN_DATASET = [
         "question": "Çift anadal başvuru şartları nelerdir?",
         "keywords": ["çift anadal", "şart"],
         "expected_facts": ["3.00", "3,00", "%20", "yüzde yirmi"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
     },
     {
         "question": "ÇAP yapmak için sınıf başarısında yüzde kaçta olmak gerekir?",
         "keywords": ["başarı", "yüzde", "çap"],
         "expected_facts": ["%20", "20", "yüzde yirmi"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
     },
     {
         "question": "Çift anadal programı ne zaman tamamlanmalıdır?",
         "keywords": ["tamamlama", "süre", "çap"],
         "expected_facts": ["normal", "ek süre", "yıl"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
     },
     {
         "question": "Aynı anda birden fazla çift anadal programına kayıt yapılabilir mi?",
         "keywords": ["birden fazla", "kayıt", "çap"],
         "expected_facts": ["yapılamaz", "olamaz", "hayır"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
     },
     {
         "question": "ÇAP ortalaması kaçın altına düşerse kaydı silinir?",
         "keywords": ["çap", "ortalama", "silinir"],
         "expected_facts": ["2.50", "2,50", "2.00", "2,00"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.3y_iuc-cift-anadal-programi-yonergesi-rev.01-(1).pdf"]
     },
 
     # Yandal Soruları
@@ -145,31 +145,31 @@ GOLDEN_DATASET = [
         "question": "Yandal programına başvuru şartları nelerdir?",
         "keywords": ["yandal", "şart"],
         "expected_facts": ["2.50", "2,50"],
-        "expected_sources": ["411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     },
     {
         "question": "Yandal programını başarıyla tamamlayana ne verilir?",
         "keywords": ["yandal", "tamamlama", "belge"],
         "expected_facts": ["sertifika", "yandal sertifikası"],
-        "expected_sources": ["411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     },
     {
         "question": "Yandal ve çift anadal arasındaki temel fark nedir?",
         "keywords": ["diploma", "sertifika", "çap", "yandal"],
         "expected_facts": ["diploma", "sertifika"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf", "f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     },
     {
         "question": "Yandal öğrencisi anadaldan mezun olduğunda yandalı ne olur?",
         "keywords": ["yandal", "mezuniyet", "anadal"],
         "expected_facts": ["tamamlayabilir", "süre verilir"],
-        "expected_sources": ["411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     },
     {
         "question": "Yandal için AGNO kaçın altına düşerse kayıt silinir?",
         "keywords": ["yandal", "agno", "kayıt", "silinir"],
         "expected_facts": ["2.00", "2,00", "altına"],
-        "expected_sources": ["411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     },
 
     # Staj Soruları
@@ -177,31 +177,31 @@ GOLDEN_DATASET = [
         "question": "Staj defterini ne zaman teslim etmeliyim?",
         "keywords": ["staj", "teslim", "defter"],
         "expected_facts": ["3", "üç", "hafta", "akademik dönem"],
-        "expected_sources": ["411.14y_iuc-lisans-staj-yonergesi.pdf", "411.17y_iuc-onlisans-staj-yonergesi.pdf"]
+        "expected_sources": ["staj_yonergesi.md", "staj_kurallari.md"]
     },
     {
         "question": "Staj zorunlu mudur?",
         "keywords": ["staj", "zorunlu"],
         "expected_facts": ["evet", "zorunludur", "müfredat"],
-        "expected_sources": ["411.14y_iuc-lisans-staj-yonergesi.pdf", "411.17y_iuc-onlisans-staj-yonergesi.pdf"]
+        "expected_sources": ["staj_yonergesi.md", "staj_kurallari.md"]
     },
     {
         "question": "Staj değerlendirme sonucu itirazı kaç gün içinde yapılır?",
         "keywords": ["staj", "itiraz", "gün"],
         "expected_facts": ["5", "beş", "iş günü"],
-        "expected_sources": ["411.14y_iuc-lisans-staj-yonergesi.pdf", "411.17y_iuc-onlisans-staj-yonergesi.pdf"]
+        "expected_sources": ["staj_yonergesi.md", "staj_kurallari.md"]
     },
     {
         "question": "Bir haftada en fazla kaç gün staj yapılabilir?",
         "keywords": ["staj", "gün", "hafta"],
         "expected_facts": ["6", "altı", "iş günü"],
-        "expected_sources": ["411.14y_iuc-lisans-staj-yonergesi.pdf", "411.17y_iuc-onlisans-staj-yonergesi.pdf"]
+        "expected_sources": ["staj_yonergesi.md", "staj_kurallari.md"]
     },
     {
         "question": "Staj süresi boyunca öğrencilerin sigortasını kim öder?",
         "keywords": ["sigorta", "staj", "öde"],
         "expected_facts": ["üniversite", "İÜC", "rektörlük"],
-        "expected_sources": ["411.14y_iuc-lisans-staj-yonergesi.pdf", "411.17y_iuc-onlisans-staj-yonergesi.pdf"]
+        "expected_sources": ["staj_yonergesi.md", "staj_kurallari.md"]
     },
 
     # Yatay Geçiş Soruları
@@ -209,25 +209,25 @@ GOLDEN_DATASET = [
         "question": "Yatay geçiş başvuruları ne zaman ve nereye yapılır?",
         "keywords": ["yatay geçiş", "başvuru"],
         "expected_facts": ["akademik takvim", "aksis", "tarihlerinde"],
-        "expected_sources": ["411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
+        "expected_sources": ["f=411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
     },
     {
         "question": "Kurum içi yatay geçiş için AGNO en az kaç olmalıdır?",
         "keywords": ["kurum içi", "yatay geçiş", "agno"],
         "expected_facts": ["3.00", "3,00", "2.00", "2,00"],
-        "expected_sources": ["411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
+        "expected_sources": ["f=411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
     },
     {
         "question": "Merkezi yerleştirme puanıyla (Ek Madde 1) yatay geçiş yapılabilir mi?",
         "keywords": ["ek madde 1", "yatay geçiş", "puan"],
         "expected_facts": ["evet", "yapılabilir", "taban puan"],
-        "expected_sources": ["411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
+        "expected_sources": ["f=411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
     },
     {
         "question": "Yatay geçiş yapan öğrencinin önceki dersleri muaf edilir mi?",
         "keywords": ["muaf", "yatay geçiş", "ders"],
         "expected_facts": ["intibak", "muafiyet", "yönetim kurulu"],
-        "expected_sources": ["411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf", "411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
+        "expected_sources": ["f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf", "f=411.21y_iuc-on-lisans-ve-lisans-duzeyindeki-programlar-arasinda-kurum-ici-ve-kurumlar-arasi-yatay-gecis-esaslarina-iliskin-yonerge-(2).pdf"]
     },
 
     # Yaz Okulu Soruları
@@ -235,19 +235,19 @@ GOLDEN_DATASET = [
         "question": "Yaz okulunda en fazla kaç kredi değerinde ders alınabilir?",
         "keywords": ["yaz okulu", "kredi"],
         "expected_facts": ["10", "on"],
-        "expected_sources": ["Yaz Okulu Duyurusu.pdf", "411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
+        "expected_sources": ["Yaz Okulu Duyurusu.pdf", "f=411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
     },
     {
         "question": "Yaz okulunda başka bir üniversiteden ders alınabilir mi?",
         "keywords": ["başka", "yaz okulu", "üniversite"],
         "expected_facts": ["evet", "alabilir", "senato", "taban puan"],
-        "expected_sources": ["411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
+        "expected_sources": ["f=411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
     },
     {
         "question": "Yaz okulu notları AGNO'yu etkiler mi?",
         "keywords": ["yaz okulu", "agno", "etki"],
         "expected_facts": ["etkiler", "dahil edilir", "agno hesabına"],
-        "expected_sources": ["411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
+        "expected_sources": ["f=411.16y_iuc-onlisans-ve-lisans-program.-ogrenim-goren-ogrencilerin-baska-uni.-yaz-ogretiminde-ders-alabil.-da.-yonerge.pdf"]
     },
 
     # Muafiyet ve İntibak Soruları
@@ -255,13 +255,13 @@ GOLDEN_DATASET = [
         "question": "Muafiyet başvuruları ne zaman yapılır?",
         "keywords": ["muafiyet", "başvuru"],
         "expected_facts": ["kayıt", "ilk haftası", "tarihlerinde"],
-        "expected_sources": ["411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
+        "expected_sources": ["f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
     },
     {
         "question": "Muaf olunan derslerin notu transkripte nasıl işlenir?",
         "keywords": ["muaf", "not", "transkript"],
         "expected_facts": ["M", "muaf", "harf notu"],
-        "expected_sources": ["411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
+        "expected_sources": ["f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
     },
 
     # Genel SSS & Web Sayfaları
@@ -269,49 +269,49 @@ GOLDEN_DATASET = [
         "question": "Kayıt yenileme işlemi nereden ve nasıl yapılır?",
         "keywords": ["kayıt yenileme", "nereden"],
         "expected_facts": ["AKSİS", "aksis"],
-        "expected_sources": ["kayit_yenileme.txt", "sss_manuel"]
+        "expected_sources": ["sss_manuel.html.html", "sss_manuel.html"]
     },
     {
         "question": "Öğrenci belgesi nereden temin edilebilir?",
         "keywords": ["öğrenci belgesi", "nereden"],
         "expected_facts": ["AKSİS", "aksis", "e-devlet", "e-Devlet"],
-        "expected_sources": ["sss_manuel"]
+        "expected_sources": ["sss_manuel.html"]
     },
     {
         "question": "Transkript belgesi nereden alınır?",
         "keywords": ["transkript", "nereden"],
         "expected_facts": ["AKSİS", "aksis", "e-devlet", "e-Devlet"],
-        "expected_sources": ["sss_manuel"]
+        "expected_sources": ["sss_manuel.html"]
     },
     {
         "question": "Akademik takvime nereden ulaşabilirim?",
         "keywords": ["akademik takvim", "ulaş"],
         "expected_facts": ["web sitesi", "oidb", "aksis"],
-        "expected_sources": ["sss_manuel"]
+        "expected_sources": ["sss_manuel.html"]
     },
     {
         "question": "Ders muafiyeti için nereye dilekçe vermeliyim?",
         "keywords": ["muafiyet", "dilekçe", "nereye"],
         "expected_facts": ["bölüm", "dekanlık", "evrak kayıt"],
-        "expected_sources": ["411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
+        "expected_sources": ["f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf"]
     },
     {
         "question": "Disiplin cezası alan öğrenci ÇAP yapabilir mi?",
         "keywords": ["disiplin", "çap"],
         "expected_facts": ["alamamış", "olmaması gerekir"],
-        "expected_sources": ["411.3y_iuc-cift-anadal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.3y_iuc-cift-anadal-programi-yonergesi.pdf"]
     },
     {
-        "question": "Sınavda kopya çeken öğrenciye hangi ceza verilir?",
-        "keywords": ["kopya", "ceza"],
-        "expected_facts": ["uzaklaştırma", "yükseköğretim kurumları"],
-        "expected_sources": ["1.5.2547.pdf"]
+        "question": "Sınavda kopya çeken öğrenciye hangi işlem yapılır?",
+        "keywords": ["kopya", "ceza", "işlem"],
+        "expected_facts": ["sıfır", "0", "almış sayılır"],
+        "expected_sources": ["f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf", "f=411.1y_iuc-onlisans-ve-lisans-egitim-ogretim-yonetmeligi.pdf"]
     },
     {
         "question": "Öğrenci kimlik kartı kaybolursa ne yapılmalıdır?",
         "keywords": ["kimlik", "kayıp", "kart"],
         "expected_facts": ["kart", "gazete ilanı", "başvuru", "harç"],
-        "expected_sources": ["sss_manuel"]
+        "expected_sources": ["sss_manuel.html"]
     },
     {
         "question": "Yaz okulu ücretleri neye göre belirlenir?",
@@ -323,13 +323,13 @@ GOLDEN_DATASET = [
         "question": "DGS ile kayıt yaptıranların intibak işlemleri neye göre yapılır?",
         "keywords": ["dgs", "intibak"],
         "expected_facts": ["muafiyet", "intibak komisyonu", "yönetim kurulu"],
-        "expected_sources": ["411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf", "2025-dgs-kayit-kilavuzu.pdf"]
+        "expected_sources": ["f=411.13y_iuc-intibak-ve-muafiyet-islemleri-yonergesi.pdf", "f=2025-dgs-kayit-kilavuzu.pdf"]
     },
     {
         "question": "Yandal sertifikası diploma yerine geçer mi?",
         "keywords": ["yandal", "diploma", "geçer mi"],
         "expected_facts": ["geçmez", "diploma değildir", "sertifika"],
-        "expected_sources": ["411.4y_iuc-yandal-programi-yonergesi.pdf"]
+        "expected_sources": ["f=411.4y_iuc-yandal-programi-yonergesi.pdf"]
     }
 ]
 

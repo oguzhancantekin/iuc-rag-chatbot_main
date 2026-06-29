@@ -7,6 +7,7 @@ import json
 import requests
 import base64
 from datetime import datetime
+import streamlit.components.v1 as components
 
 sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 
@@ -71,12 +72,17 @@ else:
 
 st.markdown(f"""
 <style>
-    /* Filigran */
-    [data-testid="stAppViewContainer"]::before {{
-        content: ""; position: fixed; top: 0; left: 0; right: 0; bottom: 0;
-        background-image: url("data:image/png;base64,{base64_logo}");
-        background-repeat: no-repeat; background-position: center; background-size: 50%;
-        opacity: {watermark_opacity}; z-index: 0; pointer-events: none;
+    /* Filigran (Yeni HTML Metodu) */
+    .bg-watermark {{
+        position: absolute;
+        top: 50vh;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 50%;
+        max-width: 500px;
+        opacity: {watermark_opacity};
+        z-index: 0;
+        pointer-events: none;
     }}
     
     /* Global Themes */
@@ -90,6 +96,12 @@ st.markdown(f"""
     [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background: rgba(230, 235, 240, 0.9) !important; border-right: 1px solid rgba(0, 0, 0, 0.05); }
     .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #111111 !important; }
     '''}
+    
+    /* Sayfanın Kaymasını (Scroll) Önlemek İçin Üst Boşluğu Silme */
+    .block-container {{
+        padding-top: 3.5rem !important;
+        padding-bottom: 0rem !important;
+    }}
 
     /* Toggle Switch Rengi (SARI KUTU KESİN ÇÖZÜM) */
     div[data-testid="stToggle"] {{
@@ -99,11 +111,31 @@ st.markdown(f"""
         border: 2px solid {"rgba(212, 175, 55, 0.5)" if dark else "#000000"} !important;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
     }}
-    div[data-testid="stToggle"] * {{
-        color: {"#e0e0e0" if dark else "#000000"} !important;
-        font-weight: 700 !important;
+    div[data-testid="stToggle"] > label {{ color: {"rgba(255, 255, 255, 0.9)" if dark else "#000000"} !important; font-weight: 600 !important; }}
+    
+    /* Streamlit Rerun Fading (Silikleşme/Titreme) İptali */
+    [data-testid="stAppViewContainer"],
+    [data-testid="stAppViewBlockContainer"],
+    [data-testid="stChatMessage"],
+    .stApp {{
+        opacity: 1 !important;
+        transition: none !important;
     }}
-
+    
+    /* Gerçek Zamanlı Akıcı Düşünme Animasyonu */
+    @keyframes pulse {{
+        0% {{ opacity: 0.5; }}
+        50% {{ opacity: 1; }}
+        100% {{ opacity: 0.5; }}
+    }}
+    .thinking-realtime {{
+        color: #888;
+        font-style: italic;
+        padding: 15px;
+        font-size: 0.95em;
+        animation: pulse 1.5s infinite ease-in-out;
+    }}
+    
     /* ====== SELECTBOX (MODEL SEÇİMİ) VE DROPDOWN ====== */
     .stSelectbox > div[data-baseweb="select"] {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 8px !important; }}
     .stSelectbox > div[data-baseweb="select"] * {{ color: {input_text} !important; background-color: transparent !important; }}
@@ -140,44 +172,100 @@ st.markdown(f"""
         border-color: rgba(150,150,150,0.8) !important;
     }}
 
-    /* ====== ANA BUTONLAR (KIND="PRIMARY" ve DOWNLOAD BUTONU) ====== */
+    /* ====== ANA BUTONLAR (ÖNERİLEN SORULAR - PILL DESIGN) ====== */
     div[data-testid="stButton"] button[kind="primary"], 
     div.stDownloadButton > button {{
-        background: linear-gradient(135deg, rgba(15, 32, 75, 0.9) 0%, rgba(20, 40, 80, 0.8) 100%) !important;
-        background-color: transparent !important;
-        color: #ffffff !important;
-        border-radius: 8px !important;
-        border: none !important;
-        font-weight: 600 !important;
-        transition: all 0.2s cubic-bezier(0.4, 0, 0.2, 1) !important;
+        background: {"rgba(25, 35, 55, 0.6)" if dark else "rgba(255, 255, 255, 0.8)"} !important;
+        backdrop-filter: blur(10px) !important;
+        border: 1px solid {"rgba(212, 175, 55, 0.4)" if dark else "rgba(15, 32, 75, 0.2)"} !important;
+        color: {text_color} !important;
+        border-radius: 30px !important;
+        font-weight: 500 !important;
+        padding: 8px 16px !important;
+        box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
+        transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }}
+    
+    /* Örnek Soru Butonlarını Eşit Boyuta Getirme */
+    section.main div[data-testid="stButton"] button[kind="primary"] {{
+        height: 75px !important;
+        width: 100% !important; /* Butonların genişliklerini eşitle */
+        max-width: 260px !important;
+        margin: 0 auto !important; /* Sütun içinde ortala */
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        white-space: normal !important; /* Yazı sığmazsa alt satıra geçsin */
+    }}
+    
     div[data-testid="stButton"] button[kind="primary"] *, 
-    div.stDownloadButton > button * {{ color: #ffffff !important; }}
+    div.stDownloadButton > button * {{ color: {text_color} !important; }}
     
     div[data-testid="stButton"] button[kind="primary"]:hover, 
     div.stDownloadButton > button:hover {{
-        background: linear-gradient(135deg, rgba(20, 40, 80, 1) 0%, rgba(30, 50, 100, 0.9) 100%) !important;
-        box-shadow: 0 4px 15px rgba(212, 175, 55, 0.3) !important;
-        color: #D4AF37 !important;
-        transform: translateY(-2px) !important;
+        background: {"rgba(212, 175, 55, 0.15)" if dark else "rgba(15, 32, 75, 0.05)"} !important;
+        border: 1px solid {"rgba(212, 175, 55, 0.8)" if dark else "rgba(15, 32, 75, 0.5)"} !important;
+        box-shadow: 0 8px 20px rgba(0,0,0,0.1) !important;
+        transform: translateY(-3px) !important;
     }}
     div[data-testid="stButton"] button[kind="primary"]:active, 
     div.stDownloadButton > button:active {{
-        transform: scale(0.95) !important;
-        box-shadow: inset 0 3px 8px rgba(0,0,0,0.4) !important;
+        transform: scale(0.97) !important;
     }}
     
-    /* Cards & Headers */
-    .main-header {{ background: linear-gradient(135deg, rgba(15, 32, 75, 0.8) 0%, rgba(26, 43, 76, 0.6) 100%); border-bottom: 3px solid #D4AF37; padding: 2rem; border-radius: 16px; margin-bottom: 2rem; color: white !important; }}
-    .main-header h1 {{ color: #E5C158 !important; font-size: 2.2rem !important; margin: 0 !important; font-weight: 800 !important; }}
-    .main-header p {{ color: rgba(255,255,255,0.85) !important; margin: 0.5rem 0 0 0 !important; font-size: 1.05rem !important; }}
-    .stat-card {{ background: {stat_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; border-radius: 12px; padding: 1.2rem; text-align: center; margin-bottom: 1rem; }}
+    /* ====== PREMIUM HERO SECTION (KARŞILAMA EKRANI) ====== */
+    .hero-section {{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 0.5rem 1rem 1rem 1rem;
+        text-align: center;
+        animation: fadeIn 1s ease-out;
+    }}
+    @keyframes fadeIn {{ from {{ opacity: 0; transform: translateY(10px); }} to {{ opacity: 1; transform: translateY(0); }} }}
+    .hero-logo {{
+        width: 100px;
+        margin-bottom: 1rem;
+        filter: {"drop-shadow(0 0 15px rgba(212, 175, 55, 0.3))" if dark else "drop-shadow(0 0 15px rgba(15, 32, 75, 0.2))"};
+    }}
+    /* Sol Menüdeki Logo Parlaması */
+    [data-testid="stSidebar"] img {{
+        filter: {"drop-shadow(0 0 15px rgba(212, 175, 55, 0.3))" if dark else "drop-shadow(0 0 15px rgba(0, 71, 171, 0.3))"};
+        transition: filter 0.3s ease;
+    }}
+    [data-testid="stSidebar"] img:hover {{
+        filter: {"drop-shadow(0 0 25px rgba(212, 175, 55, 0.6))" if dark else "drop-shadow(0 0 25px rgba(0, 71, 171, 0.7))"};
+    }}
+    .hero-title {{
+        font-size: 2.5rem !important;
+        font-weight: 800 !important;
+        background: {"linear-gradient(135deg, #D4AF37 0%, #F3E5AB 100%)" if dark else "linear-gradient(135deg, #0F204B 0%, #2A437C 100%)"};
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin: 0 !important;
+        letter-spacing: -1px;
+        height: 90px; /* Yazının tek veya iki satır olmasına karşı sabit alan */
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }}
+    .hero-subtitle {{
+        font-size: 1.1rem;
+        color: {text_color};
+        opacity: 0.8;
+        max-width: 650px;
+        margin: 1rem auto 1.5rem auto;
+        line-height: 1.5;
+    }}
+    
+    /* Chat & Stats */
+    .stat-card {{ background: {stat_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; border-radius: 16px; padding: 1.2rem; text-align: center; margin-bottom: 1rem; backdrop-filter: blur(10px); }}
     .stat-value {{ font-size: 1.8rem; font-weight: 800; color: #D4AF37; }}
     .stat-label {{ font-size: 0.85rem; opacity: 0.9; font-weight: 600; text-transform: uppercase; color: {text_color}; }}
-    .welcome-box {{ background: {bg_card}; border-top: 4px solid #D4AF37; border: 1px solid {border_color}; border-radius: 16px; padding: 2rem; margin-bottom: 2rem; }}
-    .feature-item {{ display: flex; align-items: center; gap: 0.8rem; margin: 0.8rem 0; font-size: 1.05rem; color: {text_color}; }}
-    .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; padding: 15px 20px; border-radius: 15px 15px 0 15px; color: {user_bubble_text} !important; margin-left: 10%; margin-bottom: 15px; }}
-    .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; border-left: 4px solid #4A90E2; padding: 15px 20px; border-radius: 15px 15px 15px 0; color: {assistant_bubble_text} !important; line-height: 1.6; margin-right: 10%; margin-bottom: 15px; }}
+    
+    .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 4px 24px; color: {user_bubble_text} !important; margin-left: auto; max-width: 85%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
+    .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 24px 4px; color: {assistant_bubble_text} !important; line-height: 1.7; margin-right: auto; max-width: 90%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
     [data-testid="stChatMessage"] {{ background-color: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }}
 </style>
 """, unsafe_allow_html=True)
@@ -343,6 +431,8 @@ def process_query_via_api_stream(query, model_choice, temperature, chat_history,
                             result["sources"] = data.get("sources", [])
                             result["chunks"] = data.get("chunks", [])
                             result["engine"] = data.get("engine", "API")
+                            # RAG taraması bitti, LLM başladı (Gerçek State 2)
+                            message_placeholder.markdown('<div class="thinking-realtime">🧠 İlgili maddeler yapay zeka tarafından sentezleniyor...</div>', unsafe_allow_html=True)
                         elif data.get("type") == "chunk":
                             full_answer += data.get("content", "")
                             # Cursor (▌) efekti ile anlik guncelle
@@ -416,14 +506,11 @@ with st.sidebar:
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
             st.image(LOGO_PATH, width=130)
-    st.markdown("---")
-    st.markdown("## ⚙️ Ayarlar")
-    model_choice = st.selectbox(
-        "Model Seçimi",
-        ["gemma3:4b", "llama3:8b", "phi3:3.8b"],
-        index=0
-    )
-    temperature = st.slider("Sıcaklık (Creativity)", 0.0, 1.0, 0.1, 0.05)
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    # Arka plan için sabit ayarlar
+    model_choice = "gemma3:4b"
+    temperature = 0.1
 
     # 🌙 Dark Mode Toggle (Pill Tasarımı ile)
     st.markdown("<small style='opacity:0.7;'>⚠️ Soru yanıtlanırken tema değiştirmeyin.</small>", unsafe_allow_html=True)
@@ -492,13 +579,6 @@ with st.sidebar:
             satisfaction = (fb_pos / fb_total) * 100
             st.progress(fb_pos / fb_total, text=f"Memnuniyet Oranı: %{satisfaction:.0f}")
 
-st.markdown("""
-<div class="main-header">
-    <h1>🏛️ İÜC Akademik Asistan</h1>
-    <p>İstanbul Üniversitesi-Cerrahpaşa · Yapay Zeka Destekli Bilgi Sistemi</p>
-</div>
-""", unsafe_allow_html=True)
-
 if "messages" not in st.session_state:
     st.session_state.messages = []
 if "chat_history" not in st.session_state:
@@ -510,26 +590,30 @@ if "total_time" not in st.session_state:
 if "feedback_given" not in st.session_state:
     st.session_state.feedback_given = set()
 
-st.markdown("""
-<div class="welcome-box">
-    <h3 style="margin-top:0">👋 Merhaba! Size nasıl yardımcı olabilirim?</h3>
-    <p style="opacity:0.8; font-size:0.9rem;">Yönetmelikler, akademik takvim ve yönergeler hakkında sorularınızı sorabilirsiniz.</p>
-    <div class="feature-item">✅ Kaynak gösteriyor — hangi yönetmelikten geldiğini belirtiyor</div>
-    <div class="feature-item">✅ API Tabanlı Mimari — FastAPI ile hızlı ve güvenli veri akışı</div>
-    <div class="feature-item">✅ Geri Bildirim — Cevapları 👍/👎 ile değerlendirin</div>
+is_first_load = len(st.session_state.messages) == 0
+hero_text = "Merhaba." if is_first_load else "Size nasıl yardımcı olabilirim?"
+
+st.markdown(f"""
+<img src="data:image/png;base64,{base64_logo}" class="bg-watermark">
+<div class="hero-section">
+    <img src="data:image/png;base64,{base64_logo}" class="hero-logo" alt="IUC Logo">
+    <div class="hero-title" {'data-typing="first_load"' if is_first_load else ''}>{hero_text}</div>
+    <p class="hero-subtitle">İstanbul Üniversitesi - Cerrahpaşa akademik takvimi, yönetmelikler ve yönergeler hakkında resmi kaynaklara dayalı net cevaplar sunuyorum.<br><br>
+    <span style="font-weight: 600; color: #D4AF37; font-size: 0.95rem; letter-spacing: 2px; text-transform: uppercase;">#eniyiolmakiçin</span>
+    </p>
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown("**💡 Örnek sorular — tıklayarak deneyin:**")
+st.markdown('<div style="text-align: center; opacity: 0.7; margin-bottom: 10px; font-size: 0.9rem;">💡 Aşağıdaki konulardan birini seçebilir veya kendi sorunuzu yazabilirsiniz:</div>', unsafe_allow_html=True)
 example_questions = [
-    "Derslere devam zorunluluğu yüzde kaçtır?",
-    "Yaz okulunda en fazla kaç kredi alabilirim?",
-    "Onur öğrencisi olmak için ne gerekir?",
-    "Kayıt dondurma süresi ne kadar?",
-    "Çap şartları nelerdir?",
-    "Hoca ders kaydını onaylamazsa ne olur?",
-    "Mazeret sınavına kimler girebilir?",
-    "Yatay geçiş başvuruları ne zaman?"
+    "🎓 Çift anadal (ÇAP) şartları nelerdir?",
+    "📅 Yatay geçiş başvuruları ne zaman?",
+    "📝 Yaz okulunda en fazla kaç kredi alabilirim?",
+    "⚖️ Mazeret sınavına kimler girebilir?",
+    "🛑 Kayıt dondurma süresi ne kadar?",
+    "🌟 Onur öğrencisi olmak için ne gerekir?",
+    "📊 Derslere devam zorunluluğu yüzde kaçtır?",
+    "❌ Hoca ders kaydını onaylamazsa ne olur?"
 ]
 
 cols = st.columns(4)
@@ -538,8 +622,10 @@ for i, question in enumerate(example_questions):
         st.button(question, on_click=trigger_example, args=(question,), key=f"btn_{i}", use_container_width=True, type="primary")
 
 for idx, message in enumerate(st.session_state.messages):
-    with st.chat_message(message["role"]):
-        if message["role"] == "user":
+    role = message["role"]
+    avatar = "🎓" if role == "user" else f"data:image/png;base64,{base64_logo}"
+    with st.chat_message(role, avatar=avatar):
+        if role == "user":
             st.markdown(f'<div class="user-bubble">{message["content"]}</div>', unsafe_allow_html=True)
         else:
             st.markdown(f'<div class="assistant-bubble">{message["content"]}</div>', unsafe_allow_html=True)
@@ -555,17 +641,13 @@ for idx, message in enumerate(st.session_state.messages):
                             st.markdown(f"📄 **{clean_name}**")
             # 👍/👎 Geri Bildirim Butonları
             if idx not in st.session_state.feedback_given:
-                
-                fb_col1, fb_col2, fb_spacer = st.columns([1, 1, 8])
-                with fb_col1:
-                    if st.button("👍", key=f"fb_pos_{idx}", help="Bu cevap faydalıydı"):
-                        handle_feedback(idx, "positive")
-                        st.rerun()
-                with fb_col2:
-                    if st.button("👎", key=f"fb_neg_{idx}", help="Bu cevap yetersizdi"):
-                        handle_feedback(idx, "negative")
-                        st.rerun()
-                
+                st.markdown("<div style='margin-left: 10%; margin-bottom:10px;'>", unsafe_allow_html=True)
+                f_col1, f_col2, _ = st.columns([1,1,8])
+                with f_col1:
+                    st.button("👍", key=f"up_{idx}", on_click=handle_feedback, args=(idx, 1))
+                with f_col2:
+                    st.button("👎", key=f"down_{idx}", on_click=handle_feedback, args=(idx, -1))
+                st.markdown("</div>", unsafe_allow_html=True)
             else:
                 st.markdown('<div class="feedback-done">✅ Geri bildiriminiz kaydedildi!</div>', unsafe_allow_html=True)
 
@@ -577,14 +659,13 @@ if "trigger_query" in st.session_state:
 
 if user_query:
     st.session_state.messages.append({"role": "user", "content": user_query})
-    with st.chat_message("user"):
+    with st.chat_message("user", avatar="🎓"):
         st.markdown(f'<div class="user-bubble">{user_query}</div>', unsafe_allow_html=True)
 
-    with st.chat_message("assistant"):
+    with st.chat_message("assistant", avatar=f"data:image/png;base64,{base64_logo}"):
         message_placeholder = st.empty()
-        
-        # Ilk basta yukleniyor mesaji veya animasyonu goster
-        message_placeholder.markdown('<div class="assistant-bubble">🔍 Düşünüyorum...</div>', unsafe_allow_html=True)
+        # Gerçek zamanlı arama başlama durumu (State 1)
+        message_placeholder.markdown('<div class="thinking-realtime">🔍 Akademik veritabanı taranıyor...</div>', unsafe_allow_html=True)
         
         result = process_query_via_api_stream(user_query, model_choice, temperature, st.session_state.chat_history, message_placeholder)
 
@@ -615,16 +696,65 @@ if user_query:
             
         # DOM u tam yenilemek (st.rerun) sayfanin titremesine yol aciyordu.
         # Rerun atmamak icin yeni uretilen cevabin butonlarini manuel olarak burada ciziyoruz.
-        # Bu butonlarin "key" degerleri dongudekilerle ayni oldugu icin Streamlit mimarisinde
-        # mukemmel ve titresimsiz bir sekilde calisir.
+        new_idx = len(st.session_state.messages) - 1
         new_idx = len(st.session_state.messages) - 1
         if new_idx not in st.session_state.feedback_given:
             fb_col1, fb_col2, fb_spacer = st.columns([1, 1, 8])
             with fb_col1:
                 if st.button("👍", key=f"fb_pos_{new_idx}", help="Bu cevap faydalıydı"):
                     handle_feedback(new_idx, "positive")
-                    st.rerun()
             with fb_col2:
                 if st.button("👎", key=f"fb_neg_{new_idx}", help="Bu cevap yetersizdi"):
                     handle_feedback(new_idx, "negative")
-                    st.rerun()
+
+js_code = f"""
+<script>
+    const parentDoc = window.parent.document;
+    
+    // ====== TYPEWRITER (DAKTİLO) EFEKTİ ======
+    const titleElement = parentDoc.querySelector(".hero-title");
+    if(titleElement && titleElement.getAttribute('data-typing') === 'first_load') {{
+        titleElement.removeAttribute('data-typing'); // Bir kez çalışması için flag'i sil
+        
+        const titles = ["Merhaba.", "Size nasıl yardımcı olabilirim?", "İÜC Asistan'a Hoş Geldiniz."];
+        let titleIndex = 0;
+        let charIndex = titles[0].length; // Starts full (Merhaba.)
+        let isDeleting = true;
+        
+        // Start effect after 2 seconds
+        setTimeout(() => {{ typeWriter(); }}, 2000);
+        
+        function typeWriter() {{
+            const currentText = titles[titleIndex];
+            if (isDeleting) {{
+                titleElement.innerText = currentText.substring(0, charIndex - 1);
+                charIndex--;
+            }} else {{
+                titleElement.innerText = currentText.substring(0, charIndex + 1);
+                charIndex++;
+            }}
+            
+            titleElement.style.borderRight = "3px solid #D4AF37";
+            
+            let typeSpeed = isDeleting ? 40 : 80;
+            
+            if (!isDeleting && charIndex === currentText.length) {{
+                typeSpeed = 2500; // Bekleme
+                isDeleting = true;
+                
+                // Animasyonu "Size nasıl yardımcı olabilirim?" yazısında tamamen bitir.
+                if (titleIndex === 1) {{
+                    titleElement.style.borderRight = "none";
+                    return; // Fonksiyondan çık, loop'u bitir
+                }}
+            }} else if (isDeleting && charIndex === 0) {{
+                isDeleting = false;
+                titleIndex = (titleIndex + 1) % titles.length;
+                typeSpeed = 600; // Silme bittikten sonra bekleme
+            }}
+            setTimeout(typeWriter, typeSpeed);
+        }}
+    }}
+</script>
+"""
+components.html(js_code, height=0, width=0)
