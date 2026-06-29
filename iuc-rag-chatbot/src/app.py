@@ -87,14 +87,14 @@ st.markdown(f"""
     
     /* Global Themes */
     {"" if not dark else '''
-    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp { background-color: #050814 !important; }
+    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp, [role="dialog"], [data-testid="stDialog"], [data-testid="stModal"] { background-color: #050814 !important; }
     [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background: rgba(8, 12, 24, 0.8) !important; border-right: 1px solid rgba(255, 255, 255, 0.05); }
-    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #e0e0e0 !important; }
+    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [role="dialog"] p, [role="dialog"] span, [role="dialog"] label, [role="dialog"] div { color: #e0e0e0 !important; }
     '''}
     {"" if dark else '''
-    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp { background-color: #f4f6f9 !important; }
+    [data-testid="stAppViewContainer"], [data-testid="stHeader"], [data-testid="stBottomBlockContainer"], .stApp, [role="dialog"], [data-testid="stDialog"], [data-testid="stModal"] { background-color: #f4f6f9 !important; }
     [data-testid="stSidebar"], [data-testid="stSidebarContent"] { background: rgba(230, 235, 240, 0.9) !important; border-right: 1px solid rgba(0, 0, 0, 0.05); }
-    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label { color: #111111 !important; }
+    .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [role="dialog"] p, [role="dialog"] span, [role="dialog"] label, [role="dialog"] div { color: #111111 !important; }
     '''}
     
     /* Sayfanın Kaymasını (Scroll) Önlemek İçin Üst Boşluğu Silme */
@@ -150,7 +150,13 @@ st.markdown(f"""
     [data-testid="stChatInput"] textarea {{ color: {input_text} !important; }}
     [data-testid="stChatInput"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.8 !important; }}
 
-    /* ====== BEĞEN/BEĞENMEME BUTONLARI (KIND="SECONDARY") ====== */
+    /* ====== TEXT INPUT & TEXT AREA (FORM GİRDİLERİ) ====== */
+    [data-testid="stTextInput"] div[data-baseweb="base-input"], [data-testid="stTextArea"] div[data-baseweb="base-input"],
+    [data-testid="stTextInput"] div[data-baseweb="input"], [data-testid="stTextArea"] div[data-baseweb="textarea"] {{ background-color: {input_bg} !important; border-color: {border_color} !important; }}
+    [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {{ color: {input_text} !important; background-color: {input_bg} !important; border-radius: 8px !important; }}
+    [data-testid="stTextInput"] input::placeholder, [data-testid="stTextArea"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.6 !important; }}
+
+    /* ====== BEĞEN/BEĞENMEME VE KENAR ÇUBUĞU BUTONLARI (KIND="SECONDARY") ====== */
     div[data-testid="stButton"] button[kind="secondary"] {{
         background: transparent !important;
         background-color: transparent !important;
@@ -159,9 +165,9 @@ st.markdown(f"""
         color: {text_color} !important;
         box-shadow: none !important;
         padding: 4px 12px !important;
-        transform: none !important;
         min-height: 0px !important;
         height: auto !important;
+        transition: transform 0.2s ease, background-color 0.2s ease, border-color 0.2s ease !important;
     }}
     div[data-testid="stButton"] button[kind="secondary"] * {{
         color: {text_color} !important;
@@ -169,7 +175,8 @@ st.markdown(f"""
     div[data-testid="stButton"] button[kind="secondary"]:hover {{
         background: rgba(150,150,150,0.1) !important;
         background-color: rgba(150,150,150,0.1) !important;
-        border-color: rgba(150,150,150,0.8) !important;
+        border-color: rgba(212, 175, 55, 0.7) !important;
+        transform: translateY(-3px) !important;
     }}
 
     /* ====== ANA BUTONLAR (ÖNERİLEN SORULAR - PILL DESIGN) ====== */
@@ -186,16 +193,44 @@ st.markdown(f"""
         transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1) !important;
     }}
     
-    /* Örnek Soru Butonlarını Eşit Boyuta Getirme */
-    section.main div[data-testid="stButton"] button[kind="primary"] {{
-        height: 75px !important;
-        width: 100% !important; /* Butonların genişliklerini eşitle */
-        max-width: 260px !important;
-        margin: 0 auto !important; /* Sütun içinde ortala */
+    /* Örnek Soru Butonlarını Kusursuz Eşit Boyuta Getirme (GARANTİLİ YÖNTEM) */
+    div[data-testid="stButton"] button[kind="primary"] {{
+        height: 65px !important;
+        min-height: 65px !important;
+        max-height: 65px !important;
+        width: 100% !important;
         display: flex !important;
         align-items: center !important;
         justify-content: center !important;
-        white-space: normal !important; /* Yazı sığmazsa alt satıra geçsin */
+        white-space: normal !important; 
+        overflow: hidden !important;
+        padding: 5px 15px !important;
+        line-height: 1.2 !important;
+        word-break: break-word !important;
+        margin-bottom: 5px !important;
+        font-size: 0.9rem !important;
+    }}
+    div[data-testid="stButton"] button[kind="primary"] p {{
+        margin: 0 !important;
+        text-align: center !important;
+        display: -webkit-box !important;
+        -webkit-line-clamp: 2 !important;
+        -webkit-box-orient: vertical !important;
+        overflow: hidden !important;
+    }}
+    div[data-testid="stButton"] button[kind="primary"] div[data-testid="stMarkdownContainer"] {{
+        width: 100% !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+    }}
+    
+    /* Sol Menüdeki Butonların (Örn: Sohbeti Temizle) Boyutunu Normale Döndür */
+    [data-testid="stSidebar"] div[data-testid="stButton"] button[kind="primary"] {{
+        height: 45px !important;
+        min-height: 45px !important;
+        max-height: 45px !important;
+        padding: 8px 16px !important;
     }}
     
     div[data-testid="stButton"] button[kind="primary"] *, 
@@ -237,6 +272,11 @@ st.markdown(f"""
     [data-testid="stSidebar"] img:hover {{
         filter: {"drop-shadow(0 0 25px rgba(212, 175, 55, 0.6))" if dark else "drop-shadow(0 0 25px rgba(0, 71, 171, 0.7))"};
     }}
+    /* Streamlit varsayılan tam ekran (fullscreen) butonunu logodan gizle */
+    [data-testid="stSidebar"] [data-testid="StyledFullScreenButton"],
+    [data-testid="stSidebar"] button[title="View fullscreen"] {{
+        display: none !important;
+    }}
     .hero-title {{
         font-size: 2.5rem !important;
         font-weight: 800 !important;
@@ -267,6 +307,93 @@ st.markdown(f"""
     .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 4px 24px; color: {user_bubble_text} !important; margin-left: auto; max-width: 85%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
     .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 24px 4px; color: {assistant_bubble_text} !important; line-height: 1.7; margin-right: auto; max-width: 90%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
     [data-testid="stChatMessage"] {{ background-color: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }}
+    
+    /* ====== HOVER DROPDOWN MENÜ (Kaydırma Önleyici CSS Aktif) ====== */
+    [data-testid="stSidebar"], 
+    [data-testid="stSidebar"] > div,
+    [data-testid="stSidebarUserContent"] {{
+        overflow: visible !important;
+    }}
+    [data-testid="stSidebar"] {{
+        z-index: 999999 !important;
+    }}
+    .hover-dropdown {{
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        margin-bottom: 1rem;
+    }}
+    .hover-dropdown-btn {{
+        background-color: transparent;
+        color: {text_color};
+        padding: 14px 16px;
+        font-size: 1.05rem;
+        font-weight: 600;
+        border: 1px solid {border_color};
+        border-left: 4px solid #D4AF37;
+        border-radius: 8px;
+        cursor: pointer;
+        width: 100%;
+        text-align: left;
+        transition: 0.3s;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }}
+    .hover-dropdown-btn:hover {{
+        background: {"rgba(212, 175, 55, 0.1)" if dark else "rgba(15, 32, 75, 0.05)"};
+    }}
+    .hover-dropdown-content {{
+        display: none;
+        position: absolute;
+        top: 0;
+        left: calc(100% + 5px); /* Menü temiz bir şekilde sağda, 5px estetik boşlukla açılır */
+        width: 220px; 
+        background: {bg_primary};
+        box-shadow: 8px 8px 24px rgba(0,0,0,0.3);
+        z-index: 9999999 !important;
+        border: 1px solid {border_color};
+        border-radius: 8px;
+        margin-left: 0px; 
+        overflow: visible; 
+    }}
+    /* GÖRÜNMEZ KÖPRÜ: Görsel olarak butonla menü arasında boşluk olsa da, farenin menüyü kaybetmemesi için görünmez bir alan. Streamlit resizer'ın üzerine biner. */
+    .hover-dropdown-content::before {{
+        content: "";
+        position: absolute;
+        top: -20px;
+        left: -40px; /* 40 piksel geriye uzanır, hem boşluğu hem çubuğu kaplar */
+        width: 40px;
+        height: calc(100% + 40px);
+        background: transparent;
+        z-index: 9999999 !important; 
+    }}
+    .hover-dropdown-content a {{
+        color: {text_color};
+        padding: 14px 16px;
+        text-decoration: none;
+        display: block;
+        font-size: 0.95rem;
+        border-bottom: 1px solid {border_color};
+        transition: background-color 0.2s, color 0.2s;
+    }}
+    .hover-dropdown-content a:last-child {{
+        border-bottom: none;
+    }}
+    .hover-dropdown-content a:hover {{
+        background-color: {"rgba(212, 175, 55, 0.15)" if dark else "rgba(15, 32, 75, 0.1)"};
+        color: {"#D4AF37" if dark else "#0F204B"} !important;
+        text-decoration: none;
+    }}
+    .hover-dropdown:hover .hover-dropdown-content {{
+        display: block;
+        animation: fadeInLeft 0.3s ease;
+    }}
+    /* Yan taraftan açılma animasyonu */
+    @keyframes fadeInLeft {{
+        from {{ opacity: 0; transform: translateX(-10px); }}
+        to {{ opacity: 1; transform: translateX(0); }}
+    }}
 </style>
 """, unsafe_allow_html=True)
 
@@ -501,12 +628,75 @@ if not api_alive:
     """)
     st.stop()
 
+COMPLAINTS_FILE = os.path.join(BASE_DIR, "data", "istek_sikayet.json")
+
+def save_complaint(konu, email, mesaj):
+    os.makedirs(os.path.dirname(COMPLAINTS_FILE), exist_ok=True)
+    data = []
+    if os.path.exists(COMPLAINTS_FILE):
+        try:
+            with open(COMPLAINTS_FILE, "r", encoding="utf-8") as f:
+                data = json.load(f)
+        except Exception:
+            pass
+            
+    data.append({
+        "tarih": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
+        "konu": konu,
+        "email": email,
+        "mesaj": mesaj
+    })
+    
+    with open(COMPLAINTS_FILE, "w", encoding="utf-8") as f:
+        json.dump(data, f, ensure_ascii=False, indent=4)
+
+@st.dialog("İstek, Şikayet ve Öneri Formu")
+def feedback_dialog():
+    st.markdown("""
+    <div style='text-align: center; padding: 15px; margin-bottom: 20px; background: rgba(212, 175, 55, 0.1); border-radius: 10px; border: 1px solid rgba(212, 175, 55, 0.3); box-shadow: 0 4px 10px rgba(0,0,0,0.05);'>
+        <h3 style='margin-bottom: 5px; color: #D4AF37; font-weight: 700; font-size: 1.2rem;'>Üniversitemizi Birlikte Geliştirelim</h3>
+        <p style='font-size: 0.9rem; margin-bottom: 0; opacity: 0.9;'>Görüşleriniz, kampüs yaşantısını ve dijital sistemlerimizi iyileştirmek için çok değerlidir.</p>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    col1, col2 = st.columns(2)
+    with col1:
+        konu = st.selectbox("📌 Bildirim Türü", ["💡 Yeni Bir Öneri", "⚠️ Sistem Şikayeti", "🔧 Teknik Bir Hata", "🎓 Üniversite İşleyişi", "Diğer"])
+    with col2:
+        email = st.text_input("✉️ E-posta Adresiniz", placeholder="İletişim için (İsteğe bağlı)", help="Size geri dönüş yapabilmemiz için e-posta adresinizi bırakabilirsiniz.")
+        
+    mesaj = st.text_area("✍️ Mesajınız", placeholder="Karşılaştığınız sorunu veya aklınızdaki harika fikri detaylıca anlatın...", height=150)
+    
+    st.markdown("<br>", unsafe_allow_html=True)
+    
+    btn_col1, btn_col2, btn_col3 = st.columns([1,2,1])
+    with btn_col2:
+        if st.button("🚀 Formu Gönder", use_container_width=True, type="primary"):
+            if len(mesaj) < 10:
+                st.error("Lütfen konuyu biraz daha detaylı açıklayın. (En az 10 karakter)")
+            else:
+                save_complaint(konu, email, mesaj)
+                st.markdown("""
+                <div style='text-align: center; padding: 15px; background: rgba(40, 167, 69, 0.1); border-radius: 10px; border: 1px solid rgba(40, 167, 69, 0.3); margin-top: 10px;'>
+                    <h4 style='color: #28a745; margin: 0;'>✅ Teşekkürler!</h4>
+                    <p style='font-size: 0.9rem; margin-top: 5px; margin-bottom: 0;'>Bildiriminiz ilgili birimlere başarıyla iletilmiştir.</p>
+                </div>
+                """, unsafe_allow_html=True)
+                time.sleep(2.5)
+                st.rerun()
+
 with st.sidebar:
     if os.path.exists(LOGO_PATH):
         col1, col2, col3 = st.columns([1,2,1])
         with col2:
-            st.image(LOGO_PATH, width=130)
-    st.markdown("<br>", unsafe_allow_html=True)
+            st.markdown(f'<img src="data:image/png;base64,{base64_logo}" style="width: 130px; display: block; margin: -15px auto 15px auto;">', unsafe_allow_html=True)
+    
+    st.markdown("""
+    <div style='text-align: center; margin-bottom: 20px;'>
+        <div style='font-weight: 800; font-size: 1.25rem; letter-spacing: 1.5px; color: #D4AF37;'>İÜC ASİSTAN</div>
+        <div style='font-size: 0.75rem; opacity: 0.6; letter-spacing: 0.5px; margin-top: 2px;'>Yapay Zeka Destekli</div>
+    </div>
+    """, unsafe_allow_html=True)
     
     # Arka plan için sabit ayarlar
     model_choice = "gemma3:4b"
@@ -514,16 +704,15 @@ with st.sidebar:
 
     # 🌙 Dark Mode Toggle (Pill Tasarımı ile)
     st.markdown("<small style='opacity:0.7;'>⚠️ Soru yanıtlanırken tema değiştirmeyin.</small>", unsafe_allow_html=True)
-    dark_toggle = st.toggle("🌙 Karanlık Mod", value=st.session_state.dark_mode, key="dark_toggle")
-    if dark_toggle != st.session_state.dark_mode:
-        st.session_state.dark_mode = dark_toggle
-        st.rerun()
-
-    st.divider()
-
-    col_btn1, col_btn2 = st.columns(2)
-    with col_btn1:
-        if st.button("🗑️ Geçmişi Sil", use_container_width=True, type="primary"):
+    
+    col_t1, col_t2 = st.columns(2)
+    with col_t1:
+        dark_toggle = st.toggle("🌙 Tema", value=st.session_state.dark_mode, key="dark_toggle")
+        if dark_toggle != st.session_state.dark_mode:
+            st.session_state.dark_mode = dark_toggle
+            st.rerun()
+    with col_t2:
+        if st.button("🗑️ Temizle", use_container_width=True, type="primary"):
             st.session_state.messages = []
             st.session_state.chat_history = []
             st.session_state.total_queries = 0
@@ -531,53 +720,62 @@ with st.sidebar:
             if "feedback_given" in st.session_state:
                 del st.session_state.feedback_given
             st.rerun()
-    with col_btn2:
+    
+    # 📢 Güncel Duyurular (Hover Açılır Menü)
+    st.markdown("""
+    <div class="hover-dropdown">
+        <button class="hover-dropdown-btn">
+            <span>📢 Güncel Duyurular</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
+        </button>
+        <div class="hover-dropdown-content">
+            <a href="https://www.iuc.edu.tr/tr/duyurular/1/1" target="_blank">🏛️ Üniversite Duyuruları</a>
+            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/duyurular/1/1" target="_blank">💻 Bölüm Duyuruları</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 📰 Güncel Haberler (Hover Açılır Menü)
+    st.markdown("""
+    <div class="hover-dropdown">
+        <button class="hover-dropdown-btn">
+            <span>📰 Güncel Haberler</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
+        </button>
+        <div class="hover-dropdown-content">
+            <a href="https://www.iuc.edu.tr/tr/haberler/1" target="_blank">🏛️ Üniversite Haberleri</a>
+            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/haberler/" target="_blank">💻 Bölüm Haberleri</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    # 🎓 Akademik Sistemler (Hover Açılır Menü)
+    st.markdown("""
+    <div class="hover-dropdown">
+        <button class="hover-dropdown-btn">
+            <span>🎓 Akademik Sistemler</span>
+            <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
+        </button>
+        <div class="hover-dropdown-content">
+            <a href="https://aksis.iuc.edu.tr/Account/LogOn?ReturnUrl=%2f" target="_blank">📊 AKSİS (Kayıt & Not)</a>
+            <a href="https://canvas.iuc.edu.tr/login/ldap" target="_blank">📚 CANVAS (Ders & İçerik)</a>
+        </div>
+    </div>
+    """, unsafe_allow_html=True)
+    
+    st.divider()
+    
+    col_b1, col_b2 = st.columns(2)
+    with col_b1:
+        if st.button("📝 Form", use_container_width=True):
+            feedback_dialog()
+            
+    with col_b2:
         chat_txt = export_chat_as_txt()
         if chat_txt:
-            st.download_button(
-                "📥 Dışa Aktar",
-                data=chat_txt,
-                file_name=f"iuc_sohbet_{datetime.now().strftime('%Y%m%d_%H%M')}.txt",
-                mime="text/plain",
-                use_container_width=True
-            )
+            st.download_button("📥 Aktar", data=chat_txt, file_name=f"iuc_sohbet_{datetime.now().strftime('%Y%m%d_%H%M')}.txt", mime="text/plain", use_container_width=True)
         else:
-            st.button("📥 Dışa Aktar", disabled=True, use_container_width=True)
-
-    st.divider()
-    st.markdown("### 📊 Sistem Metrikleri")
-    col1, col2 = st.columns(2)
-    with col1:
-        st.markdown("""<div class="stat-card"><div class="stat-value">FastAPI</div><div class="stat-label">Altyapı</div></div>""", unsafe_allow_html=True)
-    with col2:
-        chunk_count = get_chunk_count()
-        st.markdown(f"""<div class="stat-card"><div class="stat-value">{chunk_count}</div><div class="stat-label">Chunk</div></div>""", unsafe_allow_html=True)
-
-    if "total_queries" in st.session_state and st.session_state.total_queries > 0:
-        st.divider()
-        st.markdown("### 💬 Bu Oturum")
-        avg_time = st.session_state.total_time / st.session_state.total_queries
-        col3, col4 = st.columns(2)
-        with col3:
-            st.markdown(f"""<div class="stat-card"><div class="stat-value">{st.session_state.total_queries}</div><div class="stat-label">Soru</div></div>""", unsafe_allow_html=True)
-        with col4:
-            st.markdown(f"""<div class="stat-card"><div class="stat-value">{avg_time:.1f}s</div><div class="stat-label">Ort. Süre</div></div>""", unsafe_allow_html=True)
-
-    # 📈 RLHF Geri Bildirim İstatistikleri
-    fb_total, fb_pos, fb_neg = get_feedback_stats()
-    if fb_total > 0:
-        st.divider()
-        st.markdown("### 📈 Kullanıcı Geri Bildirimleri")
-        col5, col6, col7 = st.columns(3)
-        with col5:
-            st.markdown(f"""<div class="stat-card"><div class="stat-value">{fb_total}</div><div class="stat-label">Toplam</div></div>""", unsafe_allow_html=True)
-        with col6:
-            st.markdown(f"""<div class="stat-card"><div class="stat-value" style="color:#22c55e;">👍 {fb_pos}</div><div class="stat-label">Beğeni</div></div>""", unsafe_allow_html=True)
-        with col7:
-            st.markdown(f"""<div class="stat-card"><div class="stat-value" style="color:#ef4444;">👎 {fb_neg}</div><div class="stat-label">Beğenmedi</div></div>""", unsafe_allow_html=True)
-        if fb_total > 0:
-            satisfaction = (fb_pos / fb_total) * 100
-            st.progress(fb_pos / fb_total, text=f"Memnuniyet Oranı: %{satisfaction:.0f}")
+            st.button("📥 Aktar", disabled=True, use_container_width=True)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
