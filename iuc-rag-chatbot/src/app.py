@@ -24,7 +24,7 @@ FEEDBACK_FILE = os.path.join(BASE_DIR, "data", "feedback.json")
 
 st.set_page_config(
     page_title="İÜC Akademik Asistan",
-    page_icon="🏛️",
+    page_icon="•",
     layout="wide"
 )
 
@@ -72,6 +72,18 @@ else:
 
 st.markdown(f"""
 <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap');
+    
+    html, body, [class*="css"] {{
+        font-family: 'Inter', sans-serif !important;
+    }}
+
+    /* Streamlit İzlerini Yok Etme */
+    #MainMenu {{visibility: hidden;}}
+    header {{visibility: hidden !important;}}
+    footer {{visibility: hidden !important;}}
+    [data-testid="stToolbar"] {{display: none !important;}}
+
     /* Filigran (Yeni HTML Metodu) */
     .bg-watermark {{
         position: absolute;
@@ -107,7 +119,7 @@ st.markdown(f"""
     div[data-testid="stToggle"] {{
         background-color: {"rgba(255, 255, 255, 0.05)" if dark else "#D4AF37"} !important;
         padding: 10px 15px !important;
-        border-radius: 12px !important;
+        border-radius: 6px !important;
         border: 2px solid {"rgba(212, 175, 55, 0.5)" if dark else "#000000"} !important;
         box-shadow: 0 4px 6px rgba(0,0,0,0.1) !important;
     }}
@@ -143,12 +155,19 @@ st.markdown(f"""
     li[role="option"] {{ background-color: {input_bg} !important; color: {input_text} !important; }}
     li[role="option"]:hover {{ background-color: rgba(212, 175, 55, 0.2) !important; }}
     
-    /* ====== CHAT INPUT (ARAMA YERİ) ====== */
-    [data-testid="stChatInput"] {{ background-color: transparent !important; }}
+    /* ====== CHAT INPUT (AKILLI ARAMA ÇUBUĞU) ====== */
+    [data-testid="stChatInput"] {{ background-color: transparent !important; padding-bottom: 20px !important; }}
     [data-testid="stChatInput"] * {{ background-color: transparent !important; }}
-    [data-testid="stChatInput"] > div {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 12px !important; overflow: hidden !important; }}
-    [data-testid="stChatInput"] textarea {{ color: {input_text} !important; }}
-    [data-testid="stChatInput"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.8 !important; }}
+    [data-testid="stChatInput"] > div {{ 
+        background-color: {input_bg} !important; 
+        border: 1px solid {border_color} !important; 
+        border-radius: 6px !important; 
+        overflow: hidden !important; 
+        box-shadow: 0 10px 30px rgba(0,0,0,0.15) !important;
+        padding: 5px 10px !important;
+    }}
+    [data-testid="stChatInput"] textarea {{ color: {input_text} !important; font-size: 1.05rem !important; margin-top: 5px !important; }}
+    [data-testid="stChatInput"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.6 !important; font-weight: 500 !important; }}
 
     /* ====== TEXT INPUT & TEXT AREA (FORM GİRDİLERİ) ====== */
     [data-testid="stTextInput"] div[data-baseweb="base-input"], [data-testid="stTextArea"] div[data-baseweb="base-input"],
@@ -161,7 +180,7 @@ st.markdown(f"""
         background: transparent !important;
         background-color: transparent !important;
         border: 1px solid rgba(150,150,150,0.6) !important;
-        border-radius: 20px !important;
+        border-radius: 4px !important;
         color: {text_color} !important;
         box-shadow: none !important;
         padding: 4px 12px !important;
@@ -186,7 +205,7 @@ st.markdown(f"""
         backdrop-filter: blur(10px) !important;
         border: 1px solid {"rgba(212, 175, 55, 0.4)" if dark else "rgba(15, 32, 75, 0.2)"} !important;
         color: {text_color} !important;
-        border-radius: 30px !important;
+        border-radius: 6px !important;
         font-weight: 500 !important;
         padding: 8px 16px !important;
         box-shadow: 0 4px 10px rgba(0,0,0,0.05) !important;
@@ -280,9 +299,7 @@ st.markdown(f"""
     .hero-title {{
         font-size: 2.5rem !important;
         font-weight: 800 !important;
-        background: {"linear-gradient(135deg, #D4AF37 0%, #F3E5AB 100%)" if dark else "linear-gradient(135deg, #0F204B 0%, #2A437C 100%)"};
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
+        color: {"#D4AF37" if dark else "#0F204B"} !important;
         margin: 0 !important;
         letter-spacing: -1px;
         height: 90px; /* Yazının tek veya iki satır olmasına karşı sabit alan */
@@ -300,12 +317,12 @@ st.markdown(f"""
     }}
     
     /* Chat & Stats */
-    .stat-card {{ background: {stat_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; border-radius: 16px; padding: 1.2rem; text-align: center; margin-bottom: 1rem; backdrop-filter: blur(10px); }}
+    .stat-card {{ background: {stat_bg}; border: 1px solid {border_color}; border-left: 4px solid #D4AF37; border-radius: 6px; padding: 1.2rem; text-align: center; margin-bottom: 1rem; backdrop-filter: blur(10px); }}
     .stat-value {{ font-size: 1.8rem; font-weight: 800; color: #D4AF37; }}
     .stat-label {{ font-size: 0.85rem; opacity: 0.9; font-weight: 600; text-transform: uppercase; color: {text_color}; }}
     
-    .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 4px 24px; color: {user_bubble_text} !important; margin-left: auto; max-width: 85%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
-    .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 24px 4px; color: {assistant_bubble_text} !important; line-height: 1.7; margin-right: auto; max-width: 90%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
+    .user-bubble {{ background: {user_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 6px 6px 0px 6px; color: {user_bubble_text} !important; margin-left: auto; max-width: 85%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
+    .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 6px 6px 6px 0px; color: {assistant_bubble_text} !important; line-height: 1.7; margin-right: auto; max-width: 90%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
     [data-testid="stChatMessage"] {{ background-color: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }}
     
     /* ====== HOVER DROPDOWN MENÜ (Kaydırma Önleyici CSS Aktif) ====== */
@@ -442,13 +459,13 @@ def export_chat_as_txt():
         return ""
     lines = ["İÜC Akademik Asistan — Sohbet Geçmişi", f"Tarih: {datetime.now().strftime('%Y-%m-%d %H:%M')}", "=" * 50, ""]
     for msg in st.session_state.messages:
-        role = "🧑 Siz" if msg["role"] == "user" else "🤖 Asistan"
+        role = "Siz" if msg["role"] == "user" else "Asistan"
         lines.append(f"{role}:")
         lines.append(msg["content"])
         if msg["role"] == "assistant" and "sources" in msg and msg["sources"]:
             sources_clean = [get_display_name(s) for s in msg["sources"] if s]
             if sources_clean:
-                lines.append(f"  📚 Kaynaklar: {', '.join(sources_clean)}")
+                lines.append(f"  İlgili Kaynaklar: {', '.join(sources_clean)}")
         lines.append("")
     return "\n".join(lines)
 
@@ -487,28 +504,28 @@ def process_query_via_api(query, model_choice, temperature, chat_history):
             result = response.json()
         else:
             result = {
-                "answer": f"⚠️ **Sistem Uyarı:** API Sunucusu beklenmeyen bir hata döndürdü (Kod {response.status_code}). Lütfen tekrar deneyin.",
+                "answer": f"[Sistem Uyarısı] API Sunucusu beklenmeyen bir hata döndürdü (Kod {response.status_code}). Lütfen tekrar deneyin.",
                 "sources": [],
                 "chunks": [],
                 "elapsed": 0.0
             }
     except requests.exceptions.Timeout:
         result = {
-            "answer": "⏳ **Zaman Aşımı (Timeout):** Model şu anda aşırı yoğun veya sistem yanıt veremeyecek kadar yavaş çalışıyor. Lütfen sorunuzu basitleştirerek tekrar deneyin veya farklı bir model seçin.",
+            "answer": "[Zaman Aşımı] Model şu anda aşırı yoğun veya sistem yanıt veremeyecek kadar yavaş çalışıyor. Lütfen sorunuzu basitleştirerek tekrar deneyin veya farklı bir model seçin.",
             "sources": [],
             "chunks": [],
             "elapsed": 120.0
         }
     except requests.exceptions.ConnectionError:
         result = {
-            "answer": "🔌 **Bağlantı Hatası:** API sunucusuna ulaşılamıyor. FastAPI sunucusunun (uvicorn) arka planda çalıştığından emin olun.",
+            "answer": "[Bağlantı Hatası] API sunucusuna ulaşılamıyor. FastAPI sunucusunun (uvicorn) arka planda çalıştığından emin olun.",
             "sources": [],
             "chunks": [],
             "elapsed": 0.0
         }
     except Exception as e:
         result = {
-            "answer": f"🛠️ **Teknik Hata:** API sunucusuna bağlanırken teknik bir sorun oluştu. (Detay: {str(e)[:150]})",
+            "answer": f"[Teknik Hata] API sunucusuna bağlanırken teknik bir sorun oluştu. (Detay: {str(e)[:150]})",
             "sources": [],
             "chunks": [],
             "elapsed": 0.0
@@ -539,7 +556,7 @@ def process_query_via_api_stream(query, model_choice, temperature, chat_history,
         response = requests.post(f"{API_URL}/ask_stream", json=payload, stream=True, timeout=120)
         
         if response.status_code != 200:
-            result["answer"] = f"⚠️ **Sistem Uyarı:** API Sunucusu hata döndürdü (Kod {response.status_code})."
+            result["answer"] = f"[Sistem Uyarısı] API Sunucusu hata döndürdü (Kod {response.status_code})."
             message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
             return result
             
@@ -559,7 +576,7 @@ def process_query_via_api_stream(query, model_choice, temperature, chat_history,
                             result["chunks"] = data.get("chunks", [])
                             result["engine"] = data.get("engine", "API")
                             # RAG taraması bitti, LLM başladı (Gerçek State 2)
-                            message_placeholder.markdown('<div class="thinking-realtime">🧠 İlgili maddeler yapay zeka tarafından sentezleniyor...</div>', unsafe_allow_html=True)
+                            message_placeholder.markdown('<div class="thinking-realtime">[İşlem] İlgili maddeler sentezleniyor...</div>', unsafe_allow_html=True)
                         elif data.get("type") == "chunk":
                             full_answer += data.get("content", "")
                             # Cursor (▌) efekti ile anlik guncelle
@@ -572,13 +589,13 @@ def process_query_via_api_stream(query, model_choice, temperature, chat_history,
         result["answer"] = full_answer
         
     except requests.exceptions.Timeout:
-        result["answer"] = "⏳ **Zaman Aşımı (Timeout):** API sunucusu yanıt vermedi."
+        result["answer"] = "[Zaman Aşımı] API sunucusu yanıt vermedi."
         message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
     except requests.exceptions.ConnectionError:
-        result["answer"] = "🔌 **Bağlantı Hatası:** API sunucusuna ulaşılamıyor."
+        result["answer"] = "[Bağlantı Hatası] API sunucusuna ulaşılamıyor."
         message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
     except Exception as e:
-        result["answer"] = f"🛠️ **Teknik Hata:** {str(e)[:150]}"
+        result["answer"] = f"[Teknik Hata] {str(e)[:150]}"
         message_placeholder.markdown(f'<div class="assistant-bubble">{result["answer"]}</div>', unsafe_allow_html=True)
         
     result["elapsed"] = time.time() - start_time
@@ -611,11 +628,11 @@ api_alive, api_msg = check_api_health()
 if not api_alive:
     st.markdown("""
     <div class="main-header">
-        <h1>🎓 İÜC Akademik Asistan</h1>
+        <h1>İÜC Akademik Asistan</h1>
         <p>İstanbul Üniversitesi-Cerrahpaşa · Yapay Zeka Destekli Bilgi Sistemi</p>
     </div>
     """, unsafe_allow_html=True)
-    st.error("⚠️ **İÜC RAG API Sunucusu Bağlantı Hatası!**")
+    st.error("[Hata] İÜC RAG API Sunucusu Bağlantı Hatası!")
     st.info(f"""
     Uygulamanın çalışabilmesi için önce API sunucusunu başlatmanız gerekmektedir.
     
@@ -661,24 +678,24 @@ def feedback_dialog():
     
     col1, col2 = st.columns(2)
     with col1:
-        konu = st.selectbox("📌 Bildirim Türü", ["💡 Yeni Bir Öneri", "⚠️ Sistem Şikayeti", "🔧 Teknik Bir Hata", "🎓 Üniversite İşleyişi", "Diğer"])
+        konu = st.selectbox("Bildirim Türü", ["Yeni Bir Öneri", "Sistem Şikayeti", "Teknik Bir Hata", "Üniversite İşleyişi", "Diğer"])
     with col2:
-        email = st.text_input("✉️ E-posta Adresiniz", placeholder="İletişim için (İsteğe bağlı)", help="Size geri dönüş yapabilmemiz için e-posta adresinizi bırakabilirsiniz.")
+        email = st.text_input("E-posta Adresiniz", placeholder="İletişim için (İsteğe bağlı)", help="Size geri dönüş yapabilmemiz için e-posta adresinizi bırakabilirsiniz.")
         
-    mesaj = st.text_area("✍️ Mesajınız", placeholder="Karşılaştığınız sorunu veya aklınızdaki harika fikri detaylıca anlatın...", height=150)
+    mesaj = st.text_area("Mesajınız", placeholder="Karşılaştığınız sorunu veya aklınızdaki harika fikri detaylıca anlatın...", height=150)
     
     st.markdown("<br>", unsafe_allow_html=True)
     
     btn_col1, btn_col2, btn_col3 = st.columns([1,2,1])
     with btn_col2:
-        if st.button("🚀 Formu Gönder", use_container_width=True, type="primary"):
+        if st.button("Formu Gönder", use_container_width=True, type="primary"):
             if len(mesaj) < 10:
                 st.error("Lütfen konuyu biraz daha detaylı açıklayın. (En az 10 karakter)")
             else:
                 save_complaint(konu, email, mesaj)
                 st.markdown("""
                 <div style='text-align: center; padding: 15px; background: rgba(40, 167, 69, 0.1); border-radius: 10px; border: 1px solid rgba(40, 167, 69, 0.3); margin-top: 10px;'>
-                    <h4 style='color: #28a745; margin: 0;'>✅ Teşekkürler!</h4>
+                    <h4 style='color: #28a745; margin: 0;'>Teşekkürler!</h4>
                     <p style='font-size: 0.9rem; margin-top: 5px; margin-bottom: 0;'>Bildiriminiz ilgili birimlere başarıyla iletilmiştir.</p>
                 </div>
                 """, unsafe_allow_html=True)
@@ -707,12 +724,12 @@ with st.sidebar:
     
     col_t1, col_t2 = st.columns(2)
     with col_t1:
-        dark_toggle = st.toggle("🌙 Tema", value=st.session_state.dark_mode, key="dark_toggle")
+        dark_toggle = st.toggle("Tema", value=st.session_state.dark_mode, key="dark_toggle")
         if dark_toggle != st.session_state.dark_mode:
             st.session_state.dark_mode = dark_toggle
             st.rerun()
     with col_t2:
-        if st.button("🗑️ Temizle", use_container_width=True, type="primary"):
+        if st.button("Sohbeti Temizle", use_container_width=True, type="primary"):
             st.session_state.messages = []
             st.session_state.chat_history = []
             st.session_state.total_queries = 0
@@ -721,44 +738,44 @@ with st.sidebar:
                 del st.session_state.feedback_given
             st.rerun()
     
-    # 📢 Güncel Duyurular (Hover Açılır Menü)
+    # Güncel Duyurular (Hover Açılır Menü)
     st.markdown("""
     <div class="hover-dropdown">
         <button class="hover-dropdown-btn">
-            <span>📢 Güncel Duyurular</span>
+            <span>Güncel Duyurular</span>
             <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
         </button>
         <div class="hover-dropdown-content">
-            <a href="https://www.iuc.edu.tr/tr/duyurular/1/1" target="_blank">🏛️ Üniversite Duyuruları</a>
-            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/duyurular/1/1" target="_blank">💻 Bölüm Duyuruları</a>
+            <a href="https://www.iuc.edu.tr/tr/duyurular/1/1" target="_blank">Üniversite Duyuruları</a>
+            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/duyurular/1/1" target="_blank">Bölüm Duyuruları</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # 📰 Güncel Haberler (Hover Açılır Menü)
+    # Güncel Haberler (Hover Açılır Menü)
     st.markdown("""
     <div class="hover-dropdown">
         <button class="hover-dropdown-btn">
-            <span>📰 Güncel Haberler</span>
+            <span>Güncel Haberler</span>
             <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
         </button>
         <div class="hover-dropdown-content">
-            <a href="https://www.iuc.edu.tr/tr/haberler/1" target="_blank">🏛️ Üniversite Haberleri</a>
-            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/haberler/" target="_blank">💻 Bölüm Haberleri</a>
+            <a href="https://www.iuc.edu.tr/tr/haberler/1" target="_blank">Üniversite Haberleri</a>
+            <a href="https://bilgisayarmuhendislik.iuc.edu.tr/tr/haberler/" target="_blank">Bölüm Haberleri</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
     
-    # 🎓 Akademik Sistemler (Hover Açılır Menü)
+    # Akademik Sistemler (Hover Açılır Menü)
     st.markdown("""
     <div class="hover-dropdown">
         <button class="hover-dropdown-btn">
-            <span>🎓 Akademik Sistemler</span>
+            <span>Akademik Sistemler</span>
             <span style="font-size: 0.8rem; opacity: 0.8;">▶</span>
         </button>
         <div class="hover-dropdown-content">
-            <a href="https://aksis.iuc.edu.tr/Account/LogOn?ReturnUrl=%2f" target="_blank">📊 AKSİS (Kayıt & Not)</a>
-            <a href="https://canvas.iuc.edu.tr/login/ldap" target="_blank">📚 CANVAS (Ders & İçerik)</a>
+            <a href="https://aksis.iuc.edu.tr/Account/LogOn?ReturnUrl=%2f" target="_blank">AKSİS (Kayıt ve Not)</a>
+            <a href="https://canvas.iuc.edu.tr/login/ldap" target="_blank">CANVAS (Ders İçerikleri)</a>
         </div>
     </div>
     """, unsafe_allow_html=True)
@@ -767,15 +784,15 @@ with st.sidebar:
     
     col_b1, col_b2 = st.columns(2)
     with col_b1:
-        if st.button("📝 Form", use_container_width=True):
+        if st.button("Geri Bildirim Formu", use_container_width=True):
             feedback_dialog()
             
     with col_b2:
         chat_txt = export_chat_as_txt()
         if chat_txt:
-            st.download_button("📥 Aktar", data=chat_txt, file_name=f"iuc_sohbet_{datetime.now().strftime('%Y%m%d_%H%M')}.txt", mime="text/plain", use_container_width=True)
+            st.download_button("Dışa Aktar", data=chat_txt, file_name=f"iuc_sohbet_{datetime.now().strftime('%Y%m%d_%H%M')}.txt", mime="text/plain", use_container_width=True)
         else:
-            st.button("📥 Aktar", disabled=True, use_container_width=True)
+            st.button("Dışa Aktar", disabled=True, use_container_width=True)
 
 if "messages" not in st.session_state:
     st.session_state.messages = []
@@ -802,16 +819,16 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
-st.markdown('<div style="text-align: center; opacity: 0.7; margin-bottom: 10px; font-size: 0.9rem;">💡 Aşağıdaki konulardan birini seçebilir veya kendi sorunuzu yazabilirsiniz:</div>', unsafe_allow_html=True)
+st.markdown('<div style="text-align: center; opacity: 0.7; margin-bottom: 10px; font-size: 0.9rem;">Aşağıdaki konulardan birini seçebilir veya kendi sorunuzu yazabilirsiniz:</div>', unsafe_allow_html=True)
 example_questions = [
-    "🎓 Çift anadal (ÇAP) şartları nelerdir?",
-    "📅 Yatay geçiş başvuruları ne zaman?",
-    "📝 Yaz okulunda en fazla kaç kredi alabilirim?",
-    "⚖️ Mazeret sınavına kimler girebilir?",
-    "🛑 Kayıt dondurma süresi ne kadar?",
-    "🌟 Onur öğrencisi olmak için ne gerekir?",
-    "📊 Derslere devam zorunluluğu yüzde kaçtır?",
-    "❌ Hoca ders kaydını onaylamazsa ne olur?"
+    "Çift anadal (ÇAP) şartları nelerdir?",
+    "Yatay geçiş başvuruları ne zaman?",
+    "Yaz okulunda en fazla kaç kredi alabilirim?",
+    "Mazeret sınavına kimler girebilir?",
+    "Kayıt dondurma süresi ne kadar?",
+    "Onur öğrencisi olmak için ne gerekir?",
+    "Derslere devam zorunluluğu yüzde kaçtır?",
+    "Hoca ders kaydını onaylamazsa ne olur?"
 ]
 
 cols = st.columns(4)
@@ -829,27 +846,27 @@ for idx, message in enumerate(st.session_state.messages):
             st.markdown(f'<div class="assistant-bubble">{message["content"]}</div>', unsafe_allow_html=True)
             if "elapsed" in message:
                 engine = message.get("engine", "API")
-                st.markdown(f"""<div class="timing-badge">⏱️ {message['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
+                st.markdown(f"""<div class="timing-badge">{message['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
             if "sources" in message and message["sources"]:
                 sources_clean = [s for s in message["sources"] if s]
                 if sources_clean:
-                    with st.expander("📚 Kaynaklar"):
+                    with st.expander("İlgili Kaynaklar"):
                         for source in sources_clean:
                             clean_name = get_display_name(source)
-                            st.markdown(f"📄 **{clean_name}**")
-            # 👍/👎 Geri Bildirim Butonları
+                            st.markdown(f"• **{clean_name}**")
+            # Faydalı/Yetersiz Geri Bildirim Butonları
             if idx not in st.session_state.feedback_given:
                 st.markdown("<div style='margin-left: 10%; margin-bottom:10px;'>", unsafe_allow_html=True)
                 f_col1, f_col2, _ = st.columns([1,1,8])
                 with f_col1:
-                    st.button("👍", key=f"up_{idx}", on_click=handle_feedback, args=(idx, 1))
+                    st.button("Faydalı", key=f"up_{idx}", on_click=handle_feedback, args=(idx, 1))
                 with f_col2:
-                    st.button("👎", key=f"down_{idx}", on_click=handle_feedback, args=(idx, -1))
+                    st.button("Yetersiz", key=f"down_{idx}", on_click=handle_feedback, args=(idx, -1))
                 st.markdown("</div>", unsafe_allow_html=True)
             else:
-                st.markdown('<div class="feedback-done">✅ Geri bildiriminiz kaydedildi!</div>', unsafe_allow_html=True)
+                st.markdown('<div class="feedback-done">Geri bildiriminiz başarıyla kaydedildi.</div>', unsafe_allow_html=True)
 
-user_query = st.chat_input("Sorunuzu yazın...")
+user_query = st.chat_input("Örn: Staj yönergesinde devam zorunluluğu nedir?")
 
 if "trigger_query" in st.session_state:
     user_query = st.session_state.trigger_query
@@ -857,26 +874,26 @@ if "trigger_query" in st.session_state:
 
 if user_query:
     st.session_state.messages.append({"role": "user", "content": user_query})
-    with st.chat_message("user", avatar="🎓"):
+    with st.chat_message("user", avatar="user"):
         st.markdown(f'<div class="user-bubble">{user_query}</div>', unsafe_allow_html=True)
 
     with st.chat_message("assistant", avatar=f"data:image/png;base64,{base64_logo}"):
         message_placeholder = st.empty()
         # Gerçek zamanlı arama başlama durumu (State 1)
-        message_placeholder.markdown('<div class="thinking-realtime">🔍 Akademik veritabanı taranıyor...</div>', unsafe_allow_html=True)
+        message_placeholder.markdown('<div class="thinking-realtime">[Sistem] Akademik veritabanı taranıyor...</div>', unsafe_allow_html=True)
         
         result = process_query_via_api_stream(user_query, model_choice, temperature, st.session_state.chat_history, message_placeholder)
 
         engine = result.get("engine", "API")
-        st.markdown(f"""<div class="timing-badge">⏱️ {result['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
+        st.markdown(f"""<div class="timing-badge">{result['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:
             sources_clean = [s for s in result["sources"] if s]
             if sources_clean:
-                with st.expander("📚 Kaynaklar"):
+                with st.expander("İlgili Kaynaklar"):
                     for source in sources_clean:
                         clean_name = get_display_name(source)
-                        st.markdown(f"📄 **{clean_name}**")
+                        st.markdown(f"• **{clean_name}**")
 
         st.session_state.messages.append({
             "role": "assistant",
@@ -899,10 +916,10 @@ if user_query:
         if new_idx not in st.session_state.feedback_given:
             fb_col1, fb_col2, fb_spacer = st.columns([1, 1, 8])
             with fb_col1:
-                if st.button("👍", key=f"fb_pos_{new_idx}", help="Bu cevap faydalıydı"):
+                if st.button("Faydalı", key=f"fb_pos_{new_idx}", help="Bu cevap faydalıydı"):
                     handle_feedback(new_idx, "positive")
             with fb_col2:
-                if st.button("👎", key=f"fb_neg_{new_idx}", help="Bu cevap yetersizdi"):
+                if st.button("Yetersiz", key=f"fb_neg_{new_idx}", help="Bu cevap yetersizdi"):
                     handle_feedback(new_idx, "negative")
 
 js_code = f"""
