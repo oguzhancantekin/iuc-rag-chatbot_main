@@ -815,7 +815,7 @@ example_questions = [
     "🛑 Kayıt dondurma süresi ne kadar?",
     "🌟 Onur öğrencisi olmak için ne gerekir?",
     "📊 Derslere devam zorunluluğu yüzde kaçtır?",
-    "❌ Hoca ders kaydını onaylamazsa ne olur?"
+    "❌ Danışman ders kaydını onaylamazsa ne olur?"
 ]
 
 cols = st.columns(4)
