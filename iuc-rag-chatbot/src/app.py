@@ -113,13 +113,17 @@ st.markdown(f"""
     }}
     div[data-testid="stToggle"] > label {{ color: {"rgba(255, 255, 255, 0.9)" if dark else "#000000"} !important; font-weight: 600 !important; }}
     
-    /* Streamlit Rerun Fading (Silikleşme/Titreme) İptali */
+    /* Streamlit Rerun Fading (Silikleşme/Titreme) İptali - ÇOK AGRESIF KONTROL */
     [data-testid="stAppViewContainer"],
     [data-testid="stAppViewBlockContainer"],
-    [data-testid="stChatMessage"],
-    .stApp {{
+    [data-testid="stHeader"],
+    [data-testid="stSidebar"],
+    .block-container,
+    .stApp,
+    div[class*="st-emotion-cache"] {{
         opacity: 1 !important;
         transition: none !important;
+        filter: none !important;
     }}
     
     /* Gerçek Zamanlı Akıcı Düşünme Animasyonu */
