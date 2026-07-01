@@ -588,7 +588,7 @@ def process_query_via_api_stream(query, model_choice, temperature, chat_history,
                             result["chunks"] = data.get("chunks", [])
                             result["engine"] = data.get("engine", "API")
                             # RAG taraması bitti, LLM başladı (Gerçek State 2)
-                            message_placeholder.markdown('<div class="thinking-realtime">:material/memory: İlgili maddeler sentezleniyor...</div>', unsafe_allow_html=True)
+                            message_placeholder.markdown('<div class="thinking-realtime"><span class="material-symbols-rounded">memory</span> İlgili maddeler sentezleniyor...</div>', unsafe_allow_html=True)
                         elif data.get("type") == "chunk":
                             full_answer += data.get("content", "")
                             # Cursor (▌) efekti ile anlik guncelle
@@ -833,24 +833,24 @@ st.markdown(f"""
 
 st.markdown('<div style="text-align: center; opacity: 0.7; margin-bottom: 10px; font-size: 0.9rem;">Aşağıdaki konulardan birini seçebilir veya kendi sorunuzu yazabilirsiniz:</div>', unsafe_allow_html=True)
 example_questions = [
-    ":material/school: Çift anadal (ÇAP) şartları nelerdir?",
-    ":material/calendar_month: Yatay geçiş başvuruları ne zaman?",
-    ":material/edit_document: Yaz okulunda en fazla kaç kredi alabilirim?",
-    ":material/gavel: Mazeret sınavına kimler girebilir?",
-    ":material/block: Kayıt dondurma süresi ne kadar?",
-    ":material/star: Onur öğrencisi olmak için ne gerekir?",
-    ":material/bar_chart: Derslere devam zorunluluğu yüzde kaçtır?",
-    ":material/cancel: Danışman ders kaydını onaylamazsa ne olur?"
+    (":material/school:", "Çift anadal (ÇAP) şartları nelerdir?"),
+    (":material/calendar_month:", "Yatay geçiş başvuruları ne zaman?"),
+    (":material/edit_document:", "Yaz okulunda en fazla kaç kredi alabilirim?"),
+    (":material/gavel:", "Mazeret sınavına kimler girebilir?"),
+    (":material/block:", "Kayıt dondurma süresi ne kadar?"),
+    (":material/star:", "Onur öğrencisi olmak için ne gerekir?"),
+    (":material/bar_chart:", "Derslere devam zorunluluğu yüzde kaçtır?"),
+    (":material/cancel:", "Danışman ders kaydını onaylamazsa ne olur?")
 ]
 
 cols = st.columns(4)
-for i, question in enumerate(example_questions):
+for i, (icon, question) in enumerate(example_questions):
     with cols[i % 4]:
-        st.button(question, on_click=trigger_example, args=(question,), key=f"btn_{i}", use_container_width=True, type="primary")
+        st.button(question, icon=icon, on_click=trigger_example, args=(question,), key=f"btn_{i}", use_container_width=True, type="primary")
 
 for idx, message in enumerate(st.session_state.messages):
     role = message["role"]
-    avatar = "🎓" if role == "user" else f"data:image/png;base64,{base64_logo}"
+    avatar = "user" if role == "user" else f"data:image/png;base64,{base64_logo}"
     with st.chat_message(role, avatar=avatar):
         if role == "user":
             st.markdown(f'<div class="user-bubble">{message["content"]}</div>', unsafe_allow_html=True)
@@ -892,7 +892,7 @@ if user_query:
     with st.chat_message("assistant", avatar=f"data:image/png;base64,{base64_logo}"):
         message_placeholder = st.empty()
         # Gerçek zamanlı arama başlama durumu (State 1)
-        message_placeholder.markdown('<div class="thinking-realtime">:material/search: Akademik veritabanı taranıyor...</div>', unsafe_allow_html=True)
+        message_placeholder.markdown('<div class="thinking-realtime"><span class="material-symbols-rounded">search</span> Akademik veritabanı taranıyor...</div>', unsafe_allow_html=True)
         
         result = process_query_via_api_stream(user_query, model_choice, temperature, st.session_state.chat_history, message_placeholder)
 
