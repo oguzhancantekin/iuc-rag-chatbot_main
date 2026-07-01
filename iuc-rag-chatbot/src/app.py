@@ -19,14 +19,22 @@ from shared import get_display_name
 API_URL = "http://localhost:8000"
 FEEDBACK_FILE = os.path.join(BASE_DIR, "data", "feedback.json")
 
+# Sola logonun gelmesi için yolu verdik
+LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
+
+from PIL import Image
+try:
+    favicon = Image.open(LOGO_PATH)
+except:
+    favicon = "🏛️"
+
 st.set_page_config(
     page_title="İÜC Akademik Asistan",
-    page_icon="🏛️",
+    page_icon=favicon,
     layout="wide"
 )
 
-# Sola logonun gelmesi için yolu verdik
-LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
+# Sayfa arkasındaki soluk filigran resmi için logoyu mecburen base64'e çevirdik
 
 # Sayfa arkasındaki soluk filigran resmi için logoyu mecburen base64'e çevirdik
 base64_logo = ""
