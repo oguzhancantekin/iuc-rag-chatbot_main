@@ -19,7 +19,7 @@ app = FastAPI(
     version="1.0.0"
 )
 
-# Global index degiskenleri
+# Aslında global değişken kullanmamak lazımdı ama projeyi yetiştirmek için şimdilik böyle çalışıyor :)
 vectorstore, bm25, chunks = None, None, None
 
 @app.on_event("startup")
@@ -31,7 +31,7 @@ def startup_event():
         print("İndeksler basariyla yuklendi ve API hazir!")
     except Exception as e:
         print(f"HATA: İndeksler yuklenirken sorun olustu: {e}")
-        # Hata olsa bile API ayakta kalsin, endpoint'lerde hata dondururuz.
+        # İndeksler çökerse API tamamen kapanmasın diye hatayı yutuyoruz, arayüzden uyarı basarız
 
 class QueryRequest(BaseModel):
     query: str
@@ -56,7 +56,7 @@ def ask_question(request: QueryRequest):
     try:
         start_time = time.time()
         
-        # RAG motorunu cagir (Groq/Ollama Hibrit)
+        # Yapay zekayı (LLM) hazırlıyoruz
         llm = get_llm(temperature=request.temperature)
         
         # RAG motorunu cagir
@@ -71,7 +71,7 @@ def ask_question(request: QueryRequest):
         
         elapsed = time.time() - start_time
         
-        # Clean chunks serialization for JSON safety
+        # JSON'a çevirirken objeler patlıyordu, o yüzden dict formatına zorla dönüştürüyoruz (Temizlik)
         safe_chunks = []
         if "chunks" in result:
             for c in result["chunks"]:

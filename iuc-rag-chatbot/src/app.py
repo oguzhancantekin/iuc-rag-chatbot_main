@@ -14,10 +14,7 @@ sys.path.append(os.path.dirname(os.path.abspath(__file__)))
 from config import VECTORDB_DIR, BASE_DIR
 from shared import get_display_name
 
-# NOT: SOURCE_DISPLAY_NAMES ve get_display_name() burada rag_engine.py ile
-# birebir kopya halindeydi (iki dosyada ayni sozluk, ayni fonksiyon).
-# Artik shared.py'den import ediliyor; yeni bir kaynak dosyasi eklendiginde
-# tek yerde guncelleme yeterli.
+# Burası çok karışmıştı, isim sözlüklerini falan shared.py'ye taşıdık ki her dosyada ayrı ayrı kopyala-yapıştır yapmayalım.
 
 API_URL = "http://localhost:8000"
 FEEDBACK_FILE = os.path.join(BASE_DIR, "data", "feedback.json")
@@ -28,16 +25,16 @@ st.set_page_config(
     layout="wide"
 )
 
-# Logo yolunu belirle
+# Sola logonun gelmesi için yolu verdik
 LOGO_PATH = os.path.join(os.path.dirname(os.path.dirname(os.path.abspath(__file__))), "assets", "logo.png")
 
-# Watermark için logoyu base64'e çevir
+# Sayfa arkasındaki soluk filigran resmi için logoyu mecburen base64'e çevirdik
 base64_logo = ""
 if os.path.exists(LOGO_PATH):
     with open(LOGO_PATH, "rb") as image_file:
         base64_logo = base64.b64encode(image_file.read()).decode("utf-8")
 
-# ── Dark Mode State & CSS Injection (FOUC Önleyici En Üst Blok) ──
+# Tema yüklenirken ekran bi anlık beyaz olup yanıp sönüyordu (FOUC hatası), CSS'i en tepeye koyarak çözdük bunu
 if "dark_mode" not in st.session_state:
     st.session_state.dark_mode = True
 
@@ -97,13 +94,13 @@ st.markdown(f"""
     .stApp p, .stApp li, .stApp span, .stApp label, .stApp div, [data-testid="stSidebar"] p, [data-testid="stSidebar"] span, [data-testid="stSidebar"] label, [role="dialog"] p, [role="dialog"] span, [role="dialog"] label, [role="dialog"] div { color: #111111 !important; }
     '''}
     
-    /* Sayfanın Kaymasını (Scroll) Önlemek İçin Üst Boşluğu Silme */
+    /* Sayfanın üstündeki gereksiz boşluğu sildik yoksa aşağı çok kayıyordu */
     .block-container {{
         padding-top: 3.5rem !important;
         padding-bottom: 0rem !important;
     }}
 
-    /* Toggle Switch Rengi (SARI KUTU KESİN ÇÖZÜM) */
+    /* Buton rengi Streamlit'te bozuluyordu, bu kodla zorla sarı yaptık (Kesin çözüm) */
     div[data-testid="stToggle"] {{
         background-color: {"rgba(255, 255, 255, 0.05)" if dark else "#D4AF37"} !important;
         padding: 10px 15px !important;
@@ -113,7 +110,7 @@ st.markdown(f"""
     }}
     div[data-testid="stToggle"] > label {{ color: {"rgba(255, 255, 255, 0.9)" if dark else "#000000"} !important; font-weight: 600 !important; }}
     
-    /* Streamlit Rerun Fading (Silikleşme/Titreme) İptali - ÇOK AGRESIF KONTROL */
+    /* Streamlit her tıklamada ekranı silikleştirip titretiyordu, o iğrenç animasyonu zorla kapattık */
     [data-testid="stAppViewContainer"],
     [data-testid="stAppViewBlockContainer"],
     [data-testid="stHeader"],
@@ -126,7 +123,7 @@ st.markdown(f"""
         filter: none !important;
     }}
     
-    /* Material Symbols İçe Aktarma ve Sınıf Tanımlama */
+    /* Google'ın yuvarlak ikonlarını projeye dahil ettik */
     @import url('https://fonts.googleapis.com/css2?family=Material+Symbols+Rounded:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200');
 
     .material-symbols-rounded {{
@@ -151,7 +148,7 @@ st.markdown(f"""
         font-size: 1.6rem !important;
         margin-right: 8px;
     }}
-    /* Gerçek Zamanlı Akıcı Düşünme Animasyonu */
+    /* Bot düşünürken çıkan yanıp sönme animasyonu (baya iyi durdu) */
     @keyframes pulse {{
         0% {{ opacity: 0.5; }}
         50% {{ opacity: 1; }}
@@ -165,27 +162,27 @@ st.markdown(f"""
         animation: pulse 1.5s infinite ease-in-out;
     }}
     
-    /* ====== SELECTBOX (MODEL SEÇİMİ) VE DROPDOWN ====== */
+    /* Model seçtiğimiz açılır kutunun renkleri */
     .stSelectbox > div[data-baseweb="select"] {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 8px !important; }}
     .stSelectbox > div[data-baseweb="select"] * {{ color: {input_text} !important; background-color: transparent !important; }}
     div[data-baseweb="popover"], ul[role="listbox"] {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 8px !important; }}
     li[role="option"] {{ background-color: {input_bg} !important; color: {input_text} !important; }}
     li[role="option"]:hover {{ background-color: rgba(212, 175, 55, 0.2) !important; }}
     
-    /* ====== CHAT INPUT (ARAMA YERİ) ====== */
+    /* Alttaki mesaj yazma kutusu */
     [data-testid="stChatInput"] {{ background-color: transparent !important; }}
     [data-testid="stChatInput"] * {{ background-color: transparent !important; }}
     [data-testid="stChatInput"] > div {{ background-color: {input_bg} !important; border: 1px solid {border_color} !important; border-radius: 12px !important; overflow: hidden !important; }}
     [data-testid="stChatInput"] textarea {{ color: {input_text} !important; }}
     [data-testid="stChatInput"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.8 !important; }}
 
-    /* ====== TEXT INPUT & TEXT AREA (FORM GİRDİLERİ) ====== */
+    /* Şikayet formundaki yazı girdiğimiz yerler */
     [data-testid="stTextInput"] div[data-baseweb="base-input"], [data-testid="stTextArea"] div[data-baseweb="base-input"],
     [data-testid="stTextInput"] div[data-baseweb="input"], [data-testid="stTextArea"] div[data-baseweb="textarea"] {{ background-color: {input_bg} !important; border-color: {border_color} !important; }}
     [data-testid="stTextInput"] input, [data-testid="stTextArea"] textarea {{ color: {input_text} !important; background-color: {input_bg} !important; border-radius: 8px !important; }}
     [data-testid="stTextInput"] input::placeholder, [data-testid="stTextArea"] textarea::placeholder {{ color: {text_color} !important; opacity: 0.6 !important; }}
 
-    /* ====== BEĞEN/BEĞENMEME VE KENAR ÇUBUĞU BUTONLARI (KIND="SECONDARY") ====== */
+    /* Like/Dislike butonlarının çerçevesini ayarladık */
     div[data-testid="stButton"] button[kind="secondary"] {{
         background: transparent !important;
         background-color: transparent !important;
@@ -301,7 +298,7 @@ st.markdown(f"""
     [data-testid="stSidebar"] img:hover {{
         filter: {"drop-shadow(0 0 25px rgba(212, 175, 55, 0.6))" if dark else "drop-shadow(0 0 25px rgba(0, 71, 171, 0.7))"};
     }}
-    /* Streamlit varsayılan tam ekran (fullscreen) butonunu logodan gizle */
+    /* O iğrenç tam ekran büyütme butonunu sildik yoksa logoyu bozuyordu */
     [data-testid="stSidebar"] [data-testid="StyledFullScreenButton"],
     [data-testid="stSidebar"] button[title="View fullscreen"] {{
         display: none !important;
@@ -337,7 +334,7 @@ st.markdown(f"""
     .assistant-bubble {{ background: {assistant_bubble_bg}; border: 1px solid {border_color}; padding: 18px 24px; border-radius: 24px 24px 24px 4px; color: {assistant_bubble_text} !important; line-height: 1.7; margin-right: auto; max-width: 90%; margin-bottom: 15px; box-shadow: 0 4px 15px rgba(0,0,0,0.05); font-size: 1.05rem; }}
     [data-testid="stChatMessage"] {{ background-color: transparent !important; border: none !important; box-shadow: none !important; padding: 0 !important; }}
     
-    /* ====== HOVER DROPDOWN MENÜ (Kaydırma Önleyici CSS Aktif) ====== */
+    /* ====== Soldaki Menü Tasarımı ====== */
     [data-testid="stSidebar"], 
     [data-testid="stSidebar"] > div,
     [data-testid="stSidebarUserContent"] {{
@@ -386,7 +383,7 @@ st.markdown(f"""
         margin-left: 0px; 
         overflow: visible; 
     }}
-    /* GÖRÜNMEZ KÖPRÜ: Görsel olarak butonla menü arasında boşluk olsa da, farenin menüyü kaybetmemesi için görünmez bir alan. Streamlit resizer'ın üzerine biner. */
+    /* Fareyi yana kaydırırken menü kayboluyordu, araya görünmez bir köprü kurarak çözdük */
     .hover-dropdown-content::before {{
         content: "";
         position: absolute;
@@ -418,7 +415,7 @@ st.markdown(f"""
         display: block;
         animation: fadeInLeft 0.3s ease;
     }}
-    /* Yan taraftan açılma animasyonu */
+    /* Menü açılış animasyonu (fena olmadı) */
     @keyframes fadeInLeft {{
         from {{ opacity: 0; transform: translateX(-10px); }}
         to {{ opacity: 1; transform: translateX(0); }}
@@ -436,7 +433,7 @@ st.markdown(f"""
 
 
 
-# ── Geri Bildirim (RLHF) Yardımcı Fonksiyonları ──
+# ── Verileri kaydettiğimiz json (beğenme butonları buraya yazıyor) ──
 def load_feedback():
     if os.path.exists(FEEDBACK_FILE):
         try:

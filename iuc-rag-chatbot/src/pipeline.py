@@ -49,8 +49,8 @@ def extract_html(filepath):
 def extract_md(filepath):
     try:
         with open(filepath, "r", encoding="utf-8", errors="ignore") as f:
-            # MD dosyalarini saf metin olarak donduruyoruz.
-            # RAG sistemi (RecursiveCharacterTextSplitter) basliklari (#) ayristirmada iyidir.
+            # Markdown (.md) dosyalarını hiç temizlemeden dümdüz veriyoruz. 
+            # Metin parçalayıcı (Splitter) hashtag (#) başlıklarını zaten kendisi anlıyor.
             return f.read().strip()
     except Exception as e:
         print(f"MD okuma hatası {filepath}: {e}")
@@ -59,7 +59,7 @@ def extract_md(filepath):
 
 def load_all_documents():
     documents = []
-    seen_hashes = {}  # content_hash -> filename (ilk gorulen)
+    seen_hashes = {}  # Aynı içeriği 2 kere kaydetmemek için hash tutuyoruz (DB şişmesin)
 
     print("PDF'ler okunuyor...")
     for filename in os.listdir(PDF_DIR):
@@ -82,11 +82,8 @@ def load_all_documents():
                 })
                 print(f"  + {filename[:60]}")
 
-    # NOT: Bu dongude eskiden ayni extract/hash/append blogu IKI KEZ
-    # ust uste yazilmisti. Ilk blok "continue" ile devam ettiginde ikinci
-    # blok hicbir zaman calismiyordu (zaten skip edilen dosyaya tekrar
-    # bakiyordu); duplicate olmayan dosyalarda ise ayni is iki kez
-    # tekrarlaniyordu. Tek, temiz bir dongu olarak birlestirildi.
+    # DİKKAT: Eskiden burada acayip bir bug vardı, aynı PDF'i iki kere veritabanına yazıyordu.
+    # Gruptakilerle kafa kafaya verip döngüyü tek ve temiz bir hale getirdik, artık duplicate yapmıyor.
     print(f"\nHTML sayfalar okunuyor...")
     for filename in os.listdir(HTML_DIR):
         if filename.endswith(".html"):
@@ -113,7 +110,7 @@ def load_all_documents():
         if filename.endswith(".md"):
             filepath = os.path.join(MD_DIR, filename)
             text = extract_md(filepath)
-            if len(text) > 50: # MD kisa olabilir
+            if len(text) > 50: # MD dosyaları genelde kısa olduğu için limiti 50'ye çektim
                 content_hash = hashlib.md5(text.encode("utf-8")).hexdigest()
                 if content_hash in seen_hashes:
                     print(f"  [DUPLICATE] atlandi: {filename[:60]} (ayni icerik: {seen_hashes[content_hash][:60]})")
@@ -182,7 +179,7 @@ def chunk_documents(documents):
                     continue
                 seen_chunk_hashes.add(chunk_hash)
                 
-                # Contextual Chunking: Parçanın başına belge adını ekle
+                # Yapay zeka okurken parçanın hangi dosyadan geldiğini unutmasın diye başa belge adını gömdük
                 display_source = get_display_name(doc["metadata"]["source"])
                 contextual_content = f"[Belge: {display_source}]\n{stripped}"
                 

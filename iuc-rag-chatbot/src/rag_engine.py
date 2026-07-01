@@ -9,12 +9,8 @@ from sentence_transformers import CrossEncoder
 from config import VECTORDB_DIR, DEVICE
 from shared import get_display_name
 
-# NOT: SOURCE_DISPLAY_NAMES / get_display_name burada app.py ile birebir
-# kopya halindeydi; artik shared.py'den import ediliyor (tek kaynak).
-# Ayrica burada hic kullanilmayan CALENDAR_FILE_PATTERNS/is_calendar_source
-# ciftiyle academic_calendar.py'deki gercekte calisan TAKVIM_PDFS listesi
-# birbirinden bagimsizdi; takvim dosyasi tespiti artik tek yerde
-# (shared.is_calendar_source) toplandi, bu dosyada ayrica tanimlanmiyor.
+# Kodlar çok dağınık geliyordu gözümüze, o yüzden ortak importları shared.py'ye taşıdık
+# Takvim pdf kontrolü falan hep shared'de artık. Eski çöpleri (CALENDAR_FILE_PATTERNS vs) sildik.
 
 SYSTEM_PROMPT = """Sen İstanbul Üniversitesi-Cerrahpaşa'nın resmi akademik asistanısın.
 Sana verilen BAĞLAM BELGELERİ'ni kullanarak öğrencilerin sorularını yanıtla.
@@ -120,7 +116,8 @@ def hybrid_search(query, vectorstore, bm25, chunks, k=25, alpha=0.3, topic_filte
     faiss_scores = {}
     for doc, score in faiss_results:
         chunk_id = doc.metadata.get("chunk_id", "")
-        # FAISS varsayılan olarak L2 distance döndürür (0 en iyi). Bunu benzerlik (0-1) skoruna çevirmek için:
+        # FAISS normalde uzaklık (L2 distance) ölçüyor (0 çıkarsa mükemmel demek). 
+        # Bunu BM25 gibi bir skorla (0-1 arası) toplayabilmek için matematiksel bir ters çevirme yapıyoruz.
         normalized_score = 1 / (1 + score)
         faiss_scores[chunk_id] = (normalized_score, doc)
 
@@ -166,7 +163,8 @@ def rerank(query, chunks, top_k=8):
     pairs = [[query, chunk["content"]] for chunk in chunks]
     scores = reranker.predict(pairs)
     
-    # Özel Tablo Kurtarma: Cross-Encoder tabloları yok ettiği için, müfredat sorusuysa bypass et!
+    # Buralar çok sıkıntılı! Cross-Encoder modeli tablo okuyamadığı için müfredat sorularını batırıyor.
+    # O yüzden müfredat sorusuysa bypass atıyoruz. (Buna ileride daha iyi bir çözüm bulmamız lazım)
     query_lower = query.lower()
     exclude_mufredat = any(k in query_lower for k in ["yaz okulu", "staj", "çap", "cift anadal", "çift anadal", "yandal", "erasmus"])
     is_mufredat_query = not exclude_mufredat and any(k in query_lower for k in ["müfredat", "mufredat", "akts", "kredi", "yarıyıl", "sınıf", "ders planı", "hangi ders", "zorunlu ders", "seçmeli ders"])
@@ -194,16 +192,16 @@ def cosine_similarity(v1, v2):
 def semantic_router(query):
     query_lower = query.lower()
     
-    # 1. Açıkça takvim kelimesi geçiyorsa direkt takvime gönder
+    # 1. Kullanıcı takvim derse direkt takvimi versin, db'de boşa aramayalım
     if "takvim" in query_lower:
         return True
         
-    # 2. Genel sohbetse RAG'e gönderme
+    # 2. Nasılsın falan derse RAG'i hiç çalıştırmayalım yavaşlamasın
     genel_keywords = ["merhaba", "selam", "nasılsın", "sen kimsin", "adın ne", "bugün ayın kaçı", "bugünün tarihi"]
     if any(kw in query_lower for kw in genel_keywords):
         return False
         
-    # 3. Yönetmelik ve şart bildiren güçlü kelimeler varsa RAG'e gönder (takvime DEĞİL)
+    # 3. Yönerge/Şart lafı geçince takvimle işi olmaz, direkt RAG'e yolluyoruz ki PDFleri okusun
     yonetmelik_keywords = [
         "şart", "koşul", "nasıl", "nedir", "kaç gün", "ne kadar", "kimler",
         "başvurulmalı", "gerekir", "zorunlu", "yapılır", "verilir",
@@ -215,7 +213,7 @@ def semantic_router(query):
     if any(kw in query_lower for kw in yonetmelik_keywords):
         return False
         
-    # 4. Zaman belirten kelime + Etkinlik kelimesi kombinasyonu
+    # 4. Saat/Tarih + Etkinlik dediyse büyük ihtimalle akademik takvim arıyordur
     zaman_sorulari = ["ne zaman", "hangi tarih", "tarihi nedir", "hangi gün", "başlıyor", "bitiyor", "başlangıç", "bitiş"]
     etkinlikler = ["vize", "final", "bütünleme", "sınav", "kayıt", "ders", "okul", "dönem", "yarıyıl"]
     
@@ -225,7 +223,7 @@ def semantic_router(query):
     if is_time_question and is_event:
         return True
         
-    # 5. Sadece vizeler/finaller kelimesi geçiyorsa takvime bakma ihtimali çok yüksek
+    # 5. Öğrenci sadece vizeler/finaller yazıp bırakırsa takvimi sormuştur diye varsaydık
     if any(kw in query_lower for kw in ["vizeler", "finaller", "bütler", "bütünlemeler"]):
         return True
 
