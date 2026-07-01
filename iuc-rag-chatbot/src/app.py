@@ -620,6 +620,7 @@ def stream_data(text):
 
 def trigger_example(q):
     st.session_state.trigger_query = q
+    st.session_state.force_scroll_time = time.time()
 
 # ── Geri Bildirim Callback'leri ──
 def handle_feedback(msg_index, rating):
@@ -831,6 +832,31 @@ st.markdown(f"""
 </div>
 """, unsafe_allow_html=True)
 
+# EĞER BUTONA TIKLANDIYSA (YUKARIDAKİ SORULARDAN), SCROLL KODUNU EN ÜSTTE ÇALIŞTIR!
+# Çünkü kod en aşağıda olunca tarayıcı onu ekranda görmediği için çalıştırmıyordu (Lazy Loading).
+if "force_scroll_time" in st.session_state:
+    components.html(
+        f"""
+        <script>
+            let count = 0;
+            const scrollInterval = setInterval(() => {{
+                const parent = window.parent;
+                if (!parent) return;
+                const doc = parent.document;
+                
+                const containers = doc.querySelectorAll('.stMainBlockContainer, .main, .block-container, div[data-testid="stAppViewBlockContainer"]');
+                containers.forEach(c => c.scrollTop = c.scrollHeight + 1000);
+                parent.scrollTo(0, doc.body.scrollHeight + 1000);
+                
+                count++;
+                if(count > 30) clearInterval(scrollInterval);
+            }}, 200);
+        </script>
+        """,
+        height=0, width=0,
+    )
+    del st.session_state.force_scroll_time
+
 st.markdown('<div style="text-align: center; opacity: 0.7; margin-bottom: 10px; font-size: 0.9rem;">Aşağıdaki konulardan birini seçebilir veya kendi sorunuzu yazabilirsiniz:</div>', unsafe_allow_html=True)
 example_questions = [
     (":material/school:", "Çift anadal (ÇAP) şartları nelerdir?"),
@@ -858,7 +884,7 @@ for idx, message in enumerate(st.session_state.messages):
             st.markdown(f'<div class="assistant-bubble">{message["content"]}</div>', unsafe_allow_html=True)
             if "elapsed" in message:
                 engine = message.get("engine", "API")
-                st.markdown(f"""<div class="timing-badge">{message['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
+                st.markdown(f"""<div class="timing-badge">{engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
             if "sources" in message and message["sources"]:
                 sources_clean = [s for s in message["sources"] if s]
                 if sources_clean:
@@ -897,7 +923,7 @@ if user_query:
         result = process_query_via_api_stream(user_query, model_choice, temperature, st.session_state.chat_history, message_placeholder)
 
         engine = result.get("engine", "API")
-        st.markdown(f"""<div class="timing-badge">{result['elapsed']:.2f}s · {engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
+        st.markdown(f"""<div class="timing-badge">{engine} + Hibrit Arama</div>""", unsafe_allow_html=True)
 
         if result["sources"]:
             sources_clean = [s for s in result["sources"] if s]
@@ -933,7 +959,6 @@ if user_query:
             with fb_col2:
                 if st.button("Yetersiz", icon=":material/thumb_down:", key=f"fb_neg_{new_idx}", help="Bu cevap yetersizdi"):
                     handle_feedback(new_idx, "negative")
-
 js_code = f"""
 <script>
     const parentDoc = window.parent.document;
